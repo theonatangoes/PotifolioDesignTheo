@@ -1,0 +1,557 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Portfólio | Theo Natan</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="shortcut icon" href="/favicon theo.png" type="image/x-icon">
+
+  <style>
+    body {
+      font-family: 'Poppins', sans-serif;
+      scroll-behavior: smooth;
+    }
+
+    .nav-link {
+      position: relative;
+    }
+
+    .nav-link::after {
+      content: '';
+      position: absolute;
+      width: 0;
+      height: 2px;
+      bottom: -2px;
+      left: 0;
+      background-color: #0400fd;
+      transition: width 0.3s ease;
+    }
+
+    .nav-link:hover::after {
+      width: 100%;
+    }
+
+    .project-card {
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .project-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+    }
+
+    .service-card {
+      transition: transform 0.3s ease;
+    }
+
+    .service-card:hover {
+      transform: translateY(-5px);
+    }
+
+    .avatar {
+      animation: float 6s ease-in-out infinite;
+    }
+
+    @keyframes float {
+      0% {
+        transform: translateY(0px);
+      }
+
+      50% {
+        transform: translateY(-10px);
+      }
+
+      100% {
+        transform: translateY(0px);
+      }
+    }
+
+    .fade-in {
+      animation: fadeIn 1s ease-in;
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+      }
+
+      to {
+        opacity: 1;
+      }
+    }
+  </style>
+</head>
+
+<body class="bg-gray-50 text-gray-800">
+  <!-- Fixed Header -->
+  <header class="fixed w-full bg-white shadow-sm z-50">
+    <div class="container mx-auto px-6 py-4">
+      <div class="flex justify-between items-center">
+        <img src="/logo THEO.png" alt="Logo Theo" class="w-[150px] h-auto">
+
+        <!-- Mobile menu button -->
+        <button id="mobile-menu-button" class="md:hidden text-gray-600 focus:outline-none">
+          <i class="fas fa-bars text-xl"></i>
+        </button>
+
+        <!-- Desktop Navigation -->
+        <nav class="hidden md:flex space-x-8">
+          <a href="#home" class="nav-link text-gray-700 hover:text-blue-700">Início</a>
+          <a href="#about" class="nav-link text-gray-700 hover:text-blue-700">Sobre</a>
+          <a href="#projects" class="nav-link text-gray-700 hover:text-blue-700">Projetos</a>
+          <a href="#services" class="nav-link text-gray-700 hover:text-blue-700">Serviços</a>
+        </nav>
+      </div>
+
+      <!-- Mobile Navigation -->
+      <div id="mobile-menu" class="hidden md:hidden mt-4">
+        <a href="#home" class="block py-2 text-gray-700 hover:text-blue-700">Início</a>
+        <a href="#about" class="block py-2 text-gray-700 hover:text-blue-700">Sobre</a>
+        <a href="#projects" class="block py-2 text-gray-700 hover:text-blue-700">Projetos</a>
+        <a href="#services" class="block py-2 text-gray-700 hover:text-blue-700">Serviços</a>
+      </div>
+    </div>
+  </header>
+
+  <!-- Hero Section -->
+  <section id="home" class="pt-32 pb-20 px-6 bg-gradient-to-r from-blue-50 to-indigo-50">
+    <div class="container mx-auto flex flex-col md:flex-row items-center">
+      <div class="md:w-1/2 mb-12 md:mb-0 fade-in">
+        <h1 class="text-4xl md:text-5xl font-bold mb-6 text-gray-800">
+          Design Minimalista,
+          <span class="text-blue-700 font-extrabold animate-pulse">Impacto</span>
+          <span class="text-blue-700 font-extrabold animate-pulse block mt-2">Máximo</span>
+        </h1>
+
+        <p class="text-lg text-gray-600 mb-8">Crio experiências digitais elegantes que equilibram beleza e funcionalidade para ajudar as marcas a se destacarem.</p>
+        <div class="flex space-x-4">
+          <a href="#projects" class="bg-blue-700 hover:bg-blue-500 text-white px-6 py-3 rounded-full font-medium transition duration-300">Veja Meu Trabalho</a>
+        </div>
+      </div>
+      <div class="md:w-1/2 flex justify-center fade-in">
+        <img src="/PAEREDE PORTIFOLIO THEO.png" alt="Design workspace" class="rounded-lg shadow-xl max-w-full h-auto">
+      </div>
+    </div>
+  </section>
+
+  <!-- About Section -->
+  <section id="about" class="py-20 px-6 bg-white">
+    <div class="container mx-auto">
+      <h2 class="text-3xl font-bold text-center mb-16">Sobre mim</h2>
+
+      <div class="flex flex-col md:flex-row items-center">
+        <div class="md:w-1/3 mb-10 md:mb-0 flex justify-centerWork">
+          <div class="avatar w-64 h-64 rounded-full overflow-hidden border-4 border-blue-200">
+            <img src="/Perfil Theo.jpg" alt="" class="w-full h-full object-cover">
+
+          </div>
+        </div>
+
+        <div class="md:w-2/3 md:pl-12">
+          <h3 class="text-2xl font-semibold mb-4">Muito prazer, sou Theo Natan</h3>
+          <p class="text-gray-600 mb-6">Sou Designer Gráfico e Web Designer com experiência no desenvolvimento de identidades visuais, logos, designs para aplicações web, portfólios digitais, aplicativos e landing pages. Meu trabalho é transformar ideias em projetos criativos e funcionais, unindo estética, estratégia e usabilidade para entregar soluções visuais que conectam marcas ao seu público de forma clara e impactante. Aqui você encontrará alguns dos meus projetos que representam minha paixão por design e minha dedicação em criar experiências únicas.</p>
+
+          <div class="mb-8">
+            <h4 class="text-lg font-medium mb-3 text-gray-800">Minhas Habilidades</h4>
+            <div class="flex flex-wrap gap-3">
+              <span class="bg-blue-200 text-blue-700 px-3 py-1 rounded-full text-sm">UI/UX Design</span>
+              <span class="bg-blue-200 text-blue-700 px-3 py-1 rounded-full text-sm">Identidade da Marca</span>
+              <span class="bg-blue-200 text-blue-700 px-3 py-1 rounded-full text-sm">Web Design</span>
+              <span class="bg-blue-200 text-blue-700 px-3 py-1 rounded-full text-sm">Mobile Design</span>
+              <span class="bg-blue-200 text-blue-700 px-3 py-1 rounded-full text-sm">Visão Estratégica</span>
+            </div>
+          </div>
+
+          <a href="#" class="inline-flex items-center text-blue-700 font-medium">
+            Confira mais abaixo
+            <i class="fas fa-arrow-down ml-2"></i>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Projects Section -->
+  <section id="projects" class="py-20 px-6 bg-gray-50">
+    <div class="container mx-auto">
+      <div class="text-center mb-16">
+        <h2 class="text-3xl font-bold mb-4">Meus Projetos</h2>
+        <p class="text-gray-600 max-w-2xl mx-auto">Explore meus trabalhos mais recentes em diferentes categorias. Cada projeto é criado com atenção aos detalhes e à experiência do usuário.</p>
+      </div>
+
+      <!-- Project Filter -->
+      <div class="flex justify-center mb-12">
+        <div class="inline-flex rounded-full bg-white shadow-sm p-1">
+          <button class="filter-btn px-4 py-2 rounded-full font-medium focus:outline-none active" data-filter="all">Todos</button>
+          <button class="filter-btn px-4 py-2 rounded-full font-medium focus:outline-none" data-filter="identity">Identidades Visuais</button>
+          <button class="filter-btn px-4 py-2 rounded-full font-medium focus:outline-none" data-filter="landing">Landing Pages</button>
+          <button class="filter-btn px-4 py-2 rounded-full font-medium focus:outline-none" data-filter="social">Portifólios</button>
+        </div>
+      </div>
+
+      <!-- PROJETOS TOTAIS -->
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <!-- Projeto 1 - Vanessa Fernandes-->
+        <div class="project-card bg-white rounded-xl overflow-hidden shadow-md" data-category="identity">
+          <div class="h-48 overflow-hidden">
+            <img src="/VANESSA FERNANDES.png" alt="" Project 1" class="w-full h-full object-cover transition duration-500 hover:scale-105">
+          </div>
+          <div class="p-6">
+            <h3 class="text-xl font-semibold mb-2">Vanessa Fernandes Confeitaria</h3>
+            <p class="text-gray-600 mb-4">Vanessa Fernandes Confeitaria com foco em transmitir delicadeza, elegância e o cuidado artesanal presente nos produtos.</p>
+            <a href="https://drive.google.com/file/d/1Q5cYa16gfEJgKalux-_QKWi21t2RQrzM/view?usp=sharing" class="text-blue-700 font-medium inline-flex items-center">
+              Confira o Projeto.
+              <i class="fas fa-arrow-right ml-2"></i>
+            </a>
+          </div>
+        </div>
+
+        <!-- Projeto 2 - JNS-->
+        <div class="project-card bg-white rounded-xl overflow-hidden shadow-md" data-category="identity">
+          <div class="h-48 overflow-hidden">
+            <img src="/Jns.png" alt="" Project 1" class="w-full h-full object-cover transition duration-500 hover:scale-105">
+          </div>
+          <div class="p-6">
+            <h3 class="text-xl font-semibold mb-2">JNS</h3>
+            <p class="text-gray-600 mb-4">JNS oferece soluções inteligentes em seguros, consórcios e créditos, sempre com foco em atender às necessidades de cada cliente de forma personalizada. </p>
+            <a href="https://drive.google.com/file/d/1uvIDJRPl3RhgIe9zu-cLv4mqRf59470q/view?usp=sharing" class="text-blue-700 font-medium inline-flex items-center">
+              Confira o Projeto.
+              <i class="fas fa-arrow-right ml-2"></i>
+            </a>
+          </div>
+        </div>
+
+        <!-- Projeto 3 - FLUX-->
+        <div class="project-card bg-white rounded-xl overflow-hidden shadow-md" data-category="identity">
+          <div class="h-48 overflow-hidden">
+            <img src="/Flux agency (2).png" alt="" Project 1" class="w-full h-full object-cover transition duration-500 hover:scale-105">
+          </div>
+          <div class="p-6">
+            <h3 class="text-xl font-semibold mb-2">Flux Agency</h3>
+            <p class="text-gray-600 mb-4">Flux Agency, agência com foco em inovação e resultados. A marca utiliza formas modernas e dinâmicas, com um ícone em forma de seta que simboliza fluxo, movimento e direção estratégica.</p>
+            <a href="https://drive.google.com/file/d/1RfWvmn0eSvzoBwZQAensWQTSyvDbhgpx/view?usp=sharing" class="text-blue-700 font-medium inline-flex items-center">
+              Confira o Projeto.
+              <i class="fas fa-arrow-right ml-2"></i>
+            </a>
+          </div>
+        </div>
+
+        <!-- Projeto 4 - SIMPLIFICANDO METODOS -->
+        <div class="project-card bg-white rounded-xl overflow-hidden shadow-md" data-category="landing">
+          <div class="h-48 overflow-hidden">
+            <img src="/SIMPLIFICANDO.png" alt="" Project 1" class="w-full h-full object-cover transition duration-500 hover:scale-105">
+          </div>
+          <div class="p-6">
+            <h3 class="text-xl font-semibold mb-2"> Simplificando Métodos</h3>
+            <p class="text-gray-600 mb-4"> A Simplifica Métodos nasceu para quem quer ir além. Com estratégias simples e eficientes, ajudamos você a quebrar padrões, bater recordes e alcançar novos limites.</p>
+            <a href="https://drive.google.com/file/d/17Kdt_P9u4cm-hTaitBwGpvEl04ZhbsvR/view?usp=sharing" class="text-blue-700 font-medium inline-flex items-center">
+              Confira o Projeto.
+              <i class="fas fa-arrow-right ml-2"></i>
+            </a>
+          </div>
+        </div>
+
+        <!-- Projeto 4 - Sacrovi -->
+        <div class="project-card bg-white rounded-xl overflow-hidden shadow-md" data-category="identity">
+          <div class="h-48 overflow-hidden">
+            <img src="/SACROVI.png" alt=" Project 1" class="w-full h-full object-cover transition duration-500 hover:scale-105">
+          </div>
+          <div class="p-6">
+            <h3 class="text-xl font-semibold mb-2">Sacrovi</h3>
+            <p class="text-gray-600 mb-4">A Sacrovi é especializada em produção audiovisual, unindo tecnologia e criatividade. Trabalhamos com drones, filmagens, fotografias e captação de áudio, entregando qualidade e inovação em cada projeto.</p>
+            <a href="https://drive.google.com/file/d/1GWThmxPaAiy_EqtQ91ZPh0z4e7aGD6gx/view?usp=sharing" class="text-blue-700 font-medium inline-flex items-center">
+              Confira o Projeto.
+              <i class="fas fa-arrow-right ml-2"></i>
+            </a>
+          </div>
+        </div>
+
+        <!-- Projeto 5 - ESPHERA - -->
+        <div class="project-card bg-white rounded-xl overflow-hidden shadow-md" data-category="landing">
+          <div class="h-48 overflow-hidden">
+            <img src="/ESPHERA.png" alt="" Project 1" class="w-full h-full object-cover transition duration-500 hover:scale-105">
+          </div>
+          <div class="p-6">
+            <h3 class="text-xl font-semibold mb-2">Esphera Checkout</h3>
+            <p class="text-gray-600 mb-4">A Esphera Checkout é uma plataforma de vendas online que promete rapidez, segurança e simplicidade no processo de pagamento. </p>
+            <a href="https://drive.google.com/file/d/1wTlUco4nAJ-GzVLXDb0MmF7OB7SDZKTB/view?usp=sharing" class="text-blue-700 font-medium inline-flex items-center">
+              Confira o Projeto.
+              <i class="fas fa-arrow-right ml-2"></i>
+            </a>
+          </div>
+        </div>
+
+        <!-- Projeto 6 - Portifolio IcaroDEV -->
+        <div class="project-card bg-white rounded-xl overflow-hidden shadow-md" data-category="social">
+          <div class="h-48 overflow-hidden">
+            <img src="/PORTIFOLIO DEV.png" alt="" Project 1" class="w-full h-full object-cover transition duration-500 hover:scale-105">
+          </div>
+          <div class="p-6">
+            <h3 class="text-xl font-semibold mb-2">Portifólio para Desenvolvedor</h3>
+            <p class="text-gray-600 mb-4">Tive o prazer de criar o design do portfólio digital do Desenvolvedor Ícaro Moreira, com foco em um layout moderno, funcional e com forte presença visual. Desenvolvido no Figma. </p>
+            <a href="https://drive.google.com/file/d/1kwdvLqCA6hCaPX-6i7aB17iVWOBQCikX/view?usp=sharing" class="text-blue-700 font-medium inline-flex items-center">
+              Confira o Projeto.
+              <i class="fas fa-arrow-right ml-2"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <div class="text-center mt-12">
+        <a href="#" class="inline-block bg-blue-700 hover:bg-blue-700 text-white px-8 py-3 rounded-full font-medium transition duration-300">
+          Ver todos os projetos
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Services Section -->
+  <section id="services" class="py-20 px-6 bg-white">
+    <div class="container mx-auto">
+      <div class="text-center mb-16">
+        <h2 class="text-3xl font-bold mb-4">Meus serviços</h2>
+        <p class="text-gray-600 max-w-2xl mx-auto">Ofereço soluções de design abrangentes, adaptadas às necessidades e objetivos do seu negócio.</p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <!-- Service 1 -->
+        <div class="service-card bg-gray-50 rounded-xl p-8 shadow-sm hover:shadow-md transition duration-300">
+          <div class="w-14 h-14 bg-blue-200 rounded-full flex items-center justify-center mb-6">
+            <i class="fas fa-pencil-ruler text-blue-700 text-xl"></i>
+          </div>
+          <h3 class="text-xl font-semibold mb-3">UI/UX Design</h3>
+          <p class="text-gray-600 mb-4">Design de interface centrado no usuário com navegação intuitiva e interações contínuas para melhorar a experiência do usuário.</p>
+          <a href="#" class="text-blue-700 font-medium inline-flex items-center">
+            Explorar agora
+            <i class="fas fa-arrow-right ml-2"></i>
+          </a>
+        </div>
+
+        <!-- Service 2 -->
+        <div class="service-card bg-gray-50 rounded-xl p-8 shadow-sm hover:shadow-md transition duration-300">
+          <div class="w-14 h-14 bg-blue-200 rounded-full flex items-center justify-center mb-6">
+            <i class="fas fa-palette text-blue-700 text-xl"></i>
+          </div>
+          <h3 class="text-xl font-semibold mb-3">Identidade da Marca</h3>
+          <p class="text-gray-600 mb-4">Soluções abrangentes de branding, incluindo design de logotipo, paleta de cores, tipografia e diretrizes de marca.</p>
+          <a href="#" class="text-blue-700 font-medium inline-flex items-center">
+            Explorar agora
+            <i class="fas fa-arrow-right ml-2"></i>
+          </a>
+        </div>
+
+        <!-- Service 3 -->
+        <div class="service-card bg-gray-50 rounded-xl p-8 shadow-sm hover:shadow-md transition duration-300">
+          <div class="w-14 h-14 bg-blue-200 rounded-full flex items-center justify-center mb-6">
+            <i class="fas fa-laptop-code text-blue-700 text-xl"></i>
+          </div>
+          <h3 class="text-xl font-semibold mb-3">Web Design</h3>
+          <p class="text-gray-600 mb-4">Designs de sites responsivos e visualmente atraentes que envolvem visitantes e geram conversões.</p>
+          <a href="#" class="text-blue-700 font-medium inline-flex items-center">
+            Explorar agora
+            <i class="fas fa-arrow-right ml-2"></i>
+          </a>
+        </div>
+
+        <!-- Service 4 -->
+        <div class="service-card bg-gray-50 rounded-xl p-8 shadow-sm hover:shadow-md transition duration-300">
+          <div class="w-14 h-14 bg-blue-200 rounded-full flex items-center justify-center mb-6">
+            <i class="fas fa-mobile-alt text-blue-700 text-xl"></i>
+          </div>
+          <h3 class="text-xl font-semibold mb-3">Design de Aplicativos Móveis</h3>
+          <p class="text-gray-600 mb-4">Interfaces móveis intuitivas com atenção às diretrizes específicas da plataforma e aos comportamentos do usuário.</p>
+          <a href="#" class="text-blue-700 font-medium inline-flex items-center">
+            Explorar agora
+            <i class="fas fa-arrow-right ml-2"></i>
+          </a>
+        </div>
+
+        <!-- Service 5 -->
+        <div class="service-card bg-gray-50 rounded-xl p-8 shadow-sm hover:shadow-md transition duration-300">
+          <div class="w-14 h-14 bg-blue-200 rounded-full flex items-center justify-center mb-6">
+            <i class="fas fa-bullhorn text-blue-700 text-xl"></i>
+          </div>
+          <h3 class="text-xl font-semibold mb-3">Landing Pages</h3>
+          <p class="text-gray-600 mb-4">Páginas de alta conversão com atenção à otimização para mecanismos de busca e à jornada do usuário.</p>
+          <a href="#" class="text-blue-700 font-medium inline-flex items-center">
+            Explorar agora
+            <i class="fas fa-arrow-right ml-2"></i>
+          </a>
+        </div>
+
+        <!-- Service 6 -->
+        <div class="service-card bg-gray-50 rounded-xl p-8 shadow-sm hover:shadow-md transition duration-300">
+          <div class="w-14 h-14 bg-blue-200 rounded-full flex items-center justify-center mb-6">
+            <i class="fas fa-search text-blue-700 text-xl"></i>
+          </div>
+          <h3 class="text-xl font-semibold mb-3">Pesquisa UX</h3>
+          <p class="text-gray-600 mb-4">Pesquisa aprofundada de usuários para entender comportamentos, necessidades e pontos problemáticos para decisões de design informadas.</p>
+          <a href="#" class="text-blue-700 font-medium inline-flex items-center">
+            Explorar agora
+            <i class="fas fa-arrow-right ml-2"></i>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="bg-blue-900 text-white py-12 px-6">
+    <div class="container mx-auto">
+      <div class="flex flex-col md:flex-row justify-between items-center">
+        <div class="mb-8 md:mb-0">
+          <img src="/logo theo branco.png" alt="Logo Theo" class="w-[250px] h-auto">
+          <p>ㅤ</p>
+          <p class="text-white-400 mt-2">Criando experiências digitais que importam.</p>
+        </div>
+
+        <div class="grid grid-cols-2 md:grid-cols-3 gap-8 md:gap-16">
+          <div>
+            <h4 class="text-sm font-semibold text-gray-300 uppercase tracking-wider mb-4">Links Rápidos</h4>
+            <ul class="space-y-2">
+              <li><a href="#home" class="text-white-400 hover:text-white transition duration-300">Início</a></li>
+              <li><a href="#about" class="text-white-400 hover:text-white transition duration-300">Sobre</a></li>
+              <li><a href="#projects" class="text-white-400 hover:text-white transition duration-300">Projetos</a></li>
+              <li><a href="#services" class="text-white-400 hover:text-white transition duration-300">Serviços</a></li>
+            </ul>
+          </div>
+
+          <div>
+            <h4 class="text-sm font-semibold text-gray-300 uppercase tracking-wider mb-4">Serviços</h4>
+            <ul class="space-y-2">
+              <li><a href="#" class="text-white-400 hover:text-white transition duration-300">UI/UX Design</a></li>
+              <li><a href="#" class="text-white-400 hover:text-white transition duration-300">Identidade da Marca</a></li>
+              <li><a href="#" class="text-white-400 hover:text-white transition duration-300">Web Design</a></li>
+              <li><a href="#" class="text-white-400 hover:text-white transition duration-300">Design de Aplicativos Móveis</a></li>
+              <li><a href="#" class="text-white-400 hover:text-white transition duration-300">Landing Pages</a></li>
+            </ul>
+          </div>
+
+          <div>
+            <h4 class="text-sm font-semibold text-gray-300 uppercase tracking-wider mb-4">Legal</h4>
+            <ul class="space-y-2">
+              <li><a href="#" class="text-white-400 hover:text-white transition duration-300">
+                  Política de Privacidade</a></li>
+              <li><a href="#" class="text-white-400 hover:text-white transition duration-300">Termos de Serviço</a></li>
+              <li><a href="#" class="text-white-400 hover:text-white transition duration-300">Política de Cookies</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="border-t border-gray-800 mt-12 pt-8 flex flex-col md:flex-row justify-between items-center">
+        <p class="text-white-400 text-sm mb-4 md:mb-0">© 2025 Theo Natan. Todos os direitos reservados.</p>
+      </div>
+  </footer>
+
+  <!-- Back to Top Button -->
+  <button id="back-to-top" class="fixed bottom-8 right-8 bg-blue-700 text-white w-12 h-12 rounded-full flex items-center justify-center shadow-lg opacity-0 invisible transition-all duration-300">
+    <i class="fas fa-arrow-up"></i>
+  </button>
+
+  <script>
+    // Mobile Menu Toggle
+    const mobileMenuButton = document.getElementById('mobile-menu-button');
+    const mobileMenu = document.getElementById('mobile-menu');
+
+    mobileMenuButton.addEventListener('click', () => {
+      mobileMenu.classList.toggle('hidden');
+    });
+
+    // Project Filter
+    const filterButtons = document.querySelectorAll('.filter-btn');
+    const projectCards = document.querySelectorAll('.project-card');
+
+    filterButtons.forEach(button => {
+      button.addEventListener('click', () => {
+        // Remove active class from all buttons
+        filterButtons.forEach(btn => btn.classList.remove('active', 'bg-blue-700', 'text-white'));
+        // Add active class to clicked button
+        button.classList.add('active', 'bg-blue-700', 'text-white');
+
+        const filterValue = button.getAttribute('data-filter');
+
+        projectCards.forEach(card => {
+          if (filterValue === 'all' || card.getAttribute('data-category') === filterValue) {
+            card.style.display = 'block';
+          } else {
+            card.style.display = 'none';
+          }
+        });
+      });
+    });
+
+    // Smooth Scrolling for Navigation Links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+
+        const targetId = this.getAttribute('href');
+        const targetElement = document.querySelector(targetId);
+
+        window.scrollTo({
+          top: targetElement.offsetTop - 80,
+          behavior: 'smooth'
+        });
+
+        // Close mobile menu if open
+        if (!mobileMenu.classList.contains('hidden')) {
+          mobileMenu.classList.add('hidden');
+        }
+      });
+    });
+
+    // Back to Top Button
+    const backToTopButton = document.getElementById('back-to-top');
+
+    window.addEventListener('scroll', () => {
+      if (window.pageYOffset > 300) {
+        backToTopButton.classList.remove('opacity-0', 'invisible');
+        backToTopButton.classList.add('opacity-100', 'visible');
+      } else {
+        backToTopButton.classList.remove('opacity-100', 'visible');
+        backToTopButton.classList.add('opacity-0', 'invisible');
+      }
+    });
+
+    backToTopButton.addEventListener('click', () => {
+      window.scrollTo({
+        top: 0,
+        behavior: 'smooth'
+      });
+    });
+
+    // Add active class to current section in navigation
+    const sections = document.querySelectorAll('section');
+    const navLinks = document.querySelectorAll('.nav-link');
+
+    window.addEventListener('scroll', () => {
+      let current = '';
+
+      sections.forEach(section => {
+        const sectionTop = section.offsetTop;
+        const sectionHeight = section.clientHeight;
+
+        if (pageYOffset >= sectionTop - 100) {
+          current = section.getAttribute('id');
+        }
+      });
+
+      navLinks.forEach(link => {
+        link.classList.remove('text-blue-700');
+        if (link.getAttribute('href') === `#${current}`) {
+          link.classList.add('text-blue-700');
+        }
+      });
+    });
+
+    // Initialize first filter button as active
+    document.querySelector('.filter-btn[data-filter="all"]').classList.add('active', 'bg-blue-700', 'text-white');
+  </script>
+</body>
+
+</html>

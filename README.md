@@ -42,7 +42,7 @@ O portfólio foi construído com foco em **design minimalista** e **impacto visu
 
 ![Projetos](/images/PROJETOS.png)
 
-### serviços
+### Serviços
 
 ![Serviços](/images/SERVIÇOS.png)
 

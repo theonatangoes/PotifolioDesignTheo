@@ -52,5 +52,5 @@ O portfólio foi construído com foco em **design minimalista** e **impacto visu
 
 1. Clone este repositório:
    ```bash
-   git clone https://github.com/seu-usuario/seu-repositorio.git
+   git clone https://github.com/theonatangoes/PotifolioDesignTheo.git
    ```

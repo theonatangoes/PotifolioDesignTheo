@@ -32,15 +32,19 @@ O portfólio foi construído com foco em **design minimalista** e **impacto visu
 
 ### Página Inicial
 
-![Home](./screenshot-home.png)
+![Home](/images/HOME.png)
 
 ### Sobre Mim
 
-![Sobre](./screenshot-sobre.png)
+![Sobre](/images/SOBRE%20MIM.png)
 
 ### Projetos
 
-![Projetos](./screenshot-projetos.png)
+![Projetos](/images/PROJETOS.png)
+
+### serviços
+
+![Serviços](/images/SERVIÇOS.png)
 
 ---
 

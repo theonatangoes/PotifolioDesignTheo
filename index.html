@@ -53,7 +53,12 @@
     }
 
     .project-card {
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      transition: transform 0.3s ease, box-shadow 0.3s ease, opacity 0.4s ease-in-out, transform 0.4s ease-in-out;
+    }
+
+    .card-hide {
+      opacity: 0;
+      transform: scale(0.95);
     }
 
     .project-card:hover {
@@ -432,7 +437,6 @@
       mobileMenuButton.setAttribute('aria-expanded', String(!isOpen));
     });
 
-    // Fecha o menu ao clicar em um link (UX mobile)
     document.querySelectorAll('#mobile-menu a').forEach(link => {
       link.addEventListener('click', () => {
         mobileMenu.classList.add('hidden');
@@ -440,13 +444,13 @@
       });
     });
 
-    // ===== FILTRO DE PROJETOS =====
+    // ===== FILTRO DE PROJETOS (COM ANIMAÇÃO) =====
     const filterButtons = document.querySelectorAll('.filter-btn');
     const projectCards = document.querySelectorAll('.project-card');
 
     filterButtons.forEach((button) => {
       button.addEventListener('click', () => {
-        // estado visual
+        // Atualiza o estado visual dos botões
         filterButtons.forEach((btn) => {
           btn.classList.remove('bg-blue-700', 'text-white');
           btn.setAttribute('aria-pressed', 'false');
@@ -454,11 +458,40 @@
         button.classList.add('bg-blue-700', 'text-white');
         button.setAttribute('aria-pressed', 'true');
 
-        // filtro
-        const filterValue = button.getAttribute('data-filter');
+        // Lógica da animação de filtro
+        const filterValue = button.dataset.filter;
+        const animationDuration = 400; // Deve ser o mesmo valor da transição no CSS
+
         projectCards.forEach((card) => {
-          const show = filterValue === 'all' || card.getAttribute('data-category') === filterValue;
-          card.style.display = show ? 'block' : 'none';
+          const cardCategory = card.dataset.category;
+          const shouldShow = filterValue === 'all' || cardCategory === filterValue;
+
+          const isHidden = card.classList.contains('card-hide');
+
+          if (shouldShow && isHidden) {
+            // MOSTRAR o card:
+            // 1. Torna o elemento visível no layout para que a animação possa ocorrer.
+            card.style.display = 'block';
+            // 2. Dá um tempo mínimo para o navegador processar a mudança de display
+            // antes de remover a classe que aciona a animação de entrada.
+            setTimeout(() => {
+              card.classList.remove('card-hide');
+            }, 10);
+          } else if (!shouldShow && !isHidden) {
+            // ESCONDER o card:
+            // 1. Adiciona a classe que aciona a animação de saída.
+            card.classList.add('card-hide');
+            // 2. Após a animação terminar, remove o elemento do layout.
+            setTimeout(() => {
+              card.style.display = 'none';
+            }, animationDuration);
+          } else if (shouldShow && !isHidden) {
+            // Caso o card já esteja visível e deva continuar visível,
+            // garantimos que ele não tenha a classe 'card-hide' e esteja como 'block'.
+            // Isso é útil para quando se clica no mesmo filtro novamente.
+            card.classList.remove('card-hide');
+            card.style.display = 'block';
+          }
         });
       });
     });
@@ -476,7 +509,10 @@
         e.preventDefault();
 
         const top = targetElement.getBoundingClientRect().top + window.pageYOffset - (headerHeight() + 8);
-        window.scrollTo({ top, behavior: 'smooth' });
+        window.scrollTo({
+          top,
+          behavior: 'smooth'
+        });
       });
     });
 
@@ -494,7 +530,10 @@
     });
 
     backToTopButton.addEventListener('click', () => {
-      window.scrollTo({ top: 0, behavior: 'smooth' });
+      window.scrollTo({
+        top: 0,
+        behavior: 'smooth'
+      });
     });
 
     // ===== ATIVAR LINK DA SEÇÃO CORRENTE =====

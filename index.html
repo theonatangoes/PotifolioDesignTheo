@@ -5,7 +5,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="theme-color" content="#1d4ed8" />
-  <title>Portfólio | Theo Natan</title>
+  <title data-key="page_title">Portfólio | Theo Natan</title>
 
   <script src="https://cdn.tailwindcss.com"></script>
 
@@ -19,7 +19,6 @@
   <style>
     :root {
       --brand: #1d4ed8;
-      /* blue-700 */
     }
 
     html,
@@ -30,7 +29,7 @@
 
     body {
       overflow-x: hidden;
-      /* evita scroll horizontal em mobile */
+      /* Evita scroll horizontal em mobile */
     }
 
     .nav-link {
@@ -123,301 +122,309 @@
         </button>
 
         <nav class="hidden md:flex items-center gap-6">
-          <a href="#home" class="nav-link text-gray-700 hover:text-blue-700">Início</a>
-          <a href="#about" class="nav-link text-gray-700 hover:text-blue-700">Sobre</a>
-          <a href="#projects" class="nav-link text-gray-700 hover:text-blue-700">Projetos</a>
-          <a href="#services" class="nav-link text-gray-700 hover:text-blue-700">Serviços</a>
+          <a href="#home" class="nav-link text-gray-700 hover:text-blue-700" data-key="nav_home">Início</a>
+          <a href="#about" class="nav-link text-gray-700 hover:text-blue-700" data-key="nav_about">Sobre</a>
+          <a href="#projects" class="nav-link text-gray-700 hover:text-blue-700" data-key="nav_projects">Projetos</a>
+          <a href="#services" class="nav-link text-gray-700 hover:text-blue-700" data-key="nav_services">Serviços</a>
+          <button id="lang-switcher-desktop" class="text-blue-700 hover:text-blue-900 ml-4 text-xl" aria-label="Mudar idioma" data-key="lang_switcher_aria">
+            <i class="fa-solid fa-earth-americas"></i>
+          </button>
         </nav>
       </div>
 
       <div id="mobile-menu" class="hidden md:hidden mt-3">
         <nav class="flex flex-col divide-y divide-gray-100 rounded-lg bg-white shadow">
-          <a href="#home" class="px-4 py-3 text-gray-700 hover:bg-gray-50">Início</a>
-          <a href="#about" class="px-4 py-3 text-gray-700 hover:bg-gray-50">Sobre</a>
-          <a href="#projects" class="px-4 py-3 text-gray-700 hover:bg-gray-50">Projetos</a>
-          <a href="#services" class="px-4 py-3 text-gray-700 hover:bg-gray-50">Serviços</a>
+          <a href="#home" class="px-4 py-3 text-gray-700 hover:bg-gray-50" data-key="nav_home_mobile">Início</a>
+          <a href="#about" class="px-4 py-3 text-gray-700 hover:bg-gray-50" data-key="nav_about_mobile">Sobre</a>
+          <a href="#projects" class="px-4 py-3 text-gray-700 hover:bg-gray-50" data-key="nav_projects_mobile">Projetos</a>
+          <a href="#services" class="px-4 py-3 text-gray-700 hover:bg-gray-50" data-key="nav_services_mobile">Serviços</a>
+          <button id="lang-switcher-mobile" class="px-4 py-3 text-blue-700 hover:bg-blue-50 text-left flex items-center gap-2">
+            <i class="fa-solid fa-earth-americas"></i> <span data-key="nav_lang_mobile">Mudar Idioma</span>
+          </button>
         </nav>
       </div>
     </div>
   </header>
 
-  <section id="home" class="scroll-mt-24 pt-28 sm:pt-32 pb-16 sm:pb-20 px-4 sm:px-6 bg-gradient-to-r from-blue-50 to-indigo-50">
-    <div class="container mx-auto max-w-6xl flex flex-col md:flex-row items-center gap-10">
-      <div class="w-full md:w-1/2 fade-in">
-        <h1 class="text-3xl sm:text-4xl md:text-5xl font-bold mb-5 text-gray-800 leading-tight">
-          Design Minimalista,
-          <span class="text-blue-700 font-extrabold animate-pulse">Impacto Máximo</span>
-        </h1>
-        <p class="text-base sm:text-lg text-gray-600 mb-8 md:pr-6">
-          Crio experiências digitais elegantes que equilibram beleza e funcionalidade para ajudar as marcas a se destacarem.
-        </p>
-        <div class="flex flex-wrap items-center gap-3">
-          <a href="#projects" class="bg-blue-700 hover:bg-blue-600 text-white px-6 py-3 rounded-full font-medium transition">Veja Meu Trabalho</a>
-        </div>
-      </div>
-
-      <div class="w-full md:w-1/2 flex justify-center fade-in">
-        <img src="images/PAEREDE PORTIFOLIO THEO.png" alt="Workspace de design" class="rounded-lg shadow-xl max-w-[260px] sm:max-w-md md:max-w-full h-auto" loading="lazy" />
-      </div>
-    </div>
-  </section>
-
-  <section id="about" class="scroll-mt-24 py-16 sm:py-20 px-4 sm:px-6 bg-white">
-    <div class="container mx-auto max-w-6xl">
-      <h2 class="text-2xl sm:text-3xl font-bold text-center mb-10 sm:mb-16">Sobre mim</h2>
-
-      <div class="flex flex-col md:flex-row items-center gap-10">
-        <div class="w-full md:w-1/3 flex justify-center">
-          <div class="avatar w-40 h-40 sm:w-56 sm:h-56 md:w-64 md:h-64 rounded-full overflow-hidden border-4 border-blue-200">
-            <img src="images/Perfil Theo.jpg" alt="Foto de perfil do Theo" class="w-full h-full object-cover" loading="lazy" />
+  <main>
+    <section id="home" class="scroll-mt-24 pt-28 sm:pt-32 pb-16 sm:pb-20 px-4 sm:px-6 bg-gradient-to-r from-blue-50 to-indigo-50">
+      <div class="container mx-auto max-w-6xl flex flex-col md:flex-row items-center gap-10">
+        <div class="w-full md:w-1/2 fade-in">
+          <h1 class="text-3xl sm:text-4xl md:text-5xl font-bold mb-5 text-gray-800 leading-tight">
+            <span data-key="hero_h1_l1">Design Minimalista,</span>
+            <span data-key="hero_h1_l2"><span class="text-blue-700 font-extrabold animate-pulse">Impacto Máximo</span></span>
+          </h1>
+          <p class="text-base sm:text-lg text-gray-600 mb-8 md:pr-6" data-key="hero_p">
+            Crio experiências digitais elegantes que equilibram beleza e funcionalidade para ajudar as marcas a se destacarem.
+          </p>
+          <div class="flex flex-wrap items-center gap-3">
+            <a href="#projects" class="bg-blue-700 hover:bg-blue-600 text-white px-6 py-3 rounded-full font-medium transition" data-key="hero_button">Veja Meu Trabalho</a>
           </div>
         </div>
 
-        <div class="w-full md:w-2/3 md:pl-6">
-          <h3 class="text-xl sm:text-2xl font-semibold mb-3 text-center md:text-left">Muito prazer, sou Theo Natan</h3>
-          <p class="text-gray-600 mb-6 text-center md:text-left">
-            Sou Designer Gráfico e Web Designer com experiência no desenvolvimento de identidades visuais, logos, designs para aplicações web, portfólios digitais, aplicativos e landing pages. Meu trabalho é transformar ideias em projetos criativos e funcionais, unindo estética, estratégia e usabilidade para entregar soluções visuais que conectam marcas ao seu público de forma clara e impactante. Aqui você encontrará alguns dos meus projetos que representam minha paixão por design e minha dedicação em criar experiências únicas.
-          </p>
+        <div class="w-full md:w-1/2 flex justify-center fade-in">
+          <img src="images/PAEREDE PORTIFOLIO THEO.png" alt="Workspace de design" class="rounded-lg shadow-xl max-w-[260px] sm:max-w-md md:max-w-full h-auto" loading="lazy" />
+        </div>
+      </div>
+    </section>
 
-          <div class="mb-8">
-            <h4 class="text-base sm:text-lg font-medium mb-3 text-gray-800 text-center md:text-left">Minhas Habilidades</h4>
-            <div class="flex flex-wrap justify-center md:justify-start gap-2 sm:gap-3">
-              <span class="bg-blue-200 text-blue-700 px-3 py-1 rounded-full text-xs sm:text-sm">UI/UX Design</span>
-              <span class="bg-blue-200 text-blue-700 px-3 py-1 rounded-full text-xs sm:text-sm">Identidade da Marca</span>
-              <span class="bg-blue-200 text-blue-700 px-3 py-1 rounded-full text-xs sm:text-sm">Web Design</span>
-              <span class="bg-blue-200 text-blue-700 px-3 py-1 rounded-full text-xs sm:text-sm">Mobile Design</span>
-              <span class="bg-blue-200 text-blue-700 px-3 py-1 rounded-full text-xs sm:text-sm">Visão Estratégica</span>
+    <section id="about" class="scroll-mt-24 py-16 sm:py-20 px-4 sm:px-6 bg-white">
+      <div class="container mx-auto max-w-6xl">
+        <h2 class="text-2xl sm:text-3xl font-bold text-center mb-10 sm:mb-16" data-key="about_title">Sobre mim</h2>
+
+        <div class="flex flex-col md:flex-row items-center gap-10">
+          <div class="w-full md:w-1/3 flex justify-center">
+            <div class="avatar w-40 h-40 sm:w-56 sm:h-56 md:w-64 md:h-64 rounded-full overflow-hidden border-4 border-blue-200">
+              <img src="images/Perfil Theo.jpg" alt="Foto de perfil do Theo" class="w-full h-full object-cover" loading="lazy" />
             </div>
           </div>
 
-          <a href="#projects" class="inline-flex items-center justify-center md:justify-start text-blue-700 font-medium w-full md:w-auto">
-            Confira mais abaixo <i class="fas fa-arrow-down ml-2"></i>
-          </a>
-        </div>
-      </div>
-    </div>
-  </section>
+          <div class="w-full md:w-2/3 md:pl-6">
+            <h3 class="text-xl sm:text-2xl font-semibold mb-3 text-center md:text-left" data-key="about_greeting">Muito prazer, sou Theo Natan</h3>
+            <p class="text-gray-600 mb-6 text-center md:text-left" data-key="about_p">
+              Sou Designer Gráfico e Web Designer com experiência no desenvolvimento de identidades visuais, logos, designs para aplicações web, portfólios digitais, aplicativos e landing pages. Meu trabalho é transformar ideias em projetos criativos e funcionais, unindo estética, estratégia e usabilidade para entregar soluções visuais que conectam marcas ao seu público de forma clara e impactante. Aqui você encontrará alguns dos meus projetos que representam minha paixão por design e minha dedicação em criar experiências únicas.
+            </p>
 
-  <section id="projects" class="scroll-mt-24 py-16 sm:py-20 px-4 sm:px-6 bg-blue-50">
-    <div class="container mx-auto max-w-6xl">
-      <div class="text-center mb-10 sm:mb-16">
-        <h2 class="text-2xl sm:text-3xl font-bold mb-3 sm:mb-4">Meus Projetos</h2>
-        <p class="text-gray-600 max-w-2xl mx-auto">Explore meus trabalhos mais recentes em diferentes categorias. Cada projeto é criado com atenção aos detalhes e à experiência do usuário.</p>
-      </div>
+            <div class="mb-8">
+              <h4 class="text-base sm:text-lg font-medium mb-3 text-gray-800 text-center md:text-left" data-key="about_skills_title">Minhas Habilidades</h4>
+              <div class="flex flex-wrap justify-center md:justify-start gap-2 sm:gap-3">
+                <span class="bg-blue-200 text-blue-700 px-3 py-1 rounded-full text-xs sm:text-sm" data-key="skill_uiux">UI/UX Design</span>
+                <span class="bg-blue-200 text-blue-700 px-3 py-1 rounded-full text-xs sm:text-sm" data-key="skill_branding">Identidade da Marca</span>
+                <span class="bg-blue-200 text-blue-700 px-3 py-1 rounded-full text-xs sm:text-sm" data-key="skill_web">Web Design</span>
+                <span class="bg-blue-200 text-blue-700 px-3 py-1 rounded-full text-xs sm:text-sm" data-key="skill_mobile">Mobile Design</span>
+                <span class="bg-blue-200 text-blue-700 px-3 py-1 rounded-full text-xs sm:text-sm" data-key="skill_strategy">Visão Estratégica</span>
+              </div>
+            </div>
 
-      <div class="flex justify-center mb-8 sm:mb-12">
-        <div class="flex flex-wrap justify-center gap-2 rounded-full bg-white shadow-sm p-2">
-          <button class="filter-btn px-4 py-2 rounded-full font-medium focus:outline-none aria-selected bg-blue-700 text-white" data-filter="all" aria-pressed="true">Todos</button>
-          <button class="filter-btn px-4 py-2 rounded-full font-medium focus:outline-none" data-filter="identity" aria-pressed="false">Identidades Visuais</button>
-          <button class="filter-btn px-4 py-2 rounded-full font-medium focus:outline-none" data-filter="landing" aria-pressed="false">Landing Pages</button>
-          <button class="filter-btn px-4 py-2 rounded-full font-medium focus:outline-none" data-filter="social" aria-pressed="false">Portfólios</button>
-        </div>
-      </div>
-
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
-        <div class="project-card bg-white rounded-xl overflow-hidden shadow-md" data-category="identity">
-          <div class="h-40 sm:h-48 overflow-hidden">
-            <img src="images/VANESSA FERNANDES.png" alt="Projeto Vanessa Fernandes" class="w-full h-full object-cover transition duration-500 hover:scale-105" loading="lazy" />
-          </div>
-          <div class="p-6">
-            <h3 class="text-lg sm:text-xl font-semibold mb-2">Vanessa Fernandes Confeitaria</h3>
-            <p class="text-gray-600 mb-4">Vanessa Fernandes Confeitaria com foco em transmitir delicadeza, elegância e o cuidado artesanal presente nos produtos.</p>
-            <a href="https://drive.google.com/file/d/1Q5cYa16gfEJgKalux-_QKWi21t2RQrzM/view?usp=sharing" class="text-blue-700 font-medium inline-flex items-center" target="_blank" rel="noopener">Confira o Projeto <i class="fas fa-arrow-right ml-2"></i></a>
-          </div>
-        </div>
-
-        <div class="project-card bg-white rounded-xl overflow-hidden shadow-md" data-category="identity">
-          <div class="h-40 sm:h-48 overflow-hidden">
-            <img src="images/Jns.png" alt="Projeto JNS" class="w-full h-full object-cover transition duration-500 hover:scale-105" loading="lazy" />
-          </div>
-          <div class="p-6">
-            <h3 class="text-lg sm:text-xl font-semibold mb-2">JNS</h3>
-            <p class="text-gray-600 mb-4">JNS oferece soluções inteligentes em seguros, consórcios e créditos, com foco no atendimento personalizado.</p>
-            <a href="https://drive.google.com/file/d/1uvIDJRPl3RhgIe9zu-cLv4mqRf59470q/view?usp=sharing" class="text-blue-700 font-medium inline-flex items-center" target="_blank" rel="noopener">Confira o Projeto <i class="fas fa-arrow-right ml-2"></i></a>
-          </div>
-        </div>
-
-        <div class="project-card bg-white rounded-xl overflow-hidden shadow-md" data-category="identity">
-          <div class="h-40 sm:h-48 overflow-hidden">
-            <img src="images/Flux agency (2).png" alt="Projeto Flux Agency" class="w-full h-full object-cover transition duration-500 hover:scale-105" loading="lazy" />
-          </div>
-          <div class="p-6">
-            <h3 class="text-lg sm:text-xl font-semibold mb-2">Flux Agency</h3>
-            <p class="text-gray-600 mb-4">Agência com foco em inovação e resultados. Formas modernas e dinâmicas com ícone em forma de seta.</p>
-            <a href="https://drive.google.com/file/d/1RfWvmn0eSvzoBwZQAensWQTSyvDbhgpx/view?usp=sharing" class="text-blue-700 font-medium inline-flex items-center" target="_blank" rel="noopener">Confira o Projeto <i class="fas fa-arrow-right ml-2"></i></a>
-          </div>
-        </div>
-
-        <div class="project-card bg-white rounded-xl overflow-hidden shadow-md" data-category="landing">
-          <div class="h-40 sm:h-48 overflow-hidden">
-            <img src="images/SIMPLIFICANDO.png" alt="Projeto Simplificando Métodos" class="w-full h-full object-cover transition duration-500 hover:scale-105" loading="lazy" />
-          </div>
-          <div class="p-6">
-            <h3 class="text-lg sm:text-xl font-semibold mb-2">Simplificando Métodos</h3>
-            <p class="text-gray-600 mb-4">Estratégias simples e eficientes para quebrar padrões, bater recordes e alcançar novos limites.</p>
-            <a href="https://drive.google.com/file/d/17Kdt_P9u4cm-hTaitBwGpvEl04ZhbsvR/view?usp=sharing" class="text-blue-700 font-medium inline-flex items-center" target="_blank" rel="noopener">Confira o Projeto <i class="fas fa-arrow-right ml-2"></i></a>
-          </div>
-        </div>
-
-        <div class="project-card bg-white rounded-xl overflow-hidden shadow-md" data-category="identity">
-          <div class="h-40 sm:h-48 overflow-hidden">
-            <img src="images/SACROVI.png" alt="Projeto Sacrovi" class="w-full h-full object-cover transition duration-500 hover:scale-105" loading="lazy" />
-          </div>
-          <div class="p-6">
-            <h3 class="text-lg sm:text-xl font-semibold mb-2">Sacrovi</h3>
-            <p class="text-gray-600 mb-4">Produtora audiovisual: drones, filmagens, fotografias e captação de áudio.</p>
-            <a href="https://drive.google.com/file/d/1GWThmxPaAiy_EqtQ91ZPh0z4e7aGD6gx/view?usp=sharing" class="text-blue-700 font-medium inline-flex items-center" target="_blank" rel="noopener">Confira o Projeto <i class="fas fa-arrow-right ml-2"></i></a>
-          </div>
-        </div>
-
-        <div class="project-card bg-white rounded-xl overflow-hidden shadow-md" data-category="landing">
-          <div class="h-40 sm:h-48 overflow-hidden">
-            <img src="images/ESPHERA.png" alt="Projeto Esphera Checkout" class="w-full h-full object-cover transition duration-500 hover:scale-105" loading="lazy" />
-          </div>
-          <div class="p-6">
-            <h3 class="text-lg sm:text-xl font-semibold mb-2">Esphera Checkout</h3>
-            <p class="text-gray-600 mb-4">Plataforma de vendas online com rapidez, segurança e simplicidade no pagamento.</p>
-            <a href="https://drive.google.com/file/d/1wTlUco4nAJ-GzVLXDb0MmF7OB7SDZKTB/view?usp=sharing" class="text-blue-700 font-medium inline-flex items-center" target="_blank" rel="noopener">Confira o Projeto <i class="fas fa-arrow-right ml-2"></i></a>
-          </div>
-        </div>
-
-        <div class="project-card bg-white rounded-xl overflow-hidden shadow-md" data-category="social">
-          <div class="h-40 sm:h-48 overflow-hidden">
-            <img src="images/PORTIFOLIO DEV.png" alt="Portfólio para Desenvolvedor" class="w-full h-full object-cover transition duration-500 hover:scale-105" loading="lazy" />
-          </div>
-          <div class="p-6">
-            <h3 class="text-lg sm:text-xl font-semibold mb-2">Portfólio para Desenvolvedor</h3>
-            <p class="text-gray-600 mb-4">Design do portfólio digital do Desenvolvedor Ícaro Moreira. Layout moderno e funcional. (Figma)</p>
-            <a href="https://drive.google.com/file/d/1kwdvLqCA6hCaPX-6i7aB17iVWOBQCikX/view?usp=sharing" class="text-blue-700 font-medium inline-flex items-center" target="_blank" rel="noopener">Confira o Projeto <i class="fas fa-arrow-right ml-2"></i></a>
-          </div>
-        </div>
-
-        <div class="project-card bg-white rounded-xl overflow-hidden shadow-md" data-category="social">
-          <div class="h-40 sm:h-48 overflow-hidden">
-            <img src="images/PORTIFOLIO THEONATAN.png" alt="Portfólio Theo Natan" class="w-full h-full object-cover transition duration-500 hover:scale-105" loading="lazy" />
-          </div>
-          <div class="p-6">
-            <h3 class="text-lg sm:text-xl font-semibold mb-2">Portfólio Theo Natan</h3>
-            <p class="text-gray-600 mb-4">Meu portfólio com projetos, habilidades e experiências de forma clara e interativa.</p>
-            <a href="https://portifoliotheonatan.vercel.app" class="text-blue-700 font-medium inline-flex items-center" target="_blank" rel="noopener">Confira o Projeto <i class="fas fa-arrow-right ml-2"></i></a>
+            <a href="#projects" class="inline-flex items-center justify-center md:justify-start text-blue-700 font-medium w-full md:w-auto" data-key="about_cta">
+              Confira mais abaixo <i class="fas fa-arrow-down ml-2"></i>
+            </a>
           </div>
         </div>
       </div>
+    </section>
 
-      <div class="text-center mt-10 sm:mt-12">
-        <a href="#projects" class="inline-block bg-blue-700 hover:bg-blue-600 text-white px-6 sm:px-8 py-3 rounded-full font-medium transition">Ver todos os projetos</a>
+    <section id="projects" class="scroll-mt-24 py-16 sm:py-20 px-4 sm:px-6 bg-blue-50">
+      <div class="container mx-auto max-w-6xl">
+        <div class="text-center mb-10 sm:mb-16">
+          <h2 class="text-2xl sm:text-3xl font-bold mb-3 sm:mb-4" data-key="projects_title">Meus Projetos</h2>
+          <p class="text-gray-600 max-w-2xl mx-auto" data-key="projects_p">Explore meus trabalhos mais recentes em diferentes categorias. Cada projeto é criado com atenção aos detalhes e à experiência do usuário.</p>
+        </div>
+
+        <div class="flex justify-center mb-8 sm:mb-12">
+          <div class="flex flex-wrap justify-center gap-2 rounded-full bg-white shadow-sm p-2">
+            <button class="filter-btn px-4 py-2 rounded-full font-medium focus:outline-none aria-selected bg-blue-700 text-white" data-filter="all" aria-pressed="true" data-key="filter_all">Todos</button>
+            <button class="filter-btn px-4 py-2 rounded-full font-medium focus:outline-none" data-filter="identity" aria-pressed="false" data-key="filter_identity">Identidades Visuais</button>
+            <button class="filter-btn px-4 py-2 rounded-full font-medium focus:outline-none" data-filter="landing" aria-pressed="false" data-key="filter_landing">Landing Pages</button>
+            <button class="filter-btn px-4 py-2 rounded-full font-medium focus:outline-none" data-filter="social" aria-pressed="false" data-key="filter_portfolios">Portfólios</button>
+          </div>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
+          <div class="project-card bg-white rounded-xl overflow-hidden shadow-md" data-category="identity">
+            <div class="h-40 sm:h-48 overflow-hidden">
+              <img src="images/VANESSA FERNANDES.png" alt="Projeto Vanessa Fernandes" class="w-full h-full object-cover transition duration-500 hover:scale-105" loading="lazy" />
+            </div>
+            <div class="p-6">
+              <h3 class="text-lg sm:text-xl font-semibold mb-2" data-key="project1_title">Vanessa Fernandes Confeitaria</h3>
+              <p class="text-gray-600 mb-4" data-key="project1_p">Vanessa Fernandes Confeitaria com foco em transmitir delicadeza, elegância e o cuidado artesanal presente nos produtos.</p>
+              <a href="https://drive.google.com/file/d/1Q5cYa16gfEJgKalux-_QKWi21t2RQrzM/view?usp=sharing" class="text-blue-700 font-medium inline-flex items-center" target="_blank" rel="noopener" data-key="project_cta_1">Confira o Projeto <i class="fas fa-arrow-right ml-2"></i></a>
+            </div>
+          </div>
+
+          <div class="project-card bg-white rounded-xl overflow-hidden shadow-md" data-category="identity">
+            <div class="h-40 sm:h-48 overflow-hidden">
+              <img src="images/Jns.png" alt="Projeto JNS" class="w-full h-full object-cover transition duration-500 hover:scale-105" loading="lazy" />
+            </div>
+            <div class="p-6">
+              <h3 class="text-lg sm:text-xl font-semibold mb-2" data-key="project2_title">JNS</h3>
+              <p class="text-gray-600 mb-4" data-key="project2_p">JNS oferece soluções inteligentes em seguros, consórcios e créditos, com foco no atendimento personalizado.</p>
+              <a href="https://drive.google.com/file/d/1uvIDJRPl3RhgIe9zu-cLv4mqRf59470q/view?usp=sharing" class="text-blue-700 font-medium inline-flex items-center" target="_blank" rel="noopener" data-key="project_cta_2">Confira o Projeto <i class="fas fa-arrow-right ml-2"></i></a>
+            </div>
+          </div>
+
+          <div class="project-card bg-white rounded-xl overflow-hidden shadow-md" data-category="identity">
+            <div class="h-40 sm:h-48 overflow-hidden">
+              <img src="images/Flux agency (2).png" alt="Projeto Flux Agency" class="w-full h-full object-cover transition duration-500 hover:scale-105" loading="lazy" />
+            </div>
+            <div class="p-6">
+              <h3 class="text-lg sm:text-xl font-semibold mb-2" data-key="project3_title">Flux Agency</h3>
+              <p class="text-gray-600 mb-4" data-key="project3_p">Agência com foco em inovação e resultados. Formas modernas e dinâmicas com ícone em forma de seta.</p>
+              <a href="https://drive.google.com/file/d/1RfWvmn0eSvzoBwZQAensWQTSyvDbhgpx/view?usp=sharing" class="text-blue-700 font-medium inline-flex items-center" target="_blank" rel="noopener" data-key="project_cta_3">Confira o Projeto <i class="fas fa-arrow-right ml-2"></i></a>
+            </div>
+          </div>
+
+          <div class="project-card bg-white rounded-xl overflow-hidden shadow-md" data-category="landing">
+            <div class="h-40 sm:h-48 overflow-hidden">
+              <img src="images/SIMPLIFICANDO.png" alt="Projeto Simplificando Métodos" class="w-full h-full object-cover transition duration-500 hover:scale-105" loading="lazy" />
+            </div>
+            <div class="p-6">
+              <h3 class="text-lg sm:text-xl font-semibold mb-2" data-key="project4_title">Simplificando Métodos</h3>
+              <p class="text-gray-600 mb-4" data-key="project4_p">Estratégias simples e eficientes para quebrar padrões, bater recordes e alcançar novos limites.</p>
+              <a href="https://drive.google.com/file/d/17Kdt_P9u4cm-hTaitBwGpvEl04ZhbsvR/view?usp=sharing" class="text-blue-700 font-medium inline-flex items-center" target="_blank" rel="noopener" data-key="project_cta_4">Confira o Projeto <i class="fas fa-arrow-right ml-2"></i></a>
+            </div>
+          </div>
+
+          <div class="project-card bg-white rounded-xl overflow-hidden shadow-md" data-category="identity">
+            <div class="h-40 sm:h-48 overflow-hidden">
+              <img src="images/SACROVI.png" alt="Projeto Sacrovi" class="w-full h-full object-cover transition duration-500 hover:scale-105" loading="lazy" />
+            </div>
+            <div class="p-6">
+              <h3 class="text-lg sm:text-xl font-semibold mb-2" data-key="project5_title">Sacrovi</h3>
+              <p class="text-gray-600 mb-4" data-key="project5_p">Produtora audiovisual: drones, filmagens, fotografias e captação de áudio.</p>
+              <a href="https://drive.google.com/file/d/1GWThmxPaAiy_EqtQ91ZPh0z4e7aGD6gx/view?usp=sharing" class="text-blue-700 font-medium inline-flex items-center" target="_blank" rel="noopener" data-key="project_cta_5">Confira o Projeto <i class="fas fa-arrow-right ml-2"></i></a>
+            </div>
+          </div>
+
+          <div class="project-card bg-white rounded-xl overflow-hidden shadow-md" data-category="landing">
+            <div class="h-40 sm:h-48 overflow-hidden">
+              <img src="images/ESPHERA.png" alt="Projeto Esphera Checkout" class="w-full h-full object-cover transition duration-500 hover:scale-105" loading="lazy" />
+            </div>
+            <div class="p-6">
+              <h3 class="text-lg sm:text-xl font-semibold mb-2" data-key="project6_title">Esphera Checkout</h3>
+              <p class="text-gray-600 mb-4" data-key="project6_p">Plataforma de vendas online com rapidez, segurança e simplicidade no pagamento.</p>
+              <a href="https://drive.google.com/file/d/1wTlUco4nAJ-GzVLXDb0MmF7OB7SDZKTB/view?usp=sharing" class="text-blue-700 font-medium inline-flex items-center" target="_blank" rel="noopener" data-key="project_cta_6">Confira o Projeto <i class="fas fa-arrow-right ml-2"></i></a>
+            </div>
+          </div>
+
+          <div class="project-card bg-white rounded-xl overflow-hidden shadow-md" data-category="social">
+            <div class="h-40 sm:h-48 overflow-hidden">
+              <img src="images/PORTIFOLIO DEV.png" alt="Portfólio para Desenvolvedor" class="w-full h-full object-cover transition duration-500 hover:scale-105" loading="lazy" />
+            </div>
+            <div class="p-6">
+              <h3 class="text-lg sm:text-xl font-semibold mb-2" data-key="project7_title">Portfólio para Desenvolvedor</h3>
+              <p class="text-gray-600 mb-4" data-key="project7_p">Design do portfólio digital do Desenvolvedor Ícaro Moreira. Layout moderno e funcional. (Figma)</p>
+              <a href="https://drive.google.com/file/d/1kwdvLqCA6hCaPX-6i7aB17iVWOBQCikX/view?usp=sharing" class="text-blue-700 font-medium inline-flex items-center" target="_blank" rel="noopener" data-key="project_cta_7">Confira o Projeto <i class="fas fa-arrow-right ml-2"></i></a>
+            </div>
+          </div>
+
+          <div class="project-card bg-white rounded-xl overflow-hidden shadow-md" data-category="social">
+            <div class="h-40 sm:h-48 overflow-hidden">
+              <img src="images/PORTIFOLIO THEONATAN.png" alt="Portfólio Theo Natan" class="w-full h-full object-cover transition duration-500 hover:scale-105" loading="lazy" />
+            </div>
+            <div class="p-6">
+              <h3 class="text-lg sm:text-xl font-semibold mb-2" data-key="project8_title">Portfólio Theo Natan</h3>
+              <p class="text-gray-600 mb-4" data-key="project8_p">Meu portfólio com projetos, habilidades e experiências de forma clara e interativa.</p>
+              <a href="https://portifoliotheonatan.vercel.app" class="text-blue-700 font-medium inline-flex items-center" target="_blank" rel="noopener" data-key="project_cta_8">Confira o Projeto <i class="fas fa-arrow-right ml-2"></i></a>
+            </div>
+          </div>
+        </div>
+
+        <div class="text-center mt-10 sm:mt-12">
+          <a href="#projects" class="inline-block bg-blue-700 hover:bg-blue-600 text-white px-6 sm:px-8 py-3 rounded-full font-medium transition" data-key="projects_all_btn">Ver todos os projetos</a>
+        </div>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <section id="services" class="scroll-mt-24 py-16 sm:py-20 px-4 sm:px-6 bg-white">
-    <div class="container mx-auto max-w-6xl">
-      <div class="text-center mb-10 sm:mb-16">
-        <h2 class="text-2xl sm:text-3xl font-bold mb-3 sm:mb-4">Meus serviços</h2>
-        <p class="text-gray-600 max-w-2xl mx-auto">Ofereço soluções de design abrangentes, adaptadas às necessidades e objetivos do seu negócio.</p>
+    <section id="services" class="scroll-mt-24 py-16 sm:py-20 px-4 sm:px-6 bg-white">
+      <div class="container mx-auto max-w-6xl">
+        <div class="text-center mb-10 sm:mb-16">
+          <h2 class="text-2xl sm:text-3xl font-bold mb-3 sm:mb-4" data-key="services_title">Meus serviços</h2>
+          <p class="text-gray-600 max-w-2xl mx-auto" data-key="services_p">Ofereço soluções de design abrangentes, adaptadas às necessidades e objetivos do seu negócio.</p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
+          <div class="service-card bg-gray-50 rounded-xl p-6 sm:p-8 shadow-sm hover:shadow-md transition">
+            <div class="w-12 h-12 sm:w-14 sm:h-14 bg-blue-200 rounded-full flex items-center justify-center mb-5 sm:mb-6">
+              <i class="fas fa-pencil-ruler text-blue-700 text-lg sm:text-xl"></i>
+            </div>
+            <h3 class="text-lg sm:text-xl font-semibold mb-2" data-key="service1_title">UI/UX Design</h3>
+            <p class="text-gray-600 mb-4" data-key="service1_p">Interface centrada no usuário com navegação intuitiva e interações fluidas.</p>
+            <a href="#" class="text-blue-700 font-medium inline-flex items-center" data-key="service_cta_1">Explorar agora <i class="fas fa-arrow-right ml-2"></i></a>
+          </div>
+
+          <div class="service-card bg-gray-50 rounded-xl p-6 sm:p-8 shadow-sm hover:shadow-md transition">
+            <div class="w-12 h-12 sm:w-14 sm:h-14 bg-blue-200 rounded-full flex items-center justify-center mb-5 sm:mb-6">
+              <i class="fas fa-palette text-blue-700 text-lg sm:text-xl"></i>
+            </div>
+            <h3 class="text-lg sm:text-xl font-semibold mb-2" data-key="service2_title">Identidade da Marca</h3>
+            <p class="text-gray-600 mb-4" data-key="service2_p">Branding completo: logotipo, paleta de cores, tipografia e diretrizes.</p>
+            <a href="#" class="text-blue-700 font-medium inline-flex items-center" data-key="service_cta_2">Explorar agora <i class="fas fa-arrow-right ml-2"></i></a>
+          </div>
+
+          <div class="service-card bg-gray-50 rounded-xl p-6 sm:p-8 shadow-sm hover:shadow-md transition">
+            <div class="w-12 h-12 sm:w-14 sm:h-14 bg-blue-200 rounded-full flex items-center justify-center mb-5 sm:mb-6">
+              <i class="fas fa-laptop-code text-blue-700 text-lg sm:text-xl"></i>
+            </div>
+            <h3 class="text-lg sm:text-xl font-semibold mb-2" data-key="service3_title">Web Design</h3>
+            <p class="text-gray-600 mb-4" data-key="service3_p">Sites responsivos e envolventes que geram conversões.</p>
+            <a href="#" class="text-blue-700 font-medium inline-flex items-center" data-key="service_cta_3">Explorar agora <i class="fas fa-arrow-right ml-2"></i></a>
+          </div>
+
+          <div class="service-card bg-gray-50 rounded-xl p-6 sm:p-8 shadow-sm hover:shadow-md transition">
+            <div class="w-12 h-12 sm:w-14 sm:h-14 bg-blue-200 rounded-full flex items-center justify-center mb-5 sm:mb-6">
+              <i class="fas fa-mobile-alt text-blue-700 text-lg sm:text-xl"></i>
+            </div>
+            <h3 class="text-lg sm:text-xl font-semibold mb-2" data-key="service4_title">Design de Aplicativos Móveis</h3>
+            <p class="text-gray-600 mb-4" data-key="service4_p">Interfaces intuitivas com atenção às diretrizes de cada plataforma.</p>
+            <a href="#" class="text-blue-700 font-medium inline-flex items-center" data-key="service_cta_4">Explorar agora <i class="fas fa-arrow-right ml-2"></i></a>
+          </div>
+
+          <div class="service-card bg-gray-50 rounded-xl p-6 sm:p-8 shadow-sm hover:shadow-md transition">
+            <div class="w-12 h-12 sm:w-14 sm:h-14 bg-blue-200 rounded-full flex items-center justify-center mb-5 sm:mb-6">
+              <i class="fas fa-bullhorn text-blue-700 text-lg sm:text-xl"></i>
+            </div>
+            <h3 class="text-lg sm:text-xl font-semibold mb-2" data-key="service5_title">Landing Pages</h3>
+            <p class="text-gray-600 mb-4" data-key="service5_p">Páginas de alta conversão otimizadas para SEO e jornada do usuário.</p>
+            <a href="#" class="text-blue-700 font-medium inline-flex items-center" data-key="service_cta_5">Explorar agora <i class="fas fa-arrow-right ml-2"></i></a>
+          </div>
+
+          <div class="service-card bg-gray-50 rounded-xl p-6 sm:p-8 shadow-sm hover:shadow-md transition">
+            <div class="w-12 h-12 sm:w-14 sm:h-14 bg-blue-200 rounded-full flex items-center justify-center mb-5 sm:mb-6">
+              <i class="fas fa-search text-blue-700 text-lg sm:text-xl"></i>
+            </div>
+            <h3 class="text-lg sm:text-xl font-semibold mb-2" data-key="service6_title">Pesquisa UX</h3>
+            <p class="text-gray-600 mb-4" data-key="service6_p">Pesquisa com usuários para decisões de design informadas.</p>
+            <a href="#" class="text-blue-700 font-medium inline-flex items-center" data-key="service_cta_6">Explorar agora <i class="fas fa-arrow-right ml-2"></i></a>
+          </div>
+        </div>
       </div>
-
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
-        <div class="service-card bg-gray-50 rounded-xl p-6 sm:p-8 shadow-sm hover:shadow-md transition">
-          <div class="w-12 h-12 sm:w-14 sm:h-14 bg-blue-200 rounded-full flex items-center justify-center mb-5 sm:mb-6">
-            <i class="fas fa-pencil-ruler text-blue-700 text-lg sm:text-xl"></i>
-          </div>
-          <h3 class="text-lg sm:text-xl font-semibold mb-2">UI/UX Design</h3>
-          <p class="text-gray-600 mb-4">Interface centrada no usuário com navegação intuitiva e interações fluidas.</p>
-          <a href="#" class="text-blue-700 font-medium inline-flex items-center">Explorar agora <i class="fas fa-arrow-right ml-2"></i></a>
-        </div>
-
-        <div class="service-card bg-gray-50 rounded-xl p-6 sm:p-8 shadow-sm hover:shadow-md transition">
-          <div class="w-12 h-12 sm:w-14 sm:h-14 bg-blue-200 rounded-full flex items-center justify-center mb-5 sm:mb-6">
-            <i class="fas fa-palette text-blue-700 text-lg sm:text-xl"></i>
-          </div>
-          <h3 class="text-lg sm:text-xl font-semibold mb-2">Identidade da Marca</h3>
-          <p class="text-gray-600 mb-4">Branding completo: logotipo, paleta de cores, tipografia e diretrizes.</p>
-          <a href="#" class="text-blue-700 font-medium inline-flex items-center">Explorar agora <i class="fas fa-arrow-right ml-2"></i></a>
-        </div>
-
-        <div class="service-card bg-gray-50 rounded-xl p-6 sm:p-8 shadow-sm hover:shadow-md transition">
-          <div class="w-12 h-12 sm:w-14 sm:h-14 bg-blue-200 rounded-full flex items-center justify-center mb-5 sm:mb-6">
-            <i class="fas fa-laptop-code text-blue-700 text-lg sm:text-xl"></i>
-          </div>
-          <h3 class="text-lg sm:text-xl font-semibold mb-2">Web Design</h3>
-          <p class="text-gray-600 mb-4">Sites responsivos e envolventes que geram conversões.</p>
-          <a href="#" class="text-blue-700 font-medium inline-flex items-center">Explorar agora <i class="fas fa-arrow-right ml-2"></i></a>
-        </div>
-
-        <div class="service-card bg-gray-50 rounded-xl p-6 sm:p-8 shadow-sm hover:shadow-md transition">
-          <div class="w-12 h-12 sm:w-14 sm:h-14 bg-blue-200 rounded-full flex items-center justify-center mb-5 sm:mb-6">
-            <i class="fas fa-mobile-alt text-blue-700 text-lg sm:text-xl"></i>
-          </div>
-          <h3 class="text-lg sm:text-xl font-semibold mb-2">Design de Aplicativos Móveis</h3>
-          <p class="text-gray-600 mb-4">Interfaces intuitivas com atenção às diretrizes de cada plataforma.</p>
-          <a href="#" class="text-blue-700 font-medium inline-flex items-center">Explorar agora <i class="fas fa-arrow-right ml-2"></i></a>
-        </div>
-
-        <div class="service-card bg-gray-50 rounded-xl p-6 sm:p-8 shadow-sm hover:shadow-md transition">
-          <div class="w-12 h-12 sm:w-14 sm:h-14 bg-blue-200 rounded-full flex items-center justify-center mb-5 sm:mb-6">
-            <i class="fas fa-bullhorn text-blue-700 text-lg sm:text-xl"></i>
-          </div>
-          <h3 class="text-lg sm:text-xl font-semibold mb-2">Landing Pages</h3>
-          <p class="text-gray-600 mb-4">Páginas de alta conversão otimizadas para SEO e jornada do usuário.</p>
-          <a href="#" class="text-blue-700 font-medium inline-flex items-center">Explorar agora <i class="fas fa-arrow-right ml-2"></i></a>
-        </div>
-
-        <div class="service-card bg-gray-50 rounded-xl p-6 sm:p-8 shadow-sm hover:shadow-md transition">
-          <div class="w-12 h-12 sm:w-14 sm:h-14 bg-blue-200 rounded-full flex items-center justify-center mb-5 sm:mb-6">
-            <i class="fas fa-search text-blue-700 text-lg sm:text-xl"></i>
-          </div>
-          <h3 class="text-lg sm:text-xl font-semibold mb-2">Pesquisa UX</h3>
-          <p class="text-gray-600 mb-4">Pesquisa com usuários para decisões de design informadas.</p>
-          <a href="#" class="text-blue-700 font-medium inline-flex items-center">Explorar agora <i class="fas fa-arrow-right ml-2"></i></a>
-        </div>
-      </div>
-    </div>
-  </section>
+    </section>
+  </main>
 
   <footer class="bg-blue-900 text-white py-12 px-4 sm:px-6">
     <div class="container mx-auto max-w-6xl">
       <div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-10">
         <div>
           <img src="images/logo theo branco.png" alt="Logo Theo branca" class="w-36 sm:w-56 h-auto" loading="lazy" />
-          <p class="mt-2 text-white/80">Criando experiências digitais que importam.</p>
+          <p class="mt-2 text-white/80" data-key="footer_p">Criando experiências digitais que importam.</p>
         </div>
 
         <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8 md:gap-16 w-full md:w-auto">
           <div>
-            <h4 class="text-sm font-semibold text-gray-200 uppercase tracking-wider mb-3">Links Rápidos</h4>
+            <h4 class="text-sm font-semibold text-gray-200 uppercase tracking-wider mb-3" data-key="footer_links_title">Links Rápidos</h4>
             <ul class="space-y-2">
-              <li><a href="#home" class="text-white/80 hover:text-white transition">Início</a></li>
-              <li><a href="#about" class="text-white/80 hover:text-white transition">Sobre</a></li>
-              <li><a href="#projects" class="text-white/80 hover:text-white transition">Projetos</a></li>
-              <li><a href="#services" class="text-white/80 hover:text-white transition">Serviços</a></li>
+              <li><a href="#home" class="text-white/80 hover:text-white transition" data-key="footer_link_home">Início</a></li>
+              <li><a href="#about" class="text-white/80 hover:text-white transition" data-key="footer_link_about">Sobre</a></li>
+              <li><a href="#projects" class="text-white/80 hover:text-white transition" data-key="footer_link_projects">Projetos</a></li>
+              <li><a href="#services" class="text-white/80 hover:text-white transition" data-key="footer_link_services">Serviços</a></li>
             </ul>
           </div>
 
           <div>
-            <h4 class="text-sm font-semibold text-gray-200 uppercase tracking-wider mb-3">Serviços</h4>
+            <h4 class="text-sm font-semibold text-gray-200 uppercase tracking-wider mb-3" data-key="footer_services_title">Serviços</h4>
             <ul class="space-y-2">
-              <li><a href="#" class="text-white/80 hover:text-white transition">UI/UX Design</a></li>
-              <li><a href="#" class="text-white/80 hover:text-white transition">Identidade da Marca</a></li>
-              <li><a href="#" class="text-white/80 hover:text-white transition">Web Design</a></li>
-              <li><a href="#" class="text-white/80 hover:text-white transition">Design Mobile</a></li>
-              <li><a href="#" class="text-white/80 hover:text-white transition">Landing Pages</a></li>
+              <li><a href="#" class="text-white/80 hover:text-white transition" data-key="footer_service_uiux">UI/UX Design</a></li>
+              <li><a href="#" class="text-white/80 hover:text-white transition" data-key="footer_service_branding">Identidade da Marca</a></li>
+              <li><a href="#" class="text-white/80 hover:text-white transition" data-key="footer_service_web">Web Design</a></li>
+              <li><a href="#" class="text-white/80 hover:text-white transition" data-key="footer_service_mobile">Design Mobile</a></li>
+              <li><a href="#" class="text-white/80 hover:text-white transition" data-key="footer_service_landing">Landing Pages</a></li>
             </ul>
           </div>
 
           <div>
-            <h4 class="text-sm font-semibold text-gray-200 uppercase tracking-wider mb-3">Legal</h4>
+            <h4 class="text-sm font-semibold text-gray-200 uppercase tracking-wider mb-3" data-key="footer_legal_title">Legal</h4>
             <ul class="space-y-2">
-              <li><a href="#" class="text-white/80 hover:text-white transition">Política de Privacidade</a></li>
-              <li><a href="#" class="text-white/80 hover:text-white transition">Termos de Serviço</a></li>
-              <li><a href="#" class="text-white/80 hover:text-white transition">Política de Cookies</a></li>
+              <li><a href="#" class="text-white/80 hover:text-white transition" data-key="footer_legal_privacy">Política de Privacidade</a></li>
+              <li><a href="#" class="text-white/80 hover:text-white transition" data-key="footer_legal_terms">Termos de Serviço</a></li>
+              <li><a href="#" class="text-white/80 hover:text-white transition" data-key="footer_legal_cookies">Política de Cookies</a></li>
             </ul>
           </div>
         </div>
       </div>
 
       <div class="border-t border-white/10 mt-10 pt-6 flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
-        <p class="text-white/70 text-sm">© 2025 Theo Natan. Todos os direitos reservados.</p>
+        <p class="text-white/70 text-sm" data-key="footer_copyright">© 2025 Theo Natan. Todos os direitos reservados.</p>
       </div>
     </div>
   </footer>
@@ -427,6 +434,233 @@
   </button>
 
   <script>
+    // ===== SISTEMA DE TRADUÇÃO =====
+    const translations = {
+      en: {
+        page_title: "Portfolio | Theo Natan",
+        nav_home: "Home",
+        nav_about: "About",
+        nav_projects: "Projects",
+        nav_services: "Services",
+        nav_home_mobile: "Home",
+        nav_about_mobile: "About",
+        nav_projects_mobile: "Projects",
+        nav_services_mobile: "Services",
+        lang_switcher_aria: "Change language",
+        nav_lang_mobile: "Change Language",
+        hero_h1_l1: "Minimalist Design,",
+        hero_h1_l2: '<span class="text-blue-700 font-extrabold animate-pulse">Maximum Impact</span>',
+        hero_p: "I create elegant digital experiences that balance beauty and functionality to help brands stand out.",
+        hero_button: "See My Work",
+        about_title: "About Me",
+        about_greeting: "Nice to meet you, I'm Theo Natan",
+        about_p: "I am a Graphic and Web Designer with experience in developing visual identities, logos, designs for web applications, digital portfolios, apps, and landing pages. My work is to transform ideas into creative and functional projects, uniting aesthetics, strategy, and usability to deliver visual solutions that connect brands to their audience clearly and impactfully. Here you will find some of my projects that represent my passion for design and my dedication to creating unique experiences.",
+        about_skills_title: "My Skills",
+        skill_uiux: "UI/UX Design",
+        skill_branding: "Brand Identity",
+        skill_web: "Web Design",
+        skill_mobile: "Mobile Design",
+        skill_strategy: "Strategic Vision",
+        about_cta: 'Check out more below <i class="fas fa-arrow-down ml-2"></i>',
+        projects_title: "My Projects",
+        projects_p: "Explore my latest works in different categories. Each project is created with attention to detail and user experience.",
+        filter_all: "All",
+        filter_identity: "Visual Identities",
+        filter_landing: "Landing Pages",
+        filter_portfolios: "Portfolios",
+        project1_title: "Vanessa Fernandes Patisserie",
+        project1_p: "Vanessa Fernandes Patisserie with a focus on conveying delicacy, elegance, and the artisanal care present in the products.",
+        project2_title: "JNS",
+        project2_p: "JNS offers smart solutions in insurance, consortia, and credit, with a focus on personalized service.",
+        project3_title: "Flux Agency",
+        project3_p: "Agency focused on innovation and results. Modern and dynamic shapes with an arrow-shaped icon.",
+        project4_title: "Simplifying Methods",
+        project4_p: "Simple and efficient strategies to break patterns, set records, and reach new limits.",
+        project5_title: "Sacrovi",
+        project5_p: "Audiovisual production company: drones, filming, photography, and audio recording.",
+        project6_title: "Esphera Checkout",
+        project6_p: "Online sales platform with speed, security, and simplicity in payment.",
+        project7_title: "Portfolio for Developer",
+        project7_p: "Digital portfolio design for Developer Ícaro Moreira. Modern and functional layout. (Figma)",
+        project8_title: "Theo Natan's Portfolio",
+        project8_p: "My portfolio with projects, skills, and experiences presented in a clear and interactive way.",
+        project_cta_1: 'View Project <i class="fas fa-arrow-right ml-2"></i>',
+        project_cta_2: 'View Project <i class="fas fa-arrow-right ml-2"></i>',
+        project_cta_3: 'View Project <i class="fas fa-arrow-right ml-2"></i>',
+        project_cta_4: 'View Project <i class="fas fa-arrow-right ml-2"></i>',
+        project_cta_5: 'View Project <i class="fas fa-arrow-right ml-2"></i>',
+        project_cta_6: 'View Project <i class="fas fa-arrow-right ml-2"></i>',
+        project_cta_7: 'View Project <i class="fas fa-arrow-right ml-2"></i>',
+        project_cta_8: 'View Project <i class="fas fa-arrow-right ml-2"></i>',
+        projects_all_btn: "View all projects",
+        services_title: "My Services",
+        services_p: "I offer comprehensive design solutions tailored to the needs and goals of your business.",
+        service1_title: "UI/UX Design",
+        service1_p: "User-centered interface with intuitive navigation and fluid interactions.",
+        service2_title: "Brand Identity",
+        service2_p: "Complete branding: logo, color palette, typography, and guidelines.",
+        service3_title: "Web Design",
+        service3_p: "Responsive and engaging websites that drive conversions.",
+        service4_title: "Mobile App Design",
+        service4_p: "Intuitive interfaces with attention to each platform's guidelines.",
+        service5_title: "Landing Pages",
+        service5_p: "High-conversion pages optimized for SEO and user journey.",
+        service6_title: "UX Research",
+        service6_p: "User research for informed design decisions.",
+        service_cta_1: 'Explore now <i class="fas fa-arrow-right ml-2"></i>',
+        service_cta_2: 'Explore now <i class="fas fa-arrow-right ml-2"></i>',
+        service_cta_3: 'Explore now <i class="fas fa-arrow-right ml-2"></i>',
+        service_cta_4: 'Explore now <i class="fas fa-arrow-right ml-2"></i>',
+        service_cta_5: 'Explore now <i class="fas fa-arrow-right ml-2"></i>',
+        service_cta_6: 'Explore now <i class="fas fa-arrow-right ml-2"></i>',
+        footer_p: "Creating digital experiences that matter.",
+        footer_links_title: "Quick Links",
+        footer_link_home: "Home",
+        footer_link_about: "About",
+        footer_link_projects: "Projects",
+        footer_link_services: "Services",
+        footer_services_title: "Services",
+        footer_service_uiux: "UI/UX Design",
+        footer_service_branding: "Brand Identity",
+        footer_service_web: "Web Design",
+        footer_service_mobile: "Mobile Design",
+        footer_service_landing: "Landing Pages",
+        footer_legal_title: "Legal",
+        footer_legal_privacy: "Privacy Policy",
+        footer_legal_terms: "Terms of Service",
+        footer_legal_cookies: "Cookie Policy",
+        footer_copyright: "© 2025 Theo Natan. All rights reserved.",
+      },
+      pt: {
+        page_title: "Portfólio | Theo Natan",
+        nav_home: "Início",
+        nav_about: "Sobre",
+        nav_projects: "Projetos",
+        nav_services: "Serviços",
+        nav_home_mobile: "Início",
+        nav_about_mobile: "Sobre",
+        nav_projects_mobile: "Projetos",
+        nav_services_mobile: "Serviços",
+        lang_switcher_aria: "Mudar idioma",
+        nav_lang_mobile: "Mudar Idioma",
+        hero_h1_l1: "Design Minimalista,",
+        hero_h1_l2: '<span class="text-blue-700 font-extrabold animate-pulse">Impacto Máximo</span>',
+        hero_p: "Crio experiências digitais elegantes que equilibram beleza e funcionalidade para ajudar as marcas a se destacarem.",
+        hero_button: "Veja Meu Trabalho",
+        about_title: "Sobre mim",
+        about_greeting: "Muito prazer, sou Theo Natan",
+        about_p: "Sou Designer Gráfico e Web Designer com experiência no desenvolvimento de identidades visuais, logos, designs para aplicações web, portfólios digitais, aplicativos e landing pages. Meu trabalho é transformar ideias em projetos criativos e funcionais, unindo estética, estratégia e usabilidade para entregar soluções visuais que conectam marcas ao seu público de forma clara e impactante. Aqui você encontrará alguns dos meus projetos que representam minha paixão por design e minha dedicação em criar experiências únicas.",
+        about_skills_title: "Minhas Habilidades",
+        skill_uiux: "UI/UX Design",
+        skill_branding: "Identidade da Marca",
+        skill_web: "Web Design",
+        skill_mobile: "Mobile Design",
+        skill_strategy: "Visão Estratégica",
+        about_cta: 'Confira mais abaixo <i class="fas fa-arrow-down ml-2"></i>',
+        projects_title: "Meus Projetos",
+        projects_p: "Explore meus trabalhos mais recentes em diferentes categorias. Cada projeto é criado com atenção aos detalhes e à experiência do usuário.",
+        filter_all: "Todos",
+        filter_identity: "Identidades Visuais",
+        filter_landing: "Landing Pages",
+        filter_portfolios: "Portfólios",
+        project1_title: "Vanessa Fernandes Confeitaria",
+        project1_p: "Vanessa Fernandes Confeitaria com foco em transmitir delicadeza, elegância e o cuidado artesanal presente nos produtos.",
+        project2_title: "JNS",
+        project2_p: "JNS oferece soluções inteligentes em seguros, consórcios e créditos, com foco no atendimento personalizado.",
+        project3_title: "Flux Agency",
+        project3_p: "Agência com foco em inovação e resultados. Formas modernas e dinâmicas com ícone em forma de seta.",
+        project4_title: "Simplificando Métodos",
+        project4_p: "Estratégias simples e eficientes para quebrar padrões, bater recordes e alcançar novos limites.",
+        project5_title: "Sacrovi",
+        project5_p: "Produtora audiovisual: drones, filmagens, fotografias e captação de áudio.",
+        project6_title: "Esphera Checkout",
+        project6_p: "Plataforma de vendas online com rapidez, segurança e simplicidade no pagamento.",
+        project7_title: "Portfólio para Desenvolvedor",
+        project7_p: "Design do portfólio digital do Desenvolvedor Ícaro Moreira. Layout moderno e funcional. (Figma)",
+        project8_title: "Portfólio Theo Natan",
+        project8_p: "Meu portfólio com projetos, habilidades e experiências de forma clara e interativa.",
+        project_cta_1: 'Confira o Projeto <i class="fas fa-arrow-right ml-2"></i>',
+        project_cta_2: 'Confira o Projeto <i class="fas fa-arrow-right ml-2"></i>',
+        project_cta_3: 'Confira o Projeto <i class="fas fa-arrow-right ml-2"></i>',
+        project_cta_4: 'Confira o Projeto <i class="fas fa-arrow-right ml-2"></i>',
+        project_cta_5: 'Confira o Projeto <i class="fas fa-arrow-right ml-2"></i>',
+        project_cta_6: 'Confira o Projeto <i class="fas fa-arrow-right ml-2"></i>',
+        project_cta_7: 'Confira o Projeto <i class="fas fa-arrow-right ml-2"></i>',
+        project_cta_8: 'Confira o Projeto <i class="fas fa-arrow-right ml-2"></i>',
+        projects_all_btn: "Ver todos os projetos",
+        services_title: "Meus serviços",
+        services_p: "Ofereço soluções de design abrangentes, adaptadas às necessidades e objetivos do seu negócio.",
+        service1_title: "UI/UX Design",
+        service1_p: "Interface centrada no usuário com navegação intuitiva e interações fluidas.",
+        service2_title: "Identidade da Marca",
+        service2_p: "Branding completo: logotipo, paleta de cores, tipografia e diretrizes.",
+        service3_title: "Web Design",
+        service3_p: "Sites responsivos e envolventes que geram conversões.",
+        service4_title: "Design de Aplicativos Móveis",
+        service4_p: "Interfaces intuitivas com atenção às diretrizes de cada plataforma.",
+        service5_title: "Landing Pages",
+        service5_p: "Páginas de alta conversão otimizadas para SEO e jornada do usuário.",
+        service6_title: "Pesquisa UX",
+        service6_p: "Pesquisa com usuários para decisões de design informadas.",
+        service_cta_1: 'Explorar agora <i class="fas fa-arrow-right ml-2"></i>',
+        service_cta_2: 'Explorar agora <i class="fas fa-arrow-right ml-2"></i>',
+        service_cta_3: 'Explorar agora <i class="fas fa-arrow-right ml-2"></i>',
+        service_cta_4: 'Explorar agora <i class="fas fa-arrow-right ml-2"></i>',
+        service_cta_5: 'Explorar agora <i class="fas fa-arrow-right ml-2"></i>',
+        service_cta_6: 'Explorar agora <i class="fas fa-arrow-right ml-2"></i>',
+        footer_p: "Criando experiências digitais que importam.",
+        footer_links_title: "Links Rápidos",
+        footer_link_home: "Início",
+        footer_link_about: "Sobre",
+        footer_link_projects: "Projetos",
+        footer_link_services: "Serviços",
+        footer_services_title: "Serviços",
+        footer_service_uiux: "UI/UX Design",
+        footer_service_branding: "Identidade da Marca",
+        footer_service_web: "Web Design",
+        footer_service_mobile: "Design Mobile",
+        footer_service_landing: "Landing Pages",
+        footer_legal_title: "Legal",
+        footer_legal_privacy: "Política de Privacidade",
+        footer_legal_terms: "Termos de Serviço",
+        footer_legal_cookies: "Política de Cookies",
+        footer_copyright: "© 2025 Theo Natan. Todos os direitos reservados.",
+      },
+    };
+
+    const setLanguage = (lang) => {
+      document.documentElement.lang = lang;
+      document.querySelectorAll('[data-key]').forEach(element => {
+        const key = element.getAttribute('data-key');
+        const translation = translations[lang][key];
+        if (translation) {
+
+          if (key === 'lang_switcher_aria') {
+            element.setAttribute('aria-label', translation);
+          } else {
+            element.innerHTML = translation;
+          }
+        }
+      });
+      localStorage.setItem('language', lang);
+    };
+
+    const langSwitchers = document.querySelectorAll('#lang-switcher-desktop, #lang-switcher-mobile');
+    let currentLang = localStorage.getItem('language') || 'pt';
+
+    langSwitchers.forEach(switcher => {
+      switcher.addEventListener('click', () => {
+        currentLang = currentLang === 'pt' ? 'en' : 'pt';
+        setLanguage(currentLang);
+      });
+    });
+
+    // Define o idioma inicial ao carregar a página
+    document.addEventListener('DOMContentLoaded', () => {
+      setLanguage(currentLang);
+    });
+
+
     // ===== MENU MOBILE =====
     const mobileMenuButton = document.getElementById('mobile-menu-button');
     const mobileMenu = document.getElementById('mobile-menu');
@@ -470,25 +704,20 @@
 
           if (shouldShow && isHidden) {
             // MOSTRAR o card:
-            // 1. Torna o elemento visível no layout para que a animação possa ocorrer.
             card.style.display = 'block';
-            // 2. Dá um tempo mínimo para o navegador processar a mudança de display
-            // antes de remover a classe que aciona a animação de entrada.
+
             setTimeout(() => {
               card.classList.remove('card-hide');
             }, 10);
           } else if (!shouldShow && !isHidden) {
-            // ESCONDER o card:
-            // 1. Adiciona a classe que aciona a animação de saída.
+
             card.classList.add('card-hide');
-            // 2. Após a animação terminar, remove o elemento do layout.
+
             setTimeout(() => {
               card.style.display = 'none';
             }, animationDuration);
           } else if (shouldShow && !isHidden) {
-            // Caso o card já esteja visível e deva continuar visível,
-            // garantimos que ele não tenha a classe 'card-hide' e esteja como 'block'.
-            // Isso é útil para quando se clica no mesmo filtro novamente.
+
             card.classList.remove('card-hide');
             card.style.display = 'block';
           }

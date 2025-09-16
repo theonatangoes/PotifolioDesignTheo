@@ -324,6 +324,28 @@
               <a href="https://portifoliotheonatan.vercel.app" class="text-blue-700 font-medium inline-flex items-center" target="_blank" rel="noopener" data-key="project_cta_8">Confira o Projeto <i class="fas fa-arrow-right ml-2"></i></a>
             </div>
           </div>
+
+          <div class="project-card bg-white rounded-xl overflow-hidden shadow-md scroll-animate" data-category="identity">
+            <div class="h-40 sm:h-48 overflow-hidden">
+              <img src="images/Lanef.png" alt="Projeto Lanef" class="w-full h-full object-cover transition duration-500 hover:scale-105" loading="lazy" />
+            </div>
+            <div class="p-6">
+              <h3 class="text-lg sm:text-xl font-semibold mb-2" data-key="project9_title">LANEF</h3>
+              <p class="text-gray-600 mb-4" data-key="project9_p">LANEF - Liga Acadêmica de Nefrologia - Universidade Federal da Paraíba</p>
+              <a href="https://drive.google.com/file/d/1KRZecLJnACUDLCpaRHY8t2YtXvcICLgL/view?usp=sharing" class="text-blue-700 font-medium inline-flex items-center" target="_blank" rel="noopener" data-key="project_cta_2">Confira o Projeto <i class="fas fa-arrow-right ml-2"></i></a>
+            </div>
+          </div>
+
+          <div class="project-card bg-white rounded-xl overflow-hidden shadow-md scroll-animate" data-category="identity">
+            <div class="h-40 sm:h-48 overflow-hidden">
+              <img src="images/Atlas Enfermagem.png" alt="Projeto Atlas" class="w-full h-full object-cover transition duration-500 hover:scale-105" loading="lazy" />
+            </div>
+            <div class="p-6">
+              <h3 class="text-lg sm:text-xl font-semibold mb-2" data-key="project10_title">Atlas Enfermagem</h3>
+              <p class="text-gray-600 mb-4" data-key="project10_p">Associação Atlética de Enfermagem - Estácio FMJ</p>
+              <a href="https://drive.google.com/file/d/12MwmgGaViHzC3cFMnXL9RlG6Lfls5ogE/view?usp=sharing" class="text-blue-700 font-medium inline-flex items-center" target="_blank" rel="noopener" data-key="project_cta_2">Confira o Projeto <i class="fas fa-arrow-right ml-2"></i></a>
+            </div>
+          </div>
         </div>
 
         <div class="text-center mt-10 sm:mt-12 scroll-animate">
@@ -500,6 +522,10 @@
         project7_p: "Digital portfolio design for Developer Ícaro Moreira. Modern and functional layout. (Figma)",
         project8_title: "Theo Natan's Portfolio",
         project8_p: "My portfolio with projects, skills, and experiences presented in a clear and interactive way.",
+        project9_title: "LANEF",
+        project9_p: "Academic League of Nephrology - Federal University of Paraíba.",
+        project10_title: "Nursing Atlas",
+        project10_p: "Nursing Athletic Association - Estácio FMJ.",
         project_cta_1: 'View Project <i class="fas fa-arrow-right ml-2"></i>',
         project_cta_2: 'View Project <i class="fas fa-arrow-right ml-2"></i>',
         project_cta_3: 'View Project <i class="fas fa-arrow-right ml-2"></i>',
@@ -595,6 +621,10 @@
         project7_p: "Design do portfólio digital do Desenvolvedor Ícaro Moreira. Layout moderno e funcional. (Figma)",
         project8_title: "Portfólio Theo Natan",
         project8_p: "Meu portfólio com projetos, habilidades e experiências de forma clara e interativa.",
+        project9_title: "LANEF",
+        project9_p: "LANEF - Liga Acadêmica de Nefrologia - Universidade Federal da Paraíba.",
+        project10_title: "Atlas Enfermagem",
+        project10_p: "Associação Atlética de Enfermagem - Estácio FMJ",
         project_cta_1: 'Confira o Projeto <i class="fas fa-arrow-right ml-2"></i>',
         project_cta_2: 'Confira o Projeto <i class="fas fa-arrow-right ml-2"></i>',
         project_cta_3: 'Confira o Projeto <i class="fas fa-arrow-right ml-2"></i>',
@@ -771,7 +801,7 @@
     const headerHeight = () => (header ? header.offsetHeight : 0);
 
     document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
-      anchor.addEventListener('click', function(e) {
+      anchor.addEventListener('click', function (e) {
         const targetId = this.getAttribute('href');
         if (!targetId || targetId === '#') return;
         const targetElement = document.querySelector(targetId);

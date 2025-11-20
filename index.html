@@ -130,37 +130,104 @@
       /* Fundo Dark */
     }
 
-    /* Glassmorphism (Efeito Vidro) */
+    /* Glassmorphism Navbar */
     .glass {
-      background: rgba(255, 255, 255, 0.8);
+      background: rgba(255, 255, 255, 0.7);
       backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
       border-bottom: 1px solid rgba(0, 0, 0, 0.05);
     }
 
     .dark .glass {
-      background: rgba(20, 20, 20, 0.7);
+      background: rgba(10, 10, 10, 0.6);
       border-bottom: 1px solid rgba(255, 255, 255, 0.08);
     }
 
+    /* =========================================
+       LIQUID GLASS EFFECT (CARDS) - ATUALIZADO
+       ========================================= */
     .glass-card {
-      background: linear-gradient(145deg, #ffffff 0%, #f9fafb 100%);
-      backdrop-filter: blur(10px);
-      border: 1px solid rgba(0, 0, 0, 0.05);
-      box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+      /* Base Transparente com Blur Intenso */
+      background: rgba(255, 255, 255, 0.1);
+      backdrop-filter: blur(16px) saturate(180%);
+      -webkit-backdrop-filter: blur(16px) saturate(180%);
+
+      /* Bordas Arredondadas Suaves */
+      border-radius: 20px;
+
+      /* Bordas de Luz (Simula reflexo físico nas bordas superior/esquerda) */
+      border-top: 1px solid rgba(255, 255, 255, 0.5);
+      border-left: 1px solid rgba(255, 255, 255, 0.5);
+      border-right: 1px solid rgba(255, 255, 255, 0.1);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+
+      /* Sombras: Externa suave + Interna (Inset) para efeito de "água/vidro grosso" */
+      box-shadow:
+        0 8px 32px 0 rgba(31, 38, 135, 0.10),
+        inset 0 0 20px rgba(255, 255, 255, 0.2);
+
       transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+      position: relative;
+      overflow: hidden;
+      /* Importante para o efeito de brilho não vazar */
     }
 
-    .dark .glass-card {
-      background: linear-gradient(145deg, rgba(25, 25, 25, 0.9) 0%, rgba(10, 10, 10, 0.8) 100%);
-      border: 1px solid rgba(255, 255, 255, 0.05);
-      box-shadow: none;
+    /* Efeito de Brilho que passa (Sheen) */
+    .glass-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(120deg,
+          transparent,
+          rgba(255, 255, 255, 0.3),
+          transparent);
+      transition: left 0.6s;
+      transform: skewX(-20deg);
+      pointer-events: none;
+      z-index: 10;
     }
 
+    /* Hover no Liquid Card */
     .glass-card:hover {
-      border-color: rgba(29, 78, 216, 0.5);
-      transform: translateY(-5px);
-      box-shadow: 0 10px 40px -10px rgba(29, 78, 216, 0.3);
+      transform: translateY(-8px) scale(1.02);
+      box-shadow:
+        0 20px 40px rgba(29, 78, 216, 0.25),
+        /* Sombra azulada da marca */
+        inset 0 0 20px rgba(255, 255, 255, 0.4);
+      /* Brilho interno aumenta */
+      border-color: rgba(255, 255, 255, 0.8);
     }
+
+    /* Ativa o brilho passando */
+    .glass-card:hover::before {
+      left: 150%;
+      transition: left 0.8s ease-in-out;
+    }
+
+    /* Ajustes Específicos para DARK MODE Liquid Glass */
+    .dark .glass-card {
+      background: rgba(20, 20, 20, 0.3);
+      box-shadow:
+        0 8px 32px 0 rgba(0, 0, 0, 0.37),
+        inset 0 0 20px rgba(255, 255, 255, 0.03);
+      /* Sombra interna mais sutil no escuro */
+      border-top: 1px solid rgba(255, 255, 255, 0.15);
+      border-left: 1px solid rgba(255, 255, 255, 0.15);
+      border-right: 1px solid rgba(255, 255, 255, 0.05);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    }
+
+    .dark .glass-card:hover {
+      box-shadow:
+        0 20px 40px rgba(0, 0, 0, 0.5),
+        inset 0 0 20px rgba(255, 255, 255, 0.08);
+      border-color: rgba(255, 255, 255, 0.3);
+    }
+
+    /* --- Fim do Efeito Liquid Glass --- */
 
     /* Textos Especiais */
     .text-glow {
@@ -367,7 +434,7 @@
             <a href="#projects" class="bg-brand hover:bg-brand-dark text-white px-8 py-4 rounded-full font-bold transition shadow-[0_0_20px_rgba(29,78,216,0.4)] hover:shadow-[0_0_40px_rgba(29,78,216,0.6)] hover:-translate-y-1 animate-pulse-glow" data-key="hero_button">
               Veja Meu Trabalho
             </a>
-            <a href="#about" class="px-8 py-4 rounded-full border border-gray-300 dark:border-gray-700 hover:border-brand hover:text-brand text-gray-800 dark:text-white transition glass">
+            <a href="#about" class="px-8 py-4 rounded-full border border-gray-300 dark:border-gray-700 hover:border-brand hover:text-brand text-gray-800 dark:text-white transition glass-card">
               Sobre Mim
             </a>
           </div>
@@ -1020,7 +1087,7 @@
         footer_link_about: "Sobre",
         footer_link_projects: "Projetos",
         footer_link_services: "Serviços",
-        footer_services_title: "Serviços",
+        footer_services_title: "Services",
         footer_service_uiux: "UI/UX Design",
         footer_service_branding: "Identidade da Marca",
         footer_service_web: "Web Design",

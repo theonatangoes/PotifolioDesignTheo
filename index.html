@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="pt-br" class="scroll-smooth dark">
 
 <head>
   <meta charset="UTF-8" />
@@ -7,31 +7,228 @@
   <meta name="theme-color" content="#1d4ed8" />
   <title data-key="page_title">Portfólio | Theo Natan</title>
 
-  <script src="https://cdn.tailwindcss.com"></script>
-
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
-
   <link rel="shortcut icon" href="/images/favicon theo.png" type="image/x-icon" />
 
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;700;800&family=Space+Grotesk:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
+
+  <script>
+    tailwind.config = {
+      darkMode: 'class', // Ativa o modo escuro via classe 'dark' no HTML
+      theme: {
+        extend: {
+          colors: {
+            'brand': {
+              light: '#3b82f6',
+              DEFAULT: '#1d4ed8',
+              dark: '#1e3a8a',
+            },
+            'dark': {
+              bg: '#050505',
+              card: '#0F0F0F',
+              surface: '#1A1A1A'
+            },
+            'light': {
+              bg: '#f3f4f6',
+              card: '#ffffff',
+              surface: '#e5e7eb'
+            }
+          },
+          fontFamily: {
+            'sans': ['Outfit', 'sans-serif'],
+            'display': ['Space Grotesk', 'sans-serif'],
+          },
+          animation: {
+            'blob': 'blob 7s infinite',
+            'float': 'float 6s ease-in-out infinite',
+            'pulse-glow': 'pulseGlow 2s ease-in-out infinite',
+            'gradient-flow': 'gradientFlow 4s linear infinite',
+          },
+          keyframes: {
+            blob: {
+              '0%': { transform: 'translate(0px, 0px) scale(1)' },
+              '33%': { transform: 'translate(30px, -50px) scale(1.1)' },
+              '66%': { transform: 'translate(-20px, 20px) scale(0.9)' },
+              '100%': { transform: 'translate(0px, 0px) scale(1)' },
+            },
+            float: {
+              '0%, 100%': { transform: 'translateY(0)' },
+              '50%': { transform: 'translateY(-10px)' },
+            },
+            pulseGlow: {
+              '0%, 100%': { transform: 'scale(1)', 'box-shadow': '0 0 20px rgba(29, 78, 216, 0.4)' },
+              '50%': { transform: 'scale(1.05)', 'box-shadow': '0 0 40px rgba(29, 78, 216, 0.6)' }
+            },
+            gradientFlow: {
+              '0%': { backgroundPosition: '0% 50%' },
+              '50%': { backgroundPosition: '100% 50%' },
+              '100%': { backgroundPosition: '0% 50%' },
+            }
+          }
+        }
+      }
+    }
+  </script>
+
   <style>
-    :root {
-      --brand: #1d4ed8;
+    /* --- Estilos Globais e Efeitos --- */
+
+    /* Scrollbar - Modo Light (Padrão) */
+    ::-webkit-scrollbar {
+      width: 8px;
     }
 
-    html,
-    body {
-      font-family: 'Poppins', sans-serif;
-      scroll-behavior: smooth;
+    ::-webkit-scrollbar-track {
+      background: #f3f4f6;
+    }
+
+    ::-webkit-scrollbar-thumb {
+      background: #ccc;
+      border-radius: 4px;
+    }
+
+    ::-webkit-scrollbar-thumb:hover {
+      background: #1d4ed8;
+    }
+
+    /* Scrollbar - Modo Dark */
+    .dark ::-webkit-scrollbar-track {
+      background: #050505;
+    }
+
+    .dark ::-webkit-scrollbar-thumb {
+      background: #333;
     }
 
     body {
       overflow-x: hidden;
-      /* Evita scroll horizontal em mobile */
+      transition: background-color 0.3s ease, color 0.3s ease;
     }
 
+    /* Canvas Fundo */
+    #canvas-container {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: -1;
+      background-color: #f3f4f6;
+      /* Fundo Light */
+      transition: background-color 0.3s ease;
+      overflow: hidden;
+    }
+
+    .dark #canvas-container {
+      background-color: #050505;
+      /* Fundo Dark */
+    }
+
+    /* Glassmorphism (Efeito Vidro) */
+    .glass {
+      background: rgba(255, 255, 255, 0.8);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+    }
+
+    .dark .glass {
+      background: rgba(20, 20, 20, 0.7);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    }
+
+    .glass-card {
+      background: linear-gradient(145deg, #ffffff 0%, #f9fafb 100%);
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(0, 0, 0, 0.05);
+      box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+      transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .dark .glass-card {
+      background: linear-gradient(145deg, rgba(25, 25, 25, 0.9) 0%, rgba(10, 10, 10, 0.8) 100%);
+      border: 1px solid rgba(255, 255, 255, 0.05);
+      box-shadow: none;
+    }
+
+    .glass-card:hover {
+      border-color: rgba(29, 78, 216, 0.5);
+      transform: translateY(-5px);
+      box-shadow: 0 10px 40px -10px rgba(29, 78, 216, 0.3);
+    }
+
+    /* Textos Especiais */
+    .text-glow {
+      text-shadow: 0 0 20px rgba(29, 78, 216, 0.5);
+    }
+
+    .animated-gradient {
+      background: linear-gradient(90deg, #1d4ed8, #60a5fa, #1d4ed8);
+      background-size: 200% 100%;
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+      animation: gradientFlow 3s linear infinite;
+    }
+
+    .impacto-maximo-animado {
+      position: relative;
+      display: inline-block;
+    }
+
+    .impacto-maximo-animado::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: linear-gradient(90deg, #1e40af, #3b82f6, #60a5fa, #3b82f6, #1e40af);
+      background-size: 300% 100%;
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+      animation: gradientFlow 5s linear infinite;
+      filter: blur(8px);
+      opacity: 0.7;
+      z-index: -1;
+    }
+
+    .impacto-maximo-animado span {
+      position: relative;
+      z-index: 1;
+    }
+
+    /* Animação Scroll */
+    .scroll-animate {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+    }
+
+    .scroll-animate.is-visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .card-hide {
+      display: none;
+    }
+
+    .gradient-orb {
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(80px);
+      z-index: -1;
+      opacity: 0.4;
+    }
+
+    /* Nav Link Hover */
     .nav-link {
       position: relative;
     }
@@ -43,7 +240,7 @@
       height: 2px;
       bottom: -2px;
       left: 0;
-      background-color: var(--brand);
+      background-color: #1d4ed8;
       transition: width 0.3s ease;
     }
 
@@ -51,428 +248,594 @@
       width: 100%;
     }
 
-    .project-card {
-      transition: transform 0.3s ease, box-shadow 0.3s ease, opacity 0.4s ease-in-out, transform 0.4s ease-in-out;
+    /* Ajustes de cor para modo Light vs Dark em textos gerais */
+    body {
+      color: #374151;
+      /* Cinza escuro para Light mode */
     }
 
-    .card-hide {
-      opacity: 0;
-      transform: scale(0.95);
+    .dark body {
+      color: #d1d5db;
+      /* Cinza claro para Dark mode */
     }
 
-    .project-card:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
+      color: #111827;
+      /* Preto suave para Light */
     }
 
-    .service-card {
-      transition: transform 0.3s ease;
-    }
-
-    .service-card:hover {
-      transform: translateY(-5px);
-    }
-
-    .avatar {
-      animation: float 6s ease-in-out infinite;
-    }
-
-    @keyframes float {
-      0% {
-        transform: translateY(0);
-      }
-
-      50% {
-        transform: translateY(-10px);
-      }
-
-      100% {
-        transform: translateY(0);
-      }
-    }
-
-    .fade-in {
-      animation: fadeIn 0.8s ease-in;
-    }
-
-    @keyframes fadeIn {
-      from {
-        opacity: 0;
-        transform: translateY(8px);
-      }
-
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    }
-
-    /* ESTILOS PARA ANIMAÇÃO DE SCROLL */
-    .scroll-animate {
-      opacity: 0;
-      transform: translateY(30px);
-      /* Começa um pouco para baixo */
-      transition: opacity 0.6s ease-out, transform 0.6s ease-out;
-      will-change: opacity, transform;
-      /* Otimização de performance */
-    }
-
-    .scroll-animate.is-visible {
-      opacity: 1;
-      transform: translateY(0);
-      /* Volta à posição original */
+    .dark h1,
+    .dark h2,
+    .dark h3,
+    .dark h4,
+    .dark h5,
+    .dark h6 {
+      color: #ffffff;
+      /* Branco para Dark */
     }
   </style>
 </head>
 
-<body class="bg-gray-50 text-gray-800">
-  <header class="fixed inset-x-0 top-0 z-50 bg-white/90 backdrop-blur shadow-sm">
-    <div class="container mx-auto max-w-6xl px-4 sm:px-6 py-3 sm:py-4">
+<body class="antialiased selection:bg-brand selection:text-white">
+
+  <div id="canvas-container">
+    <canvas id="network-canvas"></canvas>
+  </div>
+
+  <header class="fixed inset-x-0 top-0 z-50 glass transition-all duration-300">
+    <div class="container mx-auto max-w-7xl px-6 py-4">
       <div class="flex items-center justify-between">
-        <a href="#home" class="shrink-0 inline-flex items-center gap-2" aria-label="Theo Natan - Início">
-          <img src="/images/logo THEO.png" alt="Logo Theo" class="w-28 sm:w-36 h-auto" loading="eager" />
+
+        <a href="#home" class="relative group shrink-0" aria-label="Theo Natan - Início">
+          <div class="absolute -inset-2 bg-brand rounded-full blur opacity-20 group-hover:opacity-40 transition duration-500"></div>
+          <img src="/images/logo THEO.png" alt="Logo Theo" class="relative w-28 sm:w-32 h-auto transition-all duration-300 dark:brightness-0 dark:invert" />
         </a>
 
-        <button id="mobile-menu-button" class="md:hidden inline-flex items-center justify-center p-2 text-gray-700 hover:text-gray-900 focus:outline-none" aria-controls="mobile-menu" aria-expanded="false" aria-label="Abrir menu">
+        <button id="mobile-menu-button" class="md:hidden text-gray-800 dark:text-gray-300 hover:text-brand transition p-2">
           <i class="fas fa-bars text-2xl"></i>
         </button>
 
-        <nav class="hidden md:flex items-center gap-6">
-          <a href="#home" class="nav-link text-gray-700 hover:text-blue-700" data-key="nav_home">Início</a>
-          <a href="#about" class="nav-link text-gray-700 hover:text-blue-700" data-key="nav_about">Sobre</a>
-          <a href="#projects" class="nav-link text-gray-700 hover:text-blue-700" data-key="nav_projects">Projetos</a>
-          <a href="#services" class="nav-link text-gray-700 hover:text-blue-700" data-key="nav_services">Serviços</a>
-          <button id="lang-switcher-desktop" class="text-blue-700 hover:text-blue-900 ml-4 text-xl" aria-label="Mudar idioma" data-key="lang_switcher_aria">
-            <i class="fa-solid fa-earth-americas"></i>
-          </button>
+        <nav class="hidden md:flex items-center gap-8 text-sm font-medium tracking-wide text-gray-700 dark:text-gray-300">
+          <a href="#home" class="nav-link hover:text-brand transition-colors duration-300" data-key="nav_home">Início</a>
+          <a href="#about" class="nav-link hover:text-brand transition-colors duration-300" data-key="nav_about">Sobre</a>
+          <a href="#projects" class="nav-link hover:text-brand transition-colors duration-300" data-key="nav_projects">Projetos</a>
+          <a href="#services" class="nav-link hover:text-brand transition-colors duration-300" data-key="nav_services">Serviços</a>
+
+          <div class="flex items-center gap-2 ml-2 border-l pl-4 border-gray-300 dark:border-gray-700">
+            <button id="theme-toggle-desktop" class="text-brand hover:text-brand-dark dark:hover:text-white transition text-xl p-1" aria-label="Alternar Tema">
+              <i class="fas fa-sun hidden dark:inline-block"></i> <i class="fas fa-moon inline-block dark:hidden"></i> </button>
+
+            <button id="lang-switcher-desktop" class="text-brand hover:text-brand-dark dark:hover:text-white transition text-xl p-1" aria-label="Mudar idioma" data-key="lang_switcher_aria">
+              <i class="fa-solid fa-earth-americas"></i>
+            </button>
+          </div>
         </nav>
       </div>
 
-      <div id="mobile-menu" class="hidden md:hidden mt-3">
-        <nav class="flex flex-col divide-y divide-gray-100 rounded-lg bg-white shadow">
-          <a href="#home" class="px-4 py-3 text-gray-700 hover:bg-gray-50" data-key="nav_home_mobile">Início</a>
-          <a href="#about" class="px-4 py-3 text-gray-700 hover:bg-gray-50" data-key="nav_about_mobile">Sobre</a>
-          <a href="#projects" class="px-4 py-3 text-gray-700 hover:bg-gray-50" data-key="nav_projects_mobile">Projetos</a>
-          <a href="#services" class="px-4 py-3 text-gray-700 hover:bg-gray-50" data-key="nav_services_mobile">Serviços</a>
-          <button id="lang-switcher-mobile" class="px-4 py-3 text-blue-700 hover:bg-blue-50 text-left flex items-center gap-2">
-            <i class="fa-solid fa-earth-americas"></i> <span data-key="nav_lang_mobile">Mudar Idioma</span>
-          </button>
+      <div id="mobile-menu" class="hidden md:hidden mt-4 border-t border-gray-200 dark:border-gray-800 pt-4 glass">
+        <nav class="flex flex-col space-y-4 text-center p-4">
+          <a href="#home" class="text-gray-800 dark:text-gray-300 hover:text-brand py-2" data-key="nav_home_mobile">Início</a>
+          <a href="#about" class="text-gray-800 dark:text-gray-300 hover:text-brand py-2" data-key="nav_about_mobile">Sobre</a>
+          <a href="#projects" class="text-gray-800 dark:text-gray-300 hover:text-brand py-2" data-key="nav_projects_mobile">Projetos</a>
+          <a href="#services" class="text-gray-800 dark:text-gray-300 hover:text-brand py-2" data-key="nav_services_mobile">Serviços</a>
+
+          <div class="flex items-center justify-center gap-6 pt-4 border-t border-gray-200 dark:border-gray-700">
+            <button id="theme-toggle-mobile" class="text-brand hover:text-brand-dark dark:hover:text-white flex items-center gap-2">
+              <i class="fas fa-sun hidden dark:inline-block"></i>
+              <i class="fas fa-moon inline-block dark:hidden"></i>
+              <span>Tema</span>
+            </button>
+
+            <button id="lang-switcher-mobile" class="text-brand hover:text-brand-dark dark:hover:text-white flex items-center gap-2">
+              <i class="fa-solid fa-earth-americas"></i>
+              <span data-key="nav_lang_mobile">Idioma</span>
+            </button>
+          </div>
         </nav>
       </div>
     </div>
   </header>
 
   <main>
-    <section id="home" class="scroll-mt-24 pt-28 sm:pt-32 pb-16 sm:pb-20 px-4 sm:px-6 bg-gradient-to-r from-blue-50 to-indigo-50">
-      <div class="container mx-auto max-w-6xl flex flex-col md:flex-row items-center gap-10">
-        <div class="w-full md:w-1/2 fade-in">
-          <h1 class="text-3xl sm:text-4xl md:text-5xl font-bold mb-5 text-gray-800 leading-tight">
-            <span data-key="hero_h1_l1">Design Minimalista,</span>
-            <span data-key="hero_h1_l2"><span class="text-blue-700 font-extrabold animate-pulse">Impacto Máximo</span></span>
+    <section id="home" class="relative min-h-screen flex items-center pt-28 pb-20 overflow-hidden">
+      <div class="gradient-orb w-96 h-96 bg-brand top-20 left-[-100px] animate-blob"></div>
+      <div class="gradient-orb w-96 h-96 bg-blue-900 bottom-20 right-[-100px] animate-blob" style="animation-delay: 2s"></div>
+
+      <div class="container mx-auto max-w-7xl px-6 flex flex-col md:flex-row items-center gap-12 relative z-10">
+
+        <div class="w-full md:w-1/2 scroll-animate text-center md:text-left">
+          <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-brand/30 bg-brand/10 mb-6">
+            <span class="w-2 h-2 rounded-full bg-brand animate-pulse"></span>
+            <span class="text-xs font-bold tracking-widest text-brand uppercase">Disponível para Projetos</span>
+          </div>
+
+          <h1 class="font-display text-4xl sm:text-5xl md:text-7xl font-bold mb-6 leading-tight">
+            <span data-key="hero_h1_l1">Design Minimalista,</span><br>
+            <span data-key="hero_h1_l2"><span class="impacto-maximo-animado"><span class="animated-gradient text-glow">Impacto Máximo</span></span></span>
           </h1>
-          <p class="text-base sm:text-lg text-gray-600 mb-8 md:pr-6" data-key="hero_p">
+
+          <p class="text-lg text-gray-600 dark:text-gray-400 mb-10 md:pr-6 font-light leading-relaxed" data-key="hero_p">
             Crio experiências digitais elegantes que equilibram beleza e funcionalidade para ajudar as marcas a se destacarem.
           </p>
-          <div class="flex flex-wrap items-center gap-3">
-            <a href="#projects" class="bg-blue-700 hover:bg-blue-600 text-white px-6 py-3 rounded-full font-medium transition" data-key="hero_button">Veja Meu Trabalho</a>
+
+          <div class="flex flex-wrap justify-center md:justify-start gap-4">
+            <a href="#projects" class="bg-brand hover:bg-brand-dark text-white px-8 py-4 rounded-full font-bold transition shadow-[0_0_20px_rgba(29,78,216,0.4)] hover:shadow-[0_0_40px_rgba(29,78,216,0.6)] hover:-translate-y-1 animate-pulse-glow" data-key="hero_button">
+              Veja Meu Trabalho
+            </a>
+            <a href="#about" class="px-8 py-4 rounded-full border border-gray-300 dark:border-gray-700 hover:border-brand hover:text-brand text-gray-800 dark:text-white transition glass">
+              Sobre Mim
+            </a>
           </div>
         </div>
 
-        <div class="w-full md:w-1/2 flex justify-center fade-in">
-          <img src="images/PAEREDE PORTIFOLIO THEO.png" alt="Workspace de design" class="rounded-lg shadow-xl max-w-[260px] sm:max-w-md md:max-w-full h-auto" loading="lazy" />
+        <div class="w-full md:w-1/2 flex justify-center scroll-animate">
+          <div class="relative">
+            <div class="absolute inset-0 bg-brand blur-[60px] opacity-20 animate-pulse"></div>
+            <img src="images/PAEREDE PORTIFOLIO THEO.png" alt="Workspace" class="relative rounded-2xl border border-black/10 dark:border-white/10 shadow-2xl max-w-[280px] sm:max-w-md md:max-w-full h-auto animate-float" />
+          </div>
         </div>
       </div>
     </section>
 
-    <section id="about" class="scroll-mt-24 py-16 sm:py-20 px-4 sm:px-6 bg-white">
-      <div class="container mx-auto max-w-6xl">
-        <h2 class="text-2xl sm:text-3xl font-bold text-center mb-10 sm:mb-16 scroll-animate" data-key="about_title">Sobre mim</h2>
+    <section id="about" class="py-24 relative">
+      <div class="container mx-auto max-w-7xl px-6">
+        <h2 class="font-display text-3xl sm:text-5xl font-bold text-center mb-16 scroll-animate">
+          <span class="border-b-4 border-brand pb-2" data-key="about_title">Sobre mim</span>
+        </h2>
 
-        <div class="flex flex-col md:flex-row items-center gap-10">
+        <div class="flex flex-col md:flex-row items-center gap-12">
           <div class="w-full md:w-1/3 flex justify-center scroll-animate">
-            <div class="avatar w-40 h-40 sm:w-56 sm:h-56 md:w-64 md:h-64 rounded-full overflow-hidden border-4 border-blue-200">
-              <img src="images/Perfil Theo.jpg" alt="Foto de perfil do Theo" class="w-full h-full object-cover" loading="lazy" />
+            <div class="relative w-64 h-64 sm:w-72 sm:h-72">
+              <div class="absolute inset-0 rounded-full border-2 border-brand/30 animate-[spin_10s_linear_infinite]"></div>
+              <div class="absolute inset-0 rounded-full border-2 border-t-transparent border-brand animate-[spin_3s_linear_infinite]"></div>
+              <div class="w-full h-full rounded-full overflow-hidden border-4 border-gray-100 dark:border-dark-card relative z-10 shadow-xl">
+                <img src="images/Perfil Theo.jpg" alt="Theo Natan" class="w-full h-full object-cover" />
+              </div>
             </div>
           </div>
 
           <div class="w-full md:w-2/3 md:pl-6 scroll-animate">
-            <h3 class="text-xl sm:text-2xl font-semibold mb-3 text-center md:text-left" data-key="about_greeting">Muito prazer, sou Theo Natan</h3>
-            <p class="text-gray-600 mb-6 text-center md:text-left" data-key="about_p">
-              Sou Designer Gráfico e Web Designer com experiência no desenvolvimento de identidades visuais, logos, designs para aplicações web, portfólios digitais, aplicativos e landing pages. Meu trabalho é transformar ideias em projetos criativos e funcionais, unindo estética, estratégia e usabilidade para entregar soluções visuais que conectam marcas ao seu público de forma clara e impactante. Aqui você encontrará alguns dos meus projetos que representam minha paixão por design e minha dedicação em criar experiências únicas.
+            <h3 class="font-display text-2xl sm:text-3xl font-bold mb-4 text-center md:text-left" data-key="about_greeting">Muito prazer, sou Theo Natan</h3>
+            <p class="text-gray-600 dark:text-gray-400 mb-8 text-center md:text-left leading-relaxed text-lg" data-key="about_p">
+              Sou Designer Gráfico e Web Designer com experiência no desenvolvimento de identidades visuais, logos, designs para aplicações web, portfólios digitais, aplicativos e landing pages. Meu trabalho é transformar ideias em projetos criativos e funcionais.
             </p>
 
             <div class="mb-8">
-              <h4 class="text-base sm:text-lg font-medium mb-3 text-gray-800 text-center md:text-left" data-key="about_skills_title">Minhas Habilidades</h4>
-              <div class="flex flex-wrap justify-center md:justify-start gap-2 sm:gap-3">
-                <span class="bg-blue-200 text-blue-700 px-3 py-1 rounded-full text-xs sm:text-sm" data-key="skill_uiux">UI/UX Design</span>
-                <span class="bg-blue-200 text-blue-700 px-3 py-1 rounded-full text-xs sm:text-sm" data-key="skill_branding">Identidade da Marca</span>
-                <span class="bg-blue-200 text-blue-700 px-3 py-1 rounded-full text-xs sm:text-sm" data-key="skill_web">Web Design</span>
-                <span class="bg-blue-200 text-blue-700 px-3 py-1 rounded-full text-xs sm:text-sm" data-key="skill_mobile">Mobile Design</span>
-                <span class="bg-blue-200 text-blue-700 px-3 py-1 rounded-full text-xs sm:text-sm" data-key="skill_strategy">Visão Estratégica</span>
+              <h4 class="text-lg font-bold mb-4 text-brand text-center md:text-left uppercase tracking-wider" data-key="about_skills_title">Minhas Habilidades</h4>
+              <div class="flex flex-wrap justify-center md:justify-start gap-3">
+                <span class="bg-white dark:bg-dark-surface border border-gray-200 dark:border-white/10 hover:border-brand text-gray-600 dark:text-gray-300 px-4 py-2 rounded-lg text-sm transition hover:text-brand hover:-translate-y-1 hover:shadow-lg cursor-default" data-key="skill_uiux">UI/UX Design</span>
+                <span class="bg-white dark:bg-dark-surface border border-gray-200 dark:border-white/10 hover:border-brand text-gray-600 dark:text-gray-300 px-4 py-2 rounded-lg text-sm transition hover:text-brand hover:-translate-y-1 hover:shadow-lg cursor-default" data-key="skill_branding">Identidade da Marca</span>
+                <span class="bg-white dark:bg-dark-surface border border-gray-200 dark:border-white/10 hover:border-brand text-gray-600 dark:text-gray-300 px-4 py-2 rounded-lg text-sm transition hover:text-brand hover:-translate-y-1 hover:shadow-lg cursor-default" data-key="skill_web">Web Design</span>
+                <span class="bg-white dark:bg-dark-surface border border-gray-200 dark:border-white/10 hover:border-brand text-gray-600 dark:text-gray-300 px-4 py-2 rounded-lg text-sm transition hover:text-brand hover:-translate-y-1 hover:shadow-lg cursor-default" data-key="skill_mobile">Mobile Design</span>
+                <span class="bg-white dark:bg-dark-surface border border-gray-200 dark:border-white/10 hover:border-brand text-gray-600 dark:text-gray-300 px-4 py-2 rounded-lg text-sm transition hover:text-brand hover:-translate-y-1 hover:shadow-lg cursor-default" data-key="skill_strategy">Visão Estratégica</span>
               </div>
             </div>
 
-            <a href="#projects" class="inline-flex items-center justify-center md:justify-start text-blue-700 font-medium w-full md:w-auto" data-key="about_cta">
-              Confira mais abaixo <i class="fas fa-arrow-down ml-2"></i>
-            </a>
+            <div class="text-center md:text-left">
+              <a href="#projects" class="inline-flex items-center text-brand font-medium hover:text-brand-dark dark:hover:text-white transition" data-key="about_cta">
+                Confira mais abaixo <i class="fas fa-arrow-down ml-2 animate-bounce"></i>
+              </a>
+            </div>
           </div>
         </div>
       </div>
     </section>
 
-    <section id="projects" class="scroll-mt-24 py-16 sm:py-20 px-4 sm:px-6 bg-blue-50">
-      <div class="container mx-auto max-w-6xl">
-        <div class="text-center mb-10 sm:mb-16 scroll-animate">
-          <h2 class="text-2xl sm:text-3xl font-bold mb-3 sm:mb-4" data-key="projects_title">Meus Projetos</h2>
-          <p class="text-gray-600 max-w-2xl mx-auto" data-key="projects_p">Explore meus trabalhos mais recentes em diferentes categorias. Cada projeto é criado com atenção aos detalhes e à experiência do usuário.</p>
+    <section id="projects" class="py-24 bg-gray-50 dark:bg-dark-surface/30 border-y border-gray-200 dark:border-white/5 backdrop-blur-sm transition-colors duration-300">
+      <div class="container mx-auto max-w-7xl px-6">
+        <div class="text-center mb-16 scroll-animate">
+          <h2 class="font-display text-3xl sm:text-5xl font-bold mb-4" data-key="projects_title">Meus Projetos</h2>
+          <p class="text-gray-600 dark:text-gray-400 max-w-2xl mx-auto" data-key="projects_p">Explore meus trabalhos mais recentes. Design com propósito e estética.</p>
         </div>
 
-        <div class="flex justify-center mb-8 sm:mb-12 scroll-animate">
-          <div class="flex flex-wrap justify-center gap-2 rounded-full bg-white shadow-sm p-2">
-            <button class="filter-btn px-4 py-2 rounded-full font-medium focus:outline-none aria-selected bg-blue-700 text-white" data-filter="all" aria-pressed="true" data-key="filter_all">Todos</button>
-            <button class="filter-btn px-4 py-2 rounded-full font-medium focus:outline-none" data-filter="identity" aria-pressed="false" data-key="filter_identity">Identidades Visuais</button>
-            <button class="filter-btn px-4 py-2 rounded-full font-medium focus:outline-none" data-filter="landing" aria-pressed="false" data-key="filter_landing">Landing Pages</button>
-            <button class="filter-btn px-4 py-2 rounded-full font-medium focus:outline-none" data-filter="social" aria-pressed="false" data-key="filter_portfolios">Portfólios</button>
-          </div>
-        </div>
-
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
-          <div class="project-card bg-white rounded-xl overflow-hidden shadow-md scroll-animate" data-category="identity">
-            <div class="h-40 sm:h-48 overflow-hidden">
-              <img src="images/VANESSA FERNANDES.png" alt="Projeto Vanessa Fernandes" class="w-full h-full object-cover transition duration-500 hover:scale-105" loading="lazy" />
-            </div>
-            <div class="p-6">
-              <h3 class="text-lg sm:text-xl font-semibold mb-2" data-key="project1_title">Vanessa Fernandes Confeitaria</h3>
-              <p class="text-gray-600 mb-4" data-key="project1_p">Vanessa Fernandes Confeitaria com foco em transmitir delicadeza, elegância e o cuidado artesanal presente nos produtos.</p>
-              <a href="https://drive.google.com/file/d/1Q5cYa16gfEJgKalux-_QKWi21t2RQrzM/view?usp=sharing" class="text-blue-700 font-medium inline-flex items-center" target="_blank" rel="noopener" data-key="project_cta_1">Confira o Projeto <i class="fas fa-arrow-right ml-2"></i></a>
-            </div>
-          </div>
-
-          <div class="project-card bg-white rounded-xl overflow-hidden shadow-md scroll-animate" data-category="identity">
-            <div class="h-40 sm:h-48 overflow-hidden">
-              <img src="images/Jns.png" alt="Projeto JNS" class="w-full h-full object-cover transition duration-500 hover:scale-105" loading="lazy" />
-            </div>
-            <div class="p-6">
-              <h3 class="text-lg sm:text-xl font-semibold mb-2" data-key="project2_title">JNS</h3>
-              <p class="text-gray-600 mb-4" data-key="project2_p">JNS oferece soluções inteligentes em seguros, consórcios e créditos, com foco no atendimento personalizado.</p>
-              <a href="https://drive.google.com/file/d/1uvIDJRPl3RhgIe9zu-cLv4mqRf59470q/view?usp=sharing" class="text-blue-700 font-medium inline-flex items-center" target="_blank" rel="noopener" data-key="project_cta_2">Confira o Projeto <i class="fas fa-arrow-right ml-2"></i></a>
-            </div>
-          </div>
-
-          <div class="project-card bg-white rounded-xl overflow-hidden shadow-md scroll-animate" data-category="identity">
-            <div class="h-40 sm:h-48 overflow-hidden">
-              <img src="images/Flux agency (2).png" alt="Projeto Flux Agency" class="w-full h-full object-cover transition duration-500 hover:scale-105" loading="lazy" />
-            </div>
-            <div class="p-6">
-              <h3 class="text-lg sm:text-xl font-semibold mb-2" data-key="project3_title">Flux Agency</h3>
-              <p class="text-gray-600 mb-4" data-key="project3_p">Agência com foco em inovação e resultados. Formas modernas e dinâmicas com ícone em forma de seta.</p>
-              <a href="https://drive.google.com/file/d/1RfWvmn0eSvzoBwZQAensWQTSyvDbhgpx/view?usp=sharing" class="text-blue-700 font-medium inline-flex items-center" target="_blank" rel="noopener" data-key="project_cta_3">Confira o Projeto <i class="fas fa-arrow-right ml-2"></i></a>
-            </div>
-          </div>
-
-          <div class="project-card bg-white rounded-xl overflow-hidden shadow-md scroll-animate" data-category="landing">
-            <div class="h-40 sm:h-48 overflow-hidden">
-              <img src="images/SIMPLIFICANDO.png" alt="Projeto Simplificando Métodos" class="w-full h-full object-cover transition duration-500 hover:scale-105" loading="lazy" />
-            </div>
-            <div class="p-6">
-              <h3 class="text-lg sm:text-xl font-semibold mb-2" data-key="project4_title">Simplificando Métodos</h3>
-              <p class="text-gray-600 mb-4" data-key="project4_p">Estratégias simples e eficientes para quebrar padrões, bater recordes e alcançar novos limites.</p>
-              <a href="https://drive.google.com/file/d/17Kdt_P9u4cm-hTaitBwGpvEl04ZhbsvR/view?usp=sharing" class="text-blue-700 font-medium inline-flex items-center" target="_blank" rel="noopener" data-key="project_cta_4">Confira o Projeto <i class="fas fa-arrow-right ml-2"></i></a>
-            </div>
-          </div>
-
-          <div class="project-card bg-white rounded-xl overflow-hidden shadow-md scroll-animate" data-category="identity">
-            <div class="h-40 sm:h-48 overflow-hidden">
-              <img src="images/SACROVI.png" alt="Projeto Sacrovi" class="w-full h-full object-cover transition duration-500 hover:scale-105" loading="lazy" />
-            </div>
-            <div class="p-6">
-              <h3 class="text-lg sm:text-xl font-semibold mb-2" data-key="project5_title">Sacrovi</h3>
-              <p class="text-gray-600 mb-4" data-key="project5_p">Produtora audiovisual: drones, filmagens, fotografias e captação de áudio.</p>
-              <a href="https://drive.google.com/file/d/1GWThmxPaAiy_EqtQ91ZPh0z4e7aGD6gx/view?usp=sharing" class="text-blue-700 font-medium inline-flex items-center" target="_blank" rel="noopener" data-key="project_cta_5">Confira o Projeto <i class="fas fa-arrow-right ml-2"></i></a>
-            </div>
-          </div>
-
-          <div class="project-card bg-white rounded-xl overflow-hidden shadow-md scroll-animate" data-category="landing">
-            <div class="h-40 sm:h-48 overflow-hidden">
-              <img src="images/ESPHERA.png" alt="Projeto Esphera Checkout" class="w-full h-full object-cover transition duration-500 hover:scale-105" loading="lazy" />
-            </div>
-            <div class="p-6">
-              <h3 class="text-lg sm:text-xl font-semibold mb-2" data-key="project6_title">Esphera Checkout</h3>
-              <p class="text-gray-600 mb-4" data-key="project6_p">Plataforma de vendas online com rapidez, segurança e simplicidade no pagamento.</p>
-              <a href="https://drive.google.com/file/d/1wTlUco4nAJ-GzVLXDb0MmF7OB7SDZKTB/view?usp=sharing" class="text-blue-700 font-medium inline-flex items-center" target="_blank" rel="noopener" data-key="project_cta_6">Confira o Projeto <i class="fas fa-arrow-right ml-2"></i></a>
-            </div>
-          </div>
-
-          <div class="project-card bg-white rounded-xl overflow-hidden shadow-md scroll-animate" data-category="social">
-            <div class="h-40 sm:h-48 overflow-hidden">
-              <img src="images/PORTIFOLIO DEV.png" alt="Portfólio para Desenvolvedor" class="w-full h-full object-cover transition duration-500 hover:scale-105" loading="lazy" />
-            </div>
-            <div class="p-6">
-              <h3 class="text-lg sm:text-xl font-semibold mb-2" data-key="project7_title">Portfólio para Desenvolvedor</h3>
-              <p class="text-gray-600 mb-4" data-key="project7_p">Design do portfólio digital do Desenvolvedor Ícaro Moreira. Layout moderno e funcional. (Figma)</p>
-              <a href="https://drive.google.com/file/d/1kwdvLqCA6hCaPX-6i7aB17iVWOBQCikX/view?usp=sharing" class="text-blue-700 font-medium inline-flex items-center" target="_blank" rel="noopener" data-key="project_cta_7">Confira o Projeto <i class="fas fa-arrow-right ml-2"></i></a>
-            </div>
-          </div>
-
-          <div class="project-card bg-white rounded-xl overflow-hidden shadow-md scroll-animate" data-category="social">
-            <div class="h-40 sm:h-48 overflow-hidden">
-              <img src="images/PORTIFOLIO THEONATAN.png" alt="Portfólio Theo Natan" class="w-full h-full object-cover transition duration-500 hover:scale-105" loading="lazy" />
-            </div>
-            <div class="p-6">
-              <h3 class="text-lg sm:text-xl font-semibold mb-2" data-key="project8_title">Portfólio Theo Natan</h3>
-              <p class="text-gray-600 mb-4" data-key="project8_p">Meu portfólio com projetos, habilidades e experiências de forma clara e interativa.</p>
-              <a href="https://portifoliotheonatan.vercel.app" class="text-blue-700 font-medium inline-flex items-center" target="_blank" rel="noopener" data-key="project_cta_8">Confira o Projeto <i class="fas fa-arrow-right ml-2"></i></a>
-            </div>
-          </div>
-
-          <div class="project-card bg-white rounded-xl overflow-hidden shadow-md scroll-animate" data-category="identity">
-            <div class="h-40 sm:h-48 overflow-hidden">
-              <img src="images/Lanef.png" alt="Projeto Lanef" class="w-full h-full object-cover transition duration-500 hover:scale-105" loading="lazy" />
-            </div>
-            <div class="p-6">
-              <h3 class="text-lg sm:text-xl font-semibold mb-2" data-key="project9_title">LANEF</h3>
-              <p class="text-gray-600 mb-4" data-key="project9_p">LANEF - Liga Acadêmica de Nefrologia - Universidade Federal da Paraíba</p>
-              <a href="https://drive.google.com/file/d/1KRZecLJnACUDLCpaRHY8t2YtXvcICLgL/view?usp=sharing" class="text-blue-700 font-medium inline-flex items-center" target="_blank" rel="noopener" data-key="project_cta_2">Confira o Projeto <i class="fas fa-arrow-right ml-2"></i></a>
-            </div>
-          </div>
-
-          <div class="project-card bg-white rounded-xl overflow-hidden shadow-md scroll-animate" data-category="identity">
-            <div class="h-40 sm:h-48 overflow-hidden">
-              <img src="images/Atlas Enfermagem.png" alt="Projeto Atlas" class="w-full h-full object-cover transition duration-500 hover:scale-105" loading="lazy" />
-            </div>
-            <div class="p-6">
-              <h3 class="text-lg sm:text-xl font-semibold mb-2" data-key="project10_title">Atlas Enfermagem</h3>
-              <p class="text-gray-600 mb-4" data-key="project10_p">Associação Atlética de Enfermagem - Estácio FMJ</p>
-              <a href="https://drive.google.com/file/d/12MwmgGaViHzC3cFMnXL9RlG6Lfls5ogE/view?usp=sharing" class="text-blue-700 font-medium inline-flex items-center" target="_blank" rel="noopener" data-key="project_cta_2">Confira o Projeto <i class="fas fa-arrow-right ml-2"></i></a>
-            </div>
+        <div class="flex justify-center mb-12 scroll-animate">
+          <div class="flex flex-wrap justify-center gap-3 bg-white dark:bg-dark-card p-2 rounded-xl border border-gray-200 dark:border-white/5 shadow-sm">
+            <button class="filter-btn px-5 py-2 rounded-lg text-sm font-medium transition focus:outline-none aria-selected:bg-brand aria-selected:text-white text-gray-500 dark:text-gray-400 hover:text-brand dark:hover:text-white" data-filter="all" aria-pressed="true" data-key="filter_all">Todos</button>
+            <button class="filter-btn px-5 py-2 rounded-lg text-sm font-medium transition focus:outline-none aria-selected:bg-brand aria-selected:text-white text-gray-500 dark:text-gray-400 hover:text-brand dark:hover:text-white" data-filter="identity" aria-pressed="false" data-key="filter_identity">Identidades</button>
+            <button class="filter-btn px-5 py-2 rounded-lg text-sm font-medium transition focus:outline-none aria-selected:bg-brand aria-selected:text-white text-gray-500 dark:text-gray-400 hover:text-brand dark:hover:text-white" data-filter="landing" aria-pressed="false" data-key="filter_landing">Landing Pages</button>
+            <button class="filter-btn px-5 py-2 rounded-lg text-sm font-medium transition focus:outline-none aria-selected:bg-brand aria-selected:text-white text-gray-500 dark:text-gray-400 hover:text-brand dark:hover:text-white" data-filter="social" aria-pressed="false" data-key="filter_portfolios">Portfólios</button>
           </div>
         </div>
 
-        <div class="text-center mt-10 sm:mt-12 scroll-animate">
-          <a href="#projects" class="inline-block bg-blue-700 hover:bg-blue-600 text-white px-6 sm:px-8 py-3 rounded-full font-medium transition" data-key="projects_all_btn">Ver todos os projetos</a>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+
+          <div class="glass-card rounded-2xl overflow-hidden scroll-animate group" data-category="identity">
+            <div class="h-52 overflow-hidden relative">
+              <div class="absolute inset-0 bg-brand/20 opacity-0 group-hover:opacity-100 transition duration-500 z-10"></div>
+              <img src="images/VANESSA FERNANDES.png" alt="Vanessa Fernandes" class="w-full h-full object-cover transition duration-700 group-hover:scale-110" />
+            </div>
+            <div class="p-6">
+              <h3 class="font-display text-xl font-bold mb-2 group-hover:text-brand transition" data-key="project1_title">Vanessa Fernandes</h3>
+              <p class="text-gray-600 dark:text-gray-400 text-sm mb-4 line-clamp-2" data-key="project1_p">Confeitaria com foco em transmitir delicadeza e elegância.</p>
+              <a href="https://drive.google.com/file/d/1Q5cYa16gfEJgKalux-_QKWi21t2RQrzM/view?usp=sharing" target="_blank" class="text-brand font-bold text-sm uppercase tracking-wide inline-flex items-center hover:text-brand-dark dark:hover:text-white transition" data-key="project_cta_1">Ver Projeto <i class="fas fa-arrow-right ml-2"></i></a>
+            </div>
+          </div>
+
+          <div class="glass-card rounded-2xl overflow-hidden scroll-animate group" data-category="identity">
+            <div class="h-52 overflow-hidden relative">
+              <div class="absolute inset-0 bg-brand/20 opacity-0 group-hover:opacity-100 transition duration-500 z-10"></div>
+              <img src="images/Jns.png" alt="JNS" class="w-full h-full object-cover transition duration-700 group-hover:scale-110" />
+            </div>
+            <div class="p-6">
+              <h3 class="font-display text-xl font-bold mb-2 group-hover:text-brand transition" data-key="project2_title">JNS</h3>
+              <p class="text-gray-600 dark:text-gray-400 text-sm mb-4 line-clamp-2" data-key="project2_p">Soluções inteligentes em seguros e consórcios.</p>
+              <a href="https://drive.google.com/file/d/1uvIDJRPl3RhgIe9zu-cLv4mqRf59470q/view?usp=sharing" target="_blank" class="text-brand font-bold text-sm uppercase tracking-wide inline-flex items-center hover:text-brand-dark dark:hover:text-white transition" data-key="project_cta_2">Ver Projeto <i class="fas fa-arrow-right ml-2"></i></a>
+            </div>
+          </div>
+
+          <div class="glass-card rounded-2xl overflow-hidden scroll-animate group" data-category="identity">
+            <div class="h-52 overflow-hidden relative">
+              <div class="absolute inset-0 bg-brand/20 opacity-0 group-hover:opacity-100 transition duration-500 z-10"></div>
+              <img src="images/Flux agency (2).png" alt="Flux Agency" class="w-full h-full object-cover transition duration-700 group-hover:scale-110" />
+            </div>
+            <div class="p-6">
+              <h3 class="font-display text-xl font-bold mb-2 group-hover:text-brand transition" data-key="project3_title">Flux Agency</h3>
+              <p class="text-gray-600 dark:text-gray-400 text-sm mb-4 line-clamp-2" data-key="project3_p">Agência com foco em inovação e resultados.</p>
+              <a href="https://drive.google.com/file/d/1RfWvmn0eSvzoBwZQAensWQTSyvDbhgpx/view?usp=sharing" target="_blank" class="text-brand font-bold text-sm uppercase tracking-wide inline-flex items-center hover:text-brand-dark dark:hover:text-white transition" data-key="project_cta_3">Ver Projeto <i class="fas fa-arrow-right ml-2"></i></a>
+            </div>
+          </div>
+
+          <div class="glass-card rounded-2xl overflow-hidden scroll-animate group" data-category="landing">
+            <div class="h-52 overflow-hidden relative">
+              <div class="absolute inset-0 bg-brand/20 opacity-0 group-hover:opacity-100 transition duration-500 z-10"></div>
+              <img src="images/SIMPLIFICANDO.png" alt="Simplificando Métodos" class="w-full h-full object-cover transition duration-700 group-hover:scale-110" />
+            </div>
+            <div class="p-6">
+              <h3 class="font-display text-xl font-bold mb-2 group-hover:text-brand transition" data-key="project4_title">Simplificando Métodos</h3>
+              <p class="text-gray-600 dark:text-gray-400 text-sm mb-4 line-clamp-2" data-key="project4_p">Estratégias simples e eficientes.</p>
+              <a href="https://drive.google.com/file/d/17Kdt_P9u4cm-hTaitBwGpvEl04ZhbsvR/view?usp=sharing" target="_blank" class="text-brand font-bold text-sm uppercase tracking-wide inline-flex items-center hover:text-brand-dark dark:hover:text-white transition" data-key="project_cta_4">Ver Projeto <i class="fas fa-arrow-right ml-2"></i></a>
+            </div>
+          </div>
+
+          <div class="glass-card rounded-2xl overflow-hidden scroll-animate group" data-category="identity">
+            <div class="h-52 overflow-hidden relative">
+              <div class="absolute inset-0 bg-brand/20 opacity-0 group-hover:opacity-100 transition duration-500 z-10"></div>
+              <img src="images/SACROVI.png" alt="Sacrovi" class="w-full h-full object-cover transition duration-700 group-hover:scale-110" />
+            </div>
+            <div class="p-6">
+              <h3 class="font-display text-xl font-bold mb-2 group-hover:text-brand transition" data-key="project5_title">Sacrovi</h3>
+              <p class="text-gray-600 dark:text-gray-400 text-sm mb-4 line-clamp-2" data-key="project5_p">Produtora audiovisual: drones e filmagens.</p>
+              <a href="https://drive.google.com/file/d/1GWThmxPaAiy_EqtQ91ZPh0z4e7aGD6gx/view?usp=sharing" target="_blank" class="text-brand font-bold text-sm uppercase tracking-wide inline-flex items-center hover:text-brand-dark dark:hover:text-white transition" data-key="project_cta_5">Ver Projeto <i class="fas fa-arrow-right ml-2"></i></a>
+            </div>
+          </div>
+
+          <div class="glass-card rounded-2xl overflow-hidden scroll-animate group" data-category="landing">
+            <div class="h-52 overflow-hidden relative">
+              <div class="absolute inset-0 bg-brand/20 opacity-0 group-hover:opacity-100 transition duration-500 z-10"></div>
+              <img src="images/ESPHERA.png" alt="Esphera" class="w-full h-full object-cover transition duration-700 group-hover:scale-110" />
+            </div>
+            <div class="p-6">
+              <h3 class="font-display text-xl font-bold mb-2 group-hover:text-brand transition" data-key="project6_title">Esphera Checkout</h3>
+              <p class="text-gray-600 dark:text-gray-400 text-sm mb-4 line-clamp-2" data-key="project6_p">Plataforma de vendas online.</p>
+              <a href="https://drive.google.com/file/d/1wTlUco4nAJ-GzVLXDb0MmF7OB7SDZKTB/view?usp=sharing" target="_blank" class="text-brand font-bold text-sm uppercase tracking-wide inline-flex items-center hover:text-brand-dark dark:hover:text-white transition" data-key="project_cta_6">Ver Projeto <i class="fas fa-arrow-right ml-2"></i></a>
+            </div>
+          </div>
+
+          <div class="glass-card rounded-2xl overflow-hidden scroll-animate group" data-category="social">
+            <div class="h-52 overflow-hidden relative">
+              <div class="absolute inset-0 bg-brand/20 opacity-0 group-hover:opacity-100 transition duration-500 z-10"></div>
+              <img src="images/PORTIFOLIO DEV.png" alt="Portfólio Icaro" class="w-full h-full object-cover transition duration-700 group-hover:scale-110" />
+            </div>
+            <div class="p-6">
+              <h3 class="font-display text-xl font-bold mb-2 group-hover:text-brand transition" data-key="project7_title">Portfólio Dev</h3>
+              <p class="text-gray-600 dark:text-gray-400 text-sm mb-4 line-clamp-2" data-key="project7_p">Design para desenvolvedor Ícaro Moreira.</p>
+              <a href="https://drive.google.com/file/d/1kwdvLqCA6hCaPX-6i7aB17iVWOBQCikX/view?usp=sharing" target="_blank" class="text-brand font-bold text-sm uppercase tracking-wide inline-flex items-center hover:text-brand-dark dark:hover:text-white transition" data-key="project_cta_7">Ver Projeto <i class="fas fa-arrow-right ml-2"></i></a>
+            </div>
+          </div>
+
+          <div class="glass-card rounded-2xl overflow-hidden scroll-animate group" data-category="social">
+            <div class="h-52 overflow-hidden relative">
+              <div class="absolute inset-0 bg-brand/20 opacity-0 group-hover:opacity-100 transition duration-500 z-10"></div>
+              <img src="images/PORTIFOLIO THEONATAN.png" alt="Portfólio Theo" class="w-full h-full object-cover transition duration-700 group-hover:scale-110" />
+            </div>
+            <div class="p-6">
+              <h3 class="font-display text-xl font-bold mb-2 group-hover:text-brand transition" data-key="project8_title">Portfólio Theo</h3>
+              <p class="text-gray-600 dark:text-gray-400 text-sm mb-4 line-clamp-2" data-key="project8_p">Meu portfólio pessoal.</p>
+              <a href="https://portifoliotheonatan.vercel.app" target="_blank" class="text-brand font-bold text-sm uppercase tracking-wide inline-flex items-center hover:text-brand-dark dark:hover:text-white transition" data-key="project_cta_8">Ver Projeto <i class="fas fa-arrow-right ml-2"></i></a>
+            </div>
+          </div>
+
+          <div class="glass-card rounded-2xl overflow-hidden scroll-animate group" data-category="identity">
+            <div class="h-52 overflow-hidden relative">
+              <div class="absolute inset-0 bg-brand/20 opacity-0 group-hover:opacity-100 transition duration-500 z-10"></div>
+              <img src="images/Lanef.png" alt="LANEF" class="w-full h-full object-cover transition duration-700 group-hover:scale-110" />
+            </div>
+            <div class="p-6">
+              <h3 class="font-display text-xl font-bold mb-2 group-hover:text-brand transition" data-key="project9_title">LANEF</h3>
+              <p class="text-gray-600 dark:text-gray-400 text-sm mb-4 line-clamp-2" data-key="project9_p">Liga Acadêmica de Nefrologia.</p>
+              <a href="https://drive.google.com/file/d/1KRZecLJnACUDLCpaRHY8t2YtXvcICLgL/view?usp=sharing" target="_blank" class="text-brand font-bold text-sm uppercase tracking-wide inline-flex items-center hover:text-brand-dark dark:hover:text-white transition" data-key="project_cta_2">Ver Projeto <i class="fas fa-arrow-right ml-2"></i></a>
+            </div>
+          </div>
+
+          <div class="glass-card rounded-2xl overflow-hidden scroll-animate group" data-category="identity">
+            <div class="h-52 overflow-hidden relative">
+              <div class="absolute inset-0 bg-brand/20 opacity-0 group-hover:opacity-100 transition duration-500 z-10"></div>
+              <img src="images/Atlas Enfermagem.png" alt="Atlas" class="w-full h-full object-cover transition duration-700 group-hover:scale-110" />
+            </div>
+            <div class="p-6">
+              <h3 class="font-display text-xl font-bold mb-2 group-hover:text-brand transition" data-key="project10_title">Atlas Enfermagem</h3>
+              <p class="text-gray-600 dark:text-gray-400 text-sm mb-4 line-clamp-2" data-key="project10_p">Associação Atlética de Enfermagem.</p>
+              <a href="https://drive.google.com/file/d/12MwmgGaViHzC3cFMnXL9RlG6Lfls5ogE/view?usp=sharing" target="_blank" class="text-brand font-bold text-sm uppercase tracking-wide inline-flex items-center hover:text-brand-dark dark:hover:text-white transition" data-key="project_cta_2">Ver Projeto <i class="fas fa-arrow-right ml-2"></i></a>
+            </div>
+          </div>
+
+        </div>
+
+        <div class="text-center mt-16 scroll-animate">
+          <a href="#projects" class="inline-block bg-brand hover:bg-brand-dark text-white px-8 py-3 rounded-full font-bold transition shadow-[0_0_20px_rgba(29,78,216,0.4)]" data-key="projects_all_btn">Ver todos os projetos</a>
         </div>
       </div>
     </section>
 
-    <section id="services" class="scroll-mt-24 py-16 sm:py-20 px-4 sm:px-6 bg-white">
-      <div class="container mx-auto max-w-6xl">
-        <div class="text-center mb-10 sm:mb-16 scroll-animate">
-          <h2 class="text-2xl sm:text-3xl font-bold mb-3 sm:mb-4" data-key="services_title">Meus serviços</h2>
-          <p class="text-gray-600 max-w-2xl mx-auto" data-key="services_p">Ofereço soluções de design abrangentes, adaptadas às necessidades e objetivos do seu negócio.</p>
+    <section id="services" class="py-24 relative">
+      <div class="container mx-auto max-w-7xl px-6">
+        <div class="text-center mb-16 scroll-animate">
+          <h2 class="font-display text-3xl sm:text-5xl font-bold mb-4" data-key="services_title">Meus serviços</h2>
+          <p class="text-gray-600 dark:text-gray-400 max-w-2xl mx-auto" data-key="services_p">Soluções de design abrangentes para o seu negócio.</p>
         </div>
 
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
-          <div class="service-card bg-gray-50 rounded-xl p-6 sm:p-8 shadow-sm hover:shadow-md transition scroll-animate">
-            <div class="w-12 h-12 sm:w-14 sm:h-14 bg-blue-200 rounded-full flex items-center justify-center mb-5 sm:mb-6">
-              <i class="fas fa-pencil-ruler text-blue-700 text-lg sm:text-xl"></i>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+
+          <div class="glass-card rounded-xl p-8 scroll-animate group hover:bg-white dark:hover:bg-dark-surface/80 transition">
+            <div class="w-14 h-14 bg-brand/10 rounded-xl flex items-center justify-center mb-6 border border-brand/20 group-hover:border-brand/50 transition">
+              <i class="fas fa-pencil-ruler text-brand text-2xl"></i>
             </div>
-            <h3 class="text-lg sm:text-xl font-semibold mb-2" data-key="service1_title">UI/UX Design</h3>
-            <p class="text-gray-600 mb-4" data-key="service1_p">Interface centrada no usuário com navegação intuitiva e interações fluidas.</p>
-            <a href="#" class="text-blue-700 font-medium inline-flex items-center" data-key="service_cta_1">Explorar agora <i class="fas fa-arrow-right ml-2"></i></a>
+            <h3 class="font-display text-xl font-bold mb-3" data-key="service1_title">UI/UX Design</h3>
+            <p class="text-gray-600 dark:text-gray-400 mb-6 text-sm leading-relaxed" data-key="service1_p">Interface centrada no usuário com navegação intuitiva e interações fluidas.</p>
+            <a href="#" class="text-brand text-sm font-bold uppercase tracking-wide inline-flex items-center hover:text-brand-dark dark:hover:text-white transition" data-key="service_cta_1">Explorar <i class="fas fa-arrow-right ml-2"></i></a>
           </div>
 
-          <div class="service-card bg-gray-50 rounded-xl p-6 sm:p-8 shadow-sm hover:shadow-md transition scroll-animate">
-            <div class="w-12 h-12 sm:w-14 sm:h-14 bg-blue-200 rounded-full flex items-center justify-center mb-5 sm:mb-6">
-              <i class="fas fa-palette text-blue-700 text-lg sm:text-xl"></i>
+          <div class="glass-card rounded-xl p-8 scroll-animate group hover:bg-white dark:hover:bg-dark-surface/80 transition">
+            <div class="w-14 h-14 bg-brand/10 rounded-xl flex items-center justify-center mb-6 border border-brand/20 group-hover:border-brand/50 transition">
+              <i class="fas fa-palette text-brand text-2xl"></i>
             </div>
-            <h3 class="text-lg sm:text-xl font-semibold mb-2" data-key="service2_title">Identidade da Marca</h3>
-            <p class="text-gray-600 mb-4" data-key="service2_p">Branding completo: logotipo, paleta de cores, tipografia e diretrizes.</p>
-            <a href="#" class="text-blue-700 font-medium inline-flex items-center" data-key="service_cta_2">Explorar agora <i class="fas fa-arrow-right ml-2"></i></a>
+            <h3 class="font-display text-xl font-bold mb-3" data-key="service2_title">Identidade da Marca</h3>
+            <p class="text-gray-600 dark:text-gray-400 mb-6 text-sm leading-relaxed" data-key="service2_p">Branding completo: logotipo, paleta de cores, tipografia e diretrizes.</p>
+            <a href="#" class="text-brand text-sm font-bold uppercase tracking-wide inline-flex items-center hover:text-brand-dark dark:hover:text-white transition" data-key="service_cta_2">Explorar <i class="fas fa-arrow-right ml-2"></i></a>
           </div>
 
-          <div class="service-card bg-gray-50 rounded-xl p-6 sm:p-8 shadow-sm hover:shadow-md transition scroll-animate">
-            <div class="w-12 h-12 sm:w-14 sm:h-14 bg-blue-200 rounded-full flex items-center justify-center mb-5 sm:mb-6">
-              <i class="fas fa-laptop-code text-blue-700 text-lg sm:text-xl"></i>
+          <div class="glass-card rounded-xl p-8 scroll-animate group hover:bg-white dark:hover:bg-dark-surface/80 transition">
+            <div class="w-14 h-14 bg-brand/10 rounded-xl flex items-center justify-center mb-6 border border-brand/20 group-hover:border-brand/50 transition">
+              <i class="fas fa-laptop-code text-brand text-2xl"></i>
             </div>
-            <h3 class="text-lg sm:text-xl font-semibold mb-2" data-key="service3_title">Web Design</h3>
-            <p class="text-gray-600 mb-4" data-key="service3_p">Sites responsivos e envolventes que geram conversões.</p>
-            <a href="#" class="text-blue-700 font-medium inline-flex items-center" data-key="service_cta_3">Explorar agora <i class="fas fa-arrow-right ml-2"></i></a>
+            <h3 class="font-display text-xl font-bold mb-3" data-key="service3_title">Web Design</h3>
+            <p class="text-gray-600 dark:text-gray-400 mb-6 text-sm leading-relaxed" data-key="service3_p">Sites responsivos e envolventes que geram conversões.</p>
+            <a href="#" class="text-brand text-sm font-bold uppercase tracking-wide inline-flex items-center hover:text-brand-dark dark:hover:text-white transition" data-key="service_cta_3">Explorar <i class="fas fa-arrow-right ml-2"></i></a>
           </div>
 
-          <div class="service-card bg-gray-50 rounded-xl p-6 sm:p-8 shadow-sm hover:shadow-md transition scroll-animate">
-            <div class="w-12 h-12 sm:w-14 sm:h-14 bg-blue-200 rounded-full flex items-center justify-center mb-5 sm:mb-6">
-              <i class="fas fa-mobile-alt text-blue-700 text-lg sm:text-xl"></i>
+          <div class="glass-card rounded-xl p-8 scroll-animate group hover:bg-white dark:hover:bg-dark-surface/80 transition">
+            <div class="w-14 h-14 bg-brand/10 rounded-xl flex items-center justify-center mb-6 border border-brand/20 group-hover:border-brand/50 transition">
+              <i class="fas fa-mobile-alt text-brand text-2xl"></i>
             </div>
-            <h3 class="text-lg sm:text-xl font-semibold mb-2" data-key="service4_title">Design de Aplicativos Móveis</h3>
-            <p class="text-gray-600 mb-4" data-key="service4_p">Interfaces intuitivas com atenção às diretrizes de cada plataforma.</p>
-            <a href="#" class="text-blue-700 font-medium inline-flex items-center" data-key="service_cta_4">Explorar agora <i class="fas fa-arrow-right ml-2"></i></a>
+            <h3 class="font-display text-xl font-bold mb-3" data-key="service4_title">Mobile App Design</h3>
+            <p class="text-gray-600 dark:text-gray-400 mb-6 text-sm leading-relaxed" data-key="service4_p">Interfaces intuitivas com atenção às diretrizes de cada plataforma.</p>
+            <a href="#" class="text-brand text-sm font-bold uppercase tracking-wide inline-flex items-center hover:text-brand-dark dark:hover:text-white transition" data-key="service_cta_4">Explorar <i class="fas fa-arrow-right ml-2"></i></a>
           </div>
 
-          <div class="service-card bg-gray-50 rounded-xl p-6 sm:p-8 shadow-sm hover:shadow-md transition scroll-animate">
-            <div class="w-12 h-12 sm:w-14 sm:h-14 bg-blue-200 rounded-full flex items-center justify-center mb-5 sm:mb-6">
-              <i class="fas fa-bullhorn text-blue-700 text-lg sm:text-xl"></i>
+          <div class="glass-card rounded-xl p-8 scroll-animate group hover:bg-white dark:hover:bg-dark-surface/80 transition">
+            <div class="w-14 h-14 bg-brand/10 rounded-xl flex items-center justify-center mb-6 border border-brand/20 group-hover:border-brand/50 transition">
+              <i class="fas fa-bullhorn text-brand text-2xl"></i>
             </div>
-            <h3 class="text-lg sm:text-xl font-semibold mb-2" data-key="service5_title">Landing Pages</h3>
-            <p class="text-gray-600 mb-4" data-key="service5_p">Páginas de alta conversão otimizadas para SEO e jornada do usuário.</p>
-            <a href="#" class="text-blue-700 font-medium inline-flex items-center" data-key="service_cta_5">Explorar agora <i class="fas fa-arrow-right ml-2"></i></a>
+            <h3 class="font-display text-xl font-bold mb-3" data-key="service5_title">Landing Pages</h3>
+            <p class="text-gray-600 dark:text-gray-400 mb-6 text-sm leading-relaxed" data-key="service5_p">Páginas de alta conversão otimizadas para SEO e jornada do usuário.</p>
+            <a href="#" class="text-brand text-sm font-bold uppercase tracking-wide inline-flex items-center hover:text-brand-dark dark:hover:text-white transition" data-key="service_cta_5">Explorar <i class="fas fa-arrow-right ml-2"></i></a>
           </div>
 
-          <div class="service-card bg-gray-50 rounded-xl p-6 sm:p-8 shadow-sm hover:shadow-md transition scroll-animate">
-            <div class="w-12 h-12 sm:w-14 sm:h-14 bg-blue-200 rounded-full flex items-center justify-center mb-5 sm:mb-6">
-              <i class="fas fa-search text-blue-700 text-lg sm:text-xl"></i>
+          <div class="glass-card rounded-xl p-8 scroll-animate group hover:bg-white dark:hover:bg-dark-surface/80 transition">
+            <div class="w-14 h-14 bg-brand/10 rounded-xl flex items-center justify-center mb-6 border border-brand/20 group-hover:border-brand/50 transition">
+              <i class="fas fa-search text-brand text-2xl"></i>
             </div>
-            <h3 class="text-lg sm:text-xl font-semibold mb-2" data-key="service6_title">Pesquisa UX</h3>
-            <p class="text-gray-600 mb-4" data-key="service6_p">Pesquisa com usuários para decisões de design informadas.</p>
-            <a href="#" class="text-blue-700 font-medium inline-flex items-center" data-key="service_cta_6">Explorar agora <i class="fas fa-arrow-right ml-2"></i></a>
+            <h3 class="font-display text-xl font-bold mb-3" data-key="service6_title">Pesquisa UX</h3>
+            <p class="text-gray-600 dark:text-gray-400 mb-6 text-sm leading-relaxed" data-key="service6_p">Pesquisa com usuários para decisões de design informadas.</p>
+            <a href="#" class="text-brand text-sm font-bold uppercase tracking-wide inline-flex items-center hover:text-brand-dark dark:hover:text-white transition" data-key="service_cta_6">Explorar <i class="fas fa-arrow-right ml-2"></i></a>
           </div>
+
         </div>
       </div>
     </section>
   </main>
 
-  <footer class="bg-blue-900 text-white py-12 px-4 sm:px-6">
-    <div class="container mx-auto max-w-6xl">
+  <footer class="bg-gray-100 dark:bg-black border-t border-gray-300 dark:border-white/10 py-12 px-4 sm:px-6 transition-colors duration-300">
+    <div class="container mx-auto max-w-7xl">
       <div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-10">
         <div>
-          <img src="images/logo theo branco.png" alt="Logo Theo branca" class="w-36 sm:w-56 h-auto" loading="lazy" />
-          <p class="mt-2 text-white/80" data-key="footer_p">Criando experiências digitais que importam.</p>
+          <img src="images/logo theo branco.png" alt="Logo Theo" class="w-32 sm:w-40 h-auto opacity-80 hover:opacity-100 transition dark:brightness-100 brightness-0" loading="lazy" />
+          <p class="mt-4 text-gray-500 text-sm max-w-xs" data-key="footer_p">Criando experiências digitais que importam.</p>
         </div>
 
         <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8 md:gap-16 w-full md:w-auto">
           <div>
-            <h4 class="text-sm font-semibold text-gray-200 uppercase tracking-wider mb-3" data-key="footer_links_title">Links Rápidos</h4>
-            <ul class="space-y-2">
-              <li><a href="#home" class="text-white/80 hover:text-white transition" data-key="footer_link_home">Início</a></li>
-              <li><a href="#about" class="text-white/80 hover:text-white transition" data-key="footer_link_about">Sobre</a></li>
-              <li><a href="#projects" class="text-white/80 hover:text-white transition" data-key="footer_link_projects">Projetos</a></li>
-              <li><a href="#services" class="text-white/80 hover:text-white transition" data-key="footer_link_services">Serviços</a></li>
+            <h4 class="text-xs font-bold text-gray-900 dark:text-white uppercase tracking-widest mb-4" data-key="footer_links_title">Links Rápidos</h4>
+            <ul class="space-y-2 text-sm">
+              <li><a href="#home" class="text-gray-500 hover:text-brand transition" data-key="footer_link_home">Início</a></li>
+              <li><a href="#about" class="text-gray-500 hover:text-brand transition" data-key="footer_link_about">Sobre</a></li>
+              <li><a href="#projects" class="text-gray-500 hover:text-brand transition" data-key="footer_link_projects">Projetos</a></li>
+              <li><a href="#services" class="text-gray-500 hover:text-brand transition" data-key="footer_link_services">Serviços</a></li>
             </ul>
           </div>
 
           <div>
-            <h4 class="text-sm font-semibold text-gray-200 uppercase tracking-wider mb-3" data-key="footer_services_title">Serviços</h4>
-            <ul class="space-y-2">
-              <li><a href="#" class="text-white/80 hover:text-white transition" data-key="footer_service_uiux">UI/UX Design</a></li>
-              <li><a href="#" class="text-white/80 hover:text-white transition" data-key="footer_service_branding">Identidade da Marca</a></li>
-              <li><a href="#" class="text-white/80 hover:text-white transition" data-key="footer_service_web">Web Design</a></li>
-              <li><a href="#" class="text-white/80 hover:text-white transition" data-key="footer_service_mobile">Design Mobile</a></li>
-              <li><a href="#" class="text-white/80 hover:text-white transition" data-key="footer_service_landing">Landing Pages</a></li>
+            <h4 class="text-xs font-bold text-gray-900 dark:text-white uppercase tracking-widest mb-4" data-key="footer_services_title">Serviços</h4>
+            <ul class="space-y-2 text-sm">
+              <li><a href="#" class="text-gray-500 hover:text-brand transition" data-key="footer_service_uiux">UI/UX Design</a></li>
+              <li><a href="#" class="text-gray-500 hover:text-brand transition" data-key="footer_service_branding">Identidade da Marca</a></li>
+              <li><a href="#" class="text-gray-500 hover:text-brand transition" data-key="footer_service_web">Web Design</a></li>
             </ul>
           </div>
 
           <div>
-            <h4 class="text-sm font-semibold text-gray-200 uppercase tracking-wider mb-3" data-key="footer_legal_title">Legal</h4>
-            <ul class="space-y-2">
-              <li><a href="#" class="text-white/80 hover:text-white transition" data-key="footer_legal_privacy">Política de Privacidade</a></li>
-              <li><a href="#" class="text-white/80 hover:text-white transition" data-key="footer_legal_terms">Termos de Serviço</a></li>
-              <li><a href="#" class="text-white/80 hover:text-white transition" data-key="footer_legal_cookies">Política de Cookies</a></li>
+            <h4 class="text-xs font-bold text-gray-900 dark:text-white uppercase tracking-widest mb-4" data-key="footer_legal_title">Legal</h4>
+            <ul class="space-y-2 text-sm">
+              <li><a href="#" class="text-gray-500 hover:text-brand transition" data-key="footer_legal_privacy">Política de Privacidade</a></li>
+              <li><a href="#" class="text-gray-500 hover:text-brand transition" data-key="footer_legal_terms">Termos de Serviço</a></li>
             </ul>
           </div>
         </div>
       </div>
 
-      <div class="border-t border-white/10 mt-10 pt-6 flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
-        <p class="text-white/70 text-sm" data-key="footer_copyright">© 2025 Theo Natan. Todos os direitos reservados.</p>
+      <div class="border-t border-gray-300 dark:border-white/10 mt-12 pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
+        <p class="text-gray-500 text-xs" data-key="footer_copyright">© 2025 Theo Natan. Todos os direitos reservados.</p>
+        <div class="flex gap-6">
+          <a href="#" class="text-gray-500 hover:text-brand transition"><i class="fab fa-instagram text-lg"></i></a>
+          <a href="#" class="text-gray-500 hover:text-brand transition"><i class="fab fa-linkedin text-lg"></i></a>
+          <a href="#" class="text-gray-500 hover:text-brand transition"><i class="fab fa-github text-lg"></i></a>
+        </div>
       </div>
     </div>
   </footer>
 
-  <button id="back-to-top" class="fixed bottom-4 right-4 sm:bottom-8 sm:right-8 bg-blue-700 text-white w-12 h-12 rounded-full flex items-center justify-center shadow-lg opacity-0 invisible transition-all duration-300 will-change-transform" aria-label="Voltar ao topo">
+  <button id="back-to-top" class="fixed bottom-6 right-6 bg-brand hover:bg-brand-dark text-white w-12 h-12 rounded-full flex items-center justify-center shadow-[0_0_20px_rgba(29,78,216,0.4)] opacity-0 invisible transition-all duration-300 z-50 hover:-translate-y-1" aria-label="Voltar ao topo">
     <i class="fas fa-arrow-up"></i>
   </button>
 
   <script>
-    // ===== SISTEMA DE TRADUÇÃO =====
+    // ===== LOGICA DO TEMA (DARK/LIGHT) =====
+    const themeToggles = document.querySelectorAll('#theme-toggle-desktop, #theme-toggle-mobile');
+
+    // Verifica preferência salva ou do sistema
+    if (localStorage.getItem('theme') === 'light' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: light)').matches)) {
+      document.documentElement.classList.remove('dark');
+    } else {
+      document.documentElement.classList.add('dark');
+    }
+
+    themeToggles.forEach(toggle => {
+      toggle.addEventListener('click', () => {
+        document.documentElement.classList.toggle('dark');
+
+        if (document.documentElement.classList.contains('dark')) {
+          localStorage.setItem('theme', 'dark');
+        } else {
+          localStorage.setItem('theme', 'light');
+        }
+
+        // Reinicia particulas para mudar a cor se necessário
+        initParticles();
+      });
+    });
+
+
+    // ===== PARTICLES ANIMATION (CANVAS) =====
+    const canvas = document.getElementById('network-canvas');
+    const ctx = canvas.getContext('2d');
+    let width, height;
+    let particles = [];
+
+    // Configuração de partículas
+    const particleCount = window.innerWidth < 768 ? 40 : 80;
+    const connectionDistance = 140;
+    const mouseDistance = 180;
+
+    let mouse = { x: null, y: null };
+    window.addEventListener('mousemove', (e) => {
+      mouse.x = e.x;
+      mouse.y = e.y;
+    });
+
+    window.addEventListener('resize', resize);
+
+    function resize() {
+      width = canvas.width = window.innerWidth;
+      height = canvas.height = window.innerHeight;
+    }
+
+    class Particle {
+      constructor() {
+        this.x = Math.random() * width;
+        this.y = Math.random() * height;
+        this.vx = (Math.random() - 0.5) * 0.4;
+        this.vy = (Math.random() - 0.5) * 0.4;
+        this.size = Math.random() * 2 + 1;
+      }
+
+      // Determina cor baseado no tema
+      getColor() {
+        if (document.documentElement.classList.contains('dark')) {
+          return 'rgba(29, 78, 216, 0.6)'; // Azul no dark mode
+        } else {
+          return 'rgba(29, 78, 216, 0.8)'; // Azul um pouco mais forte no light mode
+        }
+      }
+
+      update() {
+        this.x += this.vx;
+        this.y += this.vy;
+
+        if (this.x < 0 || this.x > width) this.vx *= -1;
+        if (this.y < 0 || this.y > height) this.vy *= -1;
+
+        if (mouse.x != null) {
+          let dx = mouse.x - this.x;
+          let dy = mouse.y - this.y;
+          let distance = Math.sqrt(dx * dx + dy * dy);
+          if (distance < mouseDistance) {
+            const force = (mouseDistance - distance) / mouseDistance;
+            const directionX = (dx / distance) * force * 0.5;
+            const directionY = (dy / distance) * force * 0.5;
+            this.vx += directionX;
+            this.vy += directionY;
+          }
+        }
+      }
+
+      draw() {
+        ctx.beginPath();
+        ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+        ctx.fillStyle = this.getColor();
+        ctx.fill();
+      }
+    }
+
+    function initParticles() {
+      particles = [];
+      for (let i = 0; i < particleCount; i++) {
+        particles.push(new Particle());
+      }
+    }
+
+    function animateParticles() {
+      ctx.clearRect(0, 0, width, height);
+
+      const isDark = document.documentElement.classList.contains('dark');
+
+      for (let i = 0; i < particles.length; i++) {
+        particles[i].update();
+        particles[i].draw();
+        for (let j = i; j < particles.length; j++) {
+          let dx = particles[i].x - particles[j].x;
+          let dy = particles[i].y - particles[j].y;
+          let distance = Math.sqrt(dx * dx + dy * dy);
+          if (distance < connectionDistance) {
+            ctx.beginPath();
+
+            // Cor das linhas
+            let opacity = 1 - (distance / connectionDistance);
+            if (isDark) {
+              ctx.strokeStyle = 'rgba(29, 78, 216, ' + (opacity * 0.3) + ')';
+            } else {
+              ctx.strokeStyle = 'rgba(29, 78, 216, ' + (opacity * 0.4) + ')';
+            }
+
+            ctx.lineWidth = 1;
+            ctx.moveTo(particles[i].x, particles[i].y);
+            ctx.lineTo(particles[j].x, particles[j].y);
+            ctx.stroke();
+          }
+        }
+      }
+      requestAnimationFrame(animateParticles);
+    }
+
+    resize();
+    initParticles();
+    animateParticles();
+
+    // ===== SISTEMA DE TRADUÇÃO (MANTIDO) =====
     const translations = {
       en: {
         page_title: "Portfolio | Theo Natan",
@@ -487,12 +850,12 @@
         lang_switcher_aria: "Change language",
         nav_lang_mobile: "Change Language",
         hero_h1_l1: "Minimalist Design,",
-        hero_h1_l2: '<span class="text-blue-700 font-extrabold animate-pulse">Maximum Impact</span>',
+        hero_h1_l2: '<span class="impacto-maximo-animado"><span class="animated-gradient text-glow">Maximum Impact</span></span>',
         hero_p: "I create elegant digital experiences that balance beauty and functionality to help brands stand out.",
         hero_button: "See My Work",
         about_title: "About Me",
         about_greeting: "Nice to meet you, I'm Theo Natan",
-        about_p: "I am a Graphic and Web Designer with experience in developing visual identities, logos, designs for web applications, digital portfolios, apps, and landing pages. My work is to transform ideas into creative and functional projects, uniting aesthetics, strategy, and usability to deliver visual solutions that connect brands to their audience clearly and impactfully. Here you will find some of my projects that represent my passion for design and my dedication to creating unique experiences.",
+        about_p: "I am a Graphic and Web Designer with experience in developing visual identities, logos, designs for web applications, digital portfolios, apps, and landing pages. My work is to transform ideas into creative and functional projects.",
         about_skills_title: "My Skills",
         skill_uiux: "UI/UX Design",
         skill_branding: "Brand Identity",
@@ -507,23 +870,23 @@
         filter_landing: "Landing Pages",
         filter_portfolios: "Portfolios",
         project1_title: "Vanessa Fernandes Patisserie",
-        project1_p: "Vanessa Fernandes Patisserie with a focus on conveying delicacy, elegance, and the artisanal care present in the products.",
+        project1_p: "Vanessa Fernandes Patisserie with a focus on conveying delicacy, elegance, and artisanal care.",
         project2_title: "JNS",
-        project2_p: "JNS offers smart solutions in insurance, consortia, and credit, with a focus on personalized service.",
+        project2_p: "JNS offers smart solutions in insurance, consortia, and credit, with personalized service.",
         project3_title: "Flux Agency",
-        project3_p: "Agency focused on innovation and results. Modern and dynamic shapes with an arrow-shaped icon.",
+        project3_p: "Agency focused on innovation and results. Modern and dynamic shapes.",
         project4_title: "Simplifying Methods",
-        project4_p: "Simple and efficient strategies to break patterns, set records, and reach new limits.",
+        project4_p: "Simple and efficient strategies to break patterns and reach new limits.",
         project5_title: "Sacrovi",
-        project5_p: "Audiovisual production company: drones, filming, photography, and audio recording.",
+        project5_p: "Audiovisual production company: drones, filming, photography.",
         project6_title: "Esphera Checkout",
-        project6_p: "Online sales platform with speed, security, and simplicity in payment.",
+        project6_p: "Online sales platform with speed, security, and simplicity.",
         project7_title: "Portfolio for Developer",
-        project7_p: "Digital portfolio design for Developer Ícaro Moreira. Modern and functional layout. (Figma)",
+        project7_p: "Digital portfolio design for Developer Ícaro Moreira. Modern layout.",
         project8_title: "Theo Natan's Portfolio",
-        project8_p: "My portfolio with projects, skills, and experiences presented in a clear and interactive way.",
+        project8_p: "My portfolio with projects, skills, and experiences presented clearly.",
         project9_title: "LANEF",
-        project9_p: "Academic League of Nephrology - Federal University of Paraíba.",
+        project9_p: "Academic League of Nephrology - UFPB.",
         project10_title: "Nursing Atlas",
         project10_p: "Nursing Athletic Association - Estácio FMJ.",
         project_cta_1: 'View Project <i class="fas fa-arrow-right ml-2"></i>',
@@ -536,7 +899,7 @@
         project_cta_8: 'View Project <i class="fas fa-arrow-right ml-2"></i>',
         projects_all_btn: "View all projects",
         services_title: "My Services",
-        services_p: "I offer comprehensive design solutions tailored to the needs and goals of your business.",
+        services_p: "I offer comprehensive design solutions tailored to your business goals.",
         service1_title: "UI/UX Design",
         service1_p: "User-centered interface with intuitive navigation and fluid interactions.",
         service2_title: "Brand Identity",
@@ -544,7 +907,7 @@
         service3_title: "Web Design",
         service3_p: "Responsive and engaging websites that drive conversions.",
         service4_title: "Mobile App Design",
-        service4_p: "Intuitive interfaces with attention to each platform's guidelines.",
+        service4_p: "Intuitive interfaces with attention to platform guidelines.",
         service5_title: "Landing Pages",
         service5_p: "High-conversion pages optimized for SEO and user journey.",
         service6_title: "UX Research",
@@ -565,12 +928,9 @@
         footer_service_uiux: "UI/UX Design",
         footer_service_branding: "Brand Identity",
         footer_service_web: "Web Design",
-        footer_service_mobile: "Mobile Design",
-        footer_service_landing: "Landing Pages",
         footer_legal_title: "Legal",
         footer_legal_privacy: "Privacy Policy",
         footer_legal_terms: "Terms of Service",
-        footer_legal_cookies: "Cookie Policy",
         footer_copyright: "© 2025 Theo Natan. All rights reserved.",
       },
       pt: {
@@ -586,12 +946,12 @@
         lang_switcher_aria: "Mudar idioma",
         nav_lang_mobile: "Mudar Idioma",
         hero_h1_l1: "Design Minimalista,",
-        hero_h1_l2: '<span class="text-blue-700 font-extrabold animate-pulse">Impacto Máximo</span>',
+        hero_h1_l2: '<span class="impacto-maximo-animado"><span class="animated-gradient text-glow">Impacto Máximo</span></span>',
         hero_p: "Crio experiências digitais elegantes que equilibram beleza e funcionalidade para ajudar as marcas a se destacarem.",
         hero_button: "Veja Meu Trabalho",
         about_title: "Sobre mim",
         about_greeting: "Muito prazer, sou Theo Natan",
-        about_p: "Sou Designer Gráfico e Web Designer com experiência no desenvolvimento de identidades visuais, logos, designs para aplicações web, portfólios digitais, aplicativos e landing pages. Meu trabalho é transformar ideias em projetos criativos e funcionais, unindo estética, estratégia e usabilidade para entregar soluções visuais que conectam marcas ao seu público de forma clara e impactante. Aqui você encontrará alguns dos meus projetos que representam minha paixão por design e minha dedicação em criar experiências únicas.",
+        about_p: "Sou Designer Gráfico e Web Designer com experiência no desenvolvimento de identidades visuais, logos, designs para aplicações web, portfólios digitais, aplicativos e landing pages. Meu trabalho é transformar ideias em projetos criativos e funcionais.",
         about_skills_title: "Minhas Habilidades",
         skill_uiux: "UI/UX Design",
         skill_branding: "Identidade da Marca",
@@ -606,23 +966,23 @@
         filter_landing: "Landing Pages",
         filter_portfolios: "Portfólios",
         project1_title: "Vanessa Fernandes Confeitaria",
-        project1_p: "Vanessa Fernandes Confeitaria com foco em transmitir delicadeza, elegância e o cuidado artesanal presente nos produtos.",
+        project1_p: "Vanessa Fernandes Confeitaria com foco em transmitir delicadeza, elegância e o cuidado artesanal.",
         project2_title: "JNS",
-        project2_p: "JNS oferece soluções inteligentes em seguros, consórcios e créditos, com foco no atendimento personalizado.",
+        project2_p: "JNS oferece soluções inteligentes em seguros, consórcios e créditos, com atendimento personalizado.",
         project3_title: "Flux Agency",
-        project3_p: "Agência com foco em inovação e resultados. Formas modernas e dinâmicas com ícone em forma de seta.",
+        project3_p: "Agência com foco em inovação e resultados. Formas modernas e dinâmicas.",
         project4_title: "Simplificando Métodos",
-        project4_p: "Estratégias simples e eficientes para quebrar padrões, bater recordes e alcançar novos limites.",
+        project4_p: "Estratégias simples e eficientes para quebrar padrões e alcançar novos limites.",
         project5_title: "Sacrovi",
-        project5_p: "Produtora audiovisual: drones, filmagens, fotografias e captação de áudio.",
+        project5_p: "Produtora audiovisual: drones, filmagens, fotografias.",
         project6_title: "Esphera Checkout",
-        project6_p: "Plataforma de vendas online com rapidez, segurança e simplicidade no pagamento.",
+        project6_p: "Plataforma de vendas online com rapidez, segurança e simplicidade.",
         project7_title: "Portfólio para Desenvolvedor",
-        project7_p: "Design do portfólio digital do Desenvolvedor Ícaro Moreira. Layout moderno e funcional. (Figma)",
+        project7_p: "Design do portfólio digital do Desenvolvedor Ícaro Moreira. Layout moderno.",
         project8_title: "Portfólio Theo Natan",
-        project8_p: "Meu portfólio com projetos, habilidades e experiências de forma clara e interativa.",
+        project8_p: "Meu portfólio com projetos, habilidades e experiências de forma clara.",
         project9_title: "LANEF",
-        project9_p: "LANEF - Liga Acadêmica de Nefrologia - Universidade Federal da Paraíba.",
+        project9_p: "LANEF - Liga Acadêmica de Nefrologia - UFPB.",
         project10_title: "Atlas Enfermagem",
         project10_p: "Associação Atlética de Enfermagem - Estácio FMJ",
         project_cta_1: 'Confira o Projeto <i class="fas fa-arrow-right ml-2"></i>',
@@ -635,7 +995,7 @@
         project_cta_8: 'Confira o Projeto <i class="fas fa-arrow-right ml-2"></i>',
         projects_all_btn: "Ver todos os projetos",
         services_title: "Meus serviços",
-        services_p: "Ofereço soluções de design abrangentes, adaptadas às necessidades e objetivos do seu negócio.",
+        services_p: "Ofereço soluções de design abrangentes, adaptadas aos objetivos do seu negócio.",
         service1_title: "UI/UX Design",
         service1_p: "Interface centrada no usuário com navegação intuitiva e interações fluidas.",
         service2_title: "Identidade da Marca",
@@ -669,7 +1029,6 @@
         footer_legal_title: "Legal",
         footer_legal_privacy: "Política de Privacidade",
         footer_legal_terms: "Termos de Serviço",
-        footer_legal_cookies: "Política de Cookies",
         footer_copyright: "© 2025 Theo Natan. Todos os direitos reservados.",
       },
     };
@@ -680,7 +1039,6 @@
         const key = element.getAttribute('data-key');
         const translation = translations[lang][key];
         if (translation) {
-
           if (key === 'lang_switcher_aria') {
             element.setAttribute('aria-label', translation);
           } else {
@@ -701,94 +1059,36 @@
       });
     });
 
-    document.addEventListener('DOMContentLoaded', () => {
-      // Define o idioma inicial ao carregar a página
-      setLanguage(currentLang);
-
-      // ===== ANIMAÇÃO AO ROLAR (SCROLL REVEAL) =====
-      const animatedElements = document.querySelectorAll('.scroll-animate');
-
-      if ("IntersectionObserver" in window) {
-        const observer = new IntersectionObserver((entries, observer) => {
-          entries.forEach(entry => {
-            if (entry.isIntersecting) {
-              entry.target.classList.add('is-visible');
-              observer.unobserve(entry.target); // Para de observar depois de animar uma vez
-            }
-          });
-        }, {
-          threshold: 0.1 // Anima quando 10% do elemento estiver visível
-        });
-
-        animatedElements.forEach(el => {
-          observer.observe(el);
-        });
-      } else {
-        // Se o navegador for muito antigo, apenas mostra os elementos
-        animatedElements.forEach(el => {
-          el.classList.add('is-visible');
-        });
-      }
-    });
-
-
-    // ===== MENU MOBILE =====
-    const mobileMenuButton = document.getElementById('mobile-menu-button');
-    const mobileMenu = document.getElementById('mobile-menu');
-
-    mobileMenuButton?.addEventListener('click', () => {
-      const isOpen = !mobileMenu.classList.contains('hidden');
-      mobileMenu.classList.toggle('hidden');
-      mobileMenuButton.setAttribute('aria-expanded', String(!isOpen));
-    });
-
-    document.querySelectorAll('#mobile-menu a').forEach(link => {
-      link.addEventListener('click', () => {
-        mobileMenu.classList.add('hidden');
-        mobileMenuButton.setAttribute('aria-expanded', 'false');
-      });
-    });
-
-    // ===== FILTRO DE PROJETOS (COM ANIMAÇÃO) =====
+    // ===== FILTRO DE PROJETOS (MANTIDO) =====
     const filterButtons = document.querySelectorAll('.filter-btn');
-    const projectCards = document.querySelectorAll('.project-card');
+    const projectCards = document.querySelectorAll('.project-card, .glass-card[data-category]');
 
     filterButtons.forEach((button) => {
       button.addEventListener('click', () => {
-        // Atualiza o estado visual dos botões
         filterButtons.forEach((btn) => {
-          btn.classList.remove('bg-blue-700', 'text-white');
+          btn.classList.remove('bg-brand', 'text-white');
+          btn.classList.add('text-gray-500', 'dark:text-gray-400');
           btn.setAttribute('aria-pressed', 'false');
         });
-        button.classList.add('bg-blue-700', 'text-white');
+        button.classList.remove('text-gray-500', 'dark:text-gray-400');
+        button.classList.add('bg-brand', 'text-white');
         button.setAttribute('aria-pressed', 'true');
 
-        // Lógica da animação de filtro
         const filterValue = button.dataset.filter;
-        const animationDuration = 400; // Deve ser o mesmo valor da transição no CSS
+        const animationDuration = 400;
 
         projectCards.forEach((card) => {
           const cardCategory = card.dataset.category;
           const shouldShow = filterValue === 'all' || cardCategory === filterValue;
-
           const isHidden = card.classList.contains('card-hide');
 
           if (shouldShow && isHidden) {
-            // MOSTRAR o card:
             card.style.display = 'block';
-
-            setTimeout(() => {
-              card.classList.remove('card-hide');
-            }, 10);
+            setTimeout(() => card.classList.remove('card-hide'), 10);
           } else if (!shouldShow && !isHidden) {
-
             card.classList.add('card-hide');
-
-            setTimeout(() => {
-              card.style.display = 'none';
-            }, animationDuration);
+            setTimeout(() => card.style.display = 'none', animationDuration);
           } else if (shouldShow && !isHidden) {
-
             card.classList.remove('card-hide');
             card.style.display = 'block';
           }
@@ -796,68 +1096,54 @@
       });
     });
 
-    // ===== ROLAGEM SUAVE COM OFFSET DO HEADER =====
-    const header = document.querySelector('header');
-    const headerHeight = () => (header ? header.offsetHeight : 0);
+    // ===== SCROLL REVEAL & NAV =====
+    document.addEventListener('DOMContentLoaded', () => {
+      setLanguage(currentLang);
 
-    document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
-      anchor.addEventListener('click', function (e) {
-        const targetId = this.getAttribute('href');
-        if (!targetId || targetId === '#') return;
-        const targetElement = document.querySelector(targetId);
-        if (!targetElement) return;
-        e.preventDefault();
-
-        const top = targetElement.getBoundingClientRect().top + window.pageYOffset - (headerHeight() + 8);
-        window.scrollTo({
-          top,
-          behavior: 'smooth'
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('is-visible');
+          }
         });
+      }, { threshold: 0.1 });
+
+      document.querySelectorAll('.scroll-animate').forEach(el => observer.observe(el));
+    });
+
+    // Menu Mobile
+    const mobileMenuButton = document.getElementById('mobile-menu-button');
+    const mobileMenu = document.getElementById('mobile-menu');
+    mobileMenuButton.addEventListener('click', () => {
+      mobileMenu.classList.toggle('hidden');
+    });
+
+    // Smooth Scroll
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+        const target = document.querySelector(this.getAttribute('href'));
+        if (target) {
+          window.scrollTo({
+            top: target.offsetTop - 80,
+            behavior: 'smooth'
+          });
+          mobileMenu.classList.add('hidden');
+        }
       });
     });
 
-    // ===== BOTÃO VOLTAR AO TOPO =====
-    const backToTopButton = document.getElementById('back-to-top');
-
+    // Back to Top
+    const backToTop = document.getElementById('back-to-top');
     window.addEventListener('scroll', () => {
-      if (window.pageYOffset > 320) {
-        backToTopButton.classList.remove('opacity-0', 'invisible');
-        backToTopButton.classList.add('opacity-100', 'visible');
+      if (window.scrollY > 300) {
+        backToTop.classList.remove('opacity-0', 'invisible');
       } else {
-        backToTopButton.classList.remove('opacity-100', 'visible');
-        backToTopButton.classList.add('opacity-0', 'invisible');
+        backToTop.classList.add('opacity-0', 'invisible');
       }
     });
+    backToTop.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
 
-    backToTopButton.addEventListener('click', () => {
-      window.scrollTo({
-        top: 0,
-        behavior: 'smooth'
-      });
-    });
-
-    // ===== ATIVAR LINK DA SEÇÃO CORRENTE =====
-    const sections = document.querySelectorAll('section');
-    const navLinks = document.querySelectorAll('.nav-link');
-
-    window.addEventListener('scroll', () => {
-      let current = '';
-      const offsetTrigger = window.pageYOffset + headerHeight() + 100;
-
-      sections.forEach((section) => {
-        const sectionTop = section.offsetTop;
-        if (offsetTrigger >= sectionTop) {
-          current = section.getAttribute('id');
-        }
-      });
-
-      navLinks.forEach((link) => {
-        link.classList.remove('text-blue-700');
-        if (link.getAttribute('href') === `#${current}`) {
-          link.classList.add('text-blue-700');
-        }
-      });
-    });
   </script>
 </body>
 

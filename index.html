@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="theme-color" content="#1d4ed8" />
+  <meta name="theme-color" content="#050505" />
   <title data-key="page_title">Portfólio | Theo Natan</title>
 
   <link rel="shortcut icon" href="/images/favicon theo.png" type="image/x-icon" />
@@ -20,7 +20,7 @@
 
   <script>
     tailwind.config = {
-      darkMode: 'class', // Ativa o modo escuro via classe 'dark' no HTML
+      darkMode: 'class',
       theme: {
         extend: {
           colors: {
@@ -76,10 +76,20 @@
     }
   </script>
 
+  <script>
+    // Se o usuário salvou 'light', remove a classe dark.
+    // Caso contrário (se for 'dark' ou nada salvo), mantém a classe dark (padrão).
+    if (localStorage.theme === 'light') {
+      document.documentElement.classList.remove('dark')
+    } else {
+      document.documentElement.classList.add('dark')
+    }
+  </script>
+
   <style>
     /* --- Estilos Globais e Efeitos --- */
 
-    /* Scrollbar - Modo Light (Padrão) */
+    /* Scrollbar - Modo Light */
     ::-webkit-scrollbar {
       width: 8px;
     }
@@ -144,35 +154,25 @@
     }
 
     /* =========================================
-       LIQUID GLASS EFFECT (CARDS) - ATUALIZADO
+       LIQUID GLASS EFFECT (CARDS)
        ========================================= */
     .glass-card {
-      /* Base Transparente com Blur Intenso */
       background: rgba(255, 255, 255, 0.1);
       backdrop-filter: blur(16px) saturate(180%);
       -webkit-backdrop-filter: blur(16px) saturate(180%);
-
-      /* Bordas Arredondadas Suaves */
       border-radius: 20px;
-
-      /* Bordas de Luz (Simula reflexo físico nas bordas superior/esquerda) */
       border-top: 1px solid rgba(255, 255, 255, 0.5);
       border-left: 1px solid rgba(255, 255, 255, 0.5);
       border-right: 1px solid rgba(255, 255, 255, 0.1);
       border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-
-      /* Sombras: Externa suave + Interna (Inset) para efeito de "água/vidro grosso" */
       box-shadow:
         0 8px 32px 0 rgba(31, 38, 135, 0.10),
         inset 0 0 20px rgba(255, 255, 255, 0.2);
-
       transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
       position: relative;
       overflow: hidden;
-      /* Importante para o efeito de brilho não vazar */
     }
 
-    /* Efeito de Brilho que passa (Sheen) */
     .glass-card::before {
       content: '';
       position: absolute;
@@ -190,30 +190,25 @@
       z-index: 10;
     }
 
-    /* Hover no Liquid Card */
     .glass-card:hover {
       transform: translateY(-8px) scale(1.02);
       box-shadow:
         0 20px 40px rgba(29, 78, 216, 0.25),
-        /* Sombra azulada da marca */
         inset 0 0 20px rgba(255, 255, 255, 0.4);
-      /* Brilho interno aumenta */
       border-color: rgba(255, 255, 255, 0.8);
     }
 
-    /* Ativa o brilho passando */
     .glass-card:hover::before {
       left: 150%;
       transition: left 0.8s ease-in-out;
     }
 
-    /* Ajustes Específicos para DARK MODE Liquid Glass */
+    /* Ajustes Dark Mode Liquid Glass */
     .dark .glass-card {
       background: rgba(20, 20, 20, 0.3);
       box-shadow:
         0 8px 32px 0 rgba(0, 0, 0, 0.37),
         inset 0 0 20px rgba(255, 255, 255, 0.03);
-      /* Sombra interna mais sutil no escuro */
       border-top: 1px solid rgba(255, 255, 255, 0.15);
       border-left: 1px solid rgba(255, 255, 255, 0.15);
       border-right: 1px solid rgba(255, 255, 255, 0.05);
@@ -226,8 +221,6 @@
         inset 0 0 20px rgba(255, 255, 255, 0.08);
       border-color: rgba(255, 255, 255, 0.3);
     }
-
-    /* --- Fim do Efeito Liquid Glass --- */
 
     /* Textos Especiais */
     .text-glow {
@@ -295,7 +288,6 @@
       opacity: 0.4;
     }
 
-    /* Nav Link Hover */
     .nav-link {
       position: relative;
     }
@@ -315,15 +307,13 @@
       width: 100%;
     }
 
-    /* Ajustes de cor para modo Light vs Dark em textos gerais */
+    /* Cores de Texto */
     body {
       color: #374151;
-      /* Cinza escuro para Light mode */
     }
 
     .dark body {
       color: #d1d5db;
-      /* Cinza claro para Dark mode */
     }
 
     h1,
@@ -333,7 +323,6 @@
     h5,
     h6 {
       color: #111827;
-      /* Preto suave para Light */
     }
 
     .dark h1,
@@ -343,7 +332,6 @@
     .dark h5,
     .dark h6 {
       color: #ffffff;
-      /* Branco para Dark */
     }
   </style>
 </head>

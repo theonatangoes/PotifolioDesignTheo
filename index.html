@@ -5,7 +5,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="theme-color" content="#050505" />
-  <title data-key="page_title">Portfólio | Theo Natan</title>
+  <title data-translate="page_title">Portfólio | Theo Natan</title>
 
   <link rel="shortcut icon" href="/images/favicon theo.png" type="image/x-icon" />
 
@@ -333,6 +333,79 @@
     .dark h6 {
       color: #ffffff;
     }
+
+    /* Dropdown de Idioma */
+    .language-dropdown {
+      position: relative;
+      display: inline-block;
+    }
+
+    .language-options {
+      display: none;
+      position: absolute;
+      top: 100%;
+      right: 0;
+      background: white;
+      border-radius: 8px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+      min-width: 120px;
+      z-index: 1000;
+      overflow: hidden;
+    }
+
+    .dark .language-options {
+      background: #1A1A1A;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+    }
+
+    .language-option {
+      padding: 10px 16px;
+      cursor: pointer;
+      transition: background-color 0.2s;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      color: #374151;
+    }
+
+    .dark .language-option {
+      color: #d1d5db;
+    }
+
+    .language-option:hover {
+      background-color: #f3f4f6;
+    }
+
+    .dark .language-option:hover {
+      background-color: #2d2d2d;
+    }
+
+    .language-option.active {
+      background-color: #1d4ed8;
+      color: white;
+    }
+
+    .language-option.active:hover {
+      background-color: #1e40af;
+    }
+
+    .language-current {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      cursor: pointer;
+      padding: 6px 10px;
+      border-radius: 6px;
+      transition: background-color 0.2s;
+    }
+
+    .language-current:hover {
+      background-color: rgba(29, 78, 216, 0.1);
+    }
+
+    .dark .language-current:hover {
+      background-color: rgba(29, 78, 216, 0.2);
+    }
   </style>
 </head>
 
@@ -356,40 +429,77 @@
         </button>
 
         <nav class="hidden md:flex items-center gap-8 text-sm font-medium tracking-wide text-gray-700 dark:text-gray-300">
-          <a href="#home" class="nav-link hover:text-brand transition-colors duration-300" data-key="nav_home">Início</a>
-          <a href="#about" class="nav-link hover:text-brand transition-colors duration-300" data-key="nav_about">Sobre</a>
-          <a href="#projects" class="nav-link hover:text-brand transition-colors duration-300" data-key="nav_projects">Projetos</a>
-          <a href="#services" class="nav-link hover:text-brand transition-colors duration-300" data-key="nav_services">Serviços</a>
+          <a href="#home" class="nav-link hover:text-brand transition-colors duration-300" data-translate="nav_home">Início</a>
+          <a href="#about" class="nav-link hover:text-brand transition-colors duration-300" data-translate="nav_about">Sobre</a>
+          <a href="#projects" class="nav-link hover:text-brand transition-colors duration-300" data-translate="nav_projects">Projetos</a>
+          <a href="#services" class="nav-link hover:text-brand transition-colors duration-300" data-translate="nav_services">Serviços</a>
 
           <div class="flex items-center gap-2 ml-2 border-l pl-4 border-gray-300 dark:border-gray-700">
             <button id="theme-toggle-desktop" class="text-brand hover:text-brand-dark dark:hover:text-white transition text-xl p-1" aria-label="Alternar Tema">
-              <i class="fas fa-sun hidden dark:inline-block"></i> <i class="fas fa-moon inline-block dark:hidden"></i> </button>
-
-            <button id="lang-switcher-desktop" class="text-brand hover:text-brand-dark dark:hover:text-white transition text-xl p-1" aria-label="Mudar idioma" data-key="lang_switcher_aria">
-              <i class="fa-solid fa-earth-americas"></i>
+              <i class="fas fa-sun hidden dark:inline-block"></i>
+              <i class="fas fa-moon inline-block dark:hidden"></i>
             </button>
+
+            <div class="language-dropdown">
+              <div class="language-current" id="lang-current-desktop">
+                <i class="fa-solid fa-earth-americas"></i>
+                <span id="current-lang-text">PT</span>
+                <i class="fas fa-chevron-down text-xs ml-1"></i>
+              </div>
+              <div class="language-options" id="lang-options-desktop">
+                <div class="language-option" data-lang="pt">
+                  <span class="flag">🇧🇷</span>
+                  <span>Português</span>
+                </div>
+                <div class="language-option" data-lang="en">
+                  <span class="flag">🇺🇸</span>
+                  <span>English</span>
+                </div>
+                <div class="language-option" data-lang="es">
+                  <span class="flag">🇪🇸</span>
+                  <span>Español</span>
+                </div>
+              </div>
+            </div>
           </div>
         </nav>
       </div>
 
       <div id="mobile-menu" class="hidden md:hidden mt-4 border-t border-gray-200 dark:border-gray-800 pt-4 glass">
         <nav class="flex flex-col space-y-4 text-center p-4">
-          <a href="#home" class="text-gray-800 dark:text-gray-300 hover:text-brand py-2" data-key="nav_home_mobile">Início</a>
-          <a href="#about" class="text-gray-800 dark:text-gray-300 hover:text-brand py-2" data-key="nav_about_mobile">Sobre</a>
-          <a href="#projects" class="text-gray-800 dark:text-gray-300 hover:text-brand py-2" data-key="nav_projects_mobile">Projetos</a>
-          <a href="#services" class="text-gray-800 dark:text-gray-300 hover:text-brand py-2" data-key="nav_services_mobile">Serviços</a>
+          <a href="#home" class="text-gray-800 dark:text-gray-300 hover:text-brand py-2" data-translate="nav_home_mobile">Início</a>
+          <a href="#about" class="text-gray-800 dark:text-gray-300 hover:text-brand py-2" data-translate="nav_about_mobile">Sobre</a>
+          <a href="#projects" class="text-gray-800 dark:text-gray-300 hover:text-brand py-2" data-translate="nav_projects_mobile">Projetos</a>
+          <a href="#services" class="text-gray-800 dark:text-gray-300 hover:text-brand py-2" data-translate="nav_services_mobile">Serviços</a>
 
           <div class="flex items-center justify-center gap-6 pt-4 border-t border-gray-200 dark:border-gray-700">
             <button id="theme-toggle-mobile" class="text-brand hover:text-brand-dark dark:hover:text-white flex items-center gap-2">
               <i class="fas fa-sun hidden dark:inline-block"></i>
               <i class="fas fa-moon inline-block dark:hidden"></i>
-              <span>Tema</span>
+              <span data-translate="theme_toggle">Tema</span>
             </button>
 
-            <button id="lang-switcher-mobile" class="text-brand hover:text-brand-dark dark:hover:text-white flex items-center gap-2">
-              <i class="fa-solid fa-earth-americas"></i>
-              <span data-key="nav_lang_mobile">Idioma</span>
-            </button>
+            <div class="language-dropdown">
+              <div class="language-current" id="lang-current-mobile">
+                <i class="fa-solid fa-earth-americas"></i>
+                <span id="current-lang-text-mobile">PT</span>
+                <i class="fas fa-chevron-down text-xs ml-1"></i>
+              </div>
+              <div class="language-options" id="lang-options-mobile">
+                <div class="language-option" data-lang="pt">
+                  <span class="flag">🇧🇷</span>
+                  <span>Português</span>
+                </div>
+                <div class="language-option" data-lang="en">
+                  <span class="flag">🇺🇸</span>
+                  <span>English</span>
+                </div>
+                <div class="language-option" data-lang="es">
+                  <span class="flag">🇪🇸</span>
+                  <span>Español</span>
+                </div>
+              </div>
+            </div>
           </div>
         </nav>
       </div>
@@ -406,23 +516,23 @@
         <div class="w-full md:w-1/2 scroll-animate text-center md:text-left">
           <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-brand/30 bg-brand/10 mb-6">
             <span class="w-2 h-2 rounded-full bg-brand animate-pulse"></span>
-            <span class="text-xs font-bold tracking-widest text-brand uppercase">Disponível para Projetos</span>
+            <span class="text-xs font-bold tracking-widest text-brand uppercase" data-translate="hero_availability">Disponível para Projetos</span>
           </div>
 
           <h1 class="font-display text-4xl sm:text-5xl md:text-7xl font-bold mb-6 leading-tight">
-            <span data-key="hero_h1_l1">Design Minimalista,</span><br>
-            <span data-key="hero_h1_l2"><span class="impacto-maximo-animado"><span class="animated-gradient text-glow">Impacto Máximo</span></span></span>
+            <span data-translate="hero_h1_l1">Design Minimalista,</span><br>
+            <span data-translate="hero_h1_l2"><span class="impacto-maximo-animado"><span class="animated-gradient text-glow">Impacto Máximo</span></span></span>
           </h1>
 
-          <p class="text-lg text-gray-600 dark:text-gray-400 mb-10 md:pr-6 font-light leading-relaxed" data-key="hero_p">
+          <p class="text-lg text-gray-600 dark:text-gray-400 mb-10 md:pr-6 font-light leading-relaxed" data-translate="hero_p">
             Crio experiências digitais elegantes que equilibram beleza e funcionalidade para ajudar as marcas a se destacarem.
           </p>
 
           <div class="flex flex-wrap justify-center md:justify-start gap-4">
-            <a href="#projects" class="bg-brand hover:bg-brand-dark text-white px-8 py-4 rounded-full font-bold transition shadow-[0_0_20px_rgba(29,78,216,0.4)] hover:shadow-[0_0_40px_rgba(29,78,216,0.6)] hover:-translate-y-1 animate-pulse-glow" data-key="hero_button">
+            <a href="#projects" class="bg-brand hover:bg-brand-dark text-white px-8 py-4 rounded-full font-bold transition shadow-[0_0_20px_rgba(29,78,216,0.4)] hover:shadow-[0_0_40px_rgba(29,78,216,0.6)] hover:-translate-y-1 animate-pulse-glow" data-translate="hero_button">
               Veja Meu Trabalho
             </a>
-            <a href="#about" class="px-8 py-4 rounded-full border border-gray-300 dark:border-gray-700 hover:border-brand hover:text-brand text-gray-800 dark:text-white transition glass-card">
+            <a href="#about" class="px-8 py-4 rounded-full border border-gray-300 dark:border-gray-700 hover:border-brand hover:text-brand text-gray-800 dark:text-white transition glass-card" data-translate="hero_button_secondary">
               Sobre Mim
             </a>
           </div>
@@ -440,7 +550,7 @@
     <section id="about" class="py-24 relative">
       <div class="container mx-auto max-w-7xl px-6">
         <h2 class="font-display text-3xl sm:text-5xl font-bold text-center mb-16 scroll-animate">
-          <span class="border-b-4 border-brand pb-2" data-key="about_title">Sobre mim</span>
+          <span class="border-b-4 border-brand pb-2" data-translate="about_title">Sobre mim</span>
         </h2>
 
         <div class="flex flex-col md:flex-row items-center gap-12">
@@ -455,24 +565,24 @@
           </div>
 
           <div class="w-full md:w-2/3 md:pl-6 scroll-animate">
-            <h3 class="font-display text-2xl sm:text-3xl font-bold mb-4 text-center md:text-left" data-key="about_greeting">Muito prazer, sou Theo Natan</h3>
-            <p class="text-gray-600 dark:text-gray-400 mb-8 text-center md:text-left leading-relaxed text-lg" data-key="about_p">
+            <h3 class="font-display text-2xl sm:text-3xl font-bold mb-4 text-center md:text-left" data-translate="about_greeting">Muito prazer, sou Theo Natan</h3>
+            <p class="text-gray-600 dark:text-gray-400 mb-8 text-center md:text-left leading-relaxed text-lg" data-translate="about_p">
               Sou Designer Gráfico e Web Designer com experiência no desenvolvimento de identidades visuais, logos, designs para aplicações web, portfólios digitais, aplicativos e landing pages. Meu trabalho é transformar ideias em projetos criativos e funcionais.
             </p>
 
             <div class="mb-8">
-              <h4 class="text-lg font-bold mb-4 text-brand text-center md:text-left uppercase tracking-wider" data-key="about_skills_title">Minhas Habilidades</h4>
+              <h4 class="text-lg font-bold mb-4 text-brand text-center md:text-left uppercase tracking-wider" data-translate="about_skills_title">Minhas Habilidades</h4>
               <div class="flex flex-wrap justify-center md:justify-start gap-3">
-                <span class="bg-white dark:bg-dark-surface border border-gray-200 dark:border-white/10 hover:border-brand text-gray-600 dark:text-gray-300 px-4 py-2 rounded-lg text-sm transition hover:text-brand hover:-translate-y-1 hover:shadow-lg cursor-default" data-key="skill_uiux">UI/UX Design</span>
-                <span class="bg-white dark:bg-dark-surface border border-gray-200 dark:border-white/10 hover:border-brand text-gray-600 dark:text-gray-300 px-4 py-2 rounded-lg text-sm transition hover:text-brand hover:-translate-y-1 hover:shadow-lg cursor-default" data-key="skill_branding">Identidade da Marca</span>
-                <span class="bg-white dark:bg-dark-surface border border-gray-200 dark:border-white/10 hover:border-brand text-gray-600 dark:text-gray-300 px-4 py-2 rounded-lg text-sm transition hover:text-brand hover:-translate-y-1 hover:shadow-lg cursor-default" data-key="skill_web">Web Design</span>
-                <span class="bg-white dark:bg-dark-surface border border-gray-200 dark:border-white/10 hover:border-brand text-gray-600 dark:text-gray-300 px-4 py-2 rounded-lg text-sm transition hover:text-brand hover:-translate-y-1 hover:shadow-lg cursor-default" data-key="skill_mobile">Mobile Design</span>
-                <span class="bg-white dark:bg-dark-surface border border-gray-200 dark:border-white/10 hover:border-brand text-gray-600 dark:text-gray-300 px-4 py-2 rounded-lg text-sm transition hover:text-brand hover:-translate-y-1 hover:shadow-lg cursor-default" data-key="skill_strategy">Visão Estratégica</span>
+                <span class="bg-white dark:bg-dark-surface border border-gray-200 dark:border-white/10 hover:border-brand text-gray-600 dark:text-gray-300 px-4 py-2 rounded-lg text-sm transition hover:text-brand hover:-translate-y-1 hover:shadow-lg cursor-default" data-translate="skill_uiux">UI/UX Design</span>
+                <span class="bg-white dark:bg-dark-surface border border-gray-200 dark:border-white/10 hover:border-brand text-gray-600 dark:text-gray-300 px-4 py-2 rounded-lg text-sm transition hover:text-brand hover:-translate-y-1 hover:shadow-lg cursor-default" data-translate="skill_branding">Identidade da Marca</span>
+                <span class="bg-white dark:bg-dark-surface border border-gray-200 dark:border-white/10 hover:border-brand text-gray-600 dark:text-gray-300 px-4 py-2 rounded-lg text-sm transition hover:text-brand hover:-translate-y-1 hover:shadow-lg cursor-default" data-translate="skill_web">Web Design</span>
+                <span class="bg-white dark:bg-dark-surface border border-gray-200 dark:border-white/10 hover:border-brand text-gray-600 dark:text-gray-300 px-4 py-2 rounded-lg text-sm transition hover:text-brand hover:-translate-y-1 hover:shadow-lg cursor-default" data-translate="skill_mobile">Mobile Design</span>
+                <span class="bg-white dark:bg-dark-surface border border-gray-200 dark:border-white/10 hover:border-brand text-gray-600 dark:text-gray-300 px-4 py-2 rounded-lg text-sm transition hover:text-brand hover:-translate-y-1 hover:shadow-lg cursor-default" data-translate="skill_strategy">Visão Estratégica</span>
               </div>
             </div>
 
             <div class="text-center md:text-left">
-              <a href="#projects" class="inline-flex items-center text-brand font-medium hover:text-brand-dark dark:hover:text-white transition" data-key="about_cta">
+              <a href="#projects" class="inline-flex items-center text-brand font-medium hover:text-brand-dark dark:hover:text-white transition" data-translate="about_cta">
                 Confira mais abaixo <i class="fas fa-arrow-down ml-2 animate-bounce"></i>
               </a>
             </div>
@@ -484,145 +594,25 @@
     <section id="projects" class="py-24 bg-gray-50 dark:bg-dark-surface/30 border-y border-gray-200 dark:border-white/5 backdrop-blur-sm transition-colors duration-300">
       <div class="container mx-auto max-w-7xl px-6">
         <div class="text-center mb-16 scroll-animate">
-          <h2 class="font-display text-3xl sm:text-5xl font-bold mb-4" data-key="projects_title">Meus Projetos</h2>
-          <p class="text-gray-600 dark:text-gray-400 max-w-2xl mx-auto" data-key="projects_p">Explore meus trabalhos mais recentes. Design com propósito e estética.</p>
+          <h2 class="font-display text-3xl sm:text-5xl font-bold mb-4" data-translate="projects_title">Meus Projetos</h2>
+          <p class="text-gray-600 dark:text-gray-400 max-w-2xl mx-auto" data-translate="projects_p">Explore meus trabalhos mais recentes. Design com propósito e estética.</p>
         </div>
 
         <div class="flex justify-center mb-12 scroll-animate">
           <div class="flex flex-wrap justify-center gap-3 bg-white dark:bg-dark-card p-2 rounded-xl border border-gray-200 dark:border-white/5 shadow-sm">
-            <button class="filter-btn px-5 py-2 rounded-lg text-sm font-medium transition focus:outline-none aria-selected:bg-brand aria-selected:text-white text-gray-500 dark:text-gray-400 hover:text-brand dark:hover:text-white" data-filter="all" aria-pressed="true" data-key="filter_all">Todos</button>
-            <button class="filter-btn px-5 py-2 rounded-lg text-sm font-medium transition focus:outline-none aria-selected:bg-brand aria-selected:text-white text-gray-500 dark:text-gray-400 hover:text-brand dark:hover:text-white" data-filter="identity" aria-pressed="false" data-key="filter_identity">Identidades</button>
-            <button class="filter-btn px-5 py-2 rounded-lg text-sm font-medium transition focus:outline-none aria-selected:bg-brand aria-selected:text-white text-gray-500 dark:text-gray-400 hover:text-brand dark:hover:text-white" data-filter="landing" aria-pressed="false" data-key="filter_landing">Landing Pages</button>
-            <button class="filter-btn px-5 py-2 rounded-lg text-sm font-medium transition focus:outline-none aria-selected:bg-brand aria-selected:text-white text-gray-500 dark:text-gray-400 hover:text-brand dark:hover:text-white" data-filter="social" aria-pressed="false" data-key="filter_portfolios">Portfólios</button>
+            <button class="filter-btn px-5 py-2 rounded-lg text-sm font-medium transition focus:outline-none aria-selected:bg-brand aria-selected:text-white text-gray-500 dark:text-gray-400 hover:text-brand dark:hover:text-white" data-filter="all" aria-pressed="true" data-translate="filter_all">Todos</button>
+            <button class="filter-btn px-5 py-2 rounded-lg text-sm font-medium transition focus:outline-none aria-selected:bg-brand aria-selected:text-white text-gray-500 dark:text-gray-400 hover:text-brand dark:hover:text-white" data-filter="identity" aria-pressed="false" data-translate="filter_identity">Identidades</button>
+            <button class="filter-btn px-5 py-2 rounded-lg text-sm font-medium transition focus:outline-none aria-selected:bg-brand aria-selected:text-white text-gray-500 dark:text-gray-400 hover:text-brand dark:hover:text-white" data-filter="landing" aria-pressed="false" data-translate="filter_landing">Landing Pages</button>
+            <button class="filter-btn px-5 py-2 rounded-lg text-sm font-medium transition focus:outline-none aria-selected:bg-brand aria-selected:text-white text-gray-500 dark:text-gray-400 hover:text-brand dark:hover:text-white" data-filter="social" aria-pressed="false" data-translate="filter_portfolios">Portfólios</button>
           </div>
         </div>
 
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-
-          <div class="glass-card rounded-2xl overflow-hidden scroll-animate group" data-category="identity">
-            <div class="h-52 overflow-hidden relative">
-              <div class="absolute inset-0 bg-brand/20 opacity-0 group-hover:opacity-100 transition duration-500 z-10"></div>
-              <img src="images/VANESSA FERNANDES.png" alt="Vanessa Fernandes" class="w-full h-full object-cover transition duration-700 group-hover:scale-110" />
-            </div>
-            <div class="p-6">
-              <h3 class="font-display text-xl font-bold mb-2 group-hover:text-brand transition" data-key="project1_title">Vanessa Fernandes</h3>
-              <p class="text-gray-600 dark:text-gray-400 text-sm mb-4 line-clamp-2" data-key="project1_p">Confeitaria com foco em transmitir delicadeza e elegância.</p>
-              <a href="https://drive.google.com/file/d/1Q5cYa16gfEJgKalux-_QKWi21t2RQrzM/view?usp=sharing" target="_blank" class="text-brand font-bold text-sm uppercase tracking-wide inline-flex items-center hover:text-brand-dark dark:hover:text-white transition" data-key="project_cta_1">Ver Projeto <i class="fas fa-arrow-right ml-2"></i></a>
-            </div>
-          </div>
-
-          <div class="glass-card rounded-2xl overflow-hidden scroll-animate group" data-category="identity">
-            <div class="h-52 overflow-hidden relative">
-              <div class="absolute inset-0 bg-brand/20 opacity-0 group-hover:opacity-100 transition duration-500 z-10"></div>
-              <img src="images/Jns.png" alt="JNS" class="w-full h-full object-cover transition duration-700 group-hover:scale-110" />
-            </div>
-            <div class="p-6">
-              <h3 class="font-display text-xl font-bold mb-2 group-hover:text-brand transition" data-key="project2_title">JNS</h3>
-              <p class="text-gray-600 dark:text-gray-400 text-sm mb-4 line-clamp-2" data-key="project2_p">Soluções inteligentes em seguros e consórcios.</p>
-              <a href="https://drive.google.com/file/d/1uvIDJRPl3RhgIe9zu-cLv4mqRf59470q/view?usp=sharing" target="_blank" class="text-brand font-bold text-sm uppercase tracking-wide inline-flex items-center hover:text-brand-dark dark:hover:text-white transition" data-key="project_cta_2">Ver Projeto <i class="fas fa-arrow-right ml-2"></i></a>
-            </div>
-          </div>
-
-          <div class="glass-card rounded-2xl overflow-hidden scroll-animate group" data-category="identity">
-            <div class="h-52 overflow-hidden relative">
-              <div class="absolute inset-0 bg-brand/20 opacity-0 group-hover:opacity-100 transition duration-500 z-10"></div>
-              <img src="images/Flux agency (2).png" alt="Flux Agency" class="w-full h-full object-cover transition duration-700 group-hover:scale-110" />
-            </div>
-            <div class="p-6">
-              <h3 class="font-display text-xl font-bold mb-2 group-hover:text-brand transition" data-key="project3_title">Flux Agency</h3>
-              <p class="text-gray-600 dark:text-gray-400 text-sm mb-4 line-clamp-2" data-key="project3_p">Agência com foco em inovação e resultados.</p>
-              <a href="https://drive.google.com/file/d/1RfWvmn0eSvzoBwZQAensWQTSyvDbhgpx/view?usp=sharing" target="_blank" class="text-brand font-bold text-sm uppercase tracking-wide inline-flex items-center hover:text-brand-dark dark:hover:text-white transition" data-key="project_cta_3">Ver Projeto <i class="fas fa-arrow-right ml-2"></i></a>
-            </div>
-          </div>
-
-          <div class="glass-card rounded-2xl overflow-hidden scroll-animate group" data-category="landing">
-            <div class="h-52 overflow-hidden relative">
-              <div class="absolute inset-0 bg-brand/20 opacity-0 group-hover:opacity-100 transition duration-500 z-10"></div>
-              <img src="images/SIMPLIFICANDO.png" alt="Simplificando Métodos" class="w-full h-full object-cover transition duration-700 group-hover:scale-110" />
-            </div>
-            <div class="p-6">
-              <h3 class="font-display text-xl font-bold mb-2 group-hover:text-brand transition" data-key="project4_title">Simplificando Métodos</h3>
-              <p class="text-gray-600 dark:text-gray-400 text-sm mb-4 line-clamp-2" data-key="project4_p">Estratégias simples e eficientes.</p>
-              <a href="https://drive.google.com/file/d/17Kdt_P9u4cm-hTaitBwGpvEl04ZhbsvR/view?usp=sharing" target="_blank" class="text-brand font-bold text-sm uppercase tracking-wide inline-flex items-center hover:text-brand-dark dark:hover:text-white transition" data-key="project_cta_4">Ver Projeto <i class="fas fa-arrow-right ml-2"></i></a>
-            </div>
-          </div>
-
-          <div class="glass-card rounded-2xl overflow-hidden scroll-animate group" data-category="identity">
-            <div class="h-52 overflow-hidden relative">
-              <div class="absolute inset-0 bg-brand/20 opacity-0 group-hover:opacity-100 transition duration-500 z-10"></div>
-              <img src="images/SACROVI.png" alt="Sacrovi" class="w-full h-full object-cover transition duration-700 group-hover:scale-110" />
-            </div>
-            <div class="p-6">
-              <h3 class="font-display text-xl font-bold mb-2 group-hover:text-brand transition" data-key="project5_title">Sacrovi</h3>
-              <p class="text-gray-600 dark:text-gray-400 text-sm mb-4 line-clamp-2" data-key="project5_p">Produtora audiovisual: drones e filmagens.</p>
-              <a href="https://drive.google.com/file/d/1GWThmxPaAiy_EqtQ91ZPh0z4e7aGD6gx/view?usp=sharing" target="_blank" class="text-brand font-bold text-sm uppercase tracking-wide inline-flex items-center hover:text-brand-dark dark:hover:text-white transition" data-key="project_cta_5">Ver Projeto <i class="fas fa-arrow-right ml-2"></i></a>
-            </div>
-          </div>
-
-          <div class="glass-card rounded-2xl overflow-hidden scroll-animate group" data-category="landing">
-            <div class="h-52 overflow-hidden relative">
-              <div class="absolute inset-0 bg-brand/20 opacity-0 group-hover:opacity-100 transition duration-500 z-10"></div>
-              <img src="images/ESPHERA.png" alt="Esphera" class="w-full h-full object-cover transition duration-700 group-hover:scale-110" />
-            </div>
-            <div class="p-6">
-              <h3 class="font-display text-xl font-bold mb-2 group-hover:text-brand transition" data-key="project6_title">Esphera Checkout</h3>
-              <p class="text-gray-600 dark:text-gray-400 text-sm mb-4 line-clamp-2" data-key="project6_p">Plataforma de vendas online.</p>
-              <a href="https://drive.google.com/file/d/1wTlUco4nAJ-GzVLXDb0MmF7OB7SDZKTB/view?usp=sharing" target="_blank" class="text-brand font-bold text-sm uppercase tracking-wide inline-flex items-center hover:text-brand-dark dark:hover:text-white transition" data-key="project_cta_6">Ver Projeto <i class="fas fa-arrow-right ml-2"></i></a>
-            </div>
-          </div>
-
-          <div class="glass-card rounded-2xl overflow-hidden scroll-animate group" data-category="social">
-            <div class="h-52 overflow-hidden relative">
-              <div class="absolute inset-0 bg-brand/20 opacity-0 group-hover:opacity-100 transition duration-500 z-10"></div>
-              <img src="images/PORTIFOLIO DEV.png" alt="Portfólio Icaro" class="w-full h-full object-cover transition duration-700 group-hover:scale-110" />
-            </div>
-            <div class="p-6">
-              <h3 class="font-display text-xl font-bold mb-2 group-hover:text-brand transition" data-key="project7_title">Portfólio Dev</h3>
-              <p class="text-gray-600 dark:text-gray-400 text-sm mb-4 line-clamp-2" data-key="project7_p">Design para desenvolvedor Ícaro Moreira.</p>
-              <a href="https://drive.google.com/file/d/1kwdvLqCA6hCaPX-6i7aB17iVWOBQCikX/view?usp=sharing" target="_blank" class="text-brand font-bold text-sm uppercase tracking-wide inline-flex items-center hover:text-brand-dark dark:hover:text-white transition" data-key="project_cta_7">Ver Projeto <i class="fas fa-arrow-right ml-2"></i></a>
-            </div>
-          </div>
-
-          <div class="glass-card rounded-2xl overflow-hidden scroll-animate group" data-category="social">
-            <div class="h-52 overflow-hidden relative">
-              <div class="absolute inset-0 bg-brand/20 opacity-0 group-hover:opacity-100 transition duration-500 z-10"></div>
-              <img src="images/PORTIFOLIO THEONATAN.png" alt="Portfólio Theo" class="w-full h-full object-cover transition duration-700 group-hover:scale-110" />
-            </div>
-            <div class="p-6">
-              <h3 class="font-display text-xl font-bold mb-2 group-hover:text-brand transition" data-key="project8_title">Portfólio Theo</h3>
-              <p class="text-gray-600 dark:text-gray-400 text-sm mb-4 line-clamp-2" data-key="project8_p">Meu portfólio pessoal.</p>
-              <a href="https://portifoliotheonatan.vercel.app" target="_blank" class="text-brand font-bold text-sm uppercase tracking-wide inline-flex items-center hover:text-brand-dark dark:hover:text-white transition" data-key="project_cta_8">Ver Projeto <i class="fas fa-arrow-right ml-2"></i></a>
-            </div>
-          </div>
-
-          <div class="glass-card rounded-2xl overflow-hidden scroll-animate group" data-category="identity">
-            <div class="h-52 overflow-hidden relative">
-              <div class="absolute inset-0 bg-brand/20 opacity-0 group-hover:opacity-100 transition duration-500 z-10"></div>
-              <img src="images/Lanef.png" alt="LANEF" class="w-full h-full object-cover transition duration-700 group-hover:scale-110" />
-            </div>
-            <div class="p-6">
-              <h3 class="font-display text-xl font-bold mb-2 group-hover:text-brand transition" data-key="project9_title">LANEF</h3>
-              <p class="text-gray-600 dark:text-gray-400 text-sm mb-4 line-clamp-2" data-key="project9_p">Liga Acadêmica de Nefrologia.</p>
-              <a href="https://drive.google.com/file/d/1KRZecLJnACUDLCpaRHY8t2YtXvcICLgL/view?usp=sharing" target="_blank" class="text-brand font-bold text-sm uppercase tracking-wide inline-flex items-center hover:text-brand-dark dark:hover:text-white transition" data-key="project_cta_2">Ver Projeto <i class="fas fa-arrow-right ml-2"></i></a>
-            </div>
-          </div>
-
-          <div class="glass-card rounded-2xl overflow-hidden scroll-animate group" data-category="identity">
-            <div class="h-52 overflow-hidden relative">
-              <div class="absolute inset-0 bg-brand/20 opacity-0 group-hover:opacity-100 transition duration-500 z-10"></div>
-              <img src="images/Atlas Enfermagem.png" alt="Atlas" class="w-full h-full object-cover transition duration-700 group-hover:scale-110" />
-            </div>
-            <div class="p-6">
-              <h3 class="font-display text-xl font-bold mb-2 group-hover:text-brand transition" data-key="project10_title">Atlas Enfermagem</h3>
-              <p class="text-gray-600 dark:text-gray-400 text-sm mb-4 line-clamp-2" data-key="project10_p">Associação Atlética de Enfermagem.</p>
-              <a href="https://drive.google.com/file/d/12MwmgGaViHzC3cFMnXL9RlG6Lfls5ogE/view?usp=sharing" target="_blank" class="text-brand font-bold text-sm uppercase tracking-wide inline-flex items-center hover:text-brand-dark dark:hover:text-white transition" data-key="project_cta_2">Ver Projeto <i class="fas fa-arrow-right ml-2"></i></a>
-            </div>
-          </div>
-
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8" id="projects-container">
+          <!-- Projetos serão carregados aqui -->
         </div>
 
         <div class="text-center mt-16 scroll-animate">
-          <a href="#projects" class="inline-block bg-brand hover:bg-brand-dark text-white px-8 py-3 rounded-full font-bold transition shadow-[0_0_20px_rgba(29,78,216,0.4)]" data-key="projects_all_btn">Ver todos os projetos</a>
+          <a href="#projects" class="inline-block bg-brand hover:bg-brand-dark text-white px-8 py-3 rounded-full font-bold transition shadow-[0_0_20px_rgba(29,78,216,0.4)]" data-translate="projects_all_btn">Ver todos os projetos</a>
         </div>
       </div>
     </section>
@@ -630,66 +620,12 @@
     <section id="services" class="py-24 relative">
       <div class="container mx-auto max-w-7xl px-6">
         <div class="text-center mb-16 scroll-animate">
-          <h2 class="font-display text-3xl sm:text-5xl font-bold mb-4" data-key="services_title">Meus serviços</h2>
-          <p class="text-gray-600 dark:text-gray-400 max-w-2xl mx-auto" data-key="services_p">Soluções de design abrangentes para o seu negócio.</p>
+          <h2 class="font-display text-3xl sm:text-5xl font-bold mb-4" data-translate="services_title">Meus serviços</h2>
+          <p class="text-gray-600 dark:text-gray-400 max-w-2xl mx-auto" data-translate="services_p">Soluções de design abrangentes para o seu negócio.</p>
         </div>
 
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-
-          <div class="glass-card rounded-xl p-8 scroll-animate group hover:bg-white dark:hover:bg-dark-surface/80 transition">
-            <div class="w-14 h-14 bg-brand/10 rounded-xl flex items-center justify-center mb-6 border border-brand/20 group-hover:border-brand/50 transition">
-              <i class="fas fa-pencil-ruler text-brand text-2xl"></i>
-            </div>
-            <h3 class="font-display text-xl font-bold mb-3" data-key="service1_title">UI/UX Design</h3>
-            <p class="text-gray-600 dark:text-gray-400 mb-6 text-sm leading-relaxed" data-key="service1_p">Interface centrada no usuário com navegação intuitiva e interações fluidas.</p>
-            <a href="#" class="text-brand text-sm font-bold uppercase tracking-wide inline-flex items-center hover:text-brand-dark dark:hover:text-white transition" data-key="service_cta_1">Explorar <i class="fas fa-arrow-right ml-2"></i></a>
-          </div>
-
-          <div class="glass-card rounded-xl p-8 scroll-animate group hover:bg-white dark:hover:bg-dark-surface/80 transition">
-            <div class="w-14 h-14 bg-brand/10 rounded-xl flex items-center justify-center mb-6 border border-brand/20 group-hover:border-brand/50 transition">
-              <i class="fas fa-palette text-brand text-2xl"></i>
-            </div>
-            <h3 class="font-display text-xl font-bold mb-3" data-key="service2_title">Identidade da Marca</h3>
-            <p class="text-gray-600 dark:text-gray-400 mb-6 text-sm leading-relaxed" data-key="service2_p">Branding completo: logotipo, paleta de cores, tipografia e diretrizes.</p>
-            <a href="#" class="text-brand text-sm font-bold uppercase tracking-wide inline-flex items-center hover:text-brand-dark dark:hover:text-white transition" data-key="service_cta_2">Explorar <i class="fas fa-arrow-right ml-2"></i></a>
-          </div>
-
-          <div class="glass-card rounded-xl p-8 scroll-animate group hover:bg-white dark:hover:bg-dark-surface/80 transition">
-            <div class="w-14 h-14 bg-brand/10 rounded-xl flex items-center justify-center mb-6 border border-brand/20 group-hover:border-brand/50 transition">
-              <i class="fas fa-laptop-code text-brand text-2xl"></i>
-            </div>
-            <h3 class="font-display text-xl font-bold mb-3" data-key="service3_title">Web Design</h3>
-            <p class="text-gray-600 dark:text-gray-400 mb-6 text-sm leading-relaxed" data-key="service3_p">Sites responsivos e envolventes que geram conversões.</p>
-            <a href="#" class="text-brand text-sm font-bold uppercase tracking-wide inline-flex items-center hover:text-brand-dark dark:hover:text-white transition" data-key="service_cta_3">Explorar <i class="fas fa-arrow-right ml-2"></i></a>
-          </div>
-
-          <div class="glass-card rounded-xl p-8 scroll-animate group hover:bg-white dark:hover:bg-dark-surface/80 transition">
-            <div class="w-14 h-14 bg-brand/10 rounded-xl flex items-center justify-center mb-6 border border-brand/20 group-hover:border-brand/50 transition">
-              <i class="fas fa-mobile-alt text-brand text-2xl"></i>
-            </div>
-            <h3 class="font-display text-xl font-bold mb-3" data-key="service4_title">Mobile App Design</h3>
-            <p class="text-gray-600 dark:text-gray-400 mb-6 text-sm leading-relaxed" data-key="service4_p">Interfaces intuitivas com atenção às diretrizes de cada plataforma.</p>
-            <a href="#" class="text-brand text-sm font-bold uppercase tracking-wide inline-flex items-center hover:text-brand-dark dark:hover:text-white transition" data-key="service_cta_4">Explorar <i class="fas fa-arrow-right ml-2"></i></a>
-          </div>
-
-          <div class="glass-card rounded-xl p-8 scroll-animate group hover:bg-white dark:hover:bg-dark-surface/80 transition">
-            <div class="w-14 h-14 bg-brand/10 rounded-xl flex items-center justify-center mb-6 border border-brand/20 group-hover:border-brand/50 transition">
-              <i class="fas fa-bullhorn text-brand text-2xl"></i>
-            </div>
-            <h3 class="font-display text-xl font-bold mb-3" data-key="service5_title">Landing Pages</h3>
-            <p class="text-gray-600 dark:text-gray-400 mb-6 text-sm leading-relaxed" data-key="service5_p">Páginas de alta conversão otimizadas para SEO e jornada do usuário.</p>
-            <a href="#" class="text-brand text-sm font-bold uppercase tracking-wide inline-flex items-center hover:text-brand-dark dark:hover:text-white transition" data-key="service_cta_5">Explorar <i class="fas fa-arrow-right ml-2"></i></a>
-          </div>
-
-          <div class="glass-card rounded-xl p-8 scroll-animate group hover:bg-white dark:hover:bg-dark-surface/80 transition">
-            <div class="w-14 h-14 bg-brand/10 rounded-xl flex items-center justify-center mb-6 border border-brand/20 group-hover:border-brand/50 transition">
-              <i class="fas fa-search text-brand text-2xl"></i>
-            </div>
-            <h3 class="font-display text-xl font-bold mb-3" data-key="service6_title">Pesquisa UX</h3>
-            <p class="text-gray-600 dark:text-gray-400 mb-6 text-sm leading-relaxed" data-key="service6_p">Pesquisa com usuários para decisões de design informadas.</p>
-            <a href="#" class="text-brand text-sm font-bold uppercase tracking-wide inline-flex items-center hover:text-brand-dark dark:hover:text-white transition" data-key="service_cta_6">Explorar <i class="fas fa-arrow-right ml-2"></i></a>
-          </div>
-
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8" id="services-container">
+          <!-- Serviços serão carregados aqui -->
         </div>
       </div>
     </section>
@@ -700,45 +636,45 @@
       <div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-10">
         <div>
           <img src="images/logo theo branco.png" alt="Logo Theo" class="w-32 sm:w-40 h-auto opacity-80 hover:opacity-100 transition dark:brightness-100 brightness-0" loading="lazy" />
-          <p class="mt-4 text-gray-500 text-sm max-w-xs" data-key="footer_p">Criando experiências digitais que importam.</p>
+          <p class="mt-4 text-gray-500 text-sm max-w-xs" data-translate="footer_p">Criando experiências digitais que importam.</p>
         </div>
 
         <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8 md:gap-16 w-full md:w-auto">
           <div>
-            <h4 class="text-xs font-bold text-gray-900 dark:text-white uppercase tracking-widest mb-4" data-key="footer_links_title">Links Rápidos</h4>
+            <h4 class="text-xs font-bold text-gray-900 dark:text-white uppercase tracking-widest mb-4" data-translate="footer_links_title">Links Rápidos</h4>
             <ul class="space-y-2 text-sm">
-              <li><a href="#home" class="text-gray-500 hover:text-brand transition" data-key="footer_link_home">Início</a></li>
-              <li><a href="#about" class="text-gray-500 hover:text-brand transition" data-key="footer_link_about">Sobre</a></li>
-              <li><a href="#projects" class="text-gray-500 hover:text-brand transition" data-key="footer_link_projects">Projetos</a></li>
-              <li><a href="#services" class="text-gray-500 hover:text-brand transition" data-key="footer_link_services">Serviços</a></li>
+              <li><a href="#home" class="text-gray-500 hover:text-brand transition" data-translate="footer_link_home">Início</a></li>
+              <li><a href="#about" class="text-gray-500 hover:text-brand transition" data-translate="footer_link_about">Sobre</a></li>
+              <li><a href="#projects" class="text-gray-500 hover:text-brand transition" data-translate="footer_link_projects">Projetos</a></li>
+              <li><a href="#services" class="text-gray-500 hover:text-brand transition" data-translate="footer_link_services">Serviços</a></li>
             </ul>
           </div>
 
           <div>
-            <h4 class="text-xs font-bold text-gray-900 dark:text-white uppercase tracking-widest mb-4" data-key="footer_services_title">Serviços</h4>
+            <h4 class="text-xs font-bold text-gray-900 dark:text-white uppercase tracking-widest mb-4" data-translate="footer_services_title">Serviços</h4>
             <ul class="space-y-2 text-sm">
-              <li><a href="#" class="text-gray-500 hover:text-brand transition" data-key="footer_service_uiux">UI/UX Design</a></li>
-              <li><a href="#" class="text-gray-500 hover:text-brand transition" data-key="footer_service_branding">Identidade da Marca</a></li>
-              <li><a href="#" class="text-gray-500 hover:text-brand transition" data-key="footer_service_web">Web Design</a></li>
+              <li><a href="#" class="text-gray-500 hover:text-brand transition" data-translate="footer_service_uiux">UI/UX Design</a></li>
+              <li><a href="#" class="text-gray-500 hover:text-brand transition" data-translate="footer_service_branding">Identidade da Marca</a></li>
+              <li><a href="#" class="text-gray-500 hover:text-brand transition" data-translate="footer_service_web">Web Design</a></li>
             </ul>
           </div>
 
           <div>
-            <h4 class="text-xs font-bold text-gray-900 dark:text-white uppercase tracking-widest mb-4" data-key="footer_legal_title">Legal</h4>
+            <h4 class="text-xs font-bold text-gray-900 dark:text-white uppercase tracking-widest mb-4" data-translate="footer_legal_title">Legal</h4>
             <ul class="space-y-2 text-sm">
-              <li><a href="#" class="text-gray-500 hover:text-brand transition" data-key="footer_legal_privacy">Política de Privacidade</a></li>
-              <li><a href="#" class="text-gray-500 hover:text-brand transition" data-key="footer_legal_terms">Termos de Serviço</a></li>
+              <li><a href="#" class="text-gray-500 hover:text-brand transition" data-translate="footer_legal_privacy">Política de Privacidade</a></li>
+              <li><a href="#" class="text-gray-500 hover:text-brand transition" data-translate="footer_legal_terms">Termos de Serviço</a></li>
             </ul>
           </div>
         </div>
       </div>
 
       <div class="border-t border-gray-300 dark:border-white/10 mt-12 pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
-        <p class="text-gray-500 text-xs" data-key="footer_copyright">© 2025 Theo Natan. Todos os direitos reservados.</p>
+        <p class="text-gray-500 text-xs" data-translate="footer_copyright">© 2025 Theo Natan. Todos os direitos reservados.</p>
         <div class="flex gap-6">
-          <a href="#" class="text-gray-500 hover:text-brand transition"><i class="fab fa-instagram text-lg"></i></a>
-          <a href="#" class="text-gray-500 hover:text-brand transition"><i class="fab fa-linkedin text-lg"></i></a>
-          <a href="#" class="text-gray-500 hover:text-brand transition"><i class="fab fa-github text-lg"></i></a>
+          <a href="https://www.instagram.com/theonatan_/" class="text-gray-500 hover:text-brand transition"><i class="fab fa-instagram text-lg"></i></a>
+          <a href="https://www.linkedin.com/in/theo-natan-7346a2266/" class="text-gray-500 hover:text-brand transition"><i class="fab fa-linkedin text-lg"></i></a>
+          <a href="https://github.com/theonatangoes" class="text-gray-500 hover:text-brand transition"><i class="fab fa-github text-lg"></i></a>
         </div>
       </div>
     </div>
@@ -749,44 +685,819 @@
   </button>
 
   <script>
-    // ===== LOGICA DO TEMA (DARK/LIGHT) =====
-    const themeToggles = document.querySelectorAll('#theme-toggle-desktop, #theme-toggle-mobile');
+    // ===== DADOS CENTRALIZADOS =====
+    const portfolioData = {
+      // Informações gerais
+      title: "Portfólio | Theo Natan",
 
-    // Verifica preferência salva ou do sistema
-    if (localStorage.getItem('theme') === 'light' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: light)').matches)) {
-      document.documentElement.classList.remove('dark');
-    } else {
-      document.documentElement.classList.add('dark');
+      // Projetos
+      projects: [
+        {
+          id: 1,
+          title_pt: "Vanessa Fernandes",
+          title_en: "Vanessa Fernandes",
+          title_es: "Vanessa Fernandes",
+          description_pt: "Confeitaria com foco em transmitir delicadeza e elegância.",
+          description_en: "Pastry with a focus on conveying delicacy and elegance.",
+          description_es: "Pastelería con enfoque en transmitir delicadeza y elegancia.",
+          category: "identity",
+          image: "images/VANESSA FERNANDES.png",
+          link: "https://drive.google.com/file/d/1Q5cYa16gfEJgKalux-_QKWi21t2RQrzM/view?usp=sharing",
+          cta_pt: "Ver Projeto",
+          cta_en: "View Project",
+          cta_es: "Ver Proyecto"
+        },
+        {
+          id: 2,
+          title_pt: "JNS",
+          title_en: "JNS",
+          title_es: "JNS",
+          description_pt: "Soluções inteligentes em seguros e consórcios.",
+          description_en: "Smart solutions in insurance and consortia.",
+          description_es: "Soluciones inteligentes en seguros y consorcios.",
+          category: "identity",
+          image: "images/Jns.png",
+          link: "https://drive.google.com/file/d/1uvIDJRPl3RhgIe9zu-cLv4mqRf59470q/view?usp=sharing",
+          cta_pt: "Ver Projeto",
+          cta_en: "View Project",
+          cta_es: "Ver Proyecto"
+        },
+        {
+          id: 3,
+          title_pt: "Flux Agency",
+          title_en: "Flux Agency",
+          title_es: "Flux Agency",
+          description_pt: "Agência com foco em inovação e resultados.",
+          description_en: "Agency focused on innovation and results.",
+          description_es: "Agencia enfocada en innovación y resultados.",
+          category: "identity",
+          image: "images/Flux agency (2).png",
+          link: "https://drive.google.com/file/d/1RfWvmn0eSvzoBwZQAensWQTSyvDbhgpx/view?usp=sharing",
+          cta_pt: "Ver Projeto",
+          cta_en: "View Project",
+          cta_es: "Ver Proyecto"
+        },
+        {
+          id: 4,
+          title_pt: "Simplificando Métodos",
+          title_en: "Simplifying Methods",
+          title_es: "Simplificando Métodos",
+          description_pt: "Estratégias simples e eficientes.",
+          description_en: "Simple and efficient strategies.",
+          description_es: "Estrategias simples y eficientes.",
+          category: "landing",
+          image: "images/SIMPLIFICANDO.png",
+          link: "https://drive.google.com/file/d/17Kdt_P9u4cm-hTaitBwGpvEl04ZhbsvR/view?usp=sharing",
+          cta_pt: "Ver Projeto",
+          cta_en: "View Project",
+          cta_es: "Ver Proyecto"
+        },
+        {
+          id: 5,
+          title_pt: "Sacrovi",
+          title_en: "Sacrovi",
+          title_es: "Sacrovi",
+          description_pt: "Produtora audiovisual: drones e filmagens.",
+          description_en: "Audiovisual production: drones and filming.",
+          description_es: "Producción audiovisual: drones y filmaciones.",
+          category: "identity",
+          image: "images/SACROVI.png",
+          link: "https://drive.google.com/file/d/1GWThmxPaAiy_EqtQ91ZPh0z4e7aGD6gx/view?usp=sharing",
+          cta_pt: "Ver Projeto",
+          cta_en: "View Project",
+          cta_es: "Ver Proyecto"
+        },
+        {
+          id: 6,
+          title_pt: "Esphera Checkout",
+          title_en: "Esphera Checkout",
+          title_es: "Esphera Checkout",
+          description_pt: "Plataforma de vendas online.",
+          description_en: "Online sales platform.",
+          description_es: "Plataforma de ventas en línea.",
+          category: "landing",
+          image: "images/ESPHERA.png",
+          link: "https://drive.google.com/file/d/1wTlUco4nAJ-GzVLXDb0MmF7OB7SDZKTB/view?usp=sharing",
+          cta_pt: "Ver Projeto",
+          cta_en: "View Project",
+          cta_es: "Ver Proyecto"
+        },
+        {
+          id: 7,
+          title_pt: "Portfólio Ícaro Dev",
+          title_en: "Developer Portfolio",
+          title_es: "Portafolio Desarrollador",
+          description_pt: "Design para desenvolvedor Ícaro Moreira.",
+          description_en: "Design for developer Ícaro Moreira.",
+          description_es: "Diseño para desarrollador Ícaro Moreira.",
+          category: "social",
+          image: "images/PORTIFOLIO DEV.png",
+          link: "https://drive.google.com/file/d/1kwdvLqCA6hCaPX-6i7aB17iVWOBQCikX/view?usp=sharing",
+          cta_pt: "Ver Projeto",
+          cta_en: "View Project",
+          cta_es: "Ver Proyecto"
+        },
+        {
+          id: 8,
+          title_pt: "Portfólio Theo Natan",
+          title_en: "Theo Natan Portfolio",
+          title_es: "Portafolio Theo Natan",
+          description_pt: "Meu portfólio pessoal.",
+          description_en: "My personal portfolio.",
+          description_es: "Mi portafolio personal.",
+          category: "social",
+          image: "images/PORTIFOLIO THEONATAN.png",
+          link: "https://portifoliotheonatan.vercel.app",
+          cta_pt: "Ver Projeto",
+          cta_en: "View Project",
+          cta_es: "Ver Proyecto"
+        },
+        {
+          id: 9,
+          title_pt: "LANEF",
+          title_en: "LANEF",
+          title_es: "LANEF",
+          description_pt: "Liga Acadêmica de Nefrologia do Estado da Paraíba.",
+          description_en: "Academic League of Nephrology of the State of Paraíba.",
+          description_es: "Liga Académica de Nefrología del Estado de Paraíba..",
+          category: "identity",
+          image: "images/Lanef.png",
+          link: "https://drive.google.com/file/d/1KRZecLJnACUDLCpaRHY8t2YtXvcICLgL/view?usp=sharing",
+          cta_pt: "Ver Projeto",
+          cta_en: "View Project",
+          cta_es: "Ver Proyecto"
+        },
+        {
+          id: 10,
+          title_pt: "Atlas Enfermagem",
+          title_en: "Atlas Nursing",
+          title_es: "Atlas Enfermería",
+          description_pt: "Associação Atlética de Enfermagem.",
+          description_en: "Nursing Athletic Association.",
+          description_es: "Asociación Atlética de Enfermería.",
+          category: "identity",
+          image: "images/Atlas Enfermagem.png",
+          link: "https://drive.google.com/file/d/12MwmgGaViHzC3cFMnXL9RlG6Lfls5ogE/view?usp=sharing",
+          cta_pt: "Ver Projeto",
+          cta_en: "View Project",
+          cta_es: "Ver Proyecto"
+        },
+        {
+          id: 11,
+          title_pt: "Mentoria Full Design",
+          title_en: "Full Design Mentoring",
+          title_es: "Mentoría de diseño completo",
+          description_pt: "Imersão total. Ferramentas profissionais. Estratégias de venda.",
+          description_en: "Total immersion. Professional tools. Sales strategies.",
+          description_es: "Inmersión total. Herramientas profesionales. Estrategias de ventas.",
+          category: "landing",
+          image: "images/FULLDESIGN.png",
+          link: "https://paginade-vendas.vercel.app",
+          cta_pt: "Ver Projeto",
+          cta_en: "View Project",
+          cta_es: "Ver Proyecto"
+        },
+        {
+          id: 12,
+          title_pt: "NExTI - Núcleo de Extensão em Tecnologia da Informação",
+          title_en: "NExTI - Information Technology Extension Center",
+          title_es: "NExTI - Centro de Extensión de Tecnologías de la Información",
+          description_pt: "Transformando alunos em profissionais excepcionais através de desafios reais e inovação constante.",
+          description_en: "Transforming students into exceptional professionals through real-world challenges and constant innovation.",
+          description_es: "Transformar estudiantes en profesionales excepcionales a través de desafíos del mundo real e innovación constante.",
+          category: "landing",
+          image: "images/NexTI.png",
+          link: "https://theonatangoes.github.io/Redesign-NExTI/index.html",
+          cta_pt: "Ver Projeto",
+          cta_en: "View Project",
+          cta_es: "Ver Proyecto"
+        }
+      ],
+
+      // Serviços
+      services: [
+        {
+          id: 1,
+          title_pt: "UI/UX Design",
+          title_en: "UI/UX Design",
+          title_es: "Diseño UI/UX",
+          description_pt: "Interface centrada no usuário com navegação intuitiva e interações fluidas.",
+          description_en: "User-centered interface with intuitive navigation and fluid interactions.",
+          description_es: "Interfaz centrada en el usuario con navegación intuitiva e interacciones fluidas.",
+          icon: "fas fa-pencil-ruler",
+          cta_pt: "Explorar",
+          cta_en: "Explore",
+          cta_es: "Explorar"
+        },
+        {
+          id: 2,
+          title_pt: "Identidade da Marca",
+          title_en: "Brand Identity",
+          title_es: "Identidad de Marca",
+          description_pt: "Branding completo: logotipo, paleta de cores, tipografia e diretrizes.",
+          description_en: "Complete branding: logo, color palette, typography and guidelines.",
+          description_es: "Branding completo: logotipo, paleta de colores, tipografía y directrices.",
+          icon: "fas fa-palette",
+          cta_pt: "Explorar",
+          cta_en: "Explore",
+          cta_es: "Explorar"
+        },
+        {
+          id: 3,
+          title_pt: "Web Design",
+          title_en: "Web Design",
+          title_es: "Diseño Web",
+          description_pt: "Sites responsivos e envolventes que geram conversões.",
+          description_en: "Responsive and engaging websites that drive conversions.",
+          description_es: "Sitios web responsivos y atractivos que generan conversiones.",
+          icon: "fas fa-laptop-code",
+          cta_pt: "Explorar",
+          cta_en: "Explore",
+          cta_es: "Explorar"
+        },
+        {
+          id: 4,
+          title_pt: "Mobile App Design",
+          title_en: "Mobile App Design",
+          title_es: "Diseño de Apps Móviles",
+          description_pt: "Interfaces intuitivas com atenção às diretrizes de cada plataforma.",
+          description_en: "Intuitive interfaces with attention to each platform's guidelines.",
+          description_es: "Interfaces intuitivas con atención a las directrices de cada plataforma.",
+          icon: "fas fa-mobile-alt",
+          cta_pt: "Explorar",
+          cta_en: "Explore",
+          cta_es: "Explorar"
+        },
+        {
+          id: 5,
+          title_pt: "Landing Pages",
+          title_en: "Landing Pages",
+          title_es: "Páginas de Destino",
+          description_pt: "Páginas de alta conversão otimizadas para SEO e jornada do usuário.",
+          description_en: "High-conversion pages optimized for SEO and user journey.",
+          description_es: "Páginas de alta conversión optimizadas para SEO y experiencia de usuario.",
+          icon: "fas fa-bullhorn",
+          cta_pt: "Explorar",
+          cta_en: "Explore",
+          cta_es: "Explorar"
+        },
+        {
+          id: 6,
+          title_pt: "Pesquisa UX",
+          title_en: "UX Research",
+          title_es: "Investigación UX",
+          description_pt: "Pesquisa com usuários para decisões de design informadas.",
+          description_en: "User research for informed design decisions.",
+          description_es: "Investigación con usuarios para decisiones de diseño informadas.",
+          icon: "fas fa-search",
+          cta_pt: "Explorar",
+          cta_en: "Explore",
+          cta_es: "Explorar"
+        }
+      ]
+    };
+
+    // ===== TRADUÇÕES =====
+    const translations = {
+      pt: {
+        // Navegação
+        page_title: "Portfólio | Theo Natan",
+        nav_home: "Início",
+        nav_about: "Sobre",
+        nav_projects: "Projetos",
+        nav_services: "Serviços",
+        nav_home_mobile: "Início",
+        nav_about_mobile: "Sobre",
+        nav_projects_mobile: "Projetos",
+        nav_services_mobile: "Serviços",
+        nav_lang_mobile: "Idioma",
+        theme_toggle: "Tema",
+
+        // Hero Section
+        hero_availability: "Disponível para Projetos",
+        hero_h1_l1: "Design Minimalista,",
+        hero_h1_l2: '<span class="impacto-maximo-animado"><span class="animated-gradient text-glow">Impacto Máximo</span></span>',
+        hero_p: "Crio experiências digitais elegantes que equilibram beleza e funcionalidade para ajudar as marcas a se destacarem.",
+        hero_button: "Veja Meu Trabalho",
+        hero_button_secondary: "Sobre Mim",
+
+        // About Section
+        about_title: "Sobre mim",
+        about_greeting: "Muito prazer, sou Theo Natan",
+        about_p: "Sou Designer Gráfico e Web Designer com experiência no desenvolvimento de identidades visuais, logos, designs para aplicações web, portfólios digitais, aplicativos e landing pages. Meu trabalho é transformar ideias em projetos criativos e funcionais.",
+        about_skills_title: "Minhas Habilidades",
+        skill_uiux: "UI/UX Design",
+        skill_branding: "Identidade da Marca",
+        skill_web: "Web Design",
+        skill_mobile: "Mobile Design",
+        skill_strategy: "Visão Estratégica",
+        about_cta: 'Confira mais abaixo <i class="fas fa-arrow-down ml-2 animate-bounce"></i>',
+
+        // Projects Section
+        projects_title: "Meus Projetos",
+        projects_p: "Explore meus trabalhos mais recentes. Design com propósito e estética.",
+        filter_all: "Todos",
+        filter_identity: "Identidades",
+        filter_landing: "Landing Pages",
+        filter_portfolios: "Portfólios",
+        projects_all_btn: "Ver todos os projetos",
+
+        // Services Section
+        services_title: "Meus serviços",
+        services_p: "Soluções de design abrangentes para o seu negócio.",
+
+        // Footer
+        footer_p: "Criando experiências digitais que importam.",
+        footer_links_title: "Links Rápidos",
+        footer_link_home: "Início",
+        footer_link_about: "Sobre",
+        footer_link_projects: "Projetos",
+        footer_link_services: "Serviços",
+        footer_services_title: "Serviços",
+        footer_service_uiux: "UI/UX Design",
+        footer_service_branding: "Identidade da Marca",
+        footer_service_web: "Web Design",
+        footer_legal_title: "Legal",
+        footer_legal_privacy: "Política de Privacidade",
+        footer_legal_terms: "Termos de Serviço",
+        footer_copyright: "© 2025 Theo Natan. Todos os direitos reservados."
+      },
+      en: {
+        // Navigation
+        page_title: "Portfolio | Theo Natan",
+        nav_home: "Home",
+        nav_about: "About",
+        nav_projects: "Projects",
+        nav_services: "Services",
+        nav_home_mobile: "Home",
+        nav_about_mobile: "About",
+        nav_projects_mobile: "Projects",
+        nav_services_mobile: "Services",
+        nav_lang_mobile: "Language",
+        theme_toggle: "Theme",
+
+        // Hero Section
+        hero_availability: "Available for Projects",
+        hero_h1_l1: "Minimalist Design,",
+        hero_h1_l2: '<span class="impacto-maximo-animado"><span class="animated-gradient text-glow">Maximum Impact</span></span>',
+        hero_p: "I create elegant digital experiences that balance beauty and functionality to help brands stand out.",
+        hero_button: "See My Work",
+        hero_button_secondary: "About Me",
+
+        // About Section
+        about_title: "About Me",
+        about_greeting: "Nice to meet you, I'm Theo Natan",
+        about_p: "I am a Graphic and Web Designer with experience in developing visual identities, logos, designs for web applications, digital portfolios, apps, and landing pages. My work is to transform ideas into creative and functional projects.",
+        about_skills_title: "My Skills",
+        skill_uiux: "UI/UX Design",
+        skill_branding: "Brand Identity",
+        skill_web: "Web Design",
+        skill_mobile: "Mobile Design",
+        skill_strategy: "Strategic Vision",
+        about_cta: 'Check out more below <i class="fas fa-arrow-down ml-2 animate-bounce"></i>',
+
+        // Projects Section
+        projects_title: "My Projects",
+        projects_p: "Explore my latest works. Design with purpose and aesthetics.",
+        filter_all: "All",
+        filter_identity: "Identities",
+        filter_landing: "Landing Pages",
+        filter_portfolios: "Portfolios",
+        projects_all_btn: "View all projects",
+
+        // Services Section
+        services_title: "My Services",
+        services_p: "Comprehensive design solutions for your business.",
+
+        // Footer
+        footer_p: "Creating digital experiences that matter.",
+        footer_links_title: "Quick Links",
+        footer_link_home: "Home",
+        footer_link_about: "About",
+        footer_link_projects: "Projects",
+        footer_link_services: "Services",
+        footer_services_title: "Services",
+        footer_service_uiux: "UI/UX Design",
+        footer_service_branding: "Brand Identity",
+        footer_service_web: "Web Design",
+        footer_legal_title: "Legal",
+        footer_legal_privacy: "Privacy Policy",
+        footer_legal_terms: "Terms of Service",
+        footer_copyright: "© 2025 Theo Natan. All rights reserved."
+      },
+      es: {
+        // Navegación
+        page_title: "Portafolio | Theo Natan",
+        nav_home: "Inicio",
+        nav_about: "Sobre",
+        nav_projects: "Proyectos",
+        nav_services: "Servicios",
+        nav_home_mobile: "Inicio",
+        nav_about_mobile: "Sobre",
+        nav_projects_mobile: "Proyectos",
+        nav_services_mobile: "Servicios",
+        nav_lang_mobile: "Idioma",
+        theme_toggle: "Tema",
+
+        // Hero Section
+        hero_availability: "Disponible para Proyectos",
+        hero_h1_l1: "Diseño Minimalista,",
+        hero_h1_l2: '<span class="impacto-maximo-animado"><span class="animated-gradient text-glow">Impacto Máximo</span></span>',
+        hero_p: "Creo experiencias digitales elegantes que equilibran belleza y funcionalidad para ayudar a las marcas a destacar.",
+        hero_button: "Ver Mi Trabajo",
+        hero_button_secondary: "Sobre Mí",
+
+        // About Section
+        about_title: "Sobre mí",
+        about_greeting: "Mucho gusto, soy Theo Natan",
+        about_p: "Soy Diseñador Gráfico y Web Designer con experiencia en el desarrollo de identidades visuales, logotipos, diseños para aplicaciones web, portafolios digitales, aplicaciones y páginas de destino. Mi trabajo es transformar ideas en proyectos creativos y funcionales.",
+        about_skills_title: "Mis Habilidades",
+        skill_uiux: "Diseño UI/UX",
+        skill_branding: "Identidad de Marca",
+        skill_web: "Diseño Web",
+        skill_mobile: "Diseño Móvil",
+        skill_strategy: "Visión Estratégica",
+        about_cta: 'Ver más abajo <i class="fas fa-arrow-down ml-2 animate-bounce"></i>',
+
+        // Projects Section
+        projects_title: "Mis Proyectos",
+        projects_p: "Explora mis trabajos más recientes. Diseño con propósito y estética.",
+        filter_all: "Todos",
+        filter_identity: "Identidades",
+        filter_landing: "Landing Pages",
+        filter_portfolios: "Portafolios",
+        projects_all_btn: "Ver todos los proyectos",
+
+        // Services Section
+        services_title: "Mis servicios",
+        services_p: "Soluciones de diseño integrales para tu negocio.",
+
+        // Footer
+        footer_p: "Creando experiencias digitales que importan.",
+        footer_links_title: "Enlaces Rápidos",
+        footer_link_home: "Inicio",
+        footer_link_about: "Sobre",
+        footer_link_projects: "Proyectos",
+        footer_link_services: "Servicios",
+        footer_services_title: "Servicios",
+        footer_service_uiux: "Diseño UI/UX",
+        footer_service_branding: "Identidad de Marca",
+        footer_service_web: "Diseño Web",
+        footer_legal_title: "Legal",
+        footer_legal_privacy: "Política de Privacidad",
+        footer_legal_terms: "Términos de Servicio",
+        footer_copyright: "© 2025 Theo Natan. Todos los derechos reservados."
+      }
+    };
+
+    // ===== VARIÁVEIS GLOBAIS =====
+    let currentLang = localStorage.getItem('language') || 'pt';
+    let currentFilter = 'all';
+
+    // ===== FUNÇÕES DE RENDERIZAÇÃO =====
+    function renderProjects() {
+      const container = document.getElementById('projects-container');
+      if (!container) return;
+
+      container.innerHTML = '';
+
+      portfolioData.projects.forEach(project => {
+        const projectCard = document.createElement('div');
+        projectCard.className = 'glass-card rounded-2xl overflow-hidden scroll-animate group';
+        projectCard.setAttribute('data-category', project.category);
+        projectCard.style.opacity = '0';
+        projectCard.style.transform = 'translateY(30px)';
+
+        const title = project[`title_${currentLang}`] || project.title_pt;
+        const description = project[`description_${currentLang}`] || project.description_pt;
+        const cta = project[`cta_${currentLang}`] || project.cta_pt;
+
+        projectCard.innerHTML = `
+          <div class="h-52 overflow-hidden relative">
+            <div class="absolute inset-0 bg-brand/20 opacity-0 group-hover:opacity-100 transition duration-500 z-10"></div>
+            <img src="${project.image}" alt="${title}" class="w-full h-full object-cover transition duration-700 group-hover:scale-110" />
+          </div>
+          <div class="p-6">
+            <h3 class="font-display text-xl font-bold mb-2 group-hover:text-brand transition">${title}</h3>
+            <p class="text-gray-600 dark:text-gray-400 text-sm mb-4 line-clamp-2">${description}</p>
+            <a href="${project.link}" target="_blank" class="text-brand font-bold text-sm uppercase tracking-wide inline-flex items-center hover:text-brand-dark dark:hover:text-white transition">
+              ${cta} <i class="fas fa-arrow-right ml-2"></i>
+            </a>
+          </div>
+        `;
+
+        container.appendChild(projectCard);
+      });
+
+      // Aplicar filtro atual
+      setTimeout(() => applyFilter(currentFilter), 50);
+
+      // Reativar observador de scroll
+      setTimeout(() => setupScrollObservers(), 100);
     }
 
-    themeToggles.forEach(toggle => {
-      toggle.addEventListener('click', () => {
-        document.documentElement.classList.toggle('dark');
+    function renderServices() {
+      const container = document.getElementById('services-container');
+      if (!container) return;
 
-        if (document.documentElement.classList.contains('dark')) {
-          localStorage.setItem('theme', 'dark');
-        } else {
-          localStorage.setItem('theme', 'light');
-        }
+      container.innerHTML = '';
 
-        // Reinicia particulas para mudar a cor se necessário
-        initParticles();
+      portfolioData.services.forEach(service => {
+        const serviceCard = document.createElement('div');
+        serviceCard.className = 'glass-card rounded-xl p-8 scroll-animate group hover:bg-white dark:hover:bg-dark-surface/80 transition';
+        serviceCard.style.opacity = '0';
+        serviceCard.style.transform = 'translateY(30px)';
+
+        const title = service[`title_${currentLang}`] || service.title_pt;
+        const description = service[`description_${currentLang}`] || service.description_pt;
+        const cta = service[`cta_${currentLang}`] || service.cta_pt;
+
+        serviceCard.innerHTML = `
+          <div class="w-14 h-14 bg-brand/10 rounded-xl flex items-center justify-center mb-6 border border-brand/20 group-hover:border-brand/50 transition">
+            <i class="${service.icon} text-brand text-2xl"></i>
+          </div>
+          <h3 class="font-display text-xl font-bold mb-3">${title}</h3>
+          <p class="text-gray-600 dark:text-gray-400 mb-6 text-sm leading-relaxed">${description}</p>
+          <a href="#" class="text-brand text-sm font-bold uppercase tracking-wide inline-flex items-center hover:text-brand-dark dark:hover:text-white transition">
+            ${cta} <i class="fas fa-arrow-right ml-2"></i>
+          </a>
+        `;
+
+        container.appendChild(serviceCard);
       });
+
+      // Reativar observador de scroll
+      setTimeout(() => setupScrollObservers(), 100);
+    }
+
+    // ===== SISTEMA DE TRADUÇÃO =====
+    function setLanguage(lang) {
+      currentLang = lang;
+      document.documentElement.lang = lang;
+      localStorage.setItem('language', lang);
+
+      // Atualizar textos estáticos
+      document.querySelectorAll('[data-translate]').forEach(element => {
+        const key = element.getAttribute('data-translate');
+        if (translations[lang] && translations[lang][key]) {
+          const translation = translations[lang][key];
+          // Verificar se contém HTML
+          if (translation.includes('<')) {
+            element.innerHTML = translation;
+          } else {
+            element.textContent = translation;
+          }
+        }
+      });
+
+      // Atualizar título da página
+      document.title = translations[lang].page_title;
+
+      // Atualizar textos dos botões de idioma
+      updateLanguageButtons();
+
+      // Recarregar projetos e serviços com novo idioma
+      renderProjects();
+      renderServices();
+    }
+
+    function updateLanguageButtons() {
+      const langCodes = { pt: 'PT', en: 'EN', es: 'ES' };
+      const currentText = document.getElementById('current-lang-text');
+      const currentMobileText = document.getElementById('current-lang-text-mobile');
+
+      if (currentText) currentText.textContent = langCodes[currentLang];
+      if (currentMobileText) currentMobileText.textContent = langCodes[currentLang];
+
+      // Atualizar classes ativas
+      document.querySelectorAll('.language-option').forEach(option => {
+        option.classList.toggle('active', option.getAttribute('data-lang') === currentLang);
+      });
+    }
+
+    // ===== FILTRO DE PROJETOS =====
+    function applyFilter(filter) {
+      currentFilter = filter;
+      const cards = document.querySelectorAll('.glass-card[data-category]');
+      const buttons = document.querySelectorAll('.filter-btn');
+
+      // Atualizar botões
+      buttons.forEach(btn => {
+        const isActive = btn.getAttribute('data-filter') === filter;
+        btn.classList.toggle('bg-brand', isActive);
+        btn.classList.toggle('text-white', isActive);
+        btn.classList.toggle('text-gray-500', !isActive);
+        btn.classList.toggle('dark:text-gray-400', !isActive);
+        btn.setAttribute('aria-pressed', isActive);
+      });
+
+      // Filtrar cards
+      cards.forEach(card => {
+        const category = card.getAttribute('data-category');
+        const shouldShow = filter === 'all' || category === filter;
+
+        if (shouldShow) {
+          card.classList.remove('card-hide');
+          card.style.display = 'block';
+          setTimeout(() => {
+            card.style.opacity = '1';
+            card.style.transform = 'translateY(0)';
+          }, 10);
+        } else {
+          card.style.opacity = '0';
+          card.style.transform = 'translateY(20px)';
+          setTimeout(() => {
+            card.classList.add('card-hide');
+            card.style.display = 'none';
+          }, 300);
+        }
+      });
+    }
+
+    function setupFilters() {
+      document.querySelectorAll('.filter-btn').forEach(btn => {
+        btn.addEventListener('click', () => {
+          const filter = btn.getAttribute('data-filter');
+          applyFilter(filter);
+        });
+      });
+    }
+
+    // ===== OBSERVADOR DE SCROLL =====
+    function setupScrollObservers() {
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('is-visible');
+            entry.target.style.opacity = '1';
+            entry.target.style.transform = 'translateY(0)';
+          }
+        });
+      }, { threshold: 0.1 });
+
+      document.querySelectorAll('.scroll-animate').forEach(el => {
+        observer.observe(el);
+      });
+    }
+
+    // ===== DROPDOWN DE IDIOMA =====
+    function setupLanguageDropdowns() {
+      // Desktop
+      const desktopCurrent = document.getElementById('lang-current-desktop');
+      const desktopOptions = document.getElementById('lang-options-desktop');
+
+      if (desktopCurrent && desktopOptions) {
+        desktopCurrent.addEventListener('click', (e) => {
+          e.stopPropagation();
+          desktopOptions.style.display = desktopOptions.style.display === 'block' ? 'none' : 'block';
+        });
+
+        desktopOptions.addEventListener('click', (e) => e.stopPropagation());
+
+        desktopOptions.querySelectorAll('.language-option').forEach(option => {
+          option.addEventListener('click', () => {
+            const lang = option.getAttribute('data-lang');
+            setLanguage(lang);
+            desktopOptions.style.display = 'none';
+          });
+        });
+      }
+
+      // Mobile
+      const mobileCurrent = document.getElementById('lang-current-mobile');
+      const mobileOptions = document.getElementById('lang-options-mobile');
+
+      if (mobileCurrent && mobileOptions) {
+        mobileCurrent.addEventListener('click', (e) => {
+          e.stopPropagation();
+          mobileOptions.style.display = mobileOptions.style.display === 'block' ? 'none' : 'block';
+        });
+
+        mobileOptions.addEventListener('click', (e) => e.stopPropagation());
+
+        mobileOptions.querySelectorAll('.language-option').forEach(option => {
+          option.addEventListener('click', () => {
+            const lang = option.getAttribute('data-lang');
+            setLanguage(lang);
+            mobileOptions.style.display = 'none';
+          });
+        });
+      }
+
+      // Fechar dropdowns ao clicar fora
+      document.addEventListener('click', () => {
+        if (desktopOptions) desktopOptions.style.display = 'none';
+        if (mobileOptions) mobileOptions.style.display = 'none';
+      });
+    }
+
+    // ===== INICIALIZAÇÃO =====
+    document.addEventListener('DOMContentLoaded', function () {
+      console.log('DOM carregado, inicializando...');
+
+      // Inicializar partículas
+      initParticles();
+      animateParticles();
+
+      // Renderizar conteúdo inicial
+      renderProjects();
+      renderServices();
+
+      // Configurar idioma
+      setLanguage(currentLang);
+
+      // Configurar dropdowns
+      setupLanguageDropdowns();
+
+      // Configurar filtros
+      setupFilters();
+
+      // Configurar observador de scroll
+      setupScrollObservers();
+
+      // Configurar menu mobile
+      const mobileMenuButton = document.getElementById('mobile-menu-button');
+      const mobileMenu = document.getElementById('mobile-menu');
+
+      if (mobileMenuButton && mobileMenu) {
+        mobileMenuButton.addEventListener('click', () => {
+          mobileMenu.classList.toggle('hidden');
+        });
+
+        mobileMenu.querySelectorAll('a').forEach(link => {
+          link.addEventListener('click', () => {
+            mobileMenu.classList.add('hidden');
+          });
+        });
+      }
+
+      // Configurar tema
+      const themeToggles = document.querySelectorAll('#theme-toggle-desktop, #theme-toggle-mobile');
+
+      if (localStorage.getItem('theme') === 'light' ||
+        (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: light)').matches)) {
+        document.documentElement.classList.remove('dark');
+      } else {
+        document.documentElement.classList.add('dark');
+      }
+
+      themeToggles.forEach(toggle => {
+        toggle.addEventListener('click', () => {
+          document.documentElement.classList.toggle('dark');
+          localStorage.setItem('theme',
+            document.documentElement.classList.contains('dark') ? 'dark' : 'light'
+          );
+          initParticles();
+        });
+      });
+
+      // Configurar scroll suave
+      document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
+          e.preventDefault();
+          const targetId = this.getAttribute('href');
+          if (targetId === '#') return;
+
+          const target = document.querySelector(targetId);
+          if (target) {
+            window.scrollTo({
+              top: target.offsetTop - 80,
+              behavior: 'smooth'
+            });
+
+            // Fechar menu mobile
+            if (mobileMenu) mobileMenu.classList.add('hidden');
+          }
+        });
+      });
+
+      // Configurar botão voltar ao topo
+      const backToTop = document.getElementById('back-to-top');
+      if (backToTop) {
+        window.addEventListener('scroll', () => {
+          if (window.scrollY > 300) {
+            backToTop.classList.remove('opacity-0', 'invisible');
+          } else {
+            backToTop.classList.add('opacity-0', 'invisible');
+          }
+        });
+
+        backToTop.addEventListener('click', () => {
+          window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+      }
     });
 
-
-    // ===== PARTICLES ANIMATION (CANVAS) =====
+    // ===== PARTÍCULAS =====
     const canvas = document.getElementById('network-canvas');
     const ctx = canvas.getContext('2d');
     let width, height;
     let particles = [];
-
-    // Configuração de partículas
     const particleCount = window.innerWidth < 768 ? 40 : 80;
     const connectionDistance = 140;
     const mouseDistance = 180;
-
     let mouse = { x: null, y: null };
+
     window.addEventListener('mousemove', (e) => {
       mouse.x = e.x;
       mouse.y = e.y;
@@ -808,13 +1519,10 @@
         this.size = Math.random() * 2 + 1;
       }
 
-      // Determina cor baseado no tema
       getColor() {
-        if (document.documentElement.classList.contains('dark')) {
-          return 'rgba(29, 78, 216, 0.6)'; // Azul no dark mode
-        } else {
-          return 'rgba(29, 78, 216, 0.8)'; // Azul um pouco mais forte no light mode
-        }
+        return document.documentElement.classList.contains('dark')
+          ? 'rgba(29, 78, 216, 0.6)'
+          : 'rgba(29, 78, 216, 0.8)';
       }
 
       update() {
@@ -848,6 +1556,7 @@
 
     function initParticles() {
       particles = [];
+      resize();
       for (let i = 0; i < particleCount; i++) {
         particles.push(new Particle());
       }
@@ -858,347 +1567,35 @@
 
       const isDark = document.documentElement.classList.contains('dark');
 
-      for (let i = 0; i < particles.length; i++) {
-        particles[i].update();
-        particles[i].draw();
-        for (let j = i; j < particles.length; j++) {
-          let dx = particles[i].x - particles[j].x;
-          let dy = particles[i].y - particles[j].y;
+      particles.forEach((particle, i) => {
+        particle.update();
+        particle.draw();
+
+        for (let j = i + 1; j < particles.length; j++) {
+          let dx = particle.x - particles[j].x;
+          let dy = particle.y - particles[j].y;
           let distance = Math.sqrt(dx * dx + dy * dy);
+
           if (distance < connectionDistance) {
             ctx.beginPath();
-
-            // Cor das linhas
             let opacity = 1 - (distance / connectionDistance);
-            if (isDark) {
-              ctx.strokeStyle = 'rgba(29, 78, 216, ' + (opacity * 0.3) + ')';
-            } else {
-              ctx.strokeStyle = 'rgba(29, 78, 216, ' + (opacity * 0.4) + ')';
-            }
-
+            ctx.strokeStyle = isDark
+              ? `rgba(29, 78, 216, ${opacity * 0.3})`
+              : `rgba(29, 78, 216, ${opacity * 0.4})`;
             ctx.lineWidth = 1;
-            ctx.moveTo(particles[i].x, particles[i].y);
+            ctx.moveTo(particle.x, particle.y);
             ctx.lineTo(particles[j].x, particles[j].y);
             ctx.stroke();
           }
         }
-      }
+      });
+
       requestAnimationFrame(animateParticles);
     }
 
-    resize();
-    initParticles();
-    animateParticles();
-
-    // ===== SISTEMA DE TRADUÇÃO (MANTIDO) =====
-    const translations = {
-      en: {
-        page_title: "Portfolio | Theo Natan",
-        nav_home: "Home",
-        nav_about: "About",
-        nav_projects: "Projects",
-        nav_services: "Services",
-        nav_home_mobile: "Home",
-        nav_about_mobile: "About",
-        nav_projects_mobile: "Projects",
-        nav_services_mobile: "Services",
-        lang_switcher_aria: "Change language",
-        nav_lang_mobile: "Change Language",
-        hero_h1_l1: "Minimalist Design,",
-        hero_h1_l2: '<span class="impacto-maximo-animado"><span class="animated-gradient text-glow">Maximum Impact</span></span>',
-        hero_p: "I create elegant digital experiences that balance beauty and functionality to help brands stand out.",
-        hero_button: "See My Work",
-        about_title: "About Me",
-        about_greeting: "Nice to meet you, I'm Theo Natan",
-        about_p: "I am a Graphic and Web Designer with experience in developing visual identities, logos, designs for web applications, digital portfolios, apps, and landing pages. My work is to transform ideas into creative and functional projects.",
-        about_skills_title: "My Skills",
-        skill_uiux: "UI/UX Design",
-        skill_branding: "Brand Identity",
-        skill_web: "Web Design",
-        skill_mobile: "Mobile Design",
-        skill_strategy: "Strategic Vision",
-        about_cta: 'Check out more below <i class="fas fa-arrow-down ml-2"></i>',
-        projects_title: "My Projects",
-        projects_p: "Explore my latest works in different categories. Each project is created with attention to detail and user experience.",
-        filter_all: "All",
-        filter_identity: "Visual Identities",
-        filter_landing: "Landing Pages",
-        filter_portfolios: "Portfolios",
-        project1_title: "Vanessa Fernandes Patisserie",
-        project1_p: "Vanessa Fernandes Patisserie with a focus on conveying delicacy, elegance, and artisanal care.",
-        project2_title: "JNS",
-        project2_p: "JNS offers smart solutions in insurance, consortia, and credit, with personalized service.",
-        project3_title: "Flux Agency",
-        project3_p: "Agency focused on innovation and results. Modern and dynamic shapes.",
-        project4_title: "Simplifying Methods",
-        project4_p: "Simple and efficient strategies to break patterns and reach new limits.",
-        project5_title: "Sacrovi",
-        project5_p: "Audiovisual production company: drones, filming, photography.",
-        project6_title: "Esphera Checkout",
-        project6_p: "Online sales platform with speed, security, and simplicity.",
-        project7_title: "Portfolio for Developer",
-        project7_p: "Digital portfolio design for Developer Ícaro Moreira. Modern layout.",
-        project8_title: "Theo Natan's Portfolio",
-        project8_p: "My portfolio with projects, skills, and experiences presented clearly.",
-        project9_title: "LANEF",
-        project9_p: "Academic League of Nephrology - UFPB.",
-        project10_title: "Nursing Atlas",
-        project10_p: "Nursing Athletic Association - Estácio FMJ.",
-        project_cta_1: 'View Project <i class="fas fa-arrow-right ml-2"></i>',
-        project_cta_2: 'View Project <i class="fas fa-arrow-right ml-2"></i>',
-        project_cta_3: 'View Project <i class="fas fa-arrow-right ml-2"></i>',
-        project_cta_4: 'View Project <i class="fas fa-arrow-right ml-2"></i>',
-        project_cta_5: 'View Project <i class="fas fa-arrow-right ml-2"></i>',
-        project_cta_6: 'View Project <i class="fas fa-arrow-right ml-2"></i>',
-        project_cta_7: 'View Project <i class="fas fa-arrow-right ml-2"></i>',
-        project_cta_8: 'View Project <i class="fas fa-arrow-right ml-2"></i>',
-        projects_all_btn: "View all projects",
-        services_title: "My Services",
-        services_p: "I offer comprehensive design solutions tailored to your business goals.",
-        service1_title: "UI/UX Design",
-        service1_p: "User-centered interface with intuitive navigation and fluid interactions.",
-        service2_title: "Brand Identity",
-        service2_p: "Complete branding: logo, color palette, typography, and guidelines.",
-        service3_title: "Web Design",
-        service3_p: "Responsive and engaging websites that drive conversions.",
-        service4_title: "Mobile App Design",
-        service4_p: "Intuitive interfaces with attention to platform guidelines.",
-        service5_title: "Landing Pages",
-        service5_p: "High-conversion pages optimized for SEO and user journey.",
-        service6_title: "UX Research",
-        service6_p: "User research for informed design decisions.",
-        service_cta_1: 'Explore now <i class="fas fa-arrow-right ml-2"></i>',
-        service_cta_2: 'Explore now <i class="fas fa-arrow-right ml-2"></i>',
-        service_cta_3: 'Explore now <i class="fas fa-arrow-right ml-2"></i>',
-        service_cta_4: 'Explore now <i class="fas fa-arrow-right ml-2"></i>',
-        service_cta_5: 'Explore now <i class="fas fa-arrow-right ml-2"></i>',
-        service_cta_6: 'Explore now <i class="fas fa-arrow-right ml-2"></i>',
-        footer_p: "Creating digital experiences that matter.",
-        footer_links_title: "Quick Links",
-        footer_link_home: "Home",
-        footer_link_about: "About",
-        footer_link_projects: "Projects",
-        footer_link_services: "Services",
-        footer_services_title: "Services",
-        footer_service_uiux: "UI/UX Design",
-        footer_service_branding: "Brand Identity",
-        footer_service_web: "Web Design",
-        footer_legal_title: "Legal",
-        footer_legal_privacy: "Privacy Policy",
-        footer_legal_terms: "Terms of Service",
-        footer_copyright: "© 2025 Theo Natan. All rights reserved.",
-      },
-      pt: {
-        page_title: "Portfólio | Theo Natan",
-        nav_home: "Início",
-        nav_about: "Sobre",
-        nav_projects: "Projetos",
-        nav_services: "Serviços",
-        nav_home_mobile: "Início",
-        nav_about_mobile: "Sobre",
-        nav_projects_mobile: "Projetos",
-        nav_services_mobile: "Serviços",
-        lang_switcher_aria: "Mudar idioma",
-        nav_lang_mobile: "Mudar Idioma",
-        hero_h1_l1: "Design Minimalista,",
-        hero_h1_l2: '<span class="impacto-maximo-animado"><span class="animated-gradient text-glow">Impacto Máximo</span></span>',
-        hero_p: "Crio experiências digitais elegantes que equilibram beleza e funcionalidade para ajudar as marcas a se destacarem.",
-        hero_button: "Veja Meu Trabalho",
-        about_title: "Sobre mim",
-        about_greeting: "Muito prazer, sou Theo Natan",
-        about_p: "Sou Designer Gráfico e Web Designer com experiência no desenvolvimento de identidades visuais, logos, designs para aplicações web, portfólios digitais, aplicativos e landing pages. Meu trabalho é transformar ideias em projetos criativos e funcionais.",
-        about_skills_title: "Minhas Habilidades",
-        skill_uiux: "UI/UX Design",
-        skill_branding: "Identidade da Marca",
-        skill_web: "Web Design",
-        skill_mobile: "Mobile Design",
-        skill_strategy: "Visão Estratégica",
-        about_cta: 'Confira mais abaixo <i class="fas fa-arrow-down ml-2"></i>',
-        projects_title: "Meus Projetos",
-        projects_p: "Explore meus trabalhos mais recentes em diferentes categorias. Cada projeto é criado com atenção aos detalhes e à experiência do usuário.",
-        filter_all: "Todos",
-        filter_identity: "Identidades Visuais",
-        filter_landing: "Landing Pages",
-        filter_portfolios: "Portfólios",
-        project1_title: "Vanessa Fernandes Confeitaria",
-        project1_p: "Vanessa Fernandes Confeitaria com foco em transmitir delicadeza, elegância e o cuidado artesanal.",
-        project2_title: "JNS",
-        project2_p: "JNS oferece soluções inteligentes em seguros, consórcios e créditos, com atendimento personalizado.",
-        project3_title: "Flux Agency",
-        project3_p: "Agência com foco em inovação e resultados. Formas modernas e dinâmicas.",
-        project4_title: "Simplificando Métodos",
-        project4_p: "Estratégias simples e eficientes para quebrar padrões e alcançar novos limites.",
-        project5_title: "Sacrovi",
-        project5_p: "Produtora audiovisual: drones, filmagens, fotografias.",
-        project6_title: "Esphera Checkout",
-        project6_p: "Plataforma de vendas online com rapidez, segurança e simplicidade.",
-        project7_title: "Portfólio para Desenvolvedor",
-        project7_p: "Design do portfólio digital do Desenvolvedor Ícaro Moreira. Layout moderno.",
-        project8_title: "Portfólio Theo Natan",
-        project8_p: "Meu portfólio com projetos, habilidades e experiências de forma clara.",
-        project9_title: "LANEF",
-        project9_p: "LANEF - Liga Acadêmica de Nefrologia - UFPB.",
-        project10_title: "Atlas Enfermagem",
-        project10_p: "Associação Atlética de Enfermagem - Estácio FMJ",
-        project_cta_1: 'Confira o Projeto <i class="fas fa-arrow-right ml-2"></i>',
-        project_cta_2: 'Confira o Projeto <i class="fas fa-arrow-right ml-2"></i>',
-        project_cta_3: 'Confira o Projeto <i class="fas fa-arrow-right ml-2"></i>',
-        project_cta_4: 'Confira o Projeto <i class="fas fa-arrow-right ml-2"></i>',
-        project_cta_5: 'Confira o Projeto <i class="fas fa-arrow-right ml-2"></i>',
-        project_cta_6: 'Confira o Projeto <i class="fas fa-arrow-right ml-2"></i>',
-        project_cta_7: 'Confira o Projeto <i class="fas fa-arrow-right ml-2"></i>',
-        project_cta_8: 'Confira o Projeto <i class="fas fa-arrow-right ml-2"></i>',
-        projects_all_btn: "Ver todos os projetos",
-        services_title: "Meus serviços",
-        services_p: "Ofereço soluções de design abrangentes, adaptadas aos objetivos do seu negócio.",
-        service1_title: "UI/UX Design",
-        service1_p: "Interface centrada no usuário com navegação intuitiva e interações fluidas.",
-        service2_title: "Identidade da Marca",
-        service2_p: "Branding completo: logotipo, paleta de cores, tipografia e diretrizes.",
-        service3_title: "Web Design",
-        service3_p: "Sites responsivos e envolventes que geram conversões.",
-        service4_title: "Design de Aplicativos Móveis",
-        service4_p: "Interfaces intuitivas com atenção às diretrizes de cada plataforma.",
-        service5_title: "Landing Pages",
-        service5_p: "Páginas de alta conversão otimizadas para SEO e jornada do usuário.",
-        service6_title: "Pesquisa UX",
-        service6_p: "Pesquisa com usuários para decisões de design informadas.",
-        service_cta_1: 'Explorar agora <i class="fas fa-arrow-right ml-2"></i>',
-        service_cta_2: 'Explorar agora <i class="fas fa-arrow-right ml-2"></i>',
-        service_cta_3: 'Explorar agora <i class="fas fa-arrow-right ml-2"></i>',
-        service_cta_4: 'Explorar agora <i class="fas fa-arrow-right ml-2"></i>',
-        service_cta_5: 'Explorar agora <i class="fas fa-arrow-right ml-2"></i>',
-        service_cta_6: 'Explorar agora <i class="fas fa-arrow-right ml-2"></i>',
-        footer_p: "Criando experiências digitais que importam.",
-        footer_links_title: "Links Rápidos",
-        footer_link_home: "Início",
-        footer_link_about: "Sobre",
-        footer_link_projects: "Projetos",
-        footer_link_services: "Serviços",
-        footer_services_title: "Services",
-        footer_service_uiux: "UI/UX Design",
-        footer_service_branding: "Identidade da Marca",
-        footer_service_web: "Web Design",
-        footer_service_mobile: "Design Mobile",
-        footer_service_landing: "Landing Pages",
-        footer_legal_title: "Legal",
-        footer_legal_privacy: "Política de Privacidade",
-        footer_legal_terms: "Termos de Serviço",
-        footer_copyright: "© 2025 Theo Natan. Todos os direitos reservados.",
-      },
-    };
-
-    const setLanguage = (lang) => {
-      document.documentElement.lang = lang;
-      document.querySelectorAll('[data-key]').forEach(element => {
-        const key = element.getAttribute('data-key');
-        const translation = translations[lang][key];
-        if (translation) {
-          if (key === 'lang_switcher_aria') {
-            element.setAttribute('aria-label', translation);
-          } else {
-            element.innerHTML = translation;
-          }
-        }
-      });
-      localStorage.setItem('language', lang);
-    };
-
-    const langSwitchers = document.querySelectorAll('#lang-switcher-desktop, #lang-switcher-mobile');
-    let currentLang = localStorage.getItem('language') || 'pt';
-
-    langSwitchers.forEach(switcher => {
-      switcher.addEventListener('click', () => {
-        currentLang = currentLang === 'pt' ? 'en' : 'pt';
-        setLanguage(currentLang);
-      });
-    });
-
-    // ===== FILTRO DE PROJETOS (MANTIDO) =====
-    const filterButtons = document.querySelectorAll('.filter-btn');
-    const projectCards = document.querySelectorAll('.project-card, .glass-card[data-category]');
-
-    filterButtons.forEach((button) => {
-      button.addEventListener('click', () => {
-        filterButtons.forEach((btn) => {
-          btn.classList.remove('bg-brand', 'text-white');
-          btn.classList.add('text-gray-500', 'dark:text-gray-400');
-          btn.setAttribute('aria-pressed', 'false');
-        });
-        button.classList.remove('text-gray-500', 'dark:text-gray-400');
-        button.classList.add('bg-brand', 'text-white');
-        button.setAttribute('aria-pressed', 'true');
-
-        const filterValue = button.dataset.filter;
-        const animationDuration = 400;
-
-        projectCards.forEach((card) => {
-          const cardCategory = card.dataset.category;
-          const shouldShow = filterValue === 'all' || cardCategory === filterValue;
-          const isHidden = card.classList.contains('card-hide');
-
-          if (shouldShow && isHidden) {
-            card.style.display = 'block';
-            setTimeout(() => card.classList.remove('card-hide'), 10);
-          } else if (!shouldShow && !isHidden) {
-            card.classList.add('card-hide');
-            setTimeout(() => card.style.display = 'none', animationDuration);
-          } else if (shouldShow && !isHidden) {
-            card.classList.remove('card-hide');
-            card.style.display = 'block';
-          }
-        });
-      });
-    });
-
-    // ===== SCROLL REVEAL & NAV =====
-    document.addEventListener('DOMContentLoaded', () => {
-      setLanguage(currentLang);
-
-      const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add('is-visible');
-          }
-        });
-      }, { threshold: 0.1 });
-
-      document.querySelectorAll('.scroll-animate').forEach(el => observer.observe(el));
-    });
-
-    // Menu Mobile
-    const mobileMenuButton = document.getElementById('mobile-menu-button');
-    const mobileMenu = document.getElementById('mobile-menu');
-    mobileMenuButton.addEventListener('click', () => {
-      mobileMenu.classList.toggle('hidden');
-    });
-
-    // Smooth Scroll
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-      anchor.addEventListener('click', function (e) {
-        e.preventDefault();
-        const target = document.querySelector(this.getAttribute('href'));
-        if (target) {
-          window.scrollTo({
-            top: target.offsetTop - 80,
-            behavior: 'smooth'
-          });
-          mobileMenu.classList.add('hidden');
-        }
-      });
-    });
-
-    // Back to Top
-    const backToTop = document.getElementById('back-to-top');
-    window.addEventListener('scroll', () => {
-      if (window.scrollY > 300) {
-        backToTop.classList.remove('opacity-0', 'invisible');
-      } else {
-        backToTop.classList.add('opacity-0', 'invisible');
-      }
-    });
-    backToTop.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
-
+    // Inicializar resize
+    window.addEventListener('load', resize);
+    window.addEventListener('resize', resize);
   </script>
 </body>
 

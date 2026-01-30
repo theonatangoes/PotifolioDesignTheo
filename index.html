@@ -87,6 +87,74 @@
   </script>
 
   <style>
+    /* ===== EFEITO DE LOADING ===== */
+    #loader {
+      position: fixed;
+      inset: 0;
+      background: #050505;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 9999;
+      transition: opacity 0.8s cubic-bezier(0.77, 0, 0.18, 1);
+    }
+
+    #loader.hidden {
+      opacity: 0;
+      pointer-events: none;
+    }
+
+    #site-content {
+      opacity: 0;
+      animation: fadeIn 0.8s ease forwards;
+      animation-delay: 0.3s;
+    }
+
+    /* Logo SVG no loading */
+    #logo-loading {
+      width: 400px;
+      height: auto;
+      max-width: 80vw;
+    }
+
+    #logo-loading path {
+      fill: transparent;
+      stroke: #ffffff;
+      stroke-width: 15;
+      stroke-dasharray: 3000;
+      stroke-dashoffset: 3000;
+      animation: drawLogo 3s cubic-bezier(0.77, 0, 0.18, 1) forwards, fillLogo 1s ease forwards 3s;
+    }
+
+    /* Animação de desenho do contorno */
+    @keyframes drawLogo {
+      to {
+        stroke-dashoffset: 0;
+      }
+    }
+
+    /* Animação de preenchimento - AZUL da sua marca */
+    @keyframes fillLogo {
+      to {
+        fill: #1d4ed8;
+        stroke: #1d4ed8;
+        filter: drop-shadow(0 0 20px rgba(29, 78, 216, 0.5));
+      }
+    }
+
+    /* Fade in do conteúdo */
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
     /* --- Estilos Globais e Efeitos --- */
 
     /* Scrollbar - Modo Light */
@@ -98,7 +166,7 @@
       background: #f3f4f6;
     }
 
-    ::-webkit-scrollbar-thumb {
+    ::webkit-scrollbar-thumb {
       background: #ccc;
       border-radius: 4px;
     }
@@ -411,280 +479,308 @@
 
 <body class="antialiased selection:bg-brand selection:text-white">
 
-  <div id="canvas-container">
-    <canvas id="network-canvas"></canvas>
+  <!-- ===== LOADER COM LOGO THEONATAN.svg ===== -->
+  <div id="loader">
+    <svg id="logo-loading" viewBox="0 0 13295.68 4399.03">
+      <!-- PATH ORIGINAL DA SUA LOGO THEONATAN.svg -->
+      <path d="M2531.88 3233.81c-727.36,-35.42 -1393.27,-553.69 -1655.58,-1149.18 -124.47,-282.56 -138.22,-468.39 -137.72,-802.86l-738.3 0.67 -0.05 2692.23 737.93 0.08 0.23 -799.98c32.14,13.17 75.37,68.92 107.12,95.21 36.3,30.08 74.33,65.86 109.81,97.39 202.52,179.92 526.42,359.98 789.28,454.19 508.06,182.09 946.08,155.65 1518.47,153.1l0.74 -2693.14 -730.56 0.63 -1.37 1951.65zm2786.64 -1239.18l0 -1632.8 453.69 0 206.22 -329.96 -1647.36 0 203.8 329.96 453.69 0 0 1101.47 329.96 531.33zm2622.67 0l0 -1962.75 -329.96 0 0 645.35 -987.44 0 0 -645.35 -329.96 0 0 1618.24 329.96 0 0 -642.93 987.44 0 0 456.11 329.96 531.33zm2035.54 0l0 -672.04 -1317.39 0 0 -315.4 987.44 0 0 -329.96 -987.44 0 0 -315.4 1317.39 0 0 -329.96 -1647.35 0 0 1618.24 1433.85 0 213.5 344.51zm1492.08 -344.51c271.73,0 494.93,-220.78 494.93,-492.51l0 -630.8c0,-274.16 -223.2,-494.93 -494.93,-494.93l-657.49 0c-274.15,0 -494.93,220.78 -494.93,494.93l0 630.8c0,271.73 220.78,492.51 494.93,492.51l657.49 0zm0 -327.53l-657.49 0c-92.19,0 -164.97,-75.21 -164.97,-164.98l0 -630.8c0,-92.19 72.78,-164.98 164.97,-164.98l657.49 0c89.77,0 164.98,72.78 164.98,164.98l0 630.8c0,89.77 -75.21,164.98 -164.98,164.98zm-274.15 -371.2c29.11,0 55.8,-24.26 55.8,-55.81l0 -109.17c0,-29.12 -26.69,-53.38 -55.8,-53.38l-109.18 0c-31.54,0 -55.8,24.26 -55.8,53.38l0 109.17c0,31.54 24.26,55.81 55.8,55.81l109.18 0zm-5293.85 3447.65l0 -1962.75 -329.96 0 0 1166.98 -1166.97 -1166.98 0 1618.24 329.96 0 0 -822.46 1166.97 1166.98zm2355.79 -344.51l-1006.85 -1618.24 -1009.27 1618.24 776.36 0 206.22 -329.96 -388.18 0 414.87 -664.77 618.66 994.72 388.19 0zm756.95 344.51l0 -1632.8 453.69 0 206.22 -329.96 -1647.36 0 203.8 329.96 453.69 0 0 1101.47 329.96 531.33zm2445.56 -344.51l-1006.85 -1618.24 -1009.27 1618.24 776.36 0 206.22 -329.96 -388.18 0 414.87 -664.77 618.66 994.72 388.19 0zm1836.59 344.51l0 -1962.75 -329.96 0 0 1166.98 -1166.97 -1166.98 0 1618.24 329.96 0 0 -822.46 1166.97 1166.98zm-13295.46 -3799.94l0.76 140.62c359.6,23.35 898.22,-13.17 1265.81,5.33 -19.97,675.1 -36.02,1049.26 370.55,1525.99 51.27,60.12 256.08,231.79 358.82,269.21l1.6 -1794.64c386.24,-11.72 868.32,-2.74 1264.63,-2.62l1.64 -731.04c-182.51,-18.86 -1954.12,-6.33 -2352.21,-6.33 -137.53,0 -837.05,-16.13 -911.83,6.33l0.22 587.15z" />
+    </svg>
   </div>
 
-  <header class="fixed inset-x-0 top-0 z-50 glass transition-all duration-300">
-    <div class="container mx-auto max-w-7xl px-6 py-4">
-      <div class="flex items-center justify-between">
+  <div id="site-content">
+    <!-- RESTANTE DO SEU CÓDIGO AQUI -->
+    <!-- Todo o seu código original do site continua abaixo -->
 
-        <a href="#home" class="relative group shrink-0" aria-label="Theo Natan - Início">
-          <div class="absolute -inset-2 bg-brand rounded-full blur opacity-20 group-hover:opacity-40 transition duration-500"></div>
-          <img src="/images/logo THEO.png" alt="Logo Theo" class="relative w-28 sm:w-32 h-auto transition-all duration-300 dark:brightness-0 dark:invert" />
-        </a>
-
-        <button id="mobile-menu-button" class="md:hidden text-gray-800 dark:text-gray-300 hover:text-brand transition p-2">
-          <i class="fas fa-bars text-2xl"></i>
-        </button>
-
-        <nav class="hidden md:flex items-center gap-8 text-sm font-medium tracking-wide text-gray-700 dark:text-gray-300">
-          <a href="#home" class="nav-link hover:text-brand transition-colors duration-300" data-translate="nav_home">Início</a>
-          <a href="#about" class="nav-link hover:text-brand transition-colors duration-300" data-translate="nav_about">Sobre</a>
-          <a href="#projects" class="nav-link hover:text-brand transition-colors duration-300" data-translate="nav_projects">Projetos</a>
-          <a href="#services" class="nav-link hover:text-brand transition-colors duration-300" data-translate="nav_services">Serviços</a>
-
-          <div class="flex items-center gap-2 ml-2 border-l pl-4 border-gray-300 dark:border-gray-700">
-            <button id="theme-toggle-desktop" class="text-brand hover:text-brand-dark dark:hover:text-white transition text-xl p-1" aria-label="Alternar Tema">
-              <i class="fas fa-sun hidden dark:inline-block"></i>
-              <i class="fas fa-moon inline-block dark:hidden"></i>
-            </button>
-
-            <div class="language-dropdown">
-              <div class="language-current" id="lang-current-desktop">
-                <i class="fa-solid fa-earth-americas"></i>
-                <span id="current-lang-text">PT</span>
-                <i class="fas fa-chevron-down text-xs ml-1"></i>
-              </div>
-              <div class="language-options" id="lang-options-desktop">
-                <div class="language-option" data-lang="pt">
-                  <span class="flag">🇧🇷</span>
-                  <span>Português</span>
-                </div>
-                <div class="language-option" data-lang="en">
-                  <span class="flag">🇺🇸</span>
-                  <span>English</span>
-                </div>
-                <div class="language-option" data-lang="es">
-                  <span class="flag">🇪🇸</span>
-                  <span>Español</span>
-                </div>
-              </div>
-            </div>
-          </div>
-        </nav>
-      </div>
-
-      <div id="mobile-menu" class="hidden md:hidden mt-4 border-t border-gray-200 dark:border-gray-800 pt-4 glass">
-        <nav class="flex flex-col space-y-4 text-center p-4">
-          <a href="#home" class="text-gray-800 dark:text-gray-300 hover:text-brand py-2" data-translate="nav_home_mobile">Início</a>
-          <a href="#about" class="text-gray-800 dark:text-gray-300 hover:text-brand py-2" data-translate="nav_about_mobile">Sobre</a>
-          <a href="#projects" class="text-gray-800 dark:text-gray-300 hover:text-brand py-2" data-translate="nav_projects_mobile">Projetos</a>
-          <a href="#services" class="text-gray-800 dark:text-gray-300 hover:text-brand py-2" data-translate="nav_services_mobile">Serviços</a>
-
-          <div class="flex items-center justify-center gap-6 pt-4 border-t border-gray-200 dark:border-gray-700">
-            <button id="theme-toggle-mobile" class="text-brand hover:text-brand-dark dark:hover:text-white flex items-center gap-2">
-              <i class="fas fa-sun hidden dark:inline-block"></i>
-              <i class="fas fa-moon inline-block dark:hidden"></i>
-              <span data-translate="theme_toggle">Tema</span>
-            </button>
-
-            <div class="language-dropdown">
-              <div class="language-current" id="lang-current-mobile">
-                <i class="fa-solid fa-earth-americas"></i>
-                <span id="current-lang-text-mobile">PT</span>
-                <i class="fas fa-chevron-down text-xs ml-1"></i>
-              </div>
-              <div class="language-options" id="lang-options-mobile">
-                <div class="language-option" data-lang="pt">
-                  <span class="flag">🇧🇷</span>
-                  <span>Português</span>
-                </div>
-                <div class="language-option" data-lang="en">
-                  <span class="flag">🇺🇸</span>
-                  <span>English</span>
-                </div>
-                <div class="language-option" data-lang="es">
-                  <span class="flag">🇪🇸</span>
-                  <span>Español</span>
-                </div>
-              </div>
-            </div>
-          </div>
-        </nav>
-      </div>
+    <div id="canvas-container">
+      <canvas id="network-canvas"></canvas>
     </div>
-  </header>
 
-  <main>
-    <section id="home" class="relative min-h-screen flex items-center pt-28 pb-20 overflow-hidden">
-      <div class="gradient-orb w-96 h-96 bg-brand top-20 left-[-100px] animate-blob"></div>
-      <div class="gradient-orb w-96 h-96 bg-blue-900 bottom-20 right-[-100px] animate-blob" style="animation-delay: 2s"></div>
+    <header class="fixed inset-x-0 top-0 z-50 glass transition-all duration-300">
+      <div class="container mx-auto max-w-7xl px-6 py-4">
+        <div class="flex items-center justify-between">
 
-      <div class="container mx-auto max-w-7xl px-6 flex flex-col md:flex-row items-center gap-12 relative z-10">
+          <a href="#home" class="relative group shrink-0" aria-label="Theo Natan - Início">
+            <div class="absolute -inset-2 bg-brand rounded-full blur opacity-20 group-hover:opacity-40 transition duration-500"></div>
+            <img src="/images/logo THEO.png" alt="Logo Theo" class="relative w-28 sm:w-32 h-auto transition-all duration-300 dark:brightness-0 dark:invert" />
+          </a>
 
-        <div class="w-full md:w-1/2 scroll-animate text-center md:text-left">
-          <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-brand/30 bg-brand/10 mb-6">
-            <span class="w-2 h-2 rounded-full bg-brand animate-pulse"></span>
-            <span class="text-xs font-bold tracking-widest text-brand uppercase" data-translate="hero_availability">Disponível para Projetos</span>
-          </div>
+          <button id="mobile-menu-button" class="md:hidden text-gray-800 dark:text-gray-300 hover:text-brand transition p-2">
+            <i class="fas fa-bars text-2xl"></i>
+          </button>
 
-          <h1 class="font-display text-4xl sm:text-5xl md:text-7xl font-bold mb-6 leading-tight">
-            <span data-translate="hero_h1_l1">Design Minimalista,</span><br>
-            <span data-translate="hero_h1_l2"><span class="impacto-maximo-animado"><span class="animated-gradient text-glow">Impacto Máximo</span></span></span>
-          </h1>
+          <nav class="hidden md:flex items-center gap-8 text-sm font-medium tracking-wide text-gray-700 dark:text-gray-300">
+            <a href="#home" class="nav-link hover:text-brand transition-colors duration-300" data-translate="nav_home">Início</a>
+            <a href="#about" class="nav-link hover:text-brand transition-colors duration-300" data-translate="nav_about">Sobre</a>
+            <a href="#projects" class="nav-link hover:text-brand transition-colors duration-300" data-translate="nav_projects">Projetos</a>
+            <a href="#services" class="nav-link hover:text-brand transition-colors duration-300" data-translate="nav_services">Serviços</a>
 
-          <p class="text-lg text-gray-600 dark:text-gray-400 mb-10 md:pr-6 font-light leading-relaxed" data-translate="hero_p">
-            Crio experiências digitais elegantes que equilibram beleza e funcionalidade para ajudar as marcas a se destacarem.
-          </p>
+            <div class="flex items-center gap-2 ml-2 border-l pl-4 border-gray-300 dark:border-gray-700">
+              <button id="theme-toggle-desktop" class="text-brand hover:text-brand-dark dark:hover:text-white transition text-xl p-1" aria-label="Alternar Tema">
+                <i class="fas fa-sun hidden dark:inline-block"></i>
+                <i class="fas fa-moon inline-block dark:hidden"></i>
+              </button>
 
-          <div class="flex flex-wrap justify-center md:justify-start gap-4">
-            <a href="#projects" class="bg-brand hover:bg-brand-dark text-white px-8 py-4 rounded-full font-bold transition shadow-[0_0_20px_rgba(29,78,216,0.4)] hover:shadow-[0_0_40px_rgba(29,78,216,0.6)] hover:-translate-y-1 animate-pulse-glow" data-translate="hero_button">
-              Veja Meu Trabalho
-            </a>
-            <a href="#about" class="px-8 py-4 rounded-full border border-gray-300 dark:border-gray-700 hover:border-brand hover:text-brand text-gray-800 dark:text-white transition glass-card" data-translate="hero_button_secondary">
-              Sobre Mim
-            </a>
-          </div>
-        </div>
-
-        <div class="w-full md:w-1/2 flex justify-center scroll-animate">
-          <div class="relative">
-            <div class="absolute inset-0 bg-brand blur-[60px] opacity-20 animate-pulse"></div>
-            <img src="images/PAEREDE PORTIFOLIO THEO.png" alt="Workspace" class="relative rounded-2xl border border-black/10 dark:border-white/10 shadow-2xl max-w-[280px] sm:max-w-md md:max-w-full h-auto animate-float" />
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section id="about" class="py-24 relative">
-      <div class="container mx-auto max-w-7xl px-6">
-        <h2 class="font-display text-3xl sm:text-5xl font-bold text-center mb-16 scroll-animate">
-          <span class="border-b-4 border-brand pb-2" data-translate="about_title">Sobre mim</span>
-        </h2>
-
-        <div class="flex flex-col md:flex-row items-center gap-12">
-          <div class="w-full md:w-1/3 flex justify-center scroll-animate">
-            <div class="relative w-64 h-64 sm:w-72 sm:h-72">
-              <div class="absolute inset-0 rounded-full border-2 border-brand/30 animate-[spin_10s_linear_infinite]"></div>
-              <div class="absolute inset-0 rounded-full border-2 border-t-transparent border-brand animate-[spin_3s_linear_infinite]"></div>
-              <div class="w-full h-full rounded-full overflow-hidden border-4 border-gray-100 dark:border-dark-card relative z-10 shadow-xl">
-                <img src="images/Perfil Theo.jpg" alt="Theo Natan" class="w-full h-full object-cover" />
+              <div class="language-dropdown">
+                <div class="language-current" id="lang-current-desktop">
+                  <i class="fa-solid fa-earth-americas"></i>
+                  <span id="current-lang-text">PT</span>
+                  <i class="fas fa-chevron-down text-xs ml-1"></i>
+                </div>
+                <div class="language-options" id="lang-options-desktop">
+                  <div class="language-option" data-lang="pt">
+                    <span class="flag">🇧🇷</span>
+                    <span>Português</span>
+                  </div>
+                  <div class="language-option" data-lang="en">
+                    <span class="flag">🇺🇸</span>
+                    <span>English</span>
+                  </div>
+                  <div class="language-option" data-lang="es">
+                    <span class="flag">🇪🇸</span>
+                    <span>Español</span>
+                  </div>
+                </div>
               </div>
             </div>
-          </div>
+          </nav>
+        </div>
 
-          <div class="w-full md:w-2/3 md:pl-6 scroll-animate">
-            <h3 class="font-display text-2xl sm:text-3xl font-bold mb-4 text-center md:text-left" data-translate="about_greeting">Muito prazer, sou Theo Natan</h3>
-            <p class="text-gray-600 dark:text-gray-400 mb-8 text-center md:text-left leading-relaxed text-lg" data-translate="about_p">
-              Sou Designer Gráfico e Web Designer com experiência no desenvolvimento de identidades visuais, logos, designs para aplicações web, portfólios digitais, aplicativos e landing pages. Meu trabalho é transformar ideias em projetos criativos e funcionais.
+        <div id="mobile-menu" class="hidden md:hidden mt-4 border-t border-gray-200 dark:border-gray-800 pt-4 glass">
+          <nav class="flex flex-col space-y-4 text-center p-4">
+            <a href="#home" class="text-gray-800 dark:text-gray-300 hover:text-brand py-2" data-translate="nav_home_mobile">Início</a>
+            <a href="#about" class="text-gray-800 dark:text-gray-300 hover:text-brand py-2" data-translate="nav_about_mobile">Sobre</a>
+            <a href="#projects" class="text-gray-800 dark:text-gray-300 hover:text-brand py-2" data-translate="nav_projects_mobile">Projetos</a>
+            <a href="#services" class="text-gray-800 dark:text-gray-300 hover:text-brand py-2" data-translate="nav_services_mobile">Serviços</a>
+
+            <div class="flex items-center justify-center gap-6 pt-4 border-t border-gray-200 dark:border-gray-700">
+              <button id="theme-toggle-mobile" class="text-brand hover:text-brand-dark dark:hover:text-white flex items-center gap-2">
+                <i class="fas fa-sun hidden dark:inline-block"></i>
+                <i class="fas fa-moon inline-block dark:hidden"></i>
+                <span data-translate="theme_toggle">Tema</span>
+              </button>
+
+              <div class="language-dropdown">
+                <div class="language-current" id="lang-current-mobile">
+                  <i class="fa-solid fa-earth-americas"></i>
+                  <span id="current-lang-text-mobile">PT</span>
+                  <i class="fas fa-chevron-down text-xs ml-1"></i>
+                </div>
+                <div class="language-options" id="lang-options-mobile">
+                  <div class="language-option" data-lang="pt">
+                    <span class="flag">🇧🇷</span>
+                    <span>Português</span>
+                  </div>
+                  <div class="language-option" data-lang="en">
+                    <span class="flag">🇺🇸</span>
+                    <span>English</span>
+                  </div>
+                  <div class="language-option" data-lang="es">
+                    <span class="flag">🇪🇸</span>
+                    <span>Español</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </nav>
+        </div>
+      </div>
+    </header>
+
+    <main>
+      <section id="home" class="relative min-h-screen flex items-center pt-28 pb-20 overflow-hidden">
+        <div class="gradient-orb w-96 h-96 bg-brand top-20 left-[-100px] animate-blob"></div>
+        <div class="gradient-orb w-96 h-96 bg-blue-900 bottom-20 right-[-100px] animate-blob" style="animation-delay: 2s"></div>
+
+        <div class="container mx-auto max-w-7xl px-6 flex flex-col md:flex-row items-center gap-12 relative z-10">
+
+          <div class="w-full md:w-1/2 scroll-animate text-center md:text-left">
+            <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-brand/30 bg-brand/10 mb-6">
+              <span class="w-2 h-2 rounded-full bg-brand animate-pulse"></span>
+              <span class="text-xs font-bold tracking-widest text-brand uppercase" data-translate="hero_availability">Disponível para Projetos</span>
+            </div>
+
+            <h1 class="font-display text-4xl sm:text-5xl md:text-7xl font-bold mb-6 leading-tight">
+              <span data-translate="hero_h1_l1">Design Minimalista,</span><br>
+              <span data-translate="hero_h1_l2"><span class="impacto-maximo-animado"><span class="animated-gradient text-glow">Impacto Máximo</span></span></span>
+            </h1>
+
+            <p class="text-lg text-gray-600 dark:text-gray-400 mb-10 md:pr-6 font-light leading-relaxed" data-translate="hero_p">
+              Crio experiências digitais elegantes que equilibram beleza e funcionalidade para ajudar as marcas a se destacarem.
             </p>
 
-            <div class="mb-8">
-              <h4 class="text-lg font-bold mb-4 text-brand text-center md:text-left uppercase tracking-wider" data-translate="about_skills_title">Minhas Habilidades</h4>
-              <div class="flex flex-wrap justify-center md:justify-start gap-3">
-                <span class="bg-white dark:bg-dark-surface border border-gray-200 dark:border-white/10 hover:border-brand text-gray-600 dark:text-gray-300 px-4 py-2 rounded-lg text-sm transition hover:text-brand hover:-translate-y-1 hover:shadow-lg cursor-default" data-translate="skill_uiux">UI/UX Design</span>
-                <span class="bg-white dark:bg-dark-surface border border-gray-200 dark:border-white/10 hover:border-brand text-gray-600 dark:text-gray-300 px-4 py-2 rounded-lg text-sm transition hover:text-brand hover:-translate-y-1 hover:shadow-lg cursor-default" data-translate="skill_branding">Identidade da Marca</span>
-                <span class="bg-white dark:bg-dark-surface border border-gray-200 dark:border-white/10 hover:border-brand text-gray-600 dark:text-gray-300 px-4 py-2 rounded-lg text-sm transition hover:text-brand hover:-translate-y-1 hover:shadow-lg cursor-default" data-translate="skill_web">Web Design</span>
-                <span class="bg-white dark:bg-dark-surface border border-gray-200 dark:border-white/10 hover:border-brand text-gray-600 dark:text-gray-300 px-4 py-2 rounded-lg text-sm transition hover:text-brand hover:-translate-y-1 hover:shadow-lg cursor-default" data-translate="skill_mobile">Mobile Design</span>
-                <span class="bg-white dark:bg-dark-surface border border-gray-200 dark:border-white/10 hover:border-brand text-gray-600 dark:text-gray-300 px-4 py-2 rounded-lg text-sm transition hover:text-brand hover:-translate-y-1 hover:shadow-lg cursor-default" data-translate="skill_strategy">Visão Estratégica</span>
-              </div>
-            </div>
-
-            <div class="text-center md:text-left">
-              <a href="#projects" class="inline-flex items-center text-brand font-medium hover:text-brand-dark dark:hover:text-white transition" data-translate="about_cta">
-                Confira mais abaixo <i class="fas fa-arrow-down ml-2 animate-bounce"></i>
+            <div class="flex flex-wrap justify-center md:justify-start gap-4">
+              <a href="#projects" class="bg-brand hover:bg-brand-dark text-white px-8 py-4 rounded-full font-bold transition shadow-[0_0_20px_rgba(29,78,216,0.4)] hover:shadow-[0_0_40px_rgba(29,78,216,0.6)] hover:-translate-y-1 animate-pulse-glow" data-translate="hero_button">
+                Veja Meu Trabalho
+              </a>
+              <a href="#about" class="px-8 py-4 rounded-full border border-gray-300 dark:border-gray-700 hover:border-brand hover:text-brand text-gray-800 dark:text-white transition glass-card" data-translate="hero_button_secondary">
+                Sobre Mim
               </a>
             </div>
           </div>
-        </div>
-      </div>
-    </section>
 
-    <section id="projects" class="py-24 bg-gray-50 dark:bg-dark-surface/30 border-y border-gray-200 dark:border-white/5 backdrop-blur-sm transition-colors duration-300">
-      <div class="container mx-auto max-w-7xl px-6">
-        <div class="text-center mb-16 scroll-animate">
-          <h2 class="font-display text-3xl sm:text-5xl font-bold mb-4" data-translate="projects_title">Meus Projetos</h2>
-          <p class="text-gray-600 dark:text-gray-400 max-w-2xl mx-auto" data-translate="projects_p">Explore meus trabalhos mais recentes. Design com propósito e estética.</p>
-        </div>
-
-        <div class="flex justify-center mb-12 scroll-animate">
-          <div class="flex flex-wrap justify-center gap-3 bg-white dark:bg-dark-card p-2 rounded-xl border border-gray-200 dark:border-white/5 shadow-sm">
-            <button class="filter-btn px-5 py-2 rounded-lg text-sm font-medium transition focus:outline-none aria-selected:bg-brand aria-selected:text-white text-gray-500 dark:text-gray-400 hover:text-brand dark:hover:text-white" data-filter="all" aria-pressed="true" data-translate="filter_all">Todos</button>
-            <button class="filter-btn px-5 py-2 rounded-lg text-sm font-medium transition focus:outline-none aria-selected:bg-brand aria-selected:text-white text-gray-500 dark:text-gray-400 hover:text-brand dark:hover:text-white" data-filter="identity" aria-pressed="false" data-translate="filter_identity">Identidades</button>
-            <button class="filter-btn px-5 py-2 rounded-lg text-sm font-medium transition focus:outline-none aria-selected:bg-brand aria-selected:text-white text-gray-500 dark:text-gray-400 hover:text-brand dark:hover:text-white" data-filter="landing" aria-pressed="false" data-translate="filter_landing">Landing Pages</button>
-            <button class="filter-btn px-5 py-2 rounded-lg text-sm font-medium transition focus:outline-none aria-selected:bg-brand aria-selected:text-white text-gray-500 dark:text-gray-400 hover:text-brand dark:hover:text-white" data-filter="social" aria-pressed="false" data-translate="filter_portfolios">Portfólios</button>
+          <div class="w-full md:w-1/2 flex justify-center scroll-animate">
+            <div class="relative">
+              <div class="absolute inset-0 bg-brand blur-[60px] opacity-20 animate-pulse"></div>
+              <img src="images/PAEREDE PORTIFOLIO THEO.png" alt="Workspace" class="relative rounded-2xl border border-black/10 dark:border-white/10 shadow-2xl max-w-[280px] sm:max-w-md md:max-w-full h-auto animate-float" />
+            </div>
           </div>
         </div>
+      </section>
 
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8" id="projects-container">
-          <!-- Projetos serão carregados aqui -->
+      <section id="about" class="py-24 relative">
+        <div class="container mx-auto max-w-7xl px-6">
+          <h2 class="font-display text-3xl sm:text-5xl font-bold text-center mb-16 scroll-animate">
+            <span class="border-b-4 border-brand pb-2" data-translate="about_title">Sobre mim</span>
+          </h2>
+
+          <div class="flex flex-col md:flex-row items-center gap-12">
+            <div class="w-full md:w-1/3 flex justify-center scroll-animate">
+              <div class="relative w-64 h-64 sm:w-72 sm:h-72">
+                <div class="absolute inset-0 rounded-full border-2 border-brand/30 animate-[spin_10s_linear_infinite]"></div>
+                <div class="absolute inset-0 rounded-full border-2 border-t-transparent border-brand animate-[spin_3s_linear_infinite]"></div>
+                <div class="w-full h-full rounded-full overflow-hidden border-4 border-gray-100 dark:border-dark-card relative z-10 shadow-xl">
+                  <img src="images/Perfil Theo.jpg" alt="Theo Natan" class="w-full h-full object-cover" />
+                </div>
+              </div>
+            </div>
+
+            <div class="w-full md:w-2/3 md:pl-6 scroll-animate">
+              <h3 class="font-display text-2xl sm:text-3xl font-bold mb-4 text-center md:text-left" data-translate="about_greeting">Muito prazer, sou Theo Natan</h3>
+              <p class="text-gray-600 dark:text-gray-400 mb-8 text-center md:text-left leading-relaxed text-lg" data-translate="about_p">
+                Sou Designer Gráfico e Web Designer com experiência no desenvolvimento de identidades visuais, logos, designs para aplicações web, portfólios digitais, aplicativos e landing pages. Meu trabalho é transformar ideias em projetos criativos e funcionais.
+              </p>
+
+              <div class="mb-8">
+                <h4 class="text-lg font-bold mb-4 text-brand text-center md:text-left uppercase tracking-wider" data-translate="about_skills_title">Minhas Habilidades</h4>
+                <div class="flex flex-wrap justify-center md:justify-start gap-3">
+                  <span class="bg-white dark:bg-dark-surface border border-gray-200 dark:border-white/10 hover:border-brand text-gray-600 dark:text-gray-300 px-4 py-2 rounded-lg text-sm transition hover:text-brand hover:-translate-y-1 hover:shadow-lg cursor-default" data-translate="skill_uiux">UI/UX Design</span>
+                  <span class="bg-white dark:bg-dark-surface border border-gray-200 dark:border-white/10 hover:border-brand text-gray-600 dark:text-gray-300 px-4 py-2 rounded-lg text-sm transition hover:text-brand hover:-translate-y-1 hover:shadow-lg cursor-default" data-translate="skill_branding">Identidade da Marca</span>
+                  <span class="bg-white dark:bg-dark-surface border border-gray-200 dark:border-white/10 hover:border-brand text-gray-600 dark:text-gray-300 px-4 py-2 rounded-lg text-sm transition hover:text-brand hover:-translate-y-1 hover:shadow-lg cursor-default" data-translate="skill_web">Web Design</span>
+                  <span class="bg-white dark:bg-dark-surface border border-gray-200 dark:border-white/10 hover:border-brand text-gray-600 dark:text-gray-300 px-4 py-2 rounded-lg text-sm transition hover:text-brand hover:-translate-y-1 hover:shadow-lg cursor-default" data-translate="skill_mobile">Mobile Design</span>
+                  <span class="bg-white dark:bg-dark-surface border border-gray-200 dark:border-white/10 hover:border-brand text-gray-600 dark:text-gray-300 px-4 py-2 rounded-lg text-sm transition hover:text-brand hover:-translate-y-1 hover:shadow-lg cursor-default" data-translate="skill_strategy">Visão Estratégica</span>
+                </div>
+              </div>
+
+              <div class="text-center md:text-left">
+                <a href="#projects" class="inline-flex items-center text-brand font-medium hover:text-brand-dark dark:hover:text-white transition" data-translate="about_cta">
+                  Confira mais abaixo <i class="fas fa-arrow-down ml-2 animate-bounce"></i>
+                </a>
+              </div>
+            </div>
+          </div>
         </div>
+      </section>
 
-        <div class="text-center mt-16 scroll-animate">
-          <a href="#projects" class="inline-block bg-brand hover:bg-brand-dark text-white px-8 py-3 rounded-full font-bold transition shadow-[0_0_20px_rgba(29,78,216,0.4)]" data-translate="projects_all_btn">Ver todos os projetos</a>
+      <section id="projects" class="py-24 bg-gray-50 dark:bg-dark-surface/30 border-y border-gray-200 dark:border-white/5 backdrop-blur-sm transition-colors duration-300">
+        <div class="container mx-auto max-w-7xl px-6">
+          <div class="text-center mb-16 scroll-animate">
+            <h2 class="font-display text-3xl sm:text-5xl font-bold mb-4" data-translate="projects_title">Meus Projetos</h2>
+            <p class="text-gray-600 dark:text-gray-400 max-w-2xl mx-auto" data-translate="projects_p">Explore meus trabalhos mais recentes. Design com propósito e estética.</p>
+          </div>
+
+          <div class="flex justify-center mb-12 scroll-animate">
+            <div class="flex flex-wrap justify-center gap-3 bg-white dark:bg-dark-card p-2 rounded-xl border border-gray-200 dark:border-white/5 shadow-sm">
+              <button class="filter-btn px-5 py-2 rounded-lg text-sm font-medium transition focus:outline-none aria-selected:bg-brand aria-selected:text-white text-gray-500 dark:text-gray-400 hover:text-brand dark:hover:text-white" data-filter="all" aria-pressed="true" data-translate="filter_all">Todos</button>
+              <button class="filter-btn px-5 py-2 rounded-lg text-sm font-medium transition focus:outline-none aria-selected:bg-brand aria-selected:text-white text-gray-500 dark:text-gray-400 hover:text-brand dark:hover:text-white" data-filter="identity" aria-pressed="false" data-translate="filter_identity">Identidades</button>
+              <button class="filter-btn px-5 py-2 rounded-lg text-sm font-medium transition focus:outline-none aria-selected:bg-brand aria-selected:text-white text-gray-500 dark:text-gray-400 hover:text-brand dark:hover:text-white" data-filter="landing" aria-pressed="false" data-translate="filter_landing">Landing Pages</button>
+              <button class="filter-btn px-5 py-2 rounded-lg text-sm font-medium transition focus:outline-none aria-selected:bg-brand aria-selected:text-white text-gray-500 dark:text-gray-400 hover:text-brand dark:hover:text-white" data-filter="social" aria-pressed="false" data-translate="filter_portfolios">Portfólios</button>
+            </div>
+          </div>
+
+          <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8" id="projects-container">
+            <!-- Projetos serão carregados aqui -->
+          </div>
+
+          <div class="text-center mt-16 scroll-animate">
+            <a href="#projects" class="inline-block bg-brand hover:bg-brand-dark text-white px-8 py-3 rounded-full font-bold transition shadow-[0_0_20px_rgba(29,78,216,0.4)]" data-translate="projects_all_btn">Ver todos os projetos</a>
+          </div>
         </div>
-      </div>
-    </section>
+      </section>
 
-    <section id="services" class="py-24 relative">
-      <div class="container mx-auto max-w-7xl px-6">
-        <div class="text-center mb-16 scroll-animate">
-          <h2 class="font-display text-3xl sm:text-5xl font-bold mb-4" data-translate="services_title">Meus serviços</h2>
-          <p class="text-gray-600 dark:text-gray-400 max-w-2xl mx-auto" data-translate="services_p">Soluções de design abrangentes para o seu negócio.</p>
+      <section id="services" class="py-24 relative">
+        <div class="container mx-auto max-w-7xl px-6">
+          <div class="text-center mb-16 scroll-animate">
+            <h2 class="font-display text-3xl sm:text-5xl font-bold mb-4" data-translate="services_title">Meus serviços</h2>
+            <p class="text-gray-600 dark:text-gray-400 max-w-2xl mx-auto" data-translate="services_p">Soluções de design abrangentes para o seu negócio.</p>
+          </div>
+
+          <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8" id="services-container">
+            <!-- Serviços serão carregados aqui -->
+          </div>
         </div>
+      </section>
+    </main>
 
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8" id="services-container">
-          <!-- Serviços serão carregados aqui -->
-        </div>
-      </div>
-    </section>
-  </main>
-
-  <footer class="bg-gray-100 dark:bg-black border-t border-gray-300 dark:border-white/10 py-12 px-4 sm:px-6 transition-colors duration-300">
-    <div class="container mx-auto max-w-7xl">
-      <div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-10">
-        <div>
-          <img src="images/logo theo branco.png" alt="Logo Theo" class="w-32 sm:w-40 h-auto opacity-80 hover:opacity-100 transition dark:brightness-100 brightness-0" loading="lazy" />
-          <p class="mt-4 text-gray-500 text-sm max-w-xs" data-translate="footer_p">Criando experiências digitais que importam.</p>
-        </div>
-
-        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8 md:gap-16 w-full md:w-auto">
+    <footer class="bg-gray-100 dark:bg-black border-t border-gray-300 dark:border-white/10 py-12 px-4 sm:px-6 transition-colors duration-300">
+      <div class="container mx-auto max-w-7xl">
+        <div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-10">
           <div>
-            <h4 class="text-xs font-bold text-gray-900 dark:text-white uppercase tracking-widest mb-4" data-translate="footer_links_title">Links Rápidos</h4>
-            <ul class="space-y-2 text-sm">
-              <li><a href="#home" class="text-gray-500 hover:text-brand transition" data-translate="footer_link_home">Início</a></li>
-              <li><a href="#about" class="text-gray-500 hover:text-brand transition" data-translate="footer_link_about">Sobre</a></li>
-              <li><a href="#projects" class="text-gray-500 hover:text-brand transition" data-translate="footer_link_projects">Projetos</a></li>
-              <li><a href="#services" class="text-gray-500 hover:text-brand transition" data-translate="footer_link_services">Serviços</a></li>
-            </ul>
+            <img src="images/logo theo branco.png" alt="Logo Theo" class="w-32 sm:w-40 h-auto opacity-80 hover:opacity-100 transition dark:brightness-100 brightness-0" loading="lazy" />
+            <p class="mt-4 text-gray-500 text-sm max-w-xs" data-translate="footer_p">Criando experiências digitais que importam.</p>
           </div>
 
-          <div>
-            <h4 class="text-xs font-bold text-gray-900 dark:text-white uppercase tracking-widest mb-4" data-translate="footer_services_title">Serviços</h4>
-            <ul class="space-y-2 text-sm">
-              <li><a href="#" class="text-gray-500 hover:text-brand transition" data-translate="footer_service_uiux">UI/UX Design</a></li>
-              <li><a href="#" class="text-gray-500 hover:text-brand transition" data-translate="footer_service_branding">Identidade da Marca</a></li>
-              <li><a href="#" class="text-gray-500 hover:text-brand transition" data-translate="footer_service_web">Web Design</a></li>
-            </ul>
-          </div>
+          <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8 md:gap-16 w-full md:w-auto">
+            <div>
+              <h4 class="text-xs font-bold text-gray-900 dark:text-white uppercase tracking-widest mb-4" data-translate="footer_links_title">Links Rápidos</h4>
+              <ul class="space-y-2 text-sm">
+                <li><a href="#home" class="text-gray-500 hover:text-brand transition" data-translate="footer_link_home">Início</a></li>
+                <li><a href="#about" class="text-gray-500 hover:text-brand transition" data-translate="footer_link_about">Sobre</a></li>
+                <li><a href="#projects" class="text-gray-500 hover:text-brand transition" data-translate="footer_link_projects">Projetos</a></li>
+                <li><a href="#services" class="text-gray-500 hover:text-brand transition" data-translate="footer_link_services">Serviços</a></li>
+              </ul>
+            </div>
 
-          <div>
-            <h4 class="text-xs font-bold text-gray-900 dark:text-white uppercase tracking-widest mb-4" data-translate="footer_legal_title">Legal</h4>
-            <ul class="space-y-2 text-sm">
-              <li><a href="#" class="text-gray-500 hover:text-brand transition" data-translate="footer_legal_privacy">Política de Privacidade</a></li>
-              <li><a href="#" class="text-gray-500 hover:text-brand transition" data-translate="footer_legal_terms">Termos de Serviço</a></li>
-            </ul>
+            <div>
+              <h4 class="text-xs font-bold text-gray-900 dark:text-white uppercase tracking-widest mb-4" data-translate="footer_services_title">Serviços</h4>
+              <ul class="space-y-2 text-sm">
+                <li><a href="#" class="text-gray-500 hover:text-brand transition" data-translate="footer_service_uiux">UI/UX Design</a></li>
+                <li><a href="#" class="text-gray-500 hover:text-brand transition" data-translate="footer_service_branding">Identidade da Marca</a></li>
+                <li><a href="#" class="text-gray-500 hover:text-brand transition" data-translate="footer_service_web">Web Design</a></li>
+              </ul>
+            </div>
+
+            <div>
+              <h4 class="text-xs font-bold text-gray-900 dark:text-white uppercase tracking-widest mb-4" data-translate="footer_legal_title">Legal</h4>
+              <ul class="space-y-2 text-sm">
+                <li><a href="#" class="text-gray-500 hover:text-brand transition" data-translate="footer_legal_privacy">Política de Privacidade</a></li>
+                <li><a href="#" class="text-gray-500 hover:text-brand transition" data-translate="footer_legal_terms">Termos de Serviço</a></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <div class="border-t border-gray-300 dark:border-white/10 mt-12 pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
+          <p class="text-gray-500 text-xs" data-translate="footer_copyright">© 2025 Theo Natan. Todos os direitos reservados.</p>
+          <div class="flex gap-6">
+            <a href="https://www.instagram.com/theonatan_/" class="text-gray-500 hover:text-brand transition"><i class="fab fa-instagram text-lg"></i></a>
+            <a href="https://www.linkedin.com/in/theo-natan-7346a2266/" class="text-gray-500 hover:text-brand transition"><i class="fab fa-linkedin text-lg"></i></a>
+            <a href="https://github.com/theonatangoes" class="text-gray-500 hover:text-brand transition"><i class="fab fa-github text-lg"></i></a>
           </div>
         </div>
       </div>
+    </footer>
 
-      <div class="border-t border-gray-300 dark:border-white/10 mt-12 pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
-        <p class="text-gray-500 text-xs" data-translate="footer_copyright">© 2025 Theo Natan. Todos os direitos reservados.</p>
-        <div class="flex gap-6">
-          <a href="https://www.instagram.com/theonatan_/" class="text-gray-500 hover:text-brand transition"><i class="fab fa-instagram text-lg"></i></a>
-          <a href="https://www.linkedin.com/in/theo-natan-7346a2266/" class="text-gray-500 hover:text-brand transition"><i class="fab fa-linkedin text-lg"></i></a>
-          <a href="https://github.com/theonatangoes" class="text-gray-500 hover:text-brand transition"><i class="fab fa-github text-lg"></i></a>
-        </div>
-      </div>
-    </div>
-  </footer>
+    <button id="back-to-top" class="fixed bottom-6 right-6 bg-brand hover:bg-brand-dark text-white w-12 h-12 rounded-full flex items-center justify-center shadow-[0_0_20px_rgba(29,78,216,0.4)] opacity-0 invisible transition-all duration-300 z-50 hover:-translate-y-1" aria-label="Voltar ao topo">
+      <i class="fas fa-arrow-up"></i>
+    </button>
+  </div> <!-- Fechamento da div site-content -->
 
-  <button id="back-to-top" class="fixed bottom-6 right-6 bg-brand hover:bg-brand-dark text-white w-12 h-12 rounded-full flex items-center justify-center shadow-[0_0_20px_rgba(29,78,216,0.4)] opacity-0 invisible transition-all duration-300 z-50 hover:-translate-y-1" aria-label="Voltar ao topo">
-    <i class="fas fa-arrow-up"></i>
-  </button>
-
+  <!-- ===== CONTROLE DO LOADER ===== -->
   <script>
+    // Efeito de loading
+    window.addEventListener("load", () => {
+      // Espera a animação completa (3s de desenho + 1s de preenchimento + 0.5s de pausa)
+      setTimeout(() => {
+        const loader = document.getElementById('loader');
+        loader.classList.add('hidden');
+
+        // Remove completamente o loader do DOM após a transição
+        setTimeout(() => {
+          loader.style.display = 'none';
+        }, 800);
+      }, 4500); // Tempo total da animação
+    });
+
     // ===== DADOS CENTRALIZADOS =====
     const portfolioData = {
       // Informações gerais
@@ -747,7 +843,7 @@
           description_es: "Estrategias simples y eficientes.",
           category: "landing",
           image: "images/SIMPLIFICANDO.png",
-          link: "https://drive.google.com/file/d/17Kdt_P9u4cm-hTaitBwGpvEl04ZhbsvR/view?usp=sharing",
+          link: "https://simplificametodos.com",
           cta_pt: "Ver Projeto",
           cta_en: "View Project",
           cta_es: "Ver Proyecto"
@@ -792,7 +888,7 @@
           description_es: "Diseño para desarrollador Ícaro Moreira.",
           category: "social",
           image: "images/PORTIFOLIO DEV.png",
-          link: "https://drive.google.com/file/d/1kwdvLqCA6hCaPX-6i7aB17iVWOBQCikX/view?usp=sharing",
+          link: "https://portifolio-jade-alpha.vercel.app",
           cta_pt: "Ver Projeto",
           cta_en: "View Project",
           cta_es: "Ver Proyecto"
@@ -1597,6 +1693,10 @@
     window.addEventListener('load', resize);
     window.addEventListener('resize', resize);
   </script>
+</body>
+
+</html>
+</script>
 </body>
 
 </html>

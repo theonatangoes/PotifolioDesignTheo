@@ -474,6 +474,301 @@
     .dark .language-current:hover {
       background-color: rgba(29, 78, 216, 0.2);
     }
+
+    /* Estilos do formulário de contato - DESIGN PROFISSIONAL */
+    .contact-form-container {
+      background: linear-gradient(135deg, rgba(255, 255, 255, 0.12) 0%, rgba(255, 255, 255, 0.05) 100%);
+      backdrop-filter: blur(24px);
+      -webkit-backdrop-filter: blur(24px);
+      border-radius: 24px;
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      box-shadow:
+        0 20px 60px rgba(0, 0, 0, 0.1),
+        inset 0 1px 0 rgba(255, 255, 255, 0.2);
+    }
+
+    .dark .contact-form-container {
+      background: linear-gradient(135deg, rgba(20, 20, 20, 0.4) 0%, rgba(15, 15, 15, 0.2) 100%);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      box-shadow:
+        0 20px 60px rgba(0, 0, 0, 0.3),
+        inset 0 1px 0 rgba(255, 255, 255, 0.05);
+    }
+
+    .form-input {
+      width: 100%;
+      padding: 16px 20px;
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid rgba(0, 0, 0, 0.1);
+      border-radius: 12px;
+      color: #111827;
+      font-family: 'Outfit', sans-serif;
+      font-size: 16px;
+      transition: all 0.3s ease;
+    }
+
+    .dark .form-input {
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      color: #ffffff;
+    }
+
+    .form-input:focus {
+      outline: none;
+      border-color: #1d4ed8;
+      background: rgba(29, 78, 216, 0.08);
+      box-shadow: 0 0 0 4px rgba(29, 78, 216, 0.15);
+    }
+
+    .dark .form-input:focus {
+      background: rgba(29, 78, 216, 0.12);
+      box-shadow: 0 0 0 4px rgba(29, 78, 216, 0.25);
+    }
+
+    .form-input::placeholder {
+      color: #9ca3af;
+    }
+
+    .dark .form-input::placeholder {
+      color: #6b7280;
+    }
+
+    .form-textarea {
+      min-height: 160px;
+      resize: vertical;
+    }
+
+    /* Contact Info Cards */
+    .contact-info-card {
+      background: linear-gradient(135deg, rgba(255, 255, 255, 0.08) 0%, rgba(255, 255, 255, 0.03) 100%);
+      border-radius: 16px;
+      border: 1px solid rgba(0, 0, 0, 0.08);
+      padding: 24px;
+      transition: all 0.3s ease;
+    }
+
+    .dark .contact-info-card {
+      background: linear-gradient(135deg, rgba(255, 255, 255, 0.05) 0%, rgba(255, 255, 255, 0.02) 100%);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+    }
+
+    .contact-info-card:hover {
+      transform: translateY(-4px);
+      border-color: #1d4ed8;
+      box-shadow: 0 10px 30px rgba(29, 78, 216, 0.15);
+    }
+
+    /* Social Icons */
+    .social-icon {
+      width: 50px;
+      height: 50px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 12px;
+      background: linear-gradient(135deg, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0.05) 100%);
+      border: 1px solid rgba(0, 0, 0, 0.08);
+      color: #4b5563;
+      transition: all 0.3s ease;
+    }
+
+    .dark .social-icon {
+      background: linear-gradient(135deg, rgba(255, 255, 255, 0.05) 0%, rgba(255, 255, 255, 0.02) 100%);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      color: #9ca3af;
+    }
+
+    .social-icon:hover {
+      transform: translateY(-3px);
+      background: #1d4ed8;
+      color: white;
+      border-color: #1d4ed8;
+      box-shadow: 0 10px 20px rgba(29, 78, 216, 0.3);
+    }
+
+    /* Header que fica fixo quando desce */
+    #main-header {
+      transition: all 0.3s ease;
+      position: relative;
+      z-index: 50;
+    }
+
+    #main-header.fixed {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      animation: slideDown 0.3s ease forwards;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    }
+
+    .dark #main-header.fixed {
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+    }
+
+    @keyframes slideDown {
+      from {
+        transform: translateY(-100%);
+      }
+
+      to {
+        transform: translateY(0);
+      }
+    }
+
+    /* Ajuste para compensar o header fixo */
+    body.has-fixed-header {
+      padding-top: 80px;
+    }
+
+    /* ===== POPUP DE CONFIRMAÇÃO ===== */
+    .popup-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(0, 0, 0, 0.7);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 9999;
+      opacity: 0;
+      visibility: hidden;
+      transition: all 0.3s ease;
+    }
+
+    .popup-overlay.active {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    .popup-container {
+      background: linear-gradient(135deg, rgba(255, 255, 255, 0.15) 0%, rgba(255, 255, 255, 0.05) 100%);
+      backdrop-filter: blur(30px);
+      -webkit-backdrop-filter: blur(30px);
+      border-radius: 24px;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      padding: 40px;
+      max-width: 500px;
+      width: 90%;
+      transform: scale(0.9);
+      transition: transform 0.3s ease;
+      box-shadow:
+        0 25px 50px -12px rgba(0, 0, 0, 0.25),
+        inset 0 1px 0 rgba(255, 255, 255, 0.3);
+    }
+
+    .dark .popup-container {
+      background: linear-gradient(135deg, rgba(20, 20, 20, 0.5) 0%, rgba(10, 10, 10, 0.3) 100%);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      box-shadow:
+        0 25px 50px -12px rgba(0, 0, 0, 0.5),
+        inset 0 1px 0 rgba(255, 255, 255, 0.1);
+    }
+
+    .popup-overlay.active .popup-container {
+      transform: scale(1);
+    }
+
+    .popup-icon {
+      width: 80px;
+      height: 80px;
+      background: linear-gradient(135deg, #1d4ed8, #3b82f6);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 24px;
+      animation: pulseGlow 2s infinite;
+    }
+
+    .popup-icon i {
+      font-size: 36px;
+      color: white;
+    }
+
+    .popup-title {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 28px;
+      font-weight: 700;
+      text-align: center;
+      margin-bottom: 16px;
+      color: #111827;
+      background: linear-gradient(90deg, #1d4ed8, #3b82f6);
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .dark .popup-title {
+      color: #ffffff;
+    }
+
+    .popup-message {
+      text-align: center;
+      color: #4b5563;
+      font-size: 16px;
+      line-height: 1.6;
+      margin-bottom: 32px;
+    }
+
+    .dark .popup-message {
+      color: #d1d5db;
+    }
+
+    .popup-button {
+      display: block;
+      width: 100%;
+      padding: 16px;
+      background: linear-gradient(135deg, #1d4ed8, #3b82f6);
+      color: white;
+      border: none;
+      border-radius: 12px;
+      font-family: 'Outfit', sans-serif;
+      font-weight: 600;
+      font-size: 16px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      box-shadow: 0 10px 20px rgba(29, 78, 216, 0.3);
+    }
+
+    .popup-button:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 15px 30px rgba(29, 78, 216, 0.4);
+    }
+
+    .popup-button:active {
+      transform: translateY(-1px);
+    }
+
+    .form-submit-btn {
+      position: relative;
+      overflow: hidden;
+    }
+
+    .form-submit-btn.loading::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+      animation: loading 1s infinite;
+    }
+
+    @keyframes loading {
+      0% {
+        left: -100%;
+      }
+
+      100% {
+        left: 100%;
+      }
+    }
   </style>
 </head>
 
@@ -487,15 +782,25 @@
     </svg>
   </div>
 
-  <div id="site-content">
-    <!-- RESTANTE DO SEU CÓDIGO AQUI -->
-    <!-- Todo o seu código original do site continua abaixo -->
+  <!-- POPUP DE MENSAGEM ENVIADA -->
+  <div id="success-popup" class="popup-overlay">
+    <div class="popup-container">
+      <div class="popup-icon">
+        <i class="fas fa-check"></i>
+      </div>
+      <h2 class="popup-title" data-translate="popup_title">Mensagem Enviada!</h2>
+      <p class="popup-message" data-translate="popup_message">Sua mensagem foi enviada com sucesso. Entrarei em contato em breve!</p>
+      <button id="close-popup" class="popup-button" data-translate="popup_button">OK</button>
+    </div>
+  </div>
 
+  <div id="site-content">
     <div id="canvas-container">
       <canvas id="network-canvas"></canvas>
     </div>
 
-    <header class="fixed inset-x-0 top-0 z-50 glass transition-all duration-300">
+    <!-- HEADER QUE FICA FIXO QUANDO DESCE A PÁGINA -->
+    <header id="main-header" class="glass transition-all duration-300 shadow-lg">
       <div class="container mx-auto max-w-7xl px-6 py-4">
         <div class="flex items-center justify-between">
 
@@ -513,6 +818,7 @@
             <a href="#about" class="nav-link hover:text-brand transition-colors duration-300" data-translate="nav_about">Sobre</a>
             <a href="#projects" class="nav-link hover:text-brand transition-colors duration-300" data-translate="nav_projects">Projetos</a>
             <a href="#services" class="nav-link hover:text-brand transition-colors duration-300" data-translate="nav_services">Serviços</a>
+            <a href="#contact" class="nav-link hover:text-brand transition-colors duration-300" data-translate="nav_contact">Contato</a>
 
             <div class="flex items-center gap-2 ml-2 border-l pl-4 border-gray-300 dark:border-gray-700">
               <button id="theme-toggle-desktop" class="text-brand hover:text-brand-dark dark:hover:text-white transition text-xl p-1" aria-label="Alternar Tema">
@@ -545,12 +851,13 @@
           </nav>
         </div>
 
-        <div id="mobile-menu" class="hidden md:hidden mt-4 border-t border-gray-200 dark:border-gray-800 pt-4 glass">
+        <div id="mobile-menu" class="hidden md:hidden mt-4 border-t border-gray-200 dark:border-gray-800 pt-4 glass shadow-lg">
           <nav class="flex flex-col space-y-4 text-center p-4">
             <a href="#home" class="text-gray-800 dark:text-gray-300 hover:text-brand py-2" data-translate="nav_home_mobile">Início</a>
             <a href="#about" class="text-gray-800 dark:text-gray-300 hover:text-brand py-2" data-translate="nav_about_mobile">Sobre</a>
             <a href="#projects" class="text-gray-800 dark:text-gray-300 hover:text-brand py-2" data-translate="nav_projects_mobile">Projetos</a>
             <a href="#services" class="text-gray-800 dark:text-gray-300 hover:text-brand py-2" data-translate="nav_services_mobile">Serviços</a>
+            <a href="#contact" class="text-gray-800 dark:text-gray-300 hover:text-brand py-2" data-translate="nav_contact_mobile">Contato</a>
 
             <div class="flex items-center justify-center gap-6 pt-4 border-t border-gray-200 dark:border-gray-700">
               <button id="theme-toggle-mobile" class="text-brand hover:text-brand-dark dark:hover:text-white flex items-center gap-2">
@@ -709,6 +1016,146 @@
           </div>
         </div>
       </section>
+
+      <!-- SEÇÃO CONTATO - DESIGN PROFISSIONAL COM CONTORNOS VISÍVEIS -->
+      <section id="contact" class="py-24 bg-gradient-to-b from-gray-50 to-white dark:from-dark-surface/30 dark:to-dark-bg border-t border-gray-200 dark:border-white/5 transition-colors duration-300">
+        <div class="container mx-auto max-w-7xl px-6">
+          <div class="text-center mb-16 scroll-animate">
+            <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-brand/30 bg-brand/10 mb-6">
+              <i class="fas fa-comments text-brand text-sm"></i>
+              <span class="text-sm font-bold tracking-widest text-brand uppercase" data-translate="contact_subtitle">Vamos Conversar</span>
+            </div>
+            <h2 class="font-display text-3xl sm:text-5xl font-bold mb-6" data-translate="contact_title">Entre em Contato</h2>
+            <p class="text-gray-600 dark:text-gray-400 max-w-2xl mx-auto text-lg" data-translate="contact_p">
+              Pronto para transformar suas ideias em realidade? Entre em contato para discutir seu projeto.
+            </p>
+          </div>
+
+          <div class="grid grid-cols-1 lg:grid-cols-3 gap-12">
+            <!-- Formulário de Contato -->
+            <div class="lg:col-span-2 scroll-animate">
+              <div class="contact-form-container p-8 lg:p-12">
+                <div class="flex items-center gap-3 mb-8">
+                  <div class="w-12 h-12 bg-brand/10 rounded-xl flex items-center justify-center">
+                    <i class="fas fa-paper-plane text-brand text-xl"></i>
+                  </div>
+                  <h3 class="font-display text-2xl font-bold" data-translate="contact_form_title">Envie sua Mensagem</h3>
+                </div>
+
+                <form id="contact-form" class="space-y-8">
+                  <!-- Campo oculto para evitar spam -->
+                  <input type="hidden" name="_captcha" value="false">
+                  <input type="hidden" name="_subject" value="Nova mensagem do portfólio - Theo Natan">
+
+                  <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div>
+                      <label for="name" class="block text-sm font-semibold mb-3 text-gray-700 dark:text-gray-300 uppercase tracking-wider" data-translate="contact_label_name">Nome completo *</label>
+                      <input type="text" id="name" name="name" required class="form-input" placeholder="Seu nome">
+                    </div>
+
+                    <div>
+                      <label for="email" class="block text-sm font-semibold mb-3 text-gray-700 dark:text-gray-300 uppercase tracking-wider" data-translate="contact_label_email">E-mail *</label>
+                      <input type="email" id="email" name="email" required class="form-input" placeholder="seu@email.com">
+                    </div>
+                  </div>
+
+                  <div>
+                    <label for="subject" class="block text-sm font-semibold mb-3 text-gray-700 dark:text-gray-300 uppercase tracking-wider" data-translate="contact_label_subject">Assunto *</label>
+                    <input type="text" id="subject" name="subject" required class="form-input" placeholder="Sobre o que gostaria de conversar?">
+                  </div>
+
+                  <div>
+                    <label for="message" class="block text-sm font-semibold mb-3 text-gray-700 dark:text-gray-300 uppercase tracking-wider" data-translate="contact_label_message">Mensagem *</label>
+                    <textarea id="message" name="message" rows="6" required class="form-input form-textarea" placeholder="Descreva seu projeto, objetivos e prazos..."></textarea>
+                  </div>
+
+                  <div class="pt-4">
+                    <button type="submit" id="submit-btn" class="w-full md:w-auto bg-brand hover:bg-brand-dark text-white font-bold py-4 px-10 rounded-xl transition duration-300 shadow-[0_0_30px_rgba(29,78,216,0.4)] hover:shadow-[0_0_50px_rgba(29,78,216,0.6)] hover:-translate-y-1 flex items-center justify-center gap-3 group form-submit-btn">
+                      <span data-translate="contact_button">Enviar Mensagem</span>
+                      <i class="fas fa-arrow-right group-hover:translate-x-1 transition-transform"></i>
+                    </button>
+                  </div>
+                </form>
+              </div>
+            </div>
+
+            <!-- Informações de Contato -->
+            <div class="scroll-animate">
+              <div class="space-y-8">
+                <!-- Card de E-mail -->
+                <div class="contact-info-card">
+                  <div class="flex items-start gap-4">
+                    <div class="w-14 h-14 bg-brand/10 rounded-xl flex items-center justify-center border border-brand/20">
+                      <i class="fas fa-envelope text-brand text-xl"></i>
+                    </div>
+                    <div>
+                      <h4 class="font-bold text-lg mb-2" data-translate="contact_info_email_title">E-mail</h4>
+                      <a href="mailto:theonatan20@gmail.com" class="text-gray-600 dark:text-gray-300 hover:text-brand transition font-medium">
+                        theonatan20@gmail.com
+                      </a>
+                      <p class="text-gray-500 dark:text-gray-400 text-sm mt-2" data-translate="contact_email_desc">
+                        Respostas rápidas em até 24h
+                      </p>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Card de Disponibilidade -->
+                <div class="contact-info-card">
+                  <div class="flex items-start gap-4">
+                    <div class="w-14 h-14 bg-brand/10 rounded-xl flex items-center justify-center border border-brand/20">
+                      <i class="fas fa-clock text-brand text-xl"></i>
+                    </div>
+                    <div>
+                      <h4 class="font-bold text-lg mb-2" data-translate="contact_availability_title">Disponibilidade</h4>
+                      <p class="text-gray-600 dark:text-gray-300 font-medium" data-translate="contact_availability">
+                        Segunda a Sexta • 9h às 18h
+                      </p>
+                      <p class="text-gray-500 dark:text-gray-400 text-sm mt-2" data-translate="contact_availability_desc">
+                        Horário comercial para reuniões
+                      </p>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Card de Processo -->
+                <div class="contact-info-card">
+                  <div class="flex items-start gap-4">
+                    <div class="w-14 h-14 bg-brand/10 rounded-xl flex items-center justify-center border border-brand/20">
+                      <i class="fas fa-lightbulb text-brand text-xl"></i>
+                    </div>
+                    <div>
+                      <h4 class="font-bold text-lg mb-2" data-translate="contact_process_title">Processo</h4>
+                      <p class="text-gray-600 dark:text-gray-300 font-medium" data-translate="contact_process">
+                        Consultoria inicial gratuita
+                      </p>
+                      <p class="text-gray-500 dark:text-gray-400 text-sm mt-2" data-translate="contact_process_desc">
+                        Vamos conversar sobre suas necessidades
+                      </p>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Redes Sociais (SEM DRIBBBLE) -->
+                <div class="contact-info-card">
+                  <h4 class="font-bold text-lg mb-6" data-translate="contact_social_title">Conecte-se</h4>
+                  <div class="grid grid-cols-3 gap-4">
+                    <a href="https://www.instagram.com/theonatan_/" target="_blank" class="social-icon hover:bg-gradient-to-br hover:from-purple-600 hover:to-pink-600">
+                      <i class="fab fa-instagram text-xl"></i>
+                    </a>
+                    <a href="https://www.linkedin.com/in/theo-natan-7346a2266/" target="_blank" class="social-icon hover:bg-gradient-to-br hover:from-blue-600 hover:to-blue-800">
+                      <i class="fab fa-linkedin text-xl"></i>
+                    </a>
+                    <a href="https://github.com/theonatangoes" target="_blank" class="social-icon hover:bg-gradient-to-br hover:from-gray-800 hover:to-gray-900">
+                      <i class="fab fa-github text-xl"></i>
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
     </main>
 
     <footer class="bg-gray-100 dark:bg-black border-t border-gray-300 dark:border-white/10 py-12 px-4 sm:px-6 transition-colors duration-300">
@@ -727,15 +1174,16 @@
                 <li><a href="#about" class="text-gray-500 hover:text-brand transition" data-translate="footer_link_about">Sobre</a></li>
                 <li><a href="#projects" class="text-gray-500 hover:text-brand transition" data-translate="footer_link_projects">Projetos</a></li>
                 <li><a href="#services" class="text-gray-500 hover:text-brand transition" data-translate="footer_link_services">Serviços</a></li>
+                <li><a href="#contact" class="text-gray-500 hover:text-brand transition" data-translate="footer_link_contact">Contato</a></li>
               </ul>
             </div>
 
             <div>
               <h4 class="text-xs font-bold text-gray-900 dark:text-white uppercase tracking-widest mb-4" data-translate="footer_services_title">Serviços</h4>
               <ul class="space-y-2 text-sm">
-                <li><a href="#" class="text-gray-500 hover:text-brand transition" data-translate="footer_service_uiux">UI/UX Design</a></li>
-                <li><a href="#" class="text-gray-500 hover:text-brand transition" data-translate="footer_service_branding">Identidade da Marca</a></li>
-                <li><a href="#" class="text-gray-500 hover:text-brand transition" data-translate="footer_service_web">Web Design</a></li>
+                <li><a href="#services" class="text-gray-500 hover:text-brand transition" data-translate="footer_service_uiux">UI/UX Design</a></li>
+                <li><a href="#services" class="text-gray-500 hover:text-brand transition" data-translate="footer_service_branding">Identidade da Marca</a></li>
+                <li><a href="#services" class="text-gray-500 hover:text-brand transition" data-translate="footer_service_web">Web Design</a></li>
               </ul>
             </div>
 
@@ -763,7 +1211,7 @@
     <button id="back-to-top" class="fixed bottom-6 right-6 bg-brand hover:bg-brand-dark text-white w-12 h-12 rounded-full flex items-center justify-center shadow-[0_0_20px_rgba(29,78,216,0.4)] opacity-0 invisible transition-all duration-300 z-50 hover:-translate-y-1" aria-label="Voltar ao topo">
       <i class="fas fa-arrow-up"></i>
     </button>
-  </div> <!-- Fechamento da div site-content -->
+  </div>
 
   <!-- ===== CONTROLE DO LOADER ===== -->
   <script>
@@ -779,6 +1227,37 @@
           loader.style.display = 'none';
         }, 800);
       }, 4500); // Tempo total da animação
+    });
+
+    // ===== SISTEMA DE HEADER QUE FICA FIXO QUANDO DESCE =====
+    let lastScrollTop = 0;
+    const header = document.getElementById('main-header');
+    const headerHeight = header.offsetHeight;
+
+    window.addEventListener('scroll', () => {
+      const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+
+      // Quando o usuário desce mais de 100px, fixa o header
+      if (scrollTop > 100) {
+        // Se estiver descendo
+        if (scrollTop > lastScrollTop) {
+          // Remove a classe fixed se o usuário estiver descendo muito rápido
+          if (scrollTop > lastScrollTop + 50) {
+            header.classList.add('fixed');
+            document.body.classList.add('has-fixed-header');
+          }
+        } else {
+          // Se estiver subindo
+          header.classList.add('fixed');
+          document.body.classList.add('has-fixed-header');
+        }
+      } else {
+        // No topo da página
+        header.classList.remove('fixed');
+        document.body.classList.remove('has-fixed-header');
+      }
+
+      lastScrollTop = scrollTop;
     });
 
     // ===== DADOS CENTRALIZADOS =====
@@ -1062,10 +1541,12 @@
         nav_about: "Sobre",
         nav_projects: "Projetos",
         nav_services: "Serviços",
+        nav_contact: "Contato",
         nav_home_mobile: "Início",
         nav_about_mobile: "Sobre",
         nav_projects_mobile: "Projetos",
         nav_services_mobile: "Serviços",
+        nav_contact_mobile: "Contato",
         nav_lang_mobile: "Idioma",
         theme_toggle: "Tema",
 
@@ -1102,6 +1583,31 @@
         services_title: "Meus serviços",
         services_p: "Soluções de design abrangentes para o seu negócio.",
 
+        // Contact Section
+        contact_subtitle: "Vamos Conversar",
+        contact_title: "Entre em Contato",
+        contact_p: "Pronto para transformar suas ideias em realidade? Entre em contato para discutir seu projeto.",
+        contact_form_title: "Envie sua Mensagem",
+        contact_label_name: "Nome completo *",
+        contact_label_email: "E-mail *",
+        contact_label_subject: "Assunto *",
+        contact_label_message: "Mensagem *",
+        contact_button: "Enviar Mensagem",
+        contact_info_email_title: "E-mail",
+        contact_email_desc: "Respostas rápidas em até 24h",
+        contact_availability_title: "Disponibilidade",
+        contact_availability: "Segunda a Sexta • 9h às 18h",
+        contact_availability_desc: "Horário comercial para reuniões",
+        contact_process_title: "Processo",
+        contact_process: "Consultoria inicial gratuita",
+        contact_process_desc: "Vamos conversar sobre suas necessidades",
+        contact_social_title: "Conecte-se",
+
+        // Popup de Confirmação
+        popup_title: "Mensagem Enviada!",
+        popup_message: "Sua mensagem foi enviada com sucesso. Entrarei em contato em breve!",
+        popup_button: "OK",
+
         // Footer
         footer_p: "Criando experiências digitais que importam.",
         footer_links_title: "Links Rápidos",
@@ -1109,6 +1615,7 @@
         footer_link_about: "Sobre",
         footer_link_projects: "Projetos",
         footer_link_services: "Serviços",
+        footer_link_contact: "Contato",
         footer_services_title: "Serviços",
         footer_service_uiux: "UI/UX Design",
         footer_service_branding: "Identidade da Marca",
@@ -1125,10 +1632,12 @@
         nav_about: "About",
         nav_projects: "Projects",
         nav_services: "Services",
+        nav_contact: "Contact",
         nav_home_mobile: "Home",
         nav_about_mobile: "About",
         nav_projects_mobile: "Projects",
         nav_services_mobile: "Services",
+        nav_contact_mobile: "Contact",
         nav_lang_mobile: "Language",
         theme_toggle: "Theme",
 
@@ -1165,6 +1674,31 @@
         services_title: "My Services",
         services_p: "Comprehensive design solutions for your business.",
 
+        // Contact Section
+        contact_subtitle: "Let's Talk",
+        contact_title: "Get In Touch",
+        contact_p: "Ready to transform your ideas into reality? Get in touch to discuss your project.",
+        contact_form_title: "Send Your Message",
+        contact_label_name: "Full name *",
+        contact_label_email: "Email *",
+        contact_label_subject: "Subject *",
+        contact_label_message: "Message *",
+        contact_button: "Send Message",
+        contact_info_email_title: "Email",
+        contact_email_desc: "Quick responses within 24h",
+        contact_availability_title: "Availability",
+        contact_availability: "Monday to Friday • 9am to 6pm",
+        contact_availability_desc: "Business hours for meetings",
+        contact_process_title: "Process",
+        contact_process: "Free initial consultation",
+        contact_process_desc: "Let's discuss your needs",
+        contact_social_title: "Connect",
+
+        // Popup de Confirmação
+        popup_title: "Message Sent!",
+        popup_message: "Your message has been sent successfully. I'll contact you soon!",
+        popup_button: "OK",
+
         // Footer
         footer_p: "Creating digital experiences that matter.",
         footer_links_title: "Quick Links",
@@ -1172,6 +1706,7 @@
         footer_link_about: "About",
         footer_link_projects: "Projects",
         footer_link_services: "Services",
+        footer_link_contact: "Contact",
         footer_services_title: "Services",
         footer_service_uiux: "UI/UX Design",
         footer_service_branding: "Brand Identity",
@@ -1188,10 +1723,12 @@
         nav_about: "Sobre",
         nav_projects: "Proyectos",
         nav_services: "Servicios",
+        nav_contact: "Contacto",
         nav_home_mobile: "Inicio",
         nav_about_mobile: "Sobre",
         nav_projects_mobile: "Proyectos",
         nav_services_mobile: "Servicios",
+        nav_contact_mobile: "Contacto",
         nav_lang_mobile: "Idioma",
         theme_toggle: "Tema",
 
@@ -1228,6 +1765,31 @@
         services_title: "Mis servicios",
         services_p: "Soluciones de diseño integrales para tu negocio.",
 
+        // Contact Section
+        contact_subtitle: "Hablemos",
+        contact_title: "Ponte en Contacto",
+        contact_p: "¿Listo para transformar tus ideas en realidad? Contáctame para discutir tu proyecto.",
+        contact_form_title: "Envía tu Mensaje",
+        contact_label_name: "Nombre completo *",
+        contact_label_email: "Correo electrónico *",
+        contact_label_subject: "Asunto *",
+        contact_label_message: "Mensaje *",
+        contact_button: "Enviar Mensaje",
+        contact_info_email_title: "Correo electrónico",
+        contact_email_desc: "Respuestas rápidas en menos de 24h",
+        contact_availability_title: "Disponibilidad",
+        contact_availability: "Lunes a Viernes • 9h a 18h",
+        contact_availability_desc: "Horario comercial para reuniones",
+        contact_process_title: "Proceso",
+        contact_process: "Consulta inicial gratuita",
+        contact_process_desc: "Hablemos sobre tus necesidades",
+        contact_social_title: "Conéctate",
+
+        // Popup de Confirmação
+        popup_title: "¡Mensaje Enviado!",
+        popup_message: "Tu mensaje ha sido enviado con éxito. ¡Me pondré en contacto contigo pronto!",
+        popup_button: "OK",
+
         // Footer
         footer_p: "Creando experiencias digitales que importan.",
         footer_links_title: "Enlaces Rápidos",
@@ -1235,6 +1797,7 @@
         footer_link_about: "Sobre",
         footer_link_projects: "Proyectos",
         footer_link_services: "Servicios",
+        footer_link_contact: "Contacto",
         footer_services_title: "Servicios",
         footer_service_uiux: "Diseño UI/UX",
         footer_service_branding: "Identidad de Marca",
@@ -1487,6 +2050,107 @@
       });
     }
 
+    // ===== POPUP DE CONFIRMAÇÃO =====
+    function showSuccessPopup() {
+      const popup = document.getElementById('success-popup');
+      popup.classList.add('active');
+
+      // Fechar popup ao clicar no botão
+      document.getElementById('close-popup').addEventListener('click', () => {
+        popup.classList.remove('active');
+      });
+
+      // Fechar popup ao clicar fora
+      popup.addEventListener('click', (e) => {
+        if (e.target === popup) {
+          popup.classList.remove('active');
+        }
+      });
+    }
+
+    // ===== MANIPULAÇÃO DO FORMULÁRIO =====
+    function setupContactForm() {
+      const contactForm = document.getElementById('contact-form');
+      const submitBtn = document.getElementById('submit-btn');
+
+      if (!contactForm) return;
+
+      contactForm.addEventListener('submit', async function (e) {
+        e.preventDefault();
+
+        // Validação básica
+        const name = document.getElementById('name').value;
+        const email = document.getElementById('email').value;
+        const subject = document.getElementById('subject').value;
+        const message = document.getElementById('message').value;
+
+        if (!name || !email || !subject || !message) {
+          alert('Por favor, preencha todos os campos.');
+          return;
+        }
+
+        // Adicionar estado de carregamento
+        submitBtn.classList.add('loading');
+        submitBtn.disabled = true;
+        submitBtn.innerHTML = '<span>Enviando...</span>';
+
+        try {
+          // Preparar dados para envio
+          const formData = new FormData(this);
+
+          // Adicionar informações adicionais
+          formData.append('_captcha', 'false');
+          formData.append('_subject', 'Nova mensagem do portfólio - Theo Natan');
+          formData.append('_template', 'table');
+          formData.append('_replyto', email);
+          formData.append('_next', window.location.href + '?success=true');
+
+          // Enviar para FormSubmit
+          const response = await fetch('https://formsubmit.co/ajax/theonatan20@gmail.com', {
+            method: 'POST',
+            body: formData,
+            headers: {
+              'Accept': 'application/json'
+            }
+          });
+
+          const result = await response.json();
+
+          if (response.ok && result.success) {
+            // Limpar formulário
+            contactForm.reset();
+
+            // Mostrar popup de sucesso
+            showSuccessPopup();
+
+            // Rolar para o topo da seção de contato
+            document.getElementById('contact').scrollIntoView({ behavior: 'smooth' });
+          } else {
+            throw new Error(result.message || 'Erro ao enviar mensagem');
+          }
+        } catch (error) {
+          console.error('Erro:', error);
+
+          // Mostrar mensagem de erro amigável
+          const errorMessage = currentLang === 'pt' ?
+            'Houve um erro ao enviar sua mensagem. Por favor, tente novamente mais tarde ou entre em contato diretamente pelo e-mail theonatan20@gmail.com' :
+            currentLang === 'en' ?
+              'There was an error sending your message. Please try again later or contact directly by email theonatan20@gmail.com' :
+              'Hubo un error al enviar su mensaje. Por favor, inténtelo de nuevo más tarde o póngase en contacto directamente por correo electrónico theonatan20@gmail.com';
+
+          alert(errorMessage);
+        } finally {
+          // Remover estado de carregamento
+          submitBtn.classList.remove('loading');
+          submitBtn.disabled = false;
+
+          // Restaurar texto do botão
+          const buttonText = translations[currentLang]?.contact_button || 'Enviar Mensagem';
+          submitBtn.innerHTML = `<span>${buttonText}</span> <i class="fas fa-arrow-right ml-2 group-hover:translate-x-1 transition-transform"></i>`;
+        }
+      });
+    }
+
     // ===== INICIALIZAÇÃO =====
     document.addEventListener('DOMContentLoaded', function () {
       console.log('DOM carregado, inicializando...');
@@ -1507,6 +2171,27 @@
 
       // Configurar filtros
       setupFilters();
+
+      // Configurar formulário de contato
+      setupContactForm();
+
+      // Configurar popup de confirmação
+      const closePopupBtn = document.getElementById('close-popup');
+      const popup = document.getElementById('success-popup');
+
+      if (closePopupBtn) {
+        closePopupBtn.addEventListener('click', () => {
+          popup.classList.remove('active');
+        });
+      }
+
+      if (popup) {
+        popup.addEventListener('click', (e) => {
+          if (e.target === popup) {
+            popup.classList.remove('active');
+          }
+        });
+      }
 
       // Configurar observador de scroll
       setupScrollObservers();
@@ -1693,10 +2378,6 @@
     window.addEventListener('load', resize);
     window.addEventListener('resize', resize);
   </script>
-</body>
-
-</html>
-</script>
 </body>
 
 </html>

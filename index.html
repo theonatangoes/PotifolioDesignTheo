@@ -45,6 +45,11 @@
       --grad-btn: radial-gradient(circle at 4.41%, #4d80ff, #0b3bf0);
       --grad-btn2: radial-gradient(circle at 50% -.33%, #4d80ff, #0b3bf0);
       --grad-tag: radial-gradient(circle at 50% 100%, #1a39ac, #0b0a24 42%);
+
+      /* Mobile-specific tokens */
+      --mob-pad: 16px;
+      --mob-radius: 18px;
+      --mob-gap: 14px;
     }
 
     /* ── LIGHT MODE ── */
@@ -448,7 +453,6 @@
       color: #fff;
     }
 
-    /* ── TESTIMONIALS LIGHT ── */
     html.light .tcard {
       background: linear-gradient(145deg, #dce6fb, #eef3ff) !important;
       border-color: rgba(30, 64, 175, .18) !important;
@@ -478,7 +482,6 @@
       background: radial-gradient(ellipse 80% 60% at 50% 50%, rgba(30, 64, 175, .07) 0%, transparent 70%) !important;
     }
 
-    /* ── PS NODE SVG (dark: white, light: blue) ── */
     .ps-node-svg {
       border-radius: 6px;
       overflow: hidden;
@@ -494,7 +497,6 @@
       fill: #1d4ed8;
     }
 
-    /* ── VSCODE NODE SVG (dark: white, light: blue) ── */
     .vscode-node-svg {
       display: block;
     }
@@ -508,7 +510,6 @@
       fill: #1d4ed8;
     }
 
-    /* ── FRAMER SVG ── */
     .framer-svg {
       fill: #ffffff;
       transition: fill .3s;
@@ -518,7 +519,6 @@
       fill: #1d4ed8;
     }
 
-    /* ── COREL SVG ── */
     .corel-node-svg {
       display: block;
     }
@@ -854,6 +854,7 @@
       }
     }
 
+    /* ── MOBILE MENU — completamente redesenhado ── */
     #mob {
       display: none;
       position: fixed;
@@ -861,54 +862,224 @@
       left: 0;
       right: 0;
       bottom: 0;
-      background: rgba(3, 6, 20, .98);
-      backdrop-filter: blur(24px);
-      border-bottom: 1px solid var(--border);
-      padding: 0;
       z-index: 98;
       flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      gap: 8px;
+      overflow: hidden;
     }
 
     #mob.open {
       display: flex;
     }
 
-    #mob .mob-close {
+    /* Fundo com blur e gradiente */
+    .mob-backdrop {
       position: absolute;
-      top: 20px;
-      right: 20px;
+      inset: 0;
+      background: rgba(3, 6, 20, .97);
+      backdrop-filter: blur(32px);
+      -webkit-backdrop-filter: blur(32px);
+    }
+
+    /* Glow decorativo no mobile menu */
+    .mob-glow {
+      position: absolute;
+      top: -80px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 360px;
+      height: 360px;
+      background: radial-gradient(circle, rgba(77, 128, 255, .18) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    .mob-inner {
+      position: relative;
+      z-index: 1;
+      display: flex;
+      flex-direction: column;
+      height: 100%;
+      padding: 0 var(--mob-pad);
+    }
+
+    /* Header do menu mobile */
+    .mob-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 20px 0 24px;
+      border-bottom: 1px solid rgba(55, 59, 75, .4);
+    }
+
+    .mob-logo svg {
+      fill: #4d80ff;
+    }
+
+    html.light .mob-logo svg {
+      fill: #1d4ed8;
+    }
+
+    .mob-close {
       width: 40px;
       height: 40px;
-      border-radius: 10px;
+      border-radius: 12px;
       background: rgba(255, 255, 255, .07);
       border: 1px solid var(--border);
-      color: #fff;
+      color: rgba(255, 255, 255, .8);
       display: flex;
       align-items: center;
       justify-content: center;
       font-size: 16px;
       cursor: pointer;
+      transition: all .2s;
     }
 
-    #mob a {
-      display: block;
-      padding: 16px 40px;
-      color: rgba(255, 255, 255, .7);
-      font-size: 22px;
+    .mob-close:active {
+      background: rgba(77, 128, 255, .2);
+    }
+
+    html.light .mob-close {
+      color: #1e293b;
+      background: rgba(30, 64, 175, .08);
+      border-color: rgba(30, 64, 175, .2);
+    }
+
+    /* Links de navegação */
+    .mob-nav {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      gap: 4px;
+      padding: 20px 0;
+    }
+
+    #mob a.mob-link {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      padding: 15px 16px;
+      color: rgba(255, 255, 255, .65);
+      font-size: 18px;
       font-weight: 600;
-      letter-spacing: var(--ls-s);
+      letter-spacing: -0.4px;
       border-radius: 14px;
       transition: all .2s;
-      text-align: center;
-      width: 80%;
+      text-align: left;
+      width: 100%;
+      border: 1px solid transparent;
+      position: relative;
+      overflow: hidden;
     }
 
-    #mob a:hover {
-      background: rgba(77, 128, 255, .12);
+    #mob a.mob-link:active,
+    #mob a.mob-link:hover {
+      background: rgba(77, 128, 255, .1);
+      border-color: rgba(77, 128, 255, .2);
       color: #fff;
+    }
+
+    html.light #mob a.mob-link {
+      color: #374151;
+    }
+
+    html.light #mob a.mob-link:hover {
+      color: #1d4ed8;
+      background: rgba(30, 64, 175, .08);
+      border-color: rgba(30, 64, 175, .18);
+    }
+
+    .mob-link-icon {
+      width: 36px;
+      height: 36px;
+      border-radius: 10px;
+      background: rgba(77, 128, 255, .12);
+      border: 1px solid rgba(77, 128, 255, .2);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 14px;
+      color: var(--blue-bright);
+      flex-shrink: 0;
+      transition: all .2s;
+    }
+
+    #mob a.mob-link:hover .mob-link-icon,
+    #mob a.mob-link:active .mob-link-icon {
+      background: rgba(77, 128, 255, .25);
+      color: #fff;
+    }
+
+    html.light .mob-link-icon {
+      background: rgba(30, 64, 175, .1);
+      border-color: rgba(30, 64, 175, .2);
+      color: #1d4ed8;
+    }
+
+    /* Footer do menu mobile */
+    .mob-footer {
+      padding: 20px 0 32px;
+      border-top: 1px solid rgba(55, 59, 75, .4);
+    }
+
+    #mob .mob-cta {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      width: 100%;
+      padding: 15px;
+      background: var(--grad-btn);
+      color: #fff;
+      border: none;
+      border-radius: 14px;
+      font-family: var(--ff);
+      font-size: 16px;
+      font-weight: 700;
+      letter-spacing: -0.3px;
+      box-shadow: 0 0 28px rgba(77, 128, 255, .4), inset 0 1px 0 rgba(255, 255, 255, .15);
+      transition: all .25s;
+      text-decoration: none;
+      margin-bottom: 16px;
+    }
+
+    #mob .mob-cta:active {
+      transform: scale(.98);
+    }
+
+    .mob-soc {
+      display: flex;
+      gap: 10px;
+      justify-content: center;
+    }
+
+    .mob-soc a {
+      width: 44px;
+      height: 44px;
+      border-radius: 12px;
+      background: rgba(255, 255, 255, .05);
+      border: 1px solid var(--border) !important;
+      color: var(--gray) !important;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 16px;
+      transition: all .2s;
+      padding: 0 !important;
+      font-size: 16px !important;
+      font-weight: 400 !important;
+      letter-spacing: 0 !important;
+      border-radius: 12px !important;
+    }
+
+    .mob-soc a:hover,
+    .mob-soc a:active {
+      background: var(--blue-mid) !important;
+      border-color: var(--blue-mid) !important;
+      color: #fff !important;
+    }
+
+    html.light .mob-soc a {
+      background: rgba(255, 255, 255, .8) !important;
     }
 
     /* ── BTNs ── */
@@ -1875,9 +2046,7 @@
       stroke-linecap: round;
     }
 
-    /* ══════════════════════════════════════════
-       ── TESTIMONIALS ──
-    ══════════════════════════════════════════ */
+    /* ── TESTIMONIALS ── */
     .testimonials-section {
       padding: 90px 0;
       position: relative;
@@ -1898,7 +2067,6 @@
       z-index: 1;
     }
 
-    /* Marquee Rows */
     .tmarquee-wrap {
       overflow: hidden;
       mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent);
@@ -1946,7 +2114,6 @@
       }
     }
 
-    /* Card */
     .tcard {
       flex-shrink: 0;
       width: 340px;
@@ -2448,7 +2615,11 @@
       box-shadow: 0 8px 28px rgba(77, 128, 255, .5);
     }
 
-    /* ── RESPONSIVE ── */
+    /* ════════════════════════════
+       MOBILE RESPONSIVE — melhorado
+    ════════════════════════════ */
+
+    /* Tablet */
     @media(max-width:860px) {
       .home-hero-wrap {
         padding-top: 120px;
@@ -2472,106 +2643,81 @@
       }
     }
 
+    /* Mobile geral */
     @media(max-width:767px) {
       .nav-inner {
         grid-template-columns: auto 1fr;
         gap: 0;
+        padding: 14px 0;
+      }
+
+      #nav.solid .nav-inner {
+        padding: 10px 0;
       }
 
       .nav-end {
         gap: 8px;
       }
 
-      .nav-logo-img {
-        height: 32px;
+      /* Logo menor e mais limpo */
+      .nav-logo-slot svg {
+        height: 30px;
+      }
+
+      /* Nav buttons menores e mais tocáveis */
+      .ibtn {
+        width: 36px;
+        height: 36px;
+      }
+
+      .ibtn.pill {
+        padding: 0 10px;
+        font-size: 12px;
+      }
+
+      /* CTA no nav — esconder em mobile pequeno, mostrar só hamburger */
+      .nav-cta-desktop {
+        display: none;
       }
 
       .home-hero-wrap {
-        padding-top: 110px;
-        padding-bottom: 50px;
+        padding-top: 100px;
+        padding-bottom: 48px;
+      }
+
+      .hero-title-holder {
+        gap: 16px;
       }
 
       .hero-h1 {
-        font-size: clamp(30px, 9vw, 46px);
+        font-size: clamp(34px, 9.5vw, 50px);
         letter-spacing: -1.8px;
+        line-height: 108%;
       }
 
       .hero-sub {
         font-size: 15px;
         max-width: 100%;
+        color: rgba(255, 255, 255, .75);
+        line-height: 155%;
+      }
+
+      html.light .hero-sub {
+        color: rgba(10, 12, 26, .7);
       }
 
       .hero-btn-row {
         gap: 10px;
+        margin-top: 4px;
       }
 
-      .hero-image {
-        margin-top: 40px;
-      }
-
-      .about-grid {
-        gap: 32px;
-      }
-
-      .about-sticky {
-        position: relative;
-        top: 0;
-      }
-
-      .proj-header {
-        flex-direction: column;
-        align-items: flex-start;
-        gap: 16px;
-      }
-
-      .contact-grid {
-        gap: 32px;
-      }
-
-      .footer-grid {
-        gap: 28px;
-      }
-
-      .stats-row {
-        gap: 28px;
-      }
-
-      .btn {
-        padding: 11px 22px;
-        font-size: 14px;
-      }
-
-      .tools-diagram {
-        height: 300px;
-      }
-    }
-
-    @media(max-width:480px) {
-      .container {
-        padding: 0 16px;
-      }
-
-      .hero-h1 {
-        font-size: clamp(28px, 10vw, 40px);
-      }
-
-      .filter-pills {
+      /* Botões hero empilhados e cheios */
+      .hero-btn-row .btn {
         width: 100%;
+        max-width: 320px;
         justify-content: center;
-      }
-
-      .fpill {
-        font-size: 12px;
-        padding: 6px 12px;
-      }
-
-      .nav-logo-img {
-        height: 28px;
-      }
-
-      .btn {
-        padding: 10px 18px;
-        font-size: 13px;
+        font-size: 15px;
+        padding: 14px 24px;
       }
 
       .hero-btn-row {
@@ -2579,21 +2725,293 @@
         align-items: center;
       }
 
-      .hero-btn-row .btn {
+      .hero-image {
+        margin-top: 36px;
+        border-radius: 16px;
+      }
+
+      /* Section tag menor */
+      .section-tag-wrap {
+        padding: 6px 14px;
+        margin-bottom: 16px;
+      }
+
+      .section-tag-text {
+        font-size: 12px;
+      }
+
+      /* Títulos de seção */
+      .sec-title {
+        font-size: clamp(24px, 7vw, 36px);
+        letter-spacing: -1.2px;
+        margin-bottom: 10px;
+      }
+
+      .sec-sub {
+        font-size: 15px;
+      }
+
+      /* About */
+      .about-grid {
+        gap: 28px;
+      }
+
+      .about-sticky {
+        position: relative;
+        top: 0;
+      }
+
+      .about-card {
+        border-radius: 20px;
+      }
+
+      .about-card img {
+        aspect-ratio: 3/2;
+      }
+
+      .about-copy p {
+        font-size: 15px;
+      }
+
+      .skills-grid {
+        gap: 7px;
+        margin-top: 18px;
+      }
+
+      .skill-tag {
+        font-size: 12px;
+        padding: 6px 11px;
+      }
+
+      .stats-row {
+        gap: 24px;
+        padding: 22px 0;
+        margin-top: 20px;
+      }
+
+      .stat-num {
+        font-size: clamp(24px, 6vw, 34px);
+      }
+
+      .stat-lbl {
+        font-size: 11px;
+      }
+
+      /* Projects */
+      .proj-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 16px;
+      }
+
+      /* Filter pills scroll horizontal no mobile */
+      .filter-pills {
         width: 100%;
-        justify-content: center;
-        max-width: 300px;
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+        scrollbar-width: none;
+        flex-wrap: nowrap;
+        padding: 5px;
+        border-radius: 16px;
       }
 
-      .serv-grid,
+      .filter-pills::-webkit-scrollbar {
+        display: none;
+      }
+
+      .fpill {
+        white-space: nowrap;
+        flex-shrink: 0;
+        font-size: 13px;
+        padding: 8px 16px;
+        -webkit-tap-highlight-color: transparent;
+      }
+
+      /* Proj grid — 1 coluna, mas com gap menor */
       .proj-grid {
-        grid-template-columns: 1fr;
+        gap: 14px;
       }
 
+      .pcard {
+        border-radius: 18px;
+      }
+
+      .pcard-thumb {
+        border-radius: 18px 18px 0 0;
+      }
+
+      /* CTA dos cards sempre visível no mobile (sem hover) */
+      .pcard-cta {
+        opacity: 1;
+      }
+
+      .pcard-dim {
+        opacity: 0.6;
+      }
+
+      .pcard-cta a {
+        font-size: 11px;
+        padding: 7px 14px;
+      }
+
+      /* Services */
+      .scard {
+        padding: 22px 20px;
+        border-radius: 18px;
+      }
+
+      .scard-icon {
+        width: 44px;
+        height: 44px;
+        font-size: 16px;
+        margin-bottom: 14px;
+      }
+
+      .scard-title {
+        font-size: 16px;
+      }
+
+      .scard-desc {
+        font-size: 13px;
+      }
+
+      /* Contact */
+      .contact-grid {
+        gap: 28px;
+      }
+
+      .contact-wrap {
+        padding: 24px 20px;
+        border-radius: 20px;
+      }
+
+      .cf-title {
+        font-size: clamp(20px, 6vw, 28px);
+      }
+
+      .cf-sub {
+        font-size: 15px;
+        margin-bottom: 24px;
+      }
+
+      /* Form inputs maiores para touch */
+      .f-input {
+        padding: 14px 15px;
+        font-size: 16px;
+        /* previne zoom no iOS */
+        border-radius: 12px;
+      }
+
+      textarea.f-input {
+        min-height: 120px;
+      }
+
+      .f-label {
+        font-size: 10px;
+        margin-bottom: 6px;
+      }
+
+      /* Contact info cards */
+      .ci-card {
+        padding: 14px 16px;
+        border-radius: 14px;
+      }
+
+      .ci-card:hover {
+        transform: none;
+      }
+
+      /* Footer */
+      .footer-grid {
+        gap: 24px;
+      }
+
+      .footer-links-grid {
+        gap: 20px;
+      }
+
+      .footer-heading {
+        font-size: 14px;
+        margin-bottom: 10px;
+      }
+
+      .footer-link {
+        font-size: 14px;
+        margin-bottom: 7px;
+      }
+
+      .footer-bottom {
+        padding: 18px 0 24px;
+        gap: 10px;
+      }
+
+      .footer-copy {
+        font-size: 13px;
+      }
+
+      .section {
+        padding: 56px 0;
+      }
+
+      .container {
+        padding: 0 16px;
+      }
+
+      /* BTT position */
+      #btt {
+        bottom: 16px;
+        right: 16px;
+        width: 40px;
+        height: 40px;
+        font-size: 13px;
+        border-radius: 12px;
+      }
+    }
+
+    /* Mobile pequeno */
+    @media(max-width:480px) {
+      .container {
+        padding: 0 var(--mob-pad);
+      }
+
+      .hero-h1 {
+        font-size: clamp(30px, 9.5vw, 42px);
+        letter-spacing: -1.5px;
+      }
+
+      .hero-sub {
+        font-size: 14px;
+      }
+
+      .hero-btn-row .btn {
+        max-width: 100%;
+      }
+
+      /* Nav logo ainda menor */
+      .nav-logo-slot svg {
+        height: 26px;
+      }
+
+      .ibtn {
+        width: 34px;
+        height: 34px;
+        font-size: 12px;
+      }
+
+      /* Sections menos padding */
       .section {
         padding: 48px 0;
       }
 
+      .tools-section {
+        padding: 60px 0;
+      }
+
+      .testimonials-section {
+        padding: 60px 0;
+      }
+
+      /* Tools diagram */
       .tools-diagram {
         height: 280px;
       }
@@ -2602,19 +3020,125 @@
         width: 46px;
         height: 46px;
         font-size: 18px;
+        border-radius: 12px;
       }
 
       .tc-center {
         width: 68px;
         height: 68px;
+        border-radius: 18px;
       }
 
       .tc-center-inner {
         font-size: 20px;
       }
 
+      /* Testimonials */
       .tcard {
         width: 260px;
+        padding: 18px 20px 16px;
+        border-radius: 18px;
+      }
+
+      .tcard-quote {
+        font-size: 34px;
+        margin-bottom: 7px;
+      }
+
+      .tcard-text {
+        font-size: 13px;
+        margin-bottom: 14px;
+      }
+
+      /* Pcard */
+      .pcard-body {
+        padding: 14px 16px 18px;
+      }
+
+      .pcard-title {
+        font-size: 15px;
+      }
+
+      .pcard-desc {
+        font-size: 12px;
+      }
+
+      /* About card em mobile pequeno — landscape ratio */
+      .about-card img {
+        aspect-ratio: 4/3;
+      }
+
+      /* Stats em linha compacta */
+      .stats-row {
+        gap: 20px;
+      }
+
+      /* Popup mobile */
+      .pbox {
+        padding: 28px 20px;
+        border-radius: 20px;
+      }
+    }
+
+    /* Touch: remover hover transforms que ficam grudados */
+    @media (hover: none) {
+      .pcard:hover {
+        transform: none;
+      }
+
+      .scard:hover {
+        transform: none;
+      }
+
+      .tcard:hover {
+        transform: none;
+      }
+
+      .btn-primary:hover {
+        transform: none;
+        box-shadow: 0 0 24px rgba(77, 128, 255, .38), inset 0 1px 0 rgba(255, 255, 255, .15);
+      }
+
+      .btn-secondary:hover {
+        transform: none;
+      }
+
+      .ci-card:hover {
+        transform: none;
+      }
+
+      .soc-btn:hover {
+        transform: none;
+      }
+
+      /* Mas mantém estados ativos */
+      .pcard:active {
+        transform: scale(.98);
+      }
+
+      .scard:active {
+        transform: scale(.98);
+      }
+
+      .btn:active {
+        transform: scale(.97);
+      }
+    }
+
+    /* Marquee mais lento em mobile */
+    @media(max-width:767px) {
+      .marquee-section {
+        padding: 20px 0;
+      }
+
+      .marquee-label {
+        font-size: 12px;
+        margin-bottom: 12px;
+      }
+
+      .marquee-item {
+        padding: 8px 22px;
+        font-size: 13px;
       }
     }
   </style>
@@ -2671,29 +3195,75 @@
               <div class="lopt" data-lang="es">🇪🇸 Español</div>
             </div>
           </div>
-          <a href="#contact" class="btn btn-primary" style="padding:9px 18px;font-size:14px;border-radius:12px;">
+          <!-- CTA só no desktop -->
+          <a href="#contact" class="btn btn-primary nav-cta-desktop" style="padding:9px 18px;font-size:14px;border-radius:12px;">
             <div class="btn-circle"></div>
             <div class="btn-content"><span data-t="n_cta">Iniciar Projeto</span></div>
           </a>
-          <button class="ibtn hbg" id="hbg"><i class="fas fa-bars"></i></button>
+          <button class="ibtn hbg" id="hbg" aria-label="Abrir menu"><i class="fas fa-bars"></i></button>
         </div>
       </div>
     </div>
   </nav>
 
-  <!-- MOBILE MENU -->
-  <div id="mob">
-    <button class="mob-close" id="mob-close"><i class="fas fa-times"></i></button>
-    <a href="#about" data-t="n_about">Sobre</a>
-    <a href="#projects" data-t="n_proj">Projetos</a>
-    <a href="#services" data-t="n_serv">Serviços</a>
-    <a href="#tools" data-t="n_tools">Ferramentas</a>
-    <a href="#testimonials" data-t="n_test">Feedbacks</a>
-    <a href="#contact" data-t="n_cont">Contato</a>
-    <a href="#contact" class="btn btn-primary" style="margin-top:12px;width:80%;max-width:280px;justify-content:center;">
-      <div class="btn-circle"></div>
-      <div class="btn-content"><span data-t="n_cta">Iniciar Projeto</span></div>
-    </a>
+  <!-- MOBILE MENU — redesenhado -->
+  <div id="mob" role="dialog" aria-modal="true" aria-label="Menu de navegação">
+    <div class="mob-backdrop"></div>
+    <div class="mob-glow"></div>
+    <div class="mob-inner">
+
+      <!-- Header -->
+      <div class="mob-header">
+        <a href="#hero" class="mob-logo" id="mob-logo-link">
+          <svg height="32" viewBox="0 0 13295.68 4399.03" xmlns="http://www.w3.org/2000/svg" style="width:auto;">
+            <path d="M2531.88 3233.81c-727.36,-35.42 -1393.27,-553.69 -1655.58,-1149.18 -124.47,-282.56 -138.22,-468.39 -137.72,-802.86l-738.3 0.67 -0.05 2692.23 737.93 0.08 0.23 -799.98c32.14,13.17 75.37,68.92 107.12,95.21 36.3,30.08 74.33,65.86 109.81,97.39 202.52,179.92 526.42,359.98 789.28,454.19 508.06,182.09 946.08,155.65 1518.47,153.1l0.74 -2693.14 -730.56 0.63 -1.37 1951.65zm2786.64 -1239.18l0 -1632.8 453.69 0 206.22 -329.96 -1647.36 0 203.8 329.96 453.69 0 0 1101.47 329.96 531.33zm2622.67 0l0 -1962.75 -329.96 0 0 645.35 -987.44 0 0 -645.35 -329.96 0 0 1618.24 329.96 0 0 -642.93 987.44 0 0 456.11 329.96 531.33zm2035.54 0l0 -672.04 -1317.39 0 0 -315.4 987.44 0 0 -329.96 -987.44 0 0 -315.4 1317.39 0 0 -329.96 -1647.35 0 0 1618.24 1433.85 0 213.5 344.51zm1492.08 -344.51c271.73,0 494.93,-220.78 494.93,-492.51l0 -630.8c0,-274.16 -223.2,-494.93 -494.93,-494.93l-657.49 0c-274.15,0 -494.93,220.78 -494.93,494.93l0 630.8c0,271.73 220.78,492.51 494.93,492.51l657.49 0zm0 -327.53l-657.49 0c-92.19,0 -164.97,-75.21 -164.97,-164.98l0 -630.8c0,-92.19 72.78,-164.98 164.97,-164.98l657.49 0c89.77,0 164.98,72.78 164.98,164.98l0 630.8c0,89.77 -75.21,164.98 -164.98,164.98zm-274.15 -371.2c29.11,0 55.8,-24.26 55.8,-55.81l0 -109.17c0,-29.12 -26.69,-53.38 -55.8,-53.38l-109.18 0c-31.54,0 -55.8,24.26 -55.8,53.38l0 109.17c0,31.54 24.26,55.81 55.8,55.81l109.18 0zm-5293.85 3447.65l0 -1962.75 -329.96 0 0 1166.98 -1166.97 -1166.98 0 1618.24 329.96 0 0 -822.46 1166.97 1166.98zm2355.79 -344.51l-1006.85 -1618.24 -1009.27 1618.24 776.36 0 206.22 -329.96 -388.18 0 414.87 -664.77 618.66 994.72 388.19 0zm756.95 344.51l0 -1632.8 453.69 0 206.22 -329.96 -1647.36 0 203.8 329.96 453.69 0 0 1101.47 329.96 531.33zm2445.56 -344.51l-1006.85 -1618.24 -1009.27 1618.24 776.36 0 206.22 -329.96 -388.18 0 414.87 -664.77 618.66 994.72 388.19 0zm1836.59 344.51l0 -1962.75 -329.96 0 0 1166.98 -1166.97 -1166.98 0 1618.24 329.96 0 0 -822.46 1166.97 1166.98zm-13295.46 -3799.94l0.76 140.62c359.6,23.35 898.22,-13.17 1265.81,5.33 -19.97,675.1 -36.02,1049.26 370.55,1525.99 51.27,60.12 256.08,231.79 358.82,269.21l1.6 -1794.64c386.24,-11.72 868.32,-2.74 1264.63,-2.62l1.64 -731.04c-182.51,-18.86 -1954.12,-6.33 -2352.21,-6.33 -137.53,0 -837.05,-16.13 -911.83,6.33l0.22 587.15z" />
+          </svg>
+        </a>
+        <button class="mob-close" id="mob-close" aria-label="Fechar menu"><i class="fas fa-times"></i></button>
+      </div>
+
+      <!-- Nav links -->
+      <nav class="mob-nav">
+        <a href="#about" class="mob-link" data-mob>
+          <span class="mob-link-icon"><i class="fas fa-user"></i></span>
+          <span data-t="n_about">Sobre</span>
+        </a>
+        <a href="#projects" class="mob-link" data-mob>
+          <span class="mob-link-icon"><i class="fas fa-briefcase"></i></span>
+          <span data-t="n_proj">Projetos</span>
+        </a>
+        <a href="#services" class="mob-link" data-mob>
+          <span class="mob-link-icon"><i class="fas fa-layer-group"></i></span>
+          <span data-t="n_serv">Serviços</span>
+        </a>
+        <a href="#tools" class="mob-link" data-mob>
+          <span class="mob-link-icon"><i class="fas fa-tools"></i></span>
+          <span data-t="n_tools">Ferramentas</span>
+        </a>
+        <a href="#testimonials" class="mob-link" data-mob>
+          <span class="mob-link-icon"><i class="fas fa-star"></i></span>
+          <span data-t="n_test">Feedbacks</span>
+        </a>
+        <a href="#contact" class="mob-link" data-mob>
+          <span class="mob-link-icon"><i class="fas fa-envelope"></i></span>
+          <span data-t="n_cont">Contato</span>
+        </a>
+      </nav>
+
+      <!-- Footer do menu -->
+      <div class="mob-footer">
+        <a href="#contact" class="mob-cta" data-mob>
+          <i class="fas fa-rocket"></i>
+          <span data-t="n_cta">Iniciar Projeto</span>
+        </a>
+        <div class="mob-soc">
+          <a href="https://www.instagram.com/theonatan_/" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+          <a href="https://www.linkedin.com/in/theo-natan-7346a2266/" target="_blank" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+          <a href="https://github.com/theonatangoes" target="_blank" aria-label="GitHub"><i class="fab fa-github"></i></a>
+        </div>
+      </div>
+
+    </div>
   </div>
 
   <div id="site">
@@ -2863,40 +3433,25 @@
               <span class="tc-center-inner" style="display:none;">TN</span>
             </div>
 
-            <!-- Node 0: Figma -->
             <div class="tc-node" id="tn0" data-tip="Figma"><i class="fab fa-figma"></i></div>
-
-            <!-- Node 1: Photoshop — branco no dark, azul no light via .ps-fill -->
             <div class="tc-node" id="tn1" data-tip="Photoshop">
               <svg class="ps-node-svg" width="28" height="28" viewBox="0 0 30 30" xmlns="http://www.w3.org/2000/svg">
                 <path class="ps-fill" d="M 6 4 C 4.895 4 4 4.895 4 6 L 4 24 C 4 25.105 4.895 26 6 26 L 24 26 C 25.105 26 26 25.105 26 24 L 26 6 C 26 4.895 25.105 4 24 4 L 6 4 z M 8 9.9921875 L 11.978516 9.9921875 C 13.947516 9.9921875 15.294922 11.339125 15.294922 13.328125 C 15.294922 15.283125 13.898344 16.623047 11.902344 16.623047 L 9.7636719 16.623047 L 9.7636719 19.857422 L 8 19.857422 L 8 9.9921875 z M 9.7636719 11.46875 L 9.7636719 15.160156 L 11.507812 15.160156 C 12.765813 15.160156 13.503906 14.504125 13.503906 13.328125 C 13.503906 12.119125 12.784672 11.46875 11.513672 11.46875 L 9.7636719 11.46875 z M 19.207031 12.226562 C 20.984031 12.226562 22.099656 13.013047 22.222656 14.373047 L 20.630859 14.373047 C 20.507859 13.847047 20.007844 13.511719 19.214844 13.511719 C 18.442844 13.511719 17.861328 13.881875 17.861328 14.421875 C 17.861328 14.845875 18.21675 15.105391 18.96875 15.275391 L 20.287109 15.576172 C 21.716109 15.897172 22.378906 16.513281 22.378906 17.613281 C 22.378906 19.050281 21.059359 20.007813 19.193359 20.007812 C 17.327359 20.007812 16.151484 19.199844 16.021484 17.839844 L 17.697266 17.839844 C 17.861266 18.393844 18.386375 18.722656 19.234375 18.722656 C 20.088375 18.722656 20.683594 18.346969 20.683594 17.792969 C 20.683594 17.368969 20.363344 17.101359 19.652344 16.943359 L 18.326172 16.636719 C 16.890172 16.308719 16.214844 15.645578 16.214844 14.517578 C 16.214844 13.163578 17.443031 12.226562 19.207031 12.226562 z" />
               </svg>
             </div>
-
-            <!-- Node 2: CorelDraw -->
             <div class="tc-node" id="tn2" data-tip="CorelDraw">
               <svg class="corel-node-svg" width="32" height="32" viewBox="0 0 240.52 330.92" xmlns="http://www.w3.org/2000/svg">
                 <path class="corel-fill" d="M11.81,111.67c-4.04-1.84-7.54-3.26-10.4-4.33c-0.6-4.49-1.04-8.99-1.31-13.51 c-0.22-3.72-0.08-7.39,0.36-10.99c2.43,0.4,5.87,1,10.15,1.83c-0.42,5.11-0.46,10.49,0,16.17C10.9,104.47,11.3,108.08,11.81,111.67 z M51.77,135.26c-10.22-7.5-19.82-13.31-28.16-17.77c-1.69-10.39-2.41-20.69-1.78-30.49c7.71,1.7,16.83,3.9,26.86,6.69 C48.03,106.8,49.26,120.9,51.77,135.26L51.77,135.26z M156.73,140.73c-0.1,1.13-0.23,2.28-0.35,3.43 c-13.96,7.29-27.86,17.12-40.35,30.37c-4.04,4.28-7.72,8.58-11.09,12.86c-3.78-4.78-7.81-9.62-12.09-14.48 c-1.92-2.17-3.84-4.28-5.78-6.34c-3.21-21.5-5.25-42.71-5.63-62.59C106.29,112.8,133.12,124.77,156.73,140.73z M14.86,63.78c-2.09,6.34-3.61,13.3-4.25,20.89c-4.28-0.83-7.72-1.43-10.15-1.83 c0.27-2.27,0.68-4.51,1.19-6.72C4.7,72.84,9.11,68.51,14.86,63.78z M63.49,36.38c-7.35,13.48-13.24,31.65-14.73,55.89c-0.02,0.47-0.05,0.95-0.07,1.42 c-10.03-2.79-19.14-4.98-26.85-6.69c0.01-0.33,0.04-0.64,0.06-0.97c0.96-12.71,4.71-24.37,10.38-34.72 C41.05,45.9,51.44,40.64,63.49,36.38z M156.73,140.73c-23.61-15.96-50.44-27.93-75.29-36.75C80.96,80.3,82.8,58.53,87.7,40.49 c0.13-0.5,0.27-0.99,0.41-1.47c19.71,11.65,45.39,24.64,69.77,30.34C160.01,90.86,159.37,115.29,156.73,140.73L156.73,140.73z M240.42,93.83c-0.6,10-2.03,19.9-4.25,29.8c-2.81,0.11-6.05,0.29-9.64,0.6c1.58-7.63,2.74-15.44,3.38-23.39 c2.14-26.76-6.51-47.14-16.51-61.37c2.93,0.83,5.71,1.65,8.3,2.45C232.93,56.16,241.6,74.46,240.42,93.83z M215.43,125.52 c-7.83,1.12-16.67,2.87-26,5.54c2.14-13.43,3.07-26.55,2.32-38.79c-1.7-27.91-9.26-47.76-18.15-61.7 c8.36,1.38,16.29,3.01,23.61,4.72c11.67,13.78,19.93,30.98,21.41,50.75C219.56,98.64,218.21,112.08,215.43,125.52z M157.88,69.36c-24.38-5.71-50.06-18.7-69.77-30.34c1.04-3.61,2.2-6.89,3.48-9.87 c3.61-0.62,7.33-1.12,11.16-1.51c15.4-1.57,30.78-1.42,45.42-0.22c1.73,3.82,3.31,8.15,4.65,13.07 C155.2,49.29,156.87,58.98,157.88,69.36z M52.63,14.42c-0.81,0.5-27,16.62-37.77,49.35C9.11,68.5,4.7,72.84,1.66,76.11 C8.78,45.23,37.2,20.01,52.63,14.42z M69.2,27.16c-1.97,2.8-3.89,5.87-5.71,9.22c-12.04,4.26-22.44,9.52-31.21,14.94 c6.71-12.31,16.14-22.8,26.77-31.12C61.57,22,65.02,24.39,69.2,27.16z M221.7,41.92c-2.59-0.8-5.37-1.62-8.3-2.45c-11.82-16.82-25.53-25.06-25.53-25.06 C196.96,17.7,210.59,27.83,221.7,41.92z M197.21,35.29c-7.31-1.71-15.24-3.34-23.6-4.72c-15-23.56-33.84-30.25-34.76-30.56 C159.04,4.06,181.3,16.51,197.21,35.29z M148.17,27.42c-14.64-1.21-30.02-1.35-45.42,0.22c-3.83,0.39-7.54,0.89-11.16,1.51 C102.41,3.65,120.01,0,120.01,0h0.5C120.51,0,137.31,3.48,148.17,27.42z M101.68,0.01c-0.87,0.3-17.91,6.35-32.48,27.15 c-4.17-2.76-7.63-5.15-10.15-6.95C72.33,9.83,87.51,2.85,101.68,0.01L101.68,0.01z M120.26,330.92h18.09l6.69-29.2H95.48l6.69,29.2H120.26z M51.95,200.22c3.48,7.19,6.8,13.61,9.66,18.97c4.9,9.17,9.56,16.97,14.37,24.07c1.39-4.86,3.12-9.99,5.28-15.31 c-3.73-8.55-7.47-17.74-11.03-27.31c-7.74-20.79-14.61-43.41-18.45-65.38c-10.22-7.49-19.82-13.31-28.16-17.76 C28.39,147.07,40.96,177.52,51.95,200.22L51.95,200.22z M35.61,199.85c1.97,3.44,4.02,6.9,6.14,10.39c9.93,16.28,21.4,31.32,31.61,43.54c0.3-1.48,0.65-3.01,1.04-4.56 c-4.13-5.68-8.16-11.44-11.63-16.79c-4.97-7.65-12.16-18.74-19.66-32.39c-12.84-23.41-26.55-54.36-31.31-88.36 c-4.04-1.84-7.54-3.26-10.39-4.33C5.52,137.82,17.18,167.74,35.61,199.85L35.61,199.85z M88.86,177.92c1.29,7.7,2.8,15.52,4.43,23.25c0.16,0.74,0.31,1.47,0.47,2.21c3.26-5.27,6.97-10.62,11.17-15.98 c-3.9-4.93-7.93-9.76-12.09-14.49c-1.92-2.17-3.84-4.28-5.78-6.33C87.63,170.35,88.22,174.13,88.86,177.92z M226.52,124.23c-4.6,22.34-12.7,43.03-21.32,60.73c1.74,1.75,3.44,3.5,5.09,5.22 c12.28-22.83,21.01-44.67,25.88-66.55C233.35,123.74,230.12,123.91,226.52,124.23z M189.44,131.06c-1.69,10.67-4.12,21.53-7.06,32.3 c5.08,4.58,10.63,9.71,16.09,14.97c6.83-16.3,13.21-34.57,16.97-52.81C207.6,126.65,198.77,128.4,189.44,131.06L189.44,131.06z M116.03,174.52c-4.04,4.28-7.72,8.58-11.09,12.87c14.69,18.56,25.61,36.21,33.52,50.97 c2.87-11.1,5.85-23.39,8.52-35.98c1.73-8.12,3.32-16.35,4.68-24.46c1.91-11.32,3.5-22.63,4.72-33.76 C142.41,151.45,128.52,161.27,116.03,174.52z M205.2,184.96c-0.33,0.68-0.66,1.35-0.99,2.02c-9.75,19.67-20,35.47-26.47,45.44 c-7.47,11.51-17.54,24.99-25.52,35.3c0.29,0.76,0.57,1.47,0.83,2.15c12.36-13.46,30.78-35.15,45.71-59.63 c3.75-6.15,7.25-12.2,10.52-18.19c0.34-0.62,0.68-1.24,1.01-1.87C208.64,188.45,206.94,186.71,205.2,184.96L205.2,184.96z M182.38,163.36l-0.39,1.4c-9.47,34.19-23.89,67.31-35.3,90.13c1.24,2.71,2.37,5.24,3.36,7.56 c10.54-12.54,19.22-25.24,28.86-43.26c5.29-9.92,12.15-23.44,18.7-38.82l0.86-2.04C193.01,173.07,187.46,167.94,182.38,163.36z M129.77,284.65c7.7-7.98,14.29-15.06,20.28-22.2c-0.99-2.32-2.11-4.84-3.36-7.56 C138.61,271.07,132.02,282.07,129.77,284.65z M139.23,284.17c0.41-0.4,5.87-5.65,13.83-14.3c-0.27-0.68-0.54-1.39-0.83-2.15 C145.09,276.96,139.65,283.67,139.23,284.17z M93.76,203.37c9.1,42.57,21.58,81.61,21.58,81.61h9.84c0,0,6.33-19.83,13.28-46.63 c-7.91-14.76-18.83-32.4-33.52-50.97C100.73,192.75,97.02,198.1,93.76,203.37z M75.97,243.26c9.95,14.77,20.43,26.52,34.77,41.39c-3.34-3.82-16.28-26.31-29.49-56.69 C79.09,233.27,77.36,238.4,75.97,243.26L75.97,243.26z M73.36,253.77c15.01,17.97,27.31,29.8,27.94,30.4c-0.66-0.82-14.21-17.48-26.9-34.96 C74.02,250.76,73.67,252.29,73.36,253.77z" />
               </svg>
             </div>
-
-            <!-- Node 3: Framer -->
             <div class="tc-node" id="tn3" data-tip="Framer">
               <svg class="framer-svg" width="26" height="26" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                 <path d="M4 0h16v8H12L4 0zm0 8h8l8 8H12v8L4 16V8z" />
               </svg>
             </div>
-
-            <!-- Node 4: HTML5 -->
             <div class="tc-node" id="tn4" data-tip="HTML5"><i class="fab fa-html5"></i></div>
-
-            <!-- Node 5: CSS3 -->
             <div class="tc-node" id="tn5" data-tip="CSS3"><i class="fab fa-css3-alt"></i></div>
-
-            <!-- Node 6: JavaScript -->
             <div class="tc-node" id="tn6" data-tip="JavaScript"><i class="fab fa-js"></i></div>
-
-            <!-- Node 7: VS Code — substituiu GitHub -->
             <div class="tc-node" id="tn7" data-tip="VS Code">
               <svg class="vscode-node-svg" width="26" height="26" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg">
                 <path class="vscode-fill" d="M30.865 3.448l-6.583-3.167c-0.766-0.37-1.677-0.214-2.276 0.385l-12.609 11.505-5.495-4.167c-0.51-0.391-1.229-0.359-1.703 0.073l-1.76 1.604c-0.583 0.526-0.583 1.443-0.005 1.969l4.766 4.349-4.766 4.349c-0.578 0.526-0.578 1.443 0.005 1.969l1.76 1.604c0.479 0.432 1.193 0.464 1.703 0.073l5.495-4.172 12.615 11.51c0.594 0.599 1.505 0.755 2.271 0.385l6.589-3.172c0.693-0.333 1.13-1.031 1.13-1.802v-21.495c0-0.766-0.443-1.469-1.135-1.802zM24.005 23.266l-9.573-7.266 9.573-7.266z" />
@@ -2906,9 +3461,7 @@
         </div>
       </section>
 
-      <!-- ══════════════════════════════════════════
-           TESTIMONIALS / FEEDBACKS
-      ══════════════════════════════════════════ -->
+      <!-- TESTIMONIALS -->
       <section class="testimonials-section" id="testimonials">
         <div class="container testimonials-inner">
           <div class="center rv" style="margin-bottom:56px;">
@@ -2920,13 +3473,9 @@
             <p class="sec-sub" data-t="tb_desc">Resultados reais de quem confiou no meu trabalho.</p>
           </div>
         </div>
-
-        <!-- Row 1 → direita -->
         <div class="tmarquee-wrap rv d1">
           <div class="tmarquee-row tmarquee-row-1" id="trow1"></div>
         </div>
-
-        <!-- Row 2 → esquerda -->
         <div class="tmarquee-wrap rv d2" style="margin-top:18px;">
           <div class="tmarquee-row tmarquee-row-2" id="trow2"></div>
         </div>
@@ -2965,7 +3514,7 @@
                   <div class="ci-icon"><i class="fas fa-envelope"></i></div>
                   <div>
                     <div class="ci-nm" data-t="ci_e">E-mail</div>
-                    <a href="#contact" class="ci-val"><span class="__cf_email__" data-cfemail="1b6f737e74757a6f7a75292b5b7c767a727735787476">theonatan20@gmail.com</span></a>
+                    <a href="mailto:theonatan20@gmail.com" class="ci-val">theonatan20@gmail.com</a>
                     <div class="ci-note" data-t="ci_en">Resposta em até 24h</div>
                   </div>
                 </div>
@@ -3046,7 +3595,6 @@
 
   <a href="#hero" id="btt"><i class="fas fa-arrow-up"></i></a>
 
-  <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script>
   <script>
     /* ════════════════════════════
        DATA
@@ -3074,107 +3622,16 @@
         { id: 5, icon: 'fas fa-bullhorn', title: { pt: 'Landing Pages', en: 'Landing Pages', es: 'Páginas de Destino' }, desc: { pt: 'Páginas de alta conversão otimizadas para SEO.', en: 'High-conversion pages optimized for SEO.', es: 'Páginas de alta conversión optimizadas para SEO.' } },
         { id: 6, icon: 'fas fa-search', title: { pt: 'Pesquisa UX', en: 'UX Research', es: 'Investigación UX' }, desc: { pt: 'Pesquisa com usuários para decisões de design informadas.', en: 'User research for informed design decisions.', es: 'Investigación con usuarios para decisiones de diseño.' } }
       ],
-      /* ── TESTIMONIALS ── */
       testimonials: [
-        {
-          name: 'Vanessa Fernandes',
-          role: 'Confeiteira & Empreendedora',
-          photo: 'images/card va.png',
-          project: { pt: 'Identidade Visual', en: 'Brand Identity', es: 'Identidad Visual' },
-          text: {
-            pt: 'O Theo capturou exatamente o que eu queria para minha marca. A identidade visual ficou delicada, elegante e profissional. Superou todas as expectativas!',
-            en: 'Theo captured exactly what I wanted for my brand. The visual identity turned out delicate, elegant and professional. Exceeded all expectations!',
-            es: '¡Theo capturó exactamente lo que quería para mi marca. La identidad visual quedó delicada, elegante y profesional. Superó todas las expectativas!'
-          }
-        },
-        {
-          name: 'Ícaro Moreira',
-          role: 'Desenvolvedor Full Stack',
-          photo: 'images/card id.png',
-          project: { pt: 'Portfólio Dev', en: 'Dev Portfolio', es: 'Portafolio Dev' },
-          text: {
-            pt: 'Incrível trabalho no meu portfólio! O design ficou moderno, responsivo e chamou atenção dos recrutadores logo de cara. Recomendo demais!',
-            en: 'Amazing work on my portfolio! The design turned out modern, responsive and caught recruiters attention right away. Highly recommend!',
-            es: '¡Increíble trabajo en mi portafolio! El diseño quedó moderno, responsivo y llamó la atención de los reclutadores de inmediato. ¡Lo recomiendo!'
-          }
-        },
-        {
-          name: 'Equipe Sacrovi',
-          role: 'Produção Audiovisual',
-          photo: 'images/card sa.png',
-          project: { pt: 'Identidade Visual', en: 'Brand Identity', es: 'Identidad Visual' },
-          text: {
-            pt: 'A Sacrovi ganhou uma identidade que representa muito bem nossa essência inovadora. O processo foi fluido, rápido e o resultado ficou acima do esperado.',
-            en: 'Sacrovi gained an identity that represents our innovative essence really well. The process was smooth, fast and the result exceeded expectations.',
-            es: 'Sacrovi ganó una identidad que representa muy bien nuestra esencia innovadora. El proceso fue fluido, rápido y el resultado superó lo esperado.'
-          }
-        },
-        {
-          name: 'Simplificando Métodos',
-          role: 'Educação & Mentoria',
-          photo: 'images/card sp.png',
-          project: { pt: 'Landing Page', en: 'Landing Page', es: 'Landing Page' },
-          text: {
-            pt: 'Nossa landing page converteu muito mais após o redesign do Theo. Ele entendeu o nosso público e entregou algo limpo, direto e de altíssima conversão.',
-            en: 'Our landing page converted much more after Theo\'s redesign. He understood our audience and delivered something clean, direct and highly converting.',
-            es: 'Nuestra landing page convirtió mucho más después del rediseño de Theo. Entendió a nuestro público y entregó algo limpio, directo y de alta conversión.'
-          }
-        },
-        {
-          name: 'JNS Seguros',
-          role: 'Seguros & Consórcios',
-          photo: 'images/card jns.png',
-          project: { pt: 'Identidade Visual', en: 'Brand Identity', es: 'Identidad Visual' },
-          text: {
-            pt: 'Profissionalismo do início ao fim. O Theo entregou uma identidade visual sólida que transmite confiança para nossos clientes. Trabalho de altíssimo nível!',
-            en: 'Professionalism from start to finish. Theo delivered a solid visual identity that conveys trust to our clients. Top-notch work!',
-            es: 'Profesionalismo de principio a fin. Theo entregó una identidad visual sólida que transmite confianza a nuestros clientes. ¡Trabajo de altísimo nivel!'
-          }
-        },
-        {
-          name: 'Flux Agency',
-          role: 'Agência Digital',
-          photo: 'images/card fx.png',
-          project: { pt: 'Branding Completo', en: 'Full Branding', es: 'Branding Completo' },
-          text: {
-            pt: 'O Theo entendeu a visão da Flux Agency perfeitamente. Entregou um branding arrojado, moderno e alinhado com nosso posicionamento de inovação no mercado.',
-            en: 'Theo understood the Flux Agency vision perfectly. Delivered a bold, modern branding aligned with our market positioning of innovation.',
-            es: 'Theo entendió la visión de Flux Agency a la perfección. Entregó un branding atrevido, moderno y alineado con nuestro posicionamiento de innovación.'
-          }
-        },
-        {
-          name: 'LANEF',
-          role: 'Liga Acadêmica de Nefrologia',
-          photo: 'images/card lf.png',
-          project: { pt: 'Identidade Visual', en: 'Brand Identity', es: 'Identidad Visual' },
-          text: {
-            pt: 'O resultado superou o que imaginávamos. A LANEF ganhou uma identidade séria e acadêmica, mas ao mesmo tempo atrativa para novos membros. Excelente!',
-            en: 'The result surpassed what we imagined. LANEF gained a serious and academic identity, yet attractive to new members. Excellent!',
-            es: '¡El resultado superó lo que imaginábamos. LANEF obtuvo una identidad seria y académica, pero al mismo tiempo atractiva para nuevos miembros. Excelente!'
-          }
-        },
-        {
-          name: 'Atlas Enfermagem',
-          role: 'Associação Atlética',
-          photo: 'images/card at.png',
-          project: { pt: 'Identidade Visual', en: 'Brand Identity', es: 'Identidad Visual' },
-          text: {
-            pt: 'Trabalho impecável! O Theo capturou o espírito atlético e acadêmico da nossa associação em uma identidade visual única e marcante. Todos adoraram!',
-            en: 'Impeccable work! Theo captured the athletic and academic spirit of our association in a unique and striking visual identity. Everyone loved it!',
-            es: '¡Trabajo impecable! Theo capturó el espíritu atlético y académico de nuestra asociación en una identidad visual única y llamativa. ¡A todos les encantó!'
-          }
-        },
-        {
-          name: 'Esphera Checkout',
-          role: 'E-commerce & Checkout',
-          photo: 'images/card ep.png',
-          project: { pt: 'Landing Page', en: 'Landing Page', es: 'Landing Page' },
-          text: {
-            pt: 'A página de checkout ficou linda e funcional. O design do Theo melhorou significativamente nossa taxa de conversão. Muito satisfeitos com o resultado!',
-            en: 'The checkout page turned out beautiful and functional. Theo\'s design significantly improved our conversion rate. Very satisfied with the result!',
-            es: '¡La página de checkout quedó preciosa y funcional. El diseño de Theo mejoró significativamente nuestra tasa de conversión. ¡Muy satisfechos con el resultado!'
-          }
-        }
+        { name: 'Vanessa Fernandes', role: 'Confeiteira & Empreendedora', photo: 'images/card va.png', project: { pt: 'Identidade Visual', en: 'Brand Identity', es: 'Identidad Visual' }, text: { pt: 'O Theo capturou exatamente o que eu queria para minha marca. A identidade visual ficou delicada, elegante e profissional. Superou todas as expectativas!', en: 'Theo captured exactly what I wanted for my brand. The visual identity turned out delicate, elegant and professional. Exceeded all expectations!', es: '¡Theo capturó exactamente lo que quería para mi marca. La identidad visual quedó delicada, elegante y profesional. Superó todas las expectativas!' } },
+        { name: 'Ícaro Moreira', role: 'Desenvolvedor Full Stack', photo: 'images/card id.png', project: { pt: 'Portfólio Dev', en: 'Dev Portfolio', es: 'Portafolio Dev' }, text: { pt: 'Incrível trabalho no meu portfólio! O design ficou moderno, responsivo e chamou atenção dos recrutadores logo de cara. Recomendo demais!', en: 'Amazing work on my portfolio! The design turned out modern, responsive and caught recruiters attention right away. Highly recommend!', es: '¡Increíble trabajo en mi portafolio! El diseño quedó moderno, responsivo y llamó la atención de los reclutadores de inmediato. ¡Lo recomiendo!' } },
+        { name: 'Equipe Sacrovi', role: 'Produção Audiovisual', photo: 'images/card sa.png', project: { pt: 'Identidade Visual', en: 'Brand Identity', es: 'Identidad Visual' }, text: { pt: 'A Sacrovi ganhou uma identidade que representa muito bem nossa essência inovadora. O processo foi fluido, rápido e o resultado ficou acima do esperado.', en: 'Sacrovi gained an identity that represents our innovative essence really well. The process was smooth, fast and the result exceeded expectations.', es: 'Sacrovi ganó una identidad que representa muy bien nuestra esencia innovadora. El proceso fue fluido, rápido y el resultado superó lo esperado.' } },
+        { name: 'Simplificando Métodos', role: 'Educação & Mentoria', photo: 'images/card sp.png', project: { pt: 'Landing Page', en: 'Landing Page', es: 'Landing Page' }, text: { pt: 'Nossa landing page converteu muito mais após o redesign do Theo. Ele entendeu o nosso público e entregou algo limpo, direto e de altíssima conversão.', en: "Our landing page converted much more after Theo's redesign. He understood our audience and delivered something clean, direct and highly converting.", es: 'Nuestra landing page convirtió mucho más después del rediseño de Theo. Entendió a nuestro público y entregó algo limpio, directo y de alta conversión.' } },
+        { name: 'JNS Seguros', role: 'Seguros & Consórcios', photo: 'images/card jns.png', project: { pt: 'Identidade Visual', en: 'Brand Identity', es: 'Identidad Visual' }, text: { pt: 'Profissionalismo do início ao fim. O Theo entregou uma identidade visual sólida que transmite confiança para nossos clientes. Trabalho de altíssimo nível!', en: 'Professionalism from start to finish. Theo delivered a solid visual identity that conveys trust to our clients. Top-notch work!', es: 'Profesionalismo de principio a fin. Theo entregó una identidad visual sólida que transmite confianza a nuestros clientes. ¡Trabajo de altísimo nivel!' } },
+        { name: 'Flux Agency', role: 'Agência Digital', photo: 'images/card fx.png', project: { pt: 'Branding Completo', en: 'Full Branding', es: 'Branding Completo' }, text: { pt: 'O Theo entendeu a visão da Flux Agency perfeitamente. Entregou um branding arrojado, moderno e alinhado com nosso posicionamento de inovação no mercado.', en: 'Theo understood the Flux Agency vision perfectly. Delivered a bold, modern branding aligned with our market positioning of innovation.', es: 'Theo entendió la visión de Flux Agency a la perfección. Entregó un branding atrevido, moderno y alineado con nuestro posicionamiento de innovación.' } },
+        { name: 'LANEF', role: 'Liga Acadêmica de Nefrologia', photo: 'images/card lf.png', project: { pt: 'Identidade Visual', en: 'Brand Identity', es: 'Identidad Visual' }, text: { pt: 'O resultado superou o que imaginávamos. A LANEF ganhou uma identidade séria e acadêmica, mas ao mesmo tempo atrativa para novos membros. Excelente!', en: 'The result surpassed what we imagined. LANEF gained a serious and academic identity, yet attractive to new members. Excellent!', es: '¡El resultado superó lo que imaginábamos. LANEF obtuvo una identidad seria y académica, pero al mismo tiempo atractiva para nuevos miembros. Excelente!' } },
+        { name: 'Atlas Enfermagem', role: 'Associação Atlética', photo: 'images/card at.png', project: { pt: 'Identidade Visual', en: 'Brand Identity', es: 'Identidad Visual' }, text: { pt: 'Trabalho impecável! O Theo capturou o espírito atlético e acadêmico da nossa associação em uma identidade visual única e marcante. Todos adoraram!', en: 'Impeccable work! Theo captured the athletic and academic spirit of our association in a unique and striking visual identity. Everyone loved it!', es: '¡Trabajo impecable! Theo capturó el espíritu atlético y académico de nuestra asociación en una identidad visual única y llamativa. ¡A todos les encantó!' } },
+        { name: 'Esphera Checkout', role: 'E-commerce & Checkout', photo: 'images/card ep.png', project: { pt: 'Landing Page', en: 'Landing Page', es: 'Landing Page' }, text: { pt: 'A página de checkout ficou linda e funcional. O design do Theo melhorou significativamente nossa taxa de conversão. Muito satisfeitos com o resultado!', en: "The checkout page turned out beautiful and functional. Theo's design significantly improved our conversion rate. Very satisfied with the result!", es: '¡La página de checkout quedó preciosa y funcional. El diseño de Theo mejoró significativamente nuestra tasa de conversión. ¡Muy satisfechos con el resultado!' } }
       ]
     };
 
@@ -3190,10 +3647,8 @@
     /* LOADER */
     let loaderDone = false;
     function hideLoader() {
-      if (loaderDone) return;
-      loaderDone = true;
-      const l = document.getElementById('loader');
-      if (!l) return;
+      if (loaderDone) return; loaderDone = true;
+      const l = document.getElementById('loader'); if (!l) return;
       l.classList.add('out');
       setTimeout(() => { l.style.display = 'none'; }, 850);
     }
@@ -3217,6 +3672,7 @@
       setupPopup();
       setupBTT();
       buildTools();
+      updateMobLogo();
     });
 
     /* THEME */
@@ -3230,6 +3686,12 @@
     }
     function updateLogoColor(isLight) {
       document.querySelectorAll('#nav-logo-svg, #footer-logo-svg').forEach(svg => { svg.style.fill = isLight ? '#1d4ed8' : '#4d80ff'; });
+      updateMobLogo();
+    }
+    function updateMobLogo() {
+      const isLight = document.documentElement.classList.contains('light');
+      const ml = document.querySelector('.mob-logo svg');
+      if (ml) ml.style.fill = isLight ? '#1d4ed8' : '#4d80ff';
     }
     document.getElementById('tbtn').addEventListener('click', () => {
       const isLight = document.documentElement.classList.toggle('light');
@@ -3261,56 +3723,27 @@
       });
     }
 
-    /* ════════════════════════════
-       BUILD TESTIMONIALS
-    ════════════════════════════ */
+    /* TESTIMONIALS */
     function buildTestimonials() {
       const row1 = document.getElementById('trow1');
       const row2 = document.getElementById('trow2');
       if (!row1 || !row2) return;
-
       const half = Math.ceil(DATA.testimonials.length / 2);
-      const set1 = DATA.testimonials.slice(0, half);
-      const set2 = DATA.testimonials.slice(half);
-
-      function buildCards(container, items) {
-        [...items, ...items].forEach(t => {
-          container.appendChild(createTCard(t));
-        });
-      }
-
-      buildCards(row1, set1);
-      buildCards(row2, set2);
+      function buildCards(container, items) { [...items, ...items].forEach(t => { container.appendChild(createTCard(t)); }); }
+      buildCards(row1, DATA.testimonials.slice(0, half));
+      buildCards(row2, DATA.testimonials.slice(half));
     }
-
     function createTCard(t) {
-      const el = document.createElement('div');
-      el.className = 'tcard';
+      const el = document.createElement('div'); el.className = 'tcard';
       const txt = t.text[lang] || t.text.pt;
       const proj = t.project[lang] || t.project.pt;
-      el.innerHTML = `
-        <span class="tcard-quote">"</span>
-        <p class="tcard-text">${txt}</p>
-        <div class="tcard-footer">
-          <div class="tcard-avatar"><img src="${t.photo}" alt="${t.name}" onerror="this.style.display='none'"></div>
-          <div class="tcard-info">
-            <div class="tcard-name">${t.name}</div>
-            <div class="tcard-role">${t.role}</div>
-          </div>
-          <div class="tcard-stars">
-            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
-          </div>
-        </div>
-        <div class="tcard-project"><i class="fas fa-folder"></i>${proj}</div>`;
+      el.innerHTML = `<span class="tcard-quote">"</span><p class="tcard-text">${txt}</p><div class="tcard-footer"><div class="tcard-avatar"><img src="${t.photo}" alt="${t.name}" onerror="this.style.display='none'"></div><div class="tcard-info"><div class="tcard-name">${t.name}</div><div class="tcard-role">${t.role}</div></div><div class="tcard-stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div></div><div class="tcard-project"><i class="fas fa-folder"></i>${proj}</div>`;
       return el;
     }
-
     function refreshTestimonials() {
-      const row1 = document.getElementById('trow1');
-      const row2 = document.getElementById('trow2');
+      const row1 = document.getElementById('trow1'), row2 = document.getElementById('trow2');
       if (!row1 || !row2) return;
-      row1.innerHTML = '';
-      row2.innerHTML = '';
+      row1.innerHTML = ''; row2.innerHTML = '';
       buildTestimonials();
     }
 
@@ -3376,10 +3809,30 @@
     function setupNav() {
       const nav = document.getElementById('nav');
       window.addEventListener('scroll', () => nav.classList.toggle('solid', window.scrollY > 60), { passive: true });
-      const hb = document.getElementById('hbg'), mm = document.getElementById('mob');
-      hb.addEventListener('click', () => mm.classList.toggle('open'));
-      document.getElementById('mob-close').addEventListener('click', () => mm.classList.remove('open'));
-      mm.querySelectorAll('a').forEach(a => a.addEventListener('click', () => mm.classList.remove('open')));
+
+      const hb = document.getElementById('hbg');
+      const mm = document.getElementById('mob');
+
+      function openMob() {
+        mm.classList.add('open');
+        document.body.style.overflow = 'hidden'; // previne scroll do fundo
+      }
+      function closeMob() {
+        mm.classList.remove('open');
+        document.body.style.overflow = '';
+      }
+
+      hb.addEventListener('click', openMob);
+      document.getElementById('mob-close').addEventListener('click', closeMob);
+
+      // Fechar ao clicar no backdrop
+      mm.querySelector('.mob-backdrop').addEventListener('click', closeMob);
+
+      // Fechar ao clicar em links
+      mm.querySelectorAll('[data-mob]').forEach(a => a.addEventListener('click', closeMob));
+      document.getElementById('mob-logo-link').addEventListener('click', closeMob);
+
+      // Smooth scroll
       document.querySelectorAll('a[href^="#"]').forEach(a => {
         a.addEventListener('click', e => {
           const id = a.getAttribute('href'); if (id === '#') return;
@@ -3470,17 +3923,12 @@
         ep2.setAttribute('stroke-dashoffset', `${len + dashLen}`);
         const a2 = document.createElementNS('http://www.w3.org/2000/svg', 'animate');
         a2.setAttribute('attributeName', 'stroke-dashoffset');
-        a2.setAttribute('from', `${len + dashLen}`);
-        a2.setAttribute('to', `-${dashLen}`);
-        a2.setAttribute('dur', `${dur}s`);
-        a2.setAttribute('begin', `${delay}s`);
-        a2.setAttribute('repeatCount', 'indefinite');
-        a2.setAttribute('calcMode', 'linear');
-        ep2.appendChild(a2);
-        svgEnergy.appendChild(ep2);
+        a2.setAttribute('from', `${len + dashLen}`); a2.setAttribute('to', `-${dashLen}`);
+        a2.setAttribute('dur', `${dur}s`); a2.setAttribute('begin', `${delay}s`);
+        a2.setAttribute('repeatCount', 'indefinite'); a2.setAttribute('calcMode', 'linear');
+        ep2.appendChild(a2); svgEnergy.appendChild(ep2);
       });
     }
-
   </script>
 </body>
 

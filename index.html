@@ -49,6 +49,9 @@
       --mob-pad: 16px;
       --mob-radius: 18px;
       --mob-gap: 14px;
+
+      /* Nav heights for proper z-index layering */
+      --nav-height-mob: 64px;
     }
 
     /* ── LIGHT MODE ── */
@@ -481,7 +484,6 @@
       background: radial-gradient(ellipse 80% 60% at 50% 50%, rgba(30, 64, 175, .07) 0%, transparent 70%) !important;
     }
 
-    /* Light mode — gradient text para as palavras simples */
     html.light .hero-plain-word {
       background: linear-gradient(180deg, #0a0c1a 0%, #374151 100%);
       -webkit-background-clip: text;
@@ -538,7 +540,6 @@
       fill: #1d4ed8;
     }
 
-    /* ─── HERO BG IMAGE — bem aparente e centralizada ─── */
     .hero-bg-image {
       position: absolute;
       inset: 0;
@@ -683,7 +684,7 @@
       top: 0;
       left: 0;
       right: 0;
-      z-index: 100;
+      z-index: 200;
       background: transparent;
       transition: background .3s, border-color .3s;
     }
@@ -699,9 +700,10 @@
       display: grid;
       grid-template-columns: auto 1fr auto;
       align-items: center;
-      padding: 18px 0;
+      padding: 16px 0;
       gap: 24px;
       transition: padding .3s;
+      min-height: 64px;
     }
 
     #nav.solid .nav-inner {
@@ -775,8 +777,8 @@
     }
 
     .ibtn {
-      width: 36px;
-      height: 36px;
+      width: 38px;
+      height: 38px;
       border-radius: 10px;
       background: rgba(255, 255, 255, .07);
       border: 1px solid var(--border);
@@ -785,11 +787,12 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 13px;
+      font-size: 14px;
       font-family: var(--ff);
       font-weight: 600;
       letter-spacing: .05em;
       transition: all .2s;
+      flex-shrink: 0;
     }
 
     .ibtn.pill {
@@ -822,6 +825,7 @@
       transform: translateY(-6px) scale(.97);
       transition: all .2s;
       box-shadow: 0 8px 32px rgba(0, 0, 0, .5);
+      z-index: 300;
     }
 
     .lang-wrap.open .lang-drop {
@@ -852,6 +856,7 @@
       color: #fff;
     }
 
+    /* ── HAMBURGER BUTTON ── */
     .hbg {
       display: none;
     }
@@ -870,7 +875,8 @@
       left: 0;
       right: 0;
       bottom: 0;
-      z-index: 98;
+      /* CORREÇÃO: z-index acima do nav (200), mas com header próprio */
+      z-index: 300;
       flex-direction: column;
       overflow: hidden;
     }
@@ -911,8 +917,10 @@
       display: flex;
       align-items: center;
       justify-content: space-between;
-      padding: 20px 0 24px;
+      /* CORREÇÃO: padding top generoso para o header do menu não ficar espremido */
+      padding: 16px 0 20px;
       border-bottom: 1px solid rgba(55, 59, 75, .4);
+      min-height: 64px;
     }
 
     .mob-logo svg {
@@ -923,29 +931,31 @@
       fill: #1d4ed8;
     }
 
+    /* CORREÇÃO: botão fechar com tamanho e visibilidade adequados */
     .mob-close {
-      width: 40px;
-      height: 40px;
+      width: 44px;
+      height: 44px;
       border-radius: 12px;
-      background: rgba(255, 255, 255, .07);
-      border: 1px solid var(--border);
-      color: rgba(255, 255, 255, .8);
+      background: rgba(255, 255, 255, .1);
+      border: 1px solid rgba(255, 255, 255, .18);
+      color: rgba(255, 255, 255, .9);
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 16px;
+      font-size: 18px;
       cursor: pointer;
       transition: all .2s;
+      flex-shrink: 0;
     }
 
     .mob-close:active {
-      background: rgba(77, 128, 255, .2);
+      background: rgba(77, 128, 255, .3);
     }
 
     html.light .mob-close {
       color: #1e293b;
-      background: rgba(30, 64, 175, .08);
-      border-color: rgba(30, 64, 175, .2);
+      background: rgba(30, 64, 175, .1);
+      border-color: rgba(30, 64, 175, .25);
     }
 
     .mob-nav {
@@ -954,7 +964,8 @@
       flex-direction: column;
       justify-content: center;
       gap: 4px;
-      padding: 20px 0;
+      padding: 16px 0;
+      overflow-y: auto;
     }
 
     #mob a.mob-link {
@@ -1020,7 +1031,7 @@
     }
 
     .mob-footer {
-      padding: 20px 0 32px;
+      padding: 16px 0 28px;
       border-top: 1px solid rgba(55, 59, 75, .4);
     }
 
@@ -1042,7 +1053,7 @@
       box-shadow: 0 0 28px rgba(77, 128, 255, .4), inset 0 1px 0 rgba(255, 255, 255, .15);
       transition: all .25s;
       text-decoration: none;
-      margin-bottom: 16px;
+      margin-bottom: 14px;
     }
 
     #mob .mob-cta:active {
@@ -1068,7 +1079,6 @@
       font-size: 16px;
       transition: all .2s;
       padding: 0 !important;
-      font-size: 16px !important;
       font-weight: 400 !important;
       letter-spacing: 0 !important;
       border-radius: 12px !important;
@@ -1287,7 +1297,6 @@
       pointer-events: none;
     }
 
-    /* Overlay suave para legibilidade — menos escuro para imagem aparecer mais */
     .hero-bg-overlay {
       position: absolute;
       inset: 0;
@@ -1321,7 +1330,6 @@
       max-width: 860px;
     }
 
-    /* ─── PALAVRAS COM DEGRADÊ: branco → cinza, de cima para baixo ─── */
     .hero-plain-word {
       background: linear-gradient(180deg, #ffffff 0%, #7c7e8a 100%);
       -webkit-background-clip: text;
@@ -1330,10 +1338,8 @@
       display: inline;
     }
 
-    /* ALTERAÇÃO AQUI: removido o degradê, agora cor sólida azul médio */
     .hero-h1 .cyan-word {
       color: #2253f5;
-      /* azul mais escuro */
       display: inline-block;
     }
 
@@ -1905,6 +1911,12 @@
       }
     }
 
+    @media(max-width:480px) {
+      .tools-diagram {
+        height: 300px;
+      }
+    }
+
     #tools-svg {
       position: absolute;
       inset: 0;
@@ -1920,6 +1932,7 @@
       top: 50%;
       left: 50%;
       transform: translate(-50%, -50%);
+      /* CORREÇÃO: tamanho menor no mobile via CSS */
       width: 84px;
       height: 84px;
       border-radius: 22px;
@@ -1931,6 +1944,14 @@
       box-shadow: 0 0 0 0 rgba(77, 128, 255, .0), 0 16px 48px rgba(11, 59, 240, .55);
       animation: tcPulse 3s ease-in-out infinite;
       overflow: hidden;
+    }
+
+    /* CORREÇÃO CRÍTICA: logo dentro do tc-center com tamanho controlado */
+    .tc-center img {
+      width: 52px !important;
+      height: 52px !important;
+      object-fit: contain;
+      display: block;
     }
 
     .tc-center-inner {
@@ -2638,17 +2659,13 @@
     }
 
     /* ════════════════════════════
-       MOBILE RESPONSIVE
+       MOBILE RESPONSIVE — CORRIGIDO
     ════════════════════════════ */
 
     @media(max-width:860px) {
       .home-hero-wrap {
         padding-top: 120px;
         padding-bottom: 60px;
-      }
-
-      .hero-h1 {
-        font-size: clamp(32px, 8vw, 52px);
       }
 
       .hero-sub {
@@ -2665,27 +2682,34 @@
     }
 
     @media(max-width:767px) {
+
+      /* NAV MOBILE — CORRIGIDO: altura maior para o header não ficar pequeno */
       .nav-inner {
         grid-template-columns: auto 1fr;
         gap: 0;
         padding: 14px 0;
+        min-height: 68px;
       }
 
       #nav.solid .nav-inner {
         padding: 10px 0;
+        min-height: 64px;
       }
 
       .nav-end {
         gap: 8px;
       }
 
-      .nav-logo-slot svg {
-        height: 30px;
+      /* LOGO NAV — tamanho adequado no mobile */
+      #nav-logo-svg {
+        height: 36px !important;
       }
 
+      /* Botões ibtn — tamanho bom para toque */
       .ibtn {
-        width: 36px;
-        height: 36px;
+        width: 40px;
+        height: 40px;
+        font-size: 14px;
       }
 
       .ibtn.pill {
@@ -2726,6 +2750,8 @@
       .hero-btn-row {
         gap: 10px;
         margin-top: 4px;
+        flex-direction: column;
+        align-items: center;
       }
 
       .hero-btn-row .btn {
@@ -2734,11 +2760,6 @@
         justify-content: center;
         font-size: 15px;
         padding: 14px 24px;
-      }
-
-      .hero-btn-row {
-        flex-direction: column;
-        align-items: center;
       }
 
       .hero-image {
@@ -2988,14 +3009,16 @@
         max-width: 100%;
       }
 
-      .nav-logo-slot svg {
-        height: 26px;
+      /* NAV logo ainda menor em telas muito pequenas */
+      #nav-logo-svg {
+        height: 30px !important;
       }
 
+      /* ibtn em telas muito pequenas */
       .ibtn {
-        width: 34px;
-        height: 34px;
-        font-size: 12px;
+        width: 36px;
+        height: 36px;
+        font-size: 13px;
       }
 
       .section {
@@ -3010,25 +3033,31 @@
         padding: 60px 0;
       }
 
+      /* CORREÇÃO PRINCIPAL: tc-center e logo menores em mobile pequeno */
       .tools-diagram {
         height: 280px;
       }
 
-      .tc-node {
-        width: 46px;
-        height: 46px;
-        font-size: 18px;
-        border-radius: 12px;
+      .tc-center {
+        width: 62px !important;
+        height: 62px !important;
+        border-radius: 16px !important;
       }
 
-      .tc-center {
-        width: 68px;
-        height: 68px;
-        border-radius: 18px;
+      .tc-center img {
+        width: 38px !important;
+        height: 38px !important;
       }
 
       .tc-center-inner {
-        font-size: 20px;
+        font-size: 18px !important;
+      }
+
+      .tc-node {
+        width: 44px;
+        height: 44px;
+        font-size: 17px;
+        border-radius: 12px;
       }
 
       .tcard {
@@ -3073,6 +3102,7 @@
       }
     }
 
+    /* Dispositivos touch — remover hovers que podem travar */
     @media (hover: none) {
       .pcard:hover {
         transform: none;
@@ -3158,7 +3188,7 @@
     <div class="container">
       <div class="nav-inner">
         <a href="#hero" class="nav-logo-slot">
-          <svg id="nav-logo-svg" height="46" viewBox="0 0 13295.68 4399.03" xmlns="http://www.w3.org/2000/svg" style="fill:#4d80ff;width:auto;">
+          <svg id="nav-logo-svg" height="38" viewBox="0 0 13295.68 4399.03" xmlns="http://www.w3.org/2000/svg" style="fill:#4d80ff;width:auto;">
             <path d="M2531.88 3233.81c-727.36,-35.42 -1393.27,-553.69 -1655.58,-1149.18 -124.47,-282.56 -138.22,-468.39 -137.72,-802.86l-738.3 0.67 -0.05 2692.23 737.93 0.08 0.23 -799.98c32.14,13.17 75.37,68.92 107.12,95.21 36.3,30.08 74.33,65.86 109.81,97.39 202.52,179.92 526.42,359.98 789.28,454.19 508.06,182.09 946.08,155.65 1518.47,153.1l0.74 -2693.14 -730.56 0.63 -1.37 1951.65zm2786.64 -1239.18l0 -1632.8 453.69 0 206.22 -329.96 -1647.36 0 203.8 329.96 453.69 0 0 1101.47 329.96 531.33zm2622.67 0l0 -1962.75 -329.96 0 0 645.35 -987.44 0 0 -645.35 -329.96 0 0 1618.24 329.96 0 0 -642.93 987.44 0 0 456.11 329.96 531.33zm2035.54 0l0 -672.04 -1317.39 0 0 -315.4 987.44 0 0 -329.96 -987.44 0 0 -315.4 1317.39 0 0 -329.96 -1647.35 0 0 1618.24 1433.85 0 213.5 344.51zm1492.08 -344.51c271.73,0 494.93,-220.78 494.93,-492.51l0 -630.8c0,-274.16 -223.2,-494.93 -494.93,-494.93l-657.49 0c-274.15,0 -494.93,220.78 -494.93,494.93l0 630.8c0,271.73 220.78,492.51 494.93,492.51l657.49 0zm0 -327.53l-657.49 0c-92.19,0 -164.97,-75.21 -164.97,-164.98l0 -630.8c0,-92.19 72.78,-164.98 164.97,-164.98l657.49 0c89.77,0 164.98,72.78 164.98,164.98l0 630.8c0,89.77 -75.21,164.98 -164.98,164.98zm-274.15 -371.2c29.11,0 55.8,-24.26 55.8,-55.81l0 -109.17c0,-29.12 -26.69,-53.38 -55.8,-53.38l-109.18 0c-31.54,0 -55.8,24.26 -55.8,53.38l0 109.17c0,31.54 24.26,55.81 55.8,55.81l109.18 0zm-5293.85 3447.65l0 -1962.75 -329.96 0 0 1166.98 -1166.97 -1166.98 0 1618.24 329.96 0 0 -822.46 1166.97 1166.98zm2355.79 -344.51l-1006.85 -1618.24 -1009.27 1618.24 776.36 0 206.22 -329.96 -388.18 0 414.87 -664.77 618.66 994.72 388.19 0zm756.95 344.51l0 -1632.8 453.69 0 206.22 -329.96 -1647.36 0 203.8 329.96 453.69 0 0 1101.47 329.96 531.33zm2445.56 -344.51l-1006.85 -1618.24 -1009.27 1618.24 776.36 0 206.22 -329.96 -388.18 0 414.87 -664.77 618.66 994.72 388.19 0zm1836.59 344.51l0 -1962.75 -329.96 0 0 1166.98 -1166.97 -1166.98 0 1618.24 329.96 0 0 -822.46 1166.97 1166.98zm-13295.46 -3799.94l0.76 140.62c359.6,23.35 898.22,-13.17 1265.81,5.33 -19.97,675.1 -36.02,1049.26 370.55,1525.99 51.27,60.12 256.08,231.79 358.82,269.21l1.6 -1794.64c386.24,-11.72 868.32,-2.74 1264.63,-2.62l1.64 -731.04c-182.51,-18.86 -1954.12,-6.33 -2352.21,-6.33 -137.53,0 -837.05,-16.13 -911.83,6.33l0.22 587.15z" />
           </svg>
         </a>
@@ -3189,25 +3219,33 @@
             <div class="btn-circle"></div>
             <div class="btn-content"><span data-t="n_cta">Iniciar Projeto</span></div>
           </a>
-          <button class="ibtn hbg" id="hbg" aria-label="Abrir menu"><i class="fas fa-bars"></i></button>
+          <!-- CORREÇÃO: botão hamburger com z-index e posição adequados -->
+          <button class="ibtn hbg" id="hbg" aria-label="Abrir menu" style="position:relative;z-index:201;">
+            <i class="fas fa-bars" id="hbg-icon"></i>
+          </button>
         </div>
       </div>
     </div>
   </nav>
 
   <!-- MOBILE MENU -->
+  <!-- CORREÇÃO: menu mobile com z-index 300, acima do nav (200) e do botão hamburger (201) -->
   <div id="mob" role="dialog" aria-modal="true" aria-label="Menu de navegação">
     <div class="mob-backdrop"></div>
     <div class="mob-glow"></div>
     <div class="mob-inner">
 
+      <!-- CORREÇÃO: header do menu mobile com padding correto e botão X bem visível -->
       <div class="mob-header">
         <a href="#hero" class="mob-logo" id="mob-logo-link">
-          <svg height="32" viewBox="0 0 13295.68 4399.03" xmlns="http://www.w3.org/2000/svg" style="width:auto;">
+          <svg height="34" viewBox="0 0 13295.68 4399.03" xmlns="http://www.w3.org/2000/svg" style="width:auto;">
             <path d="M2531.88 3233.81c-727.36,-35.42 -1393.27,-553.69 -1655.58,-1149.18 -124.47,-282.56 -138.22,-468.39 -137.72,-802.86l-738.3 0.67 -0.05 2692.23 737.93 0.08 0.23 -799.98c32.14,13.17 75.37,68.92 107.12,95.21 36.3,30.08 74.33,65.86 109.81,97.39 202.52,179.92 526.42,359.98 789.28,454.19 508.06,182.09 946.08,155.65 1518.47,153.1l0.74 -2693.14 -730.56 0.63 -1.37 1951.65zm2786.64 -1239.18l0 -1632.8 453.69 0 206.22 -329.96 -1647.36 0 203.8 329.96 453.69 0 0 1101.47 329.96 531.33zm2622.67 0l0 -1962.75 -329.96 0 0 645.35 -987.44 0 0 -645.35 -329.96 0 0 1618.24 329.96 0 0 -642.93 987.44 0 0 456.11 329.96 531.33zm2035.54 0l0 -672.04 -1317.39 0 0 -315.4 987.44 0 0 -329.96 -987.44 0 0 -315.4 1317.39 0 0 -329.96 -1647.35 0 0 1618.24 1433.85 0 213.5 344.51zm1492.08 -344.51c271.73,0 494.93,-220.78 494.93,-492.51l0 -630.8c0,-274.16 -223.2,-494.93 -494.93,-494.93l-657.49 0c-274.15,0 -494.93,220.78 -494.93,494.93l0 630.8c0,271.73 220.78,492.51 494.93,492.51l657.49 0zm0 -327.53l-657.49 0c-92.19,0 -164.97,-75.21 -164.97,-164.98l0 -630.8c0,-92.19 72.78,-164.98 164.97,-164.98l657.49 0c89.77,0 164.98,72.78 164.98,164.98l0 630.8c0,89.77 -75.21,164.98 -164.98,164.98zm-274.15 -371.2c29.11,0 55.8,-24.26 55.8,-55.81l0 -109.17c0,-29.12 -26.69,-53.38 -55.8,-53.38l-109.18 0c-31.54,0 -55.8,24.26 -55.8,53.38l0 109.17c0,31.54 24.26,55.81 55.8,55.81l109.18 0zm-5293.85 3447.65l0 -1962.75 -329.96 0 0 1166.98 -1166.97 -1166.98 0 1618.24 329.96 0 0 -822.46 1166.97 1166.98zm2355.79 -344.51l-1006.85 -1618.24 -1009.27 1618.24 776.36 0 206.22 -329.96 -388.18 0 414.87 -664.77 618.66 994.72 388.19 0zm756.95 344.51l0 -1632.8 453.69 0 206.22 -329.96 -1647.36 0 203.8 329.96 453.69 0 0 1101.47 329.96 531.33zm2445.56 -344.51l-1006.85 -1618.24 -1009.27 1618.24 776.36 0 206.22 -329.96 -388.18 0 414.87 -664.77 618.66 994.72 388.19 0zm1836.59 344.51l0 -1962.75 -329.96 0 0 1166.98 -1166.97 -1166.98 0 1618.24 329.96 0 0 -822.46 1166.97 1166.98zm-13295.46 -3799.94l0.76 140.62c359.6,23.35 898.22,-13.17 1265.81,5.33 -19.97,675.1 -36.02,1049.26 370.55,1525.99 51.27,60.12 256.08,231.79 358.82,269.21l1.6 -1794.64c386.24,-11.72 868.32,-2.74 1264.63,-2.62l1.64 -731.04c-182.51,-18.86 -1954.12,-6.33 -2352.21,-6.33 -137.53,0 -837.05,-16.13 -911.83,6.33l0.22 587.15z" />
           </svg>
         </a>
-        <button class="mob-close" id="mob-close" aria-label="Fechar menu"><i class="fas fa-times"></i></button>
+        <!-- CORREÇÃO: botão X separado e sempre visível, sem sobreposição -->
+        <button class="mob-close" id="mob-close" aria-label="Fechar menu">
+          <i class="fas fa-times"></i>
+        </button>
       </div>
 
       <nav class="mob-nav">
@@ -3259,11 +3297,9 @@
       <section class="section hero" id="hero">
         <div class="hero-bg-wrap">
           <div class="hero-bg-inner"></div>
-          <!-- hero.webp agora com opacidade maior e centralizada -->
           <img src="images/hero.webp" class="hero-bg-image" alt="" />
           <div class="hero-bg-glow"></div>
           <div class="hero-bg-glow2"></div>
-          <!-- overlay leve para manter legibilidade do texto -->
           <div class="hero-bg-overlay"></div>
         </div>
         <div class="container">
@@ -3274,7 +3310,6 @@
                 <span class="section-tag-text" data-t="avail">Disponível para Projetos</span>
               </div>
               <h1 class="hero-h1 rv d1">
-                <!-- "Design que" e "Resultado que" com degradê branco→cinza -->
                 <span class="hero-plain-word" data-t="h1a">Design que</span>
                 <span class="cyan-word" data-t="h1b"> Encanta.</span><br>
                 <span class="hero-plain-word" data-t="h1c">Resultado que</span>
@@ -3308,7 +3343,7 @@
           <div class="about-grid">
             <div class="about-sticky rv">
               <div class="about-card">
-                <img src="images/Perfil Theo.jpg" alt="Theo Natan" />
+                <img src="images/Fototheo.png" alt="Theo Natan" />
                 <div class="about-card-overlay"></div>
                 <div class="about-card-tag">
                   <div class="tag-online"></div>
@@ -3418,8 +3453,9 @@
               <g id="t-energy"></g>
             </svg>
 
+            <!-- CORREÇÃO: logo com tamanho fixo e controlado via CSS -->
             <div class="tc-center" id="tc-logo-slot">
-              <img src="images/LOGO.png" alt="Logo" style="width:56px;height:56px;object-fit:contain;" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';" />
+              <img src="images/LOGO.png" alt="Logo" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';" />
               <span class="tc-center-inner" style="display:none;">TN</span>
             </div>
 
@@ -3792,7 +3828,7 @@
       });
     }
 
-    /* NAV */
+    /* NAV — CORRIGIDO: sem sobreposição do hamburger com o X */
     function setupNav() {
       const nav = document.getElementById('nav');
       window.addEventListener('scroll', () => nav.classList.toggle('solid', window.scrollY > 60), { passive: true });
@@ -3800,8 +3836,16 @@
       const hb = document.getElementById('hbg');
       const mm = document.getElementById('mob');
 
-      function openMob() { mm.classList.add('open'); document.body.style.overflow = 'hidden'; }
-      function closeMob() { mm.classList.remove('open'); document.body.style.overflow = ''; }
+      function openMob() {
+        mm.classList.add('open');
+        document.body.style.overflow = 'hidden';
+        // Garante que o menu está acima de tudo
+        mm.style.display = 'flex';
+      }
+      function closeMob() {
+        mm.classList.remove('open');
+        document.body.style.overflow = '';
+      }
 
       hb.addEventListener('click', openMob);
       document.getElementById('mob-close').addEventListener('click', closeMob);

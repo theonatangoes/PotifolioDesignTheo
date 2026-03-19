@@ -3828,7 +3828,7 @@
       });
     }
 
-    /* NAV — CORRIGIDO: sem sobreposição do hamburger com o X */
+    /* NAV — CORRIGIDO: remoção do inline style que impedia o fechamento */
     function setupNav() {
       const nav = document.getElementById('nav');
       window.addEventListener('scroll', () => nav.classList.toggle('solid', window.scrollY > 60), { passive: true });
@@ -3839,12 +3839,12 @@
       function openMob() {
         mm.classList.add('open');
         document.body.style.overflow = 'hidden';
-        // Garante que o menu está acima de tudo
-        mm.style.display = 'flex';
+        // Não define inline style para display
       }
       function closeMob() {
         mm.classList.remove('open');
         document.body.style.overflow = '';
+        mm.style.display = ''; // remove qualquer display inline residual
       }
 
       hb.addEventListener('click', openMob);

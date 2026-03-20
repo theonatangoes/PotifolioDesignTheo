@@ -491,6 +491,242 @@
       -webkit-text-fill-color: transparent;
     }
 
+    /* Light mode benefits – herda as variáveis do tema claro */
+    html.light .benefits-section::before {
+      background: radial-gradient(ellipse 62% 70% at 50% 50%, rgba(30, 64, 175, .10) 0%, transparent 68%);
+    }
+
+    html.light .ben-ghost {
+      background: radial-gradient(ellipse 90% 90% at 50% 50%, rgba(185, 205, 255, .55) 0%, rgba(165, 190, 250, .30) 50%, transparent 85%);
+      border-color: rgba(30, 64, 175, .12);
+    }
+
+    html.light .ben-title {
+      color: #060818;
+    }
+
+    html.light .ben-desc {
+      color: #374151;
+    }
+
+    html.light .ben-icon-wrap {
+      color: #1d4ed8;
+    }
+
+    html.light .ben-center {
+      background: radial-gradient(circle at 42% 32%, #4f8aff 0%, #1d4ed8 38%, #1e3fa8 100%);
+    }
+
+    /* BENEFITS SECTION – segue as variáveis do tema */
+    .benefits-section {
+      padding: 100px 0;
+      position: relative;
+      overflow: hidden;
+      background: var(--bg);
+    }
+
+    .benefits-section::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse 62% 70% at 50% 50%, rgba(15, 40, 130, .48) 0%, transparent 68%);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .benefits-inner {
+      position: relative;
+      z-index: 1;
+    }
+
+    .ben-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      max-width: 880px;
+      margin: 0 auto;
+      gap: 14px;
+    }
+
+    .ben-item {
+      position: relative;
+      min-height: 220px;
+    }
+
+    .ben-text {
+      background: transparent;
+      border: none;
+      padding: 20px 22px 16px;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      justify-content: flex-start;
+      text-align: left;
+    }
+
+    .ben-text.tr {
+      align-items: flex-end;
+      text-align: right;
+    }
+
+    .ben-icon-wrap {
+      width: 44px;
+      height: 44px;
+      margin-bottom: 20px;
+      flex-shrink: 0;
+      color: var(--blue-bright);
+    }
+
+    .ben-icon-wrap svg {
+      width: 100%;
+      height: 100%;
+      stroke: currentColor;
+      stroke-width: 1.4;
+      fill: none;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+
+    .ben-title {
+      font-size: 16px;
+      font-weight: 700;
+      color: var(--white);
+      margin-bottom: 10px;
+      letter-spacing: -.3px;
+      line-height: 1.3;
+    }
+
+    .ben-desc {
+      font-size: 13px;
+      color: var(--gray);
+      line-height: 1.7;
+      font-weight: 400;
+      max-width: 240px;
+    }
+
+    .ben-ghost {
+      border-radius: 20px;
+      background: radial-gradient(ellipse 90% 90% at 50% 50%,
+          rgba(12, 24, 85, .82) 0%,
+          rgba(8, 16, 58, .62) 50%,
+          rgba(3, 6, 20, .15) 100%);
+      border: 1px solid rgba(55, 95, 210, .14);
+      -webkit-mask-image: radial-gradient(ellipse 78% 78% at 50% 50%,
+          black 20%, rgba(0, 0, 0, .6) 55%, transparent 85%);
+      mask-image: radial-gradient(ellipse 78% 78% at 50% 50%,
+          black 20%, rgba(0, 0, 0, .6) 55%, transparent 85%);
+      box-shadow:
+        0 0 32px 8px rgba(22, 55, 190, .16),
+        0 0 65px 22px rgba(15, 38, 160, .08);
+    }
+
+    .ben-ghost.near-center {
+      box-shadow:
+        0 0 44px 12px rgba(37, 99, 235, .22),
+        0 0 88px 30px rgba(37, 99, 235, .10);
+    }
+
+    /* CENTER: card com efeito 3D */
+    .ben-center {
+      border-radius: 22px;
+      background: radial-gradient(circle at 42% 32%,
+          rgba(68, 118, 255, .96) 0%,
+          rgba(22, 65, 225, .92) 38%,
+          rgba(10, 38, 172, .88) 100%);
+      border: 1px solid rgba(120, 162, 255, .28);
+      box-shadow:
+        0 0 55px 18px rgba(37, 99, 235, .50),
+        0 0 110px 45px rgba(37, 99, 235, .22),
+        inset 0 1px 0 rgba(255, 255, 255, .20),
+        inset 0 -1px 0 rgba(0, 0, 30, .40);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      overflow: hidden;
+      cursor: default;
+      transition: box-shadow .35s ease, transform 0.2s ease-out;
+      will-change: transform;
+      transform-style: preserve-3d;
+      animation: benFloat 5.5s ease-in-out infinite;
+    }
+
+    .ben-center:hover {
+      animation-play-state: paused;
+    }
+
+    @keyframes benFloat {
+
+      0%,
+      100% {
+        transform: translateY(0);
+      }
+
+      50% {
+        transform: translateY(-11px);
+      }
+    }
+
+    .ben-center::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse 70% 42% at 50% 10%,
+          rgba(255, 255, 255, .13) 0%, transparent 65%);
+      border-radius: inherit;
+      pointer-events: none;
+    }
+
+    .ben-logo {
+      width: 186px;
+      height: 186px;
+      fill: #fff;
+      display: block;
+      position: relative;
+      z-index: 2;
+      filter: drop-shadow(0 2px 14px rgba(255, 255, 255, .28));
+    }
+
+    @media(max-width:700px) {
+      .ben-grid {
+        grid-template-columns: 1fr 1fr;
+        max-width: 500px;
+        gap: 10px;
+      }
+
+      .ben-ghost-top,
+      .ben-ghost-mid-l,
+      .ben-ghost-mid-r,
+      .ben-ghost-bot {
+        display: none;
+      }
+
+      .ben-center {
+        grid-column: 1 / -1;
+        min-height: 150px;
+      }
+
+      .ben-item {
+        min-height: 160px;
+      }
+    }
+
+    @media(max-width:480px) {
+      .ben-grid {
+        grid-template-columns: 1fr;
+        max-width: 360px;
+      }
+
+      .ben-center {
+        min-height: 140px;
+      }
+
+      .ben-logo {
+        width: 120px;
+        height: 120px;
+      }
+    }
+
+    /* demais estilos mantidos (apenas alguns trechos, o resto é igual ao original) */
     .ps-node-svg {
       border-radius: 6px;
       overflow: hidden;
@@ -608,7 +844,7 @@
       display: block;
     }
 
-    /* ── LOADER ── */
+    /* LOADER */
     #loader {
       position: fixed;
       inset: 0;
@@ -671,14 +907,13 @@
       }
     }
 
-    /* ── LAYOUT ── */
     .container {
       max-width: 1350px;
       margin: 0 auto;
       padding: 0 20px;
     }
 
-    /* ── NAV ── */
+    /* NAV */
     #nav {
       position: fixed;
       top: 0;
@@ -856,7 +1091,6 @@
       color: #fff;
     }
 
-    /* ── HAMBURGER BUTTON ── */
     .hbg {
       display: none;
     }
@@ -867,7 +1101,7 @@
       }
     }
 
-    /* ── MOBILE MENU ── */
+    /* MOBILE MENU */
     #mob {
       display: none;
       position: fixed;
@@ -875,7 +1109,6 @@
       left: 0;
       right: 0;
       bottom: 0;
-      /* CORREÇÃO: z-index acima do nav (200), mas com header próprio */
       z-index: 300;
       flex-direction: column;
       overflow: hidden;
@@ -917,7 +1150,6 @@
       display: flex;
       align-items: center;
       justify-content: space-between;
-      /* CORREÇÃO: padding top generoso para o header do menu não ficar espremido */
       padding: 16px 0 20px;
       border-bottom: 1px solid rgba(55, 59, 75, .4);
       min-height: 64px;
@@ -931,7 +1163,6 @@
       fill: #1d4ed8;
     }
 
-    /* CORREÇÃO: botão fechar com tamanho e visibilidade adequados */
     .mob-close {
       width: 44px;
       height: 44px;
@@ -1095,7 +1326,7 @@
       background: rgba(255, 255, 255, .8) !important;
     }
 
-    /* ── BTNs ── */
+    /* BTNs */
     .btn {
       display: inline-flex;
       align-items: center;
@@ -1160,7 +1391,7 @@
       gap: 10px;
     }
 
-    /* ── SECTION BASE ── */
+    /* SECTION BASE */
     .section {
       padding: 80px 0;
       position: relative;
@@ -1257,7 +1488,7 @@
       background: linear-gradient(90deg, transparent, var(--border) 50%, transparent);
     }
 
-    /* ── HERO ── */
+    /* HERO */
     .hero-bg-wrap {
       z-index: -1;
       width: 100%;
@@ -1368,7 +1599,7 @@
       box-shadow: 0 40px 120px rgba(0, 0, 0, .8), 0 0 0 1px rgba(77, 128, 255, .12), inset 0 1px 0 rgba(255, 255, 255, .06);
     }
 
-    /* ── MARQUEE ── */
+    /* MARQUEE */
     .marquee-section {
       padding: 28px 0;
       border-top: 1px solid rgba(55, 59, 75, .5);
@@ -1426,7 +1657,7 @@
       font-size: 16px;
     }
 
-    /* ── ABOUT ── */
+    /* ABOUT */
     .about-grid {
       display: grid;
       grid-template-columns: 340px 1fr;
@@ -1588,7 +1819,7 @@
       margin-top: 4px;
     }
 
-    /* ── PROJECTS ── */
+    /* PROJECTS */
     .proj-header {
       display: flex;
       justify-content: space-between;
@@ -1773,7 +2004,7 @@
       line-height: 1.55;
     }
 
-    /* ── SERVICES ── */
+    /* SERVICES */
     .serv-grid {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
@@ -1874,7 +2105,7 @@
       gap: 12px;
     }
 
-    /* ── TOOLS ── */
+    /* TOOLS */
     .tools-section {
       padding: 90px 0;
       position: relative;
@@ -1932,7 +2163,6 @@
       top: 50%;
       left: 50%;
       transform: translate(-50%, -50%);
-      /* CORREÇÃO: tamanho menor no mobile via CSS */
       width: 84px;
       height: 84px;
       border-radius: 22px;
@@ -1946,7 +2176,6 @@
       overflow: hidden;
     }
 
-    /* CORREÇÃO CRÍTICA: logo dentro do tc-center com tamanho controlado */
     .tc-center img {
       width: 52px !important;
       height: 52px !important;
@@ -2089,7 +2318,7 @@
       stroke-linecap: round;
     }
 
-    /* ── TESTIMONIALS ── */
+    /* TESTIMONIALS */
     .testimonials-section {
       padding: 90px 0;
       position: relative;
@@ -2287,7 +2516,7 @@
       font-size: 9px;
     }
 
-    /* ── CONTACT ── */
+    /* CONTACT */
     .contact-wrap {
       background-image: radial-gradient(circle at 50% 2.58%, #040918 70%, #0d1e5a);
       border-radius: var(--r-x);
@@ -2461,7 +2690,7 @@
       box-shadow: 0 8px 20px rgba(11, 59, 240, .45);
     }
 
-    /* ── FOOTER ── */
+    /* FOOTER */
     footer {
       padding: 60px 0 0;
     }
@@ -2539,7 +2768,7 @@
       gap: 10px;
     }
 
-    /* ── BTT ── */
+    /* BTT */
     #btt {
       position: fixed;
       bottom: 20px;
@@ -2573,7 +2802,7 @@
       transform: translateY(-3px);
     }
 
-    /* ── POPUP ── */
+    /* POPUP */
     .pov {
       position: fixed;
       inset: 0;
@@ -2658,10 +2887,7 @@
       box-shadow: 0 8px 28px rgba(77, 128, 255, .5);
     }
 
-    /* ════════════════════════════
-       MOBILE RESPONSIVE — CORRIGIDO
-    ════════════════════════════ */
-
+    /* RESPONSIVE */
     @media(max-width:860px) {
       .home-hero-wrap {
         padding-top: 120px;
@@ -2682,8 +2908,6 @@
     }
 
     @media(max-width:767px) {
-
-      /* NAV MOBILE — CORRIGIDO: altura maior para o header não ficar pequeno */
       .nav-inner {
         grid-template-columns: auto 1fr;
         gap: 0;
@@ -2700,12 +2924,10 @@
         gap: 8px;
       }
 
-      /* LOGO NAV — tamanho adequado no mobile */
       #nav-logo-svg {
         height: 36px !important;
       }
 
-      /* Botões ibtn — tamanho bom para toque */
       .ibtn {
         width: 40px;
         height: 40px;
@@ -3009,12 +3231,10 @@
         max-width: 100%;
       }
 
-      /* NAV logo ainda menor em telas muito pequenas */
       #nav-logo-svg {
         height: 30px !important;
       }
 
-      /* ibtn em telas muito pequenas */
       .ibtn {
         width: 36px;
         height: 36px;
@@ -3033,7 +3253,6 @@
         padding: 60px 0;
       }
 
-      /* CORREÇÃO PRINCIPAL: tc-center e logo menores em mobile pequeno */
       .tools-diagram {
         height: 280px;
       }
@@ -3102,8 +3321,7 @@
       }
     }
 
-    /* Dispositivos touch — remover hovers que podem travar */
-    @media (hover: none) {
+    @media(hover:none) {
       .pcard:hover {
         transform: none;
       }
@@ -3198,6 +3416,7 @@
           <li><a class="nav-lnk" href="#projects" data-t="n_proj">Projetos</a></li>
           <li><a class="nav-lnk" href="#services" data-t="n_serv">Serviços</a></li>
           <li><a class="nav-lnk" href="#tools" data-t="n_tools">Ferramentas</a></li>
+          <li><a class="nav-lnk" href="#benefits" data-t="n_ben">Benefícios</a></li>
           <li><a class="nav-lnk" href="#testimonials" data-t="n_test">Feedbacks</a></li>
           <li><a class="nav-lnk" href="#contact" data-t="n_cont">Contato</a></li>
         </ul>
@@ -3219,7 +3438,6 @@
             <div class="btn-circle"></div>
             <div class="btn-content"><span data-t="n_cta">Iniciar Projeto</span></div>
           </a>
-          <!-- CORREÇÃO: botão hamburger com z-index e posição adequados -->
           <button class="ibtn hbg" id="hbg" aria-label="Abrir menu" style="position:relative;z-index:201;">
             <i class="fas fa-bars" id="hbg-icon"></i>
           </button>
@@ -3229,20 +3447,17 @@
   </nav>
 
   <!-- MOBILE MENU -->
-  <!-- CORREÇÃO: menu mobile com z-index 300, acima do nav (200) e do botão hamburger (201) -->
   <div id="mob" role="dialog" aria-modal="true" aria-label="Menu de navegação">
     <div class="mob-backdrop"></div>
     <div class="mob-glow"></div>
     <div class="mob-inner">
 
-      <!-- CORREÇÃO: header do menu mobile com padding correto e botão X bem visível -->
       <div class="mob-header">
         <a href="#hero" class="mob-logo" id="mob-logo-link">
           <svg height="34" viewBox="0 0 13295.68 4399.03" xmlns="http://www.w3.org/2000/svg" style="width:auto;">
             <path d="M2531.88 3233.81c-727.36,-35.42 -1393.27,-553.69 -1655.58,-1149.18 -124.47,-282.56 -138.22,-468.39 -137.72,-802.86l-738.3 0.67 -0.05 2692.23 737.93 0.08 0.23 -799.98c32.14,13.17 75.37,68.92 107.12,95.21 36.3,30.08 74.33,65.86 109.81,97.39 202.52,179.92 526.42,359.98 789.28,454.19 508.06,182.09 946.08,155.65 1518.47,153.1l0.74 -2693.14 -730.56 0.63 -1.37 1951.65zm2786.64 -1239.18l0 -1632.8 453.69 0 206.22 -329.96 -1647.36 0 203.8 329.96 453.69 0 0 1101.47 329.96 531.33zm2622.67 0l0 -1962.75 -329.96 0 0 645.35 -987.44 0 0 -645.35 -329.96 0 0 1618.24 329.96 0 0 -642.93 987.44 0 0 456.11 329.96 531.33zm2035.54 0l0 -672.04 -1317.39 0 0 -315.4 987.44 0 0 -329.96 -987.44 0 0 -315.4 1317.39 0 0 -329.96 -1647.35 0 0 1618.24 1433.85 0 213.5 344.51zm1492.08 -344.51c271.73,0 494.93,-220.78 494.93,-492.51l0 -630.8c0,-274.16 -223.2,-494.93 -494.93,-494.93l-657.49 0c-274.15,0 -494.93,220.78 -494.93,494.93l0 630.8c0,271.73 220.78,492.51 494.93,492.51l657.49 0zm0 -327.53l-657.49 0c-92.19,0 -164.97,-75.21 -164.97,-164.98l0 -630.8c0,-92.19 72.78,-164.98 164.97,-164.98l657.49 0c89.77,0 164.98,72.78 164.98,164.98l0 630.8c0,89.77 -75.21,164.98 -164.98,164.98zm-274.15 -371.2c29.11,0 55.8,-24.26 55.8,-55.81l0 -109.17c0,-29.12 -26.69,-53.38 -55.8,-53.38l-109.18 0c-31.54,0 -55.8,24.26 -55.8,53.38l0 109.17c0,31.54 24.26,55.81 55.8,55.81l109.18 0zm-5293.85 3447.65l0 -1962.75 -329.96 0 0 1166.98 -1166.97 -1166.98 0 1618.24 329.96 0 0 -822.46 1166.97 1166.98zm2355.79 -344.51l-1006.85 -1618.24 -1009.27 1618.24 776.36 0 206.22 -329.96 -388.18 0 414.87 -664.77 618.66 994.72 388.19 0zm756.95 344.51l0 -1632.8 453.69 0 206.22 -329.96 -1647.36 0 203.8 329.96 453.69 0 0 1101.47 329.96 531.33zm2445.56 -344.51l-1006.85 -1618.24 -1009.27 1618.24 776.36 0 206.22 -329.96 -388.18 0 414.87 -664.77 618.66 994.72 388.19 0zm1836.59 344.51l0 -1962.75 -329.96 0 0 1166.98 -1166.97 -1166.98 0 1618.24 329.96 0 0 -822.46 1166.97 1166.98zm-13295.46 -3799.94l0.76 140.62c359.6,23.35 898.22,-13.17 1265.81,5.33 -19.97,675.1 -36.02,1049.26 370.55,1525.99 51.27,60.12 256.08,231.79 358.82,269.21l1.6 -1794.64c386.24,-11.72 868.32,-2.74 1264.63,-2.62l1.64 -731.04c-182.51,-18.86 -1954.12,-6.33 -2352.21,-6.33 -137.53,0 -837.05,-16.13 -911.83,6.33l0.22 587.15z" />
           </svg>
         </a>
-        <!-- CORREÇÃO: botão X separado e sempre visível, sem sobreposição -->
         <button class="mob-close" id="mob-close" aria-label="Fechar menu">
           <i class="fas fa-times"></i>
         </button>
@@ -3264,6 +3479,10 @@
         <a href="#tools" class="mob-link" data-mob>
           <span class="mob-link-icon"><i class="fas fa-tools"></i></span>
           <span data-t="n_tools">Ferramentas</span>
+        </a>
+        <a href="#benefits" class="mob-link" data-mob>
+          <span class="mob-link-icon"><i class="fas fa-gem"></i></span>
+          <span data-t="n_ben">Benefícios</span>
         </a>
         <a href="#testimonials" class="mob-link" data-mob>
           <span class="mob-link-icon"><i class="fas fa-star"></i></span>
@@ -3453,7 +3672,6 @@
               <g id="t-energy"></g>
             </svg>
 
-            <!-- CORREÇÃO: logo com tamanho fixo e controlado via CSS -->
             <div class="tc-center" id="tc-logo-slot">
               <img src="images/LOGO.png" alt="Logo" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';" />
               <span class="tc-center-inner" style="display:none;">TN</span>
@@ -3482,6 +3700,73 @@
               <svg class="vscode-node-svg" width="26" height="26" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg">
                 <path class="vscode-fill" d="M30.865 3.448l-6.583-3.167c-0.766-0.37-1.677-0.214-2.276 0.385l-12.609 11.505-5.495-4.167c-0.51-0.391-1.229-0.359-1.703 0.073l-1.76 1.604c-0.583 0.526-0.583 1.443-0.005 1.969l4.766 4.349-4.766 4.349c-0.578 0.526-0.578 1.443 0.005 1.969l1.76 1.604c0.479 0.432 1.193 0.464 1.703 0.073l5.495-4.172 12.615 11.51c0.594 0.599 1.505 0.755 2.271 0.385l6.589-3.172c0.693-0.333 1.13-1.031 1.13-1.802v-21.495c0-0.766-0.443-1.469-1.135-1.802zM24.005 23.266l-9.573-7.266 9.573-7.266z" />
               </svg>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- BENEFITS (segue o tema e com efeito 3D) -->
+      <section class="benefits-section" id="benefits">
+        <div class="container benefits-inner">
+          <div class="center rv" style="margin-bottom:52px;">
+            <div class="section-tag-wrap" style="justify-content:center;display:inline-flex;">
+              <div class="section-tag-dot"></div>
+              <span class="section-tag-text" data-t="bn_tag">Benefícios</span>
+            </div>
+            <h2 class="sec-title" data-t="bn_title">Vantagens de Trabalhar Comigo</h2>
+            <p class="sec-sub" data-t="bn_desc">Cada projeto entregue com dedicação, qualidade e resultados que fazem a diferença para o seu negócio.</p>
+          </div>
+          <div class="ben-grid rv d1">
+            <div class="ben-item ben-text">
+              <div class="ben-icon-wrap">
+                <svg viewBox="0 0 24 24">
+                  <circle cx="12" cy="12" r="9" />
+                  <polyline points="12 7 12 12 15.5 14.5" />
+                  <line x1="16.5" y1="2" x2="14" y2="5" />
+                  <line x1="7.5" y1="2" x2="10" y2="5" />
+                </svg>
+              </div>
+              <div class="ben-title" data-t="bn1_t">Entrega Rápida</div>
+              <div class="ben-desc" data-t="bn1_d">Prazos cumpridos sem abrir mão da qualidade. Seu projeto pronto no tempo certo.</div>
+            </div>
+            <div class="ben-item ben-ghost ben-ghost-top"></div>
+            <div class="ben-item ben-text tr">
+              <div class="ben-icon-wrap">
+                <svg viewBox="0 0 24 24">
+                  <line x1="18" y1="20" x2="18" y2="10" />
+                  <line x1="12" y1="20" x2="12" y2="4" />
+                  <line x1="6" y1="20" x2="6" y2="14" />
+                  <polyline points="3 20 21 20" />
+                </svg>
+              </div>
+              <div class="ben-title" data-t="bn2_t">Foco em Resultados</div>
+              <div class="ben-desc" data-t="bn2_d">Design estratégico que gera conversões, engajamento e crescimento real para sua marca.</div>
+            </div>
+            <div class="ben-item ben-ghost ben-ghost-mid-l near-center"></div>
+            <div class="ben-item ben-center" id="benefit3dCard">
+              <svg class="ben-logo" viewBox="0 0 13295.68 4399.03" xmlns="http://www.w3.org/2000/svg">
+                <path d="M2531.88 3233.81c-727.36,-35.42 -1393.27,-553.69 -1655.58,-1149.18 -124.47,-282.56 -138.22,-468.39 -137.72,-802.86l-738.3 0.67 -0.05 2692.23 737.93 0.08 0.23 -799.98c32.14,13.17 75.37,68.92 107.12,95.21 36.3,30.08 74.33,65.86 109.81,97.39 202.52,179.92 526.42,359.98 789.28,454.19 508.06,182.09 946.08,155.65 1518.47,153.1l0.74 -2693.14 -730.56 0.63 -1.37 1951.65zm2786.64 -1239.18l0 -1632.8 453.69 0 206.22 -329.96 -1647.36 0 203.8 329.96 453.69 0 0 1101.47 329.96 531.33zm2622.67 0l0 -1962.75 -329.96 0 0 645.35 -987.44 0 0 -645.35 -329.96 0 0 1618.24 329.96 0 0 -642.93 987.44 0 0 456.11 329.96 531.33zm2035.54 0l0 -672.04 -1317.39 0 0 -315.4 987.44 0 0 -329.96 -987.44 0 0 -315.4 1317.39 0 0 -329.96 -1647.35 0 0 1618.24 1433.85 0 213.5 344.51zm1492.08 -344.51c271.73,0 494.93,-220.78 494.93,-492.51l0 -630.8c0,-274.16 -223.2,-494.93 -494.93,-494.93l-657.49 0c-274.15,0 -494.93,220.78 -494.93,494.93l0 630.8c0,271.73 220.78,492.51 494.93,492.51l657.49 0zm0 -327.53l-657.49 0c-92.19,0 -164.97,-75.21 -164.97,-164.98l0 -630.8c0,-92.19 72.78,-164.98 164.97,-164.98l657.49 0c89.77,0 164.98,72.78 164.98,164.98l0 630.8c0,89.77 -75.21,164.98 -164.98,164.98zm-274.15 -371.2c29.11,0 55.8,-24.26 55.8,-55.81l0 -109.17c0,-29.12 -26.69,-53.38 -55.8,-53.38l-109.18 0c-31.54,0 -55.8,24.26 -55.8,53.38l0 109.17c0,31.54 24.26,55.81 55.8,55.81l109.18 0zm-5293.85 3447.65l0 -1962.75 -329.96 0 0 1166.98 -1166.97 -1166.98 0 1618.24 329.96 0 0 -822.46 1166.97 1166.98zm2355.79 -344.51l-1006.85 -1618.24 -1009.27 1618.24 776.36 0 206.22 -329.96 -388.18 0 414.87 -664.77 618.66 994.72 388.19 0zm756.95 344.51l0 -1632.8 453.69 0 206.22 -329.96 -1647.36 0 203.8 329.96 453.69 0 0 1101.47 329.96 531.33zm2445.56 -344.51l-1006.85 -1618.24 -1009.27 1618.24 776.36 0 206.22 -329.96 -388.18 0 414.87 -664.77 618.66 994.72 388.19 0zm1836.59 344.51l0 -1962.75 -329.96 0 0 1166.98 -1166.97 -1166.98 0 1618.24 329.96 0 0 -822.46 1166.97 1166.98zm-13295.46 -3799.94l0.76 140.62c359.6,23.35 898.22,-13.17 1265.81,5.33 -19.97,675.1 -36.02,1049.26 370.55,1525.99 51.27,60.12 256.08,231.79 358.82,269.21l1.6 -1794.64c386.24,-11.72 868.32,-2.74 1264.63,-2.62l1.64 -731.04c-182.51,-18.86 -1954.12,-6.33 -2352.21,-6.33 -137.53,0 -837.05,-16.13 -911.83,6.33l0.22 587.15z" />
+              </svg>
+            </div>
+            <div class="ben-item ben-ghost ben-ghost-mid-r near-center"></div>
+            <div class="ben-item ben-text">
+              <div class="ben-icon-wrap">
+                <svg viewBox="0 0 24 24">
+                  <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" />
+                </svg>
+              </div>
+              <div class="ben-title" data-t="bn3_t">Comunicação Clara</div>
+              <div class="ben-desc" data-t="bn3_d">Processo transparente do início ao fim. Você acompanha cada etapa e dá feedbacks a qualquer momento.</div>
+            </div>
+            <div class="ben-item ben-ghost ben-ghost-bot"></div>
+            <div class="ben-item ben-text tr">
+              <div class="ben-icon-wrap">
+                <svg viewBox="0 0 24 24">
+                  <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" />
+                </svg>
+              </div>
+              <div class="ben-title" data-t="bn4_t">Qualidade Premium</div>
+              <div class="ben-desc" data-t="bn4_d">Atenção obsessiva aos detalhes. Cada pixel e escolha tipográfica pensada para elevar sua marca.</div>
             </div>
           </div>
         </div>
@@ -3652,16 +3937,40 @@
         { name: 'Simplificando Métodos', role: 'Educação & Mentoria', photo: 'images/card sp.png', project: { pt: 'Landing Page', en: 'Landing Page', es: 'Landing Page' }, text: { pt: 'Nossa landing page converteu muito mais após o redesign do Theo. Ele entendeu o nosso público e entregou algo limpo, direto e de altíssima conversão.', en: "Our landing page converted much more after Theo's redesign. He understood our audience and delivered something clean, direct and highly converting.", es: 'Nuestra landing page convirtió mucho más después del rediseño de Theo. Entendió a nuestro público y entregó algo limpio, directo y de alta conversión.' } },
         { name: 'JNS Seguros', role: 'Seguros & Consórcios', photo: 'images/card jns.png', project: { pt: 'Identidade Visual', en: 'Brand Identity', es: 'Identidad Visual' }, text: { pt: 'Profissionalismo do início ao fim. O Theo entregou uma identidade visual sólida que transmite confiança para nossos clientes. Trabalho de altíssimo nível!', en: 'Professionalism from start to finish. Theo delivered a solid visual identity that conveys trust to our clients. Top-notch work!', es: 'Profesionalismo de principio a fin. Theo entregó una identidad visual sólida que transmite confianza a nuestros clientes. ¡Trabajo de altísimo nivel!' } },
         { name: 'Flux Agency', role: 'Agência Digital', photo: 'images/card fx.png', project: { pt: 'Branding Completo', en: 'Full Branding', es: 'Branding Completo' }, text: { pt: 'O Theo entendeu a visão da Flux Agency perfeitamente. Entregou um branding arrojado, moderno e alinhado com nosso posicionamento de inovação no mercado.', en: 'Theo understood the Flux Agency vision perfectly. Delivered a bold, modern branding aligned with our market positioning of innovation.', es: 'Theo entendió la visión de Flux Agency a la perfección. Entregó un branding atrevido, moderno y alineado con nuestro posicionamiento de innovación.' } },
-        { name: 'LANEF', role: 'Liga Acadêmica de Nefrologia', photo: 'images/card lf.png', project: { pt: 'Identidade Visual', en: 'Brand Identity', es: 'Identidad Visual' }, text: { pt: 'O resultado superou o que imaginávamos. A LANEF ganhou uma identidade séria e acadêmica, mas ao mesmo tempo atrativa para novos membros. Excelente!', en: 'The result surpassed what we imagined. LANEF gained a serious and academic identity, yet attractive to new members. Excellent!', es: '¡El resultado superó lo que imaginábamos. LANEF obtuvo una identidad seria y académica, pero al mismo tiempo atractiva para nuevos miembros. Excelente!' } },
+        { name: 'LANEF', role: 'Liga Acadêmica de Nefrologia', photo: 'images/card lf.png', project: { pt: 'Identidade Visual', en: 'Brand Identity', es: 'Identidad Visual' }, text: { pt: 'O resultado superou o que imaginávamos. A LANEF ganhou uma identidade séria e acadêmica, mas ao mesmo tempo atrativa para novos membros. Excelente!', en: 'The result surpassed what we imagined. LANEF gained a serious and academic identity, yet attractive to new members. Excellent!', es: '¡El resultado superó lo que imaginábamos. LANEF obtuvo una identidad seria y académica, pero al mismo tiempo atractiva para nuevos miembros. ¡Excelente!' } },
         { name: 'Atlas Enfermagem', role: 'Associação Atlética', photo: 'images/card at.png', project: { pt: 'Identidade Visual', en: 'Brand Identity', es: 'Identidad Visual' }, text: { pt: 'Trabalho impecável! O Theo capturou o espírito atlético e acadêmico da nossa associação em uma identidade visual única e marcante. Todos adoraram!', en: 'Impeccable work! Theo captured the athletic and academic spirit of our association in a unique and striking visual identity. Everyone loved it!', es: '¡Trabajo impecable! Theo capturó el espíritu atlético y académico de nuestra asociación en una identidad visual única y llamativa. ¡A todos les encantó!' } },
         { name: 'Esphera Checkout', role: 'E-commerce & Checkout', photo: 'images/card ep.png', project: { pt: 'Landing Page', en: 'Landing Page', es: 'Landing Page' }, text: { pt: 'A página de checkout ficou linda e funcional. O design do Theo melhorou significativamente nossa taxa de conversão. Muito satisfeitos com o resultado!', en: "The checkout page turned out beautiful and functional. Theo's design significantly improved our conversion rate. Very satisfied with the result!", es: '¡La página de checkout quedó preciosa y funcional. El diseño de Theo mejoró significativamente nuestra tasa de conversión. ¡Muy satisfechos con el resultado!' } }
       ]
     };
 
     const TR = {
-      pt: { n_about: 'Sobre', n_proj: 'Projetos', n_serv: 'Serviços', n_tools: 'Ferramentas', n_test: 'Feedbacks', n_cont: 'Contato', n_cta: 'Iniciar Projeto', avail: 'Disponível para Projetos', h1a: 'Design que', h1b: 'Encanta.', h1c: 'Resultado que', h1d: 'Converte.', hdesc: 'Crio experiências digitais elegantes que equilibram beleza e funcionalidade para ajudar marcas a se destacarem.', cta1: 'Ver Trabalhos', cta2: 'Sobre Mim', mq_label: 'Habilidades & Ferramentas', role: 'Design Gráfico & Web Designer', abt_tag: 'Sobre Mim', abt_title: 'Transformando ideias em experiências digitais.', abt_p1: 'Sou Designer Gráfico e Web Designer com experiência no desenvolvimento de identidades visuais, logos, designs para aplicações web, portfólios digitais, aplicativos e landing pages.', abt_p2: 'Meu trabalho é transformar ideias em projetos criativos e funcionais — unindo estética refinada com propósito estratégico para resultados reais.', sk1: 'UI/UX Design', sk2: 'Identidade Visual', sk3: 'Web Design', sk4: 'Mobile Design', sk5: 'Landing Pages', sk6: 'UX Research', st1: 'Projetos', st2: 'Anos', st3: 'Dedicação', pj_tag: 'Projetos', pj_title: 'Trabalhos Selecionados', f_all: 'Todos', f_id: 'Identidade', f_lp: 'Landing Pages', f_pf: 'Portfólios', ver: 'Ver Projeto', sv_tag: 'Serviços', sv_title: 'O que posso fazer por você', sv_desc: 'Soluções de design completas para o seu negócio crescer.', saiba: 'Saiba mais', tl_tag: 'Ferramentas', tl_title: 'Construído com as Melhores Ferramentas', tl_desc: 'Domino as principais ferramentas de design do mercado para entregar resultados profissionais.', tb_tag: 'Feedbacks', tb_title: 'O que dizem os clientes', tb_desc: 'Resultados reais de quem confiou no meu trabalho.', ct_tag: 'Contato', ct_title: 'Vamos criar algo incrível juntos.', ct_sub: 'Conte seu projeto e transformamos sua ideia em realidade.', fn: 'Nome', fe: 'E-mail', fs: 'Assunto', fm: 'Mensagem', fsend: 'Enviar Mensagem', ci_tag: 'Informações', ci_title: 'Vamos Conversar', ci_e: 'E-mail', ci_en: 'Resposta em até 24h', ci_a: 'Disponibilidade', ci_av: 'Seg – Sex • 9h às 18h', ci_an: 'Horário comercial', ci_p: 'Processo', ci_pv: 'Consultoria inicial gratuita', ci_pn: 'Sem compromisso', fp: 'Criando experiências digitais que importam.', fh1: 'Links', fh2: 'Serviços', fh3: 'Legal', priv: 'Privacidade', terms: 'Termos', fcp: '© 2025 Theo Natan. Todos os direitos reservados.', pop_title: 'Mensagem Enviada!', pop_msg: 'Sua mensagem foi enviada com sucesso. Entrarei em contato em breve!', pop_ok: 'Perfeito!' },
-      en: { n_about: 'About', n_proj: 'Projects', n_serv: 'Services', n_tools: 'Tools', n_test: 'Feedback', n_cont: 'Contact', n_cta: 'Start Project', avail: 'Available for Projects', h1a: 'Design that', h1b: 'Delights.', h1c: 'Results that', h1d: 'Convert.', hdesc: 'I create elegant digital experiences that balance beauty and functionality to help brands stand out.', cta1: 'View Work', cta2: 'About Me', mq_label: 'Skills & Tools', role: 'Design Gráfico & Web Designer', abt_tag: 'About Me', abt_title: 'Transforming ideas into digital experiences.', abt_p1: 'I am a Graphic and Web Designer experienced in visual identities, logos, web apps, digital portfolios and landing pages.', abt_p2: 'My work transforms ideas into creative and functional projects — blending refined aesthetics with strategic purpose.', sk1: 'UI/UX Design', sk2: 'Brand Identity', sk3: 'Web Design', sk4: 'Mobile Design', sk5: 'Landing Pages', sk6: 'UX Research', st1: 'Projects', st2: 'Years', st3: 'Dedication', pj_tag: 'Projects', pj_title: 'Selected Works', f_all: 'All', f_id: 'Identity', f_lp: 'Landing Pages', f_pf: 'Portfolios', ver: 'View Project', sv_tag: 'Services', sv_title: 'What I can do for you', sv_desc: 'Complete design solutions for your business to grow.', saiba: 'Learn more', tl_tag: 'Tools', tl_title: 'Built with the Best Tools', tl_desc: 'I master the leading design tools in the market to deliver professional results.', tb_tag: 'Feedback', tb_title: 'What clients say', tb_desc: 'Real results from those who trusted my work.', ct_tag: 'Contact', ct_title: "Let's create something amazing.", ct_sub: "Tell me about your project and we'll turn your idea into reality.", fn: 'Name', fe: 'Email', fs: 'Subject', fm: 'Message', fsend: 'Send Message', ci_tag: 'Information', ci_title: "Let's Talk", ci_e: 'Email', ci_en: 'Response within 24h', ci_a: 'Availability', ci_av: 'Mon – Fri • 9am to 6pm', ci_an: 'Business hours', ci_p: 'Process', ci_pv: 'Free initial consultation', ci_pn: 'No commitment', fp: 'Creating digital experiences that matter.', fh1: 'Links', fh2: 'Services', fh3: 'Legal', priv: 'Privacy', terms: 'Terms', fcp: '© 2025 Theo Natan. All rights reserved.', pop_title: 'Message Sent!', pop_msg: "Your message was sent successfully. I'll be in touch soon!", pop_ok: 'Great!' },
-      es: { n_about: 'Sobre', n_proj: 'Proyectos', n_serv: 'Servicios', n_tools: 'Herramientas', n_test: 'Opiniones', n_cont: 'Contacto', n_cta: 'Iniciar Proyecto', avail: 'Disponible para Proyectos', h1a: 'Diseño que', h1b: 'Enamora.', h1c: 'Resultados que', h1d: 'Convierten.', hdesc: 'Creo experiencias digitales elegantes que equilibran belleza y funcionalidad.', cta1: 'Ver Trabajos', cta2: 'Sobre Mí', mq_label: 'Habilidades & Herramientas', role: 'Diseñador Gráfico & Web', abt_tag: 'Sobre Mí', abt_title: 'Transformando ideas en experiencias digitales.', abt_p1: 'Soy Diseñador Gráfico y Web Designer con experiencia en identidades visuales, logotipos y landing pages.', abt_p2: 'Mi trabajo transforma ideas en proyectos creativos y funcionales.', sk1: 'Diseño UI/UX', sk2: 'Identidad Visual', sk3: 'Diseño Web', sk4: 'Diseño Móvil', sk5: 'Landing Pages', sk6: 'Investigación UX', st1: 'Proyectos', st2: 'Años', st3: 'Dedicación', pj_tag: 'Proyectos', pj_title: 'Trabajos Seleccionados', f_all: 'Todos', f_id: 'Identidad', f_lp: 'Landing Pages', f_pf: 'Portafolios', ver: 'Ver Proyecto', sv_tag: 'Servicios', sv_title: 'Qué puedo hacer por ti', sv_desc: 'Soluciones de diseño completas para tu negocio.', saiba: 'Saber más', tl_tag: 'Herramientas', tl_title: 'Construido con las Mejores Herramientas', tl_desc: 'Domino las principales herramientas de diseño del mercado.', tb_tag: 'Opiniones', tb_title: 'Lo que dicen los clientes', tb_desc: 'Resultados reales de quienes confiaron en mi trabajo.', ct_tag: 'Contacto', ct_title: 'Vamos a crear algo increíble juntos.', ct_sub: 'Cuéntame tu proyecto y transformamos tu idea en realidad.', fn: 'Nombre', fe: 'Correo', fs: 'Asunto', fm: 'Mensaje', fsend: 'Enviar Mensaje', ci_tag: 'Información', ci_title: 'Hablemos', ci_e: 'Correo', ci_en: 'Respuesta en menos de 24h', ci_a: 'Disponibilidad', ci_av: 'Lun – Vie • 9h a 18h', ci_an: 'Horario comercial', ci_p: 'Proceso', ci_pv: 'Consulta inicial gratuita', ci_pn: 'Sin compromiso', fp: 'Creando experiencias digitales que importan.', fh1: 'Enlaces', fh2: 'Servicios', fh3: 'Legal', priv: 'Privacidad', terms: 'Términos', fcp: '© 2025 Theo Natan. Todos los derechos reservados.', pop_title: '¡Mensaje Enviado!', pop_msg: 'Tu mensaje fue enviado con éxito.', pop_ok: '¡Perfecto!' }
+      pt: {
+        n_about: 'Sobre', n_proj: 'Projetos', n_serv: 'Serviços', n_tools: 'Ferramentas', n_ben: 'Benefícios', n_test: 'Feedbacks', n_cont: 'Contato', n_cta: 'Iniciar Projeto', avail: 'Disponível para Projetos', h1a: 'Design que', h1b: 'Encanta.', h1c: 'Resultado que', h1d: 'Converte.', hdesc: 'Crio experiências digitais elegantes que equilibram beleza e funcionalidade para ajudar marcas a se destacarem.', cta1: 'Ver Trabalhos', cta2: 'Sobre Mim', mq_label: 'Habilidades & Ferramentas', role: 'Design Gráfico & Web Designer', abt_tag: 'Sobre Mim', abt_title: 'Transformando ideias em experiências digitais.', abt_p1: 'Sou Designer Gráfico e Web Designer com experiência no desenvolvimento de identidades visuais, logos, designs para aplicações web, portfólios digitais, aplicativos e landing pages.', abt_p2: 'Meu trabalho é transformar ideias em projetos criativos e funcionais — unindo estética refinada com propósito estratégico para resultados reais.', sk1: 'UI/UX Design', sk2: 'Identidade Visual', sk3: 'Web Design', sk4: 'Mobile Design', sk5: 'Landing Pages', sk6: 'UX Research', st1: 'Projetos', st2: 'Anos', st3: 'Dedicação', pj_tag: 'Projetos', pj_title: 'Trabalhos Selecionados', f_all: 'Todos', f_id: 'Identidade', f_lp: 'Landing Pages', f_pf: 'Portfólios', ver: 'Ver Projeto', sv_tag: 'Serviços', sv_title: 'O que posso fazer por você', sv_desc: 'Soluções de design completas para o seu negócio crescer.', saiba: 'Saiba mais', tl_tag: 'Ferramentas', tl_title: 'Construído com as Melhores Ferramentas', tl_desc: 'Domino as principais ferramentas de design do mercado para entregar resultados profissionais.',
+        bn_tag: 'Benefícios', bn_title: 'Vantagens de Trabalhar Comigo', bn_desc: 'Cada projeto entregue com dedicação, qualidade e resultados que fazem a diferença para o seu negócio.',
+        bn1_t: 'Entrega Rápida', bn1_d: 'Prazos cumpridos sem abrir mão da qualidade. Seu projeto pronto no tempo certo.',
+        bn2_t: 'Foco em Resultados', bn2_d: 'Design estratégico que gera conversões, engajamento e crescimento real para sua marca.',
+        bn3_t: 'Comunicação Clara', bn3_d: 'Processo transparente do início ao fim. Você acompanha cada etapa e dá feedbacks a qualquer momento.',
+        bn4_t: 'Qualidade Premium', bn4_d: 'Atenção obsessiva aos detalhes. Cada pixel e escolha tipográfica pensada para elevar sua marca.',
+        tb_tag: 'Feedbacks', tb_title: 'O que dizem os clientes', tb_desc: 'Resultados reais de quem confiou no meu trabalho.', ct_tag: 'Contato', ct_title: 'Vamos criar algo incrível juntos.', ct_sub: 'Conte seu projeto e transformamos sua ideia em realidade.', fn: 'Nome', fe: 'E-mail', fs: 'Assunto', fm: 'Mensagem', fsend: 'Enviar Mensagem', ci_tag: 'Informações', ci_title: 'Vamos Conversar', ci_e: 'E-mail', ci_en: 'Resposta em até 24h', ci_a: 'Disponibilidade', ci_av: 'Seg – Sex • 9h às 18h', ci_an: 'Horário comercial', ci_p: 'Processo', ci_pv: 'Consultoria inicial gratuita', ci_pn: 'Sem compromisso', fp: 'Criando experiências digitais que importam.', fh1: 'Links', fh2: 'Serviços', fh3: 'Legal', priv: 'Privacidade', terms: 'Termos', fcp: '© 2025 Theo Natan. Todos os direitos reservados.', pop_title: 'Mensagem Enviada!', pop_msg: 'Sua mensagem foi enviada com sucesso. Entrarei em contato em breve!', pop_ok: 'Perfeito!'
+      },
+      en: {
+        n_about: 'About', n_proj: 'Projects', n_serv: 'Services', n_tools: 'Tools', n_ben: 'Benefits', n_test: 'Feedback', n_cont: 'Contact', n_cta: 'Start Project', avail: 'Available for Projects', h1a: 'Design that', h1b: 'Delights.', h1c: 'Results that', h1d: 'Convert.', hdesc: 'I create elegant digital experiences that balance beauty and functionality to help brands stand out.', cta1: 'View Work', cta2: 'About Me', mq_label: 'Skills & Tools', role: 'Graphic & Web Designer', abt_tag: 'About Me', abt_title: 'Transforming ideas into digital experiences.', abt_p1: 'I am a Graphic and Web Designer experienced in visual identities, logos, web apps, digital portfolios and landing pages.', abt_p2: 'My work transforms ideas into creative and functional projects — blending refined aesthetics with strategic purpose.', sk1: 'UI/UX Design', sk2: 'Brand Identity', sk3: 'Web Design', sk4: 'Mobile Design', sk5: 'Landing Pages', sk6: 'UX Research', st1: 'Projects', st2: 'Years', st3: 'Dedication', pj_tag: 'Projects', pj_title: 'Selected Works', f_all: 'All', f_id: 'Identity', f_lp: 'Landing Pages', f_pf: 'Portfolios', ver: 'View Project', sv_tag: 'Services', sv_title: 'What I can do for you', sv_desc: 'Complete design solutions for your business to grow.', saiba: 'Learn more', tl_tag: 'Tools', tl_title: 'Built with the Best Tools', tl_desc: 'I master the leading design tools in the market to deliver professional results.',
+        bn_tag: 'Benefits', bn_title: 'Advantages of Working with Me', bn_desc: 'Every project delivered with dedication, quality and results that make a difference for your business.',
+        bn1_t: 'Fast Delivery', bn1_d: 'Deadlines met without compromising quality. Your project ready on time.',
+        bn2_t: 'Results Focused', bn2_d: 'Strategic design that drives conversions, engagement and real growth for your brand.',
+        bn3_t: 'Clear Communication', bn3_d: 'Transparent process from start to finish. You follow every step and give feedback at any time.',
+        bn4_t: 'Premium Quality', bn4_d: 'Obsessive attention to detail. Every pixel and typographic choice designed to elevate your brand.',
+        tb_tag: 'Feedback', tb_title: 'What clients say', tb_desc: 'Real results from those who trusted my work.', ct_tag: 'Contact', ct_title: "Let's create something amazing.", ct_sub: "Tell me about your project and we'll turn your idea into reality.", fn: 'Name', fe: 'Email', fs: 'Subject', fm: 'Message', fsend: 'Send Message', ci_tag: 'Information', ci_title: "Let's Talk", ci_e: 'Email', ci_en: 'Response within 24h', ci_a: 'Availability', ci_av: 'Mon – Fri • 9am to 6pm', ci_an: 'Business hours', ci_p: 'Process', ci_pv: 'Free initial consultation', ci_pn: 'No commitment', fp: 'Creating digital experiences that matter.', fh1: 'Links', fh2: 'Services', fh3: 'Legal', priv: 'Privacy', terms: 'Terms', fcp: '© 2025 Theo Natan. All rights reserved.', pop_title: 'Message Sent!', pop_msg: "Your message was sent successfully. I'll be in touch soon!", pop_ok: 'Great!'
+      },
+      es: {
+        n_about: 'Sobre', n_proj: 'Proyectos', n_serv: 'Servicios', n_tools: 'Herramientas', n_ben: 'Beneficios', n_test: 'Opiniones', n_cont: 'Contacto', n_cta: 'Iniciar Proyecto', avail: 'Disponible para Proyectos', h1a: 'Diseño que', h1b: 'Enamora.', h1c: 'Resultados que', h1d: 'Convierten.', hdesc: 'Creo experiencias digitales elegantes que equilibran belleza y funcionalidad.', cta1: 'Ver Trabajos', cta2: 'Sobre Mí', mq_label: 'Habilidades & Herramientas', role: 'Diseñador Gráfico & Web', abt_tag: 'Sobre Mí', abt_title: 'Transformando ideas en experiencias digitales.', abt_p1: 'Soy Diseñador Gráfico y Web Designer con experiencia en identidades visuales, logotipos y landing pages.', abt_p2: 'Mi trabajo transforma ideas en proyectos creativos y funcionales.', sk1: 'Diseño UI/UX', sk2: 'Identidad Visual', sk3: 'Diseño Web', sk4: 'Diseño Móvil', sk5: 'Landing Pages', sk6: 'Investigación UX', st1: 'Proyectos', st2: 'Años', st3: 'Dedicación', pj_tag: 'Proyectos', pj_title: 'Trabajos Seleccionados', f_all: 'Todos', f_id: 'Identidad', f_lp: 'Landing Pages', f_pf: 'Portafolios', ver: 'Ver Proyecto', sv_tag: 'Servicios', sv_title: 'Qué puedo hacer por ti', sv_desc: 'Soluciones de diseño completas para tu negocio.', saiba: 'Saber más', tl_tag: 'Herramientas', tl_title: 'Construido con las Mejores Herramientas', tl_desc: 'Domino las principales herramientas de diseño del mercado.',
+        bn_tag: 'Beneficios', bn_title: 'Ventajas de Trabajar Conmigo', bn_desc: 'Cada proyecto entregado con dedicación, calidad y resultados que marcan la diferencia.',
+        bn1_t: 'Entrega Rápida', bn1_d: 'Plazos cumplidos sin sacrificar calidad. Tu proyecto listo a tiempo.',
+        bn2_t: 'Enfoque en Resultados', bn2_d: 'Diseño estratégico que genera conversiones, engagement y crecimiento real para tu marca.',
+        bn3_t: 'Comunicación Clara', bn3_d: 'Proceso transparente de principio a fin. Acompañas cada etapa y das feedback en cualquier momento.',
+        bn4_t: 'Calidad Premium', bn4_d: 'Atención obsesiva a los detalles. Cada pixel y elección tipográfica pensada para elevar tu marca.',
+        tb_tag: 'Opiniones', tb_title: 'Lo que dicen los clientes', tb_desc: 'Resultados reales de quienes confiaron en mi trabajo.', ct_tag: 'Contacto', ct_title: 'Vamos a crear algo increíble juntos.', ct_sub: 'Cuéntame tu proyecto y transformamos tu idea en realidad.', fn: 'Nombre', fe: 'Correo', fs: 'Asunto', fm: 'Mensaje', fsend: 'Enviar Mensaje', ci_tag: 'Información', ci_title: 'Hablemos', ci_e: 'Correo', ci_en: 'Respuesta en menos de 24h', ci_a: 'Disponibilidad', ci_av: 'Lun – Vie • 9h a 18h', ci_an: 'Horario comercial', ci_p: 'Proceso', ci_pv: 'Consulta inicial gratuita', ci_pn: 'Sin compromiso', fp: 'Creando experiencias digitales que importan.', fh1: 'Enlaces', fh2: 'Servicios', fh3: 'Legal', priv: 'Privacidad', terms: 'Términos', fcp: '© 2025 Theo Natan. Todos los derechos reservados.', pop_title: '¡Mensaje Enviado!', pop_msg: 'Tu mensaje fue enviado con éxito.', pop_ok: '¡Perfecto!'
+      }
     };
 
     let lang = localStorage.getItem('lang') || 'pt';
@@ -3696,6 +4005,7 @@
       setupBTT();
       buildTools();
       updateMobLogo();
+      init3DEffect(); // adiciona efeito 3D no card central
     });
 
     /* THEME */
@@ -3828,7 +4138,7 @@
       });
     }
 
-    /* NAV — CORRIGIDO: remoção do inline style que impedia o fechamento */
+    /* NAV */
     function setupNav() {
       const nav = document.getElementById('nav');
       window.addEventListener('scroll', () => nav.classList.toggle('solid', window.scrollY > 60), { passive: true });
@@ -3839,12 +4149,11 @@
       function openMob() {
         mm.classList.add('open');
         document.body.style.overflow = 'hidden';
-        // Não define inline style para display
       }
       function closeMob() {
         mm.classList.remove('open');
         document.body.style.overflow = '';
-        mm.style.display = ''; // remove qualquer display inline residual
+        mm.style.display = '';
       }
 
       hb.addEventListener('click', openMob);
@@ -3947,6 +4256,25 @@
         a2.setAttribute('dur', `${dur}s`); a2.setAttribute('begin', `${delay}s`);
         a2.setAttribute('repeatCount', 'indefinite'); a2.setAttribute('calcMode', 'linear');
         ep2.appendChild(a2); svgEnergy.appendChild(ep2);
+      });
+    }
+
+    /* EFEITO 3D NO CARD CENTRAL */
+    function init3DEffect() {
+      const card = document.getElementById('benefit3dCard');
+      if (!card) return;
+      card.addEventListener('mousemove', (e) => {
+        const rect = card.getBoundingClientRect();
+        const x = e.clientX - rect.left;
+        const y = e.clientY - rect.top;
+        const centerX = rect.width / 2;
+        const centerY = rect.height / 2;
+        const rotateY = ((x - centerX) / centerX) * 15;
+        const rotateX = ((centerY - y) / centerY) * 15;
+        card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateY(-6px)`;
+      });
+      card.addEventListener('mouseleave', () => {
+        card.style.transform = '';
       });
     }
   </script>
